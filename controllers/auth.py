@@ -74,7 +74,8 @@ class AuthController:
     # ------------------------------------------------------------------
     def register(self, username: str, srp_salt: str, srp_verifier: str, public_key: str,
                  encrypted_private_key: str, kdf_salt: str, email: str, phone: str,
-                 first_name: str, last_name: str) -> bool:
+                 first_name: str, last_name: str, recovery_salt: Optional[str] = None,
+                 encrypted_private_key_recovery: Optional[str] = None) -> bool:
         """Register a user from client-generated zero-knowledge credentials.
 
         Args:
@@ -88,6 +89,10 @@ class AuthController:
             phone: The user's phone number.
             first_name: The user's first name.
             last_name: The user's last name.
+            recovery_salt: Optional QV-RECOVERY-1 PBKDF2 salt (hex), generated on the client.
+            encrypted_private_key_recovery: Optional QV-RECOVERY-1 AES-256-GCM
+                wrapping of the same private key blob, keyed by a
+                client-generated recovery code instead of the password.
 
         Returns:
             True on success, False if validation fails or persistence errors.
@@ -133,6 +138,8 @@ class AuthController:
                 phone_verification_code_hash=hash_secret(phone_verification_code),
                 phone_code_expires=phone_code_expires,
                 mfa_enabled=False,
+                recovery_salt=recovery_salt,
+                encrypted_private_key_recovery=encrypted_private_key_recovery,
             )
 
             audit_event("register_success", username=username, email=email)

@@ -25,9 +25,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('message.messages') }}">Messages</a>
                             </li>
+                            {% if ENABLE_SUBSCRIPTIONS %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('subscription.subscribe') }}">Subscribe</a>
                             </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                             </li>
@@ -100,6 +102,7 @@
                         Superadmin panel
                     </a>
                 {% endif %}
+                {% if ENABLE_SUBSCRIPTIONS %}
                 <a href="{{ url_for('subscription.subscribe') }}"
                    class="btn btn-success position-relative px-4 py-2 fw-semibold border-0"
                    style="background: linear-gradient(90deg, #28a745, #00ff00); transition: all 0.3s ease;"
@@ -107,6 +110,7 @@
                    onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
                        Subscribe
                 </a>
+                {% endif %}
                 <a href="{{ url_for('auth.logout') }}"
                    class="btn btn-secondary position-relative px-4 py-2 fw-semibold border-0"
                    style="background: linear-gradient(90deg, #6c757d, #adb5bd); transition: all 0.3s ease;"

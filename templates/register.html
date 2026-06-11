@@ -2225,6 +2225,37 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                     pointer-events: none;
                 "
             ></div>
+            <div
+                id="recovery-code-modal"
+                class="fixed inset-0 bg-dark-950/80 flex items-center justify-center z-50 hidden"
+            >
+                <div class="card max-w-md w-full mx-4">
+                    <h2 class="text-xl font-bold text-white mb-2">
+                        Save your account recovery code
+                    </h2>
+                    <p class="text-sm text-dark-300 mb-4">
+                        If you ever forget your password, this code is the
+                        only way to get back into your account.
+                        QuantumVault stores your data with zero-knowledge
+                        encryption, so it cannot reset your password or
+                        recover this code for you. Write it down or save it
+                        in a password manager now &mdash; it will not be
+                        shown again.
+                    </p>
+                    <div
+                        id="recovery-code-display"
+                        class="font-mono text-lg text-center text-primary-400 bg-dark-900 border border-dark-700 rounded-lg p-4 mb-4"
+                        style="word-break: break-all;"
+                    ></div>
+                    <button
+                        id="recovery-code-continue"
+                        type="button"
+                        class="btn-primary w-full"
+                    >
+                        I have saved my recovery code
+                    </button>
+                </div>
+            </div>
         </div>
         <script type="module" src="/static/js/register.js"></script>
     </body>

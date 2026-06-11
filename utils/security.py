@@ -32,6 +32,8 @@ from flask import current_app, g, jsonify, request
 from flask_wtf.csrf import validate_csrf
 from wtforms import ValidationError
 
+from utils.utils import as_bool
+
 
 # ---------------------------------------------------------------------------
 # Structured audit logger
@@ -89,14 +91,22 @@ def audit_event(event: str, **fields: Any) -> None:
             ``mfa_failure``.
         **fields: Additional structured fields to record. The keys
             ``ts`` (unix epoch in milliseconds), ``event``, ``cid``
-            (correlation id), and ``ip`` are added automatically.
+            (correlation id), ``ip``, and ``ua`` are added automatically.
+
+    The ``ip`` and ``ua`` fields are recorded as ``None`` when
+    ``QV_AUDIT_LOG_IP=0`` or ``QV_AUDIT_LOG_UA=0`` respectively, for
+    operators running for high-risk users (e.g. behind Tor) who do not
+    want client IP addresses or User-Agent strings persisted to logs.
+    Both default to enabled (``"1"``).
     """
+    log_ip = as_bool(os.environ.get("QV_AUDIT_LOG_IP"), True)
+    log_ua = as_bool(os.environ.get("QV_AUDIT_LOG_UA"), True)
     record = {
         "ts": int(time.time() * 1000),
         "event": event,
         "cid": _correlation_id(),
-        "ip": request.remote_addr if request else None,
-        "ua": (request.headers.get("User-Agent") if request else None),
+        "ip": (request.remote_addr if request and log_ip else None),
+        "ua": (request.headers.get("User-Agent") if request and log_ua else None),
     }
     record.update(fields)
     try:

@@ -390,6 +390,11 @@ doctor:                         ## Import-smoke: try every project module, repor
 	@echo "[doctor] importing project modules with the venv's python ..."
 	@cd $(CURDIR) && $(PY) scripts/doctor.py
 
+.PHONY: test
+test:                           ## Run the pytest suite (SRP roundtrip, security helpers).
+	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
+	@cd $(CURDIR) && $(PY) -m pytest -q
+
 .PHONY: upgrade-deps
 upgrade-deps:                   ## Refresh the venv to match the latest requirements.txt lock.
 	@if [ ! -d "$(VENV)" ]; then $(MAKE) deps; fi

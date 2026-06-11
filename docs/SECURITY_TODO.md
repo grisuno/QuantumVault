@@ -50,13 +50,28 @@ during the v8 hardening pass. Each item has a category, an owner, a
 ### 4. Recovery codes (one-time backup)
 
 - **Category:** authentication
-- **Status:** not implemented
-- **Why deferred:** Adds 5-10 printable recovery codes at
-  registration, persisted as peppered hashes. A SPA-side generator
-  is required; the UX needs design review.
-- **Next:** Generate 10 alphanumeric recovery codes at registration,
-  store their hashes, allow one-time consumption via a new
-  ``/api/recover`` endpoint that bypasses MFA for 24 hours.
+- **Status:** implemented (``QV-RECOVERY-1``)
+- **What shipped:** At registration, the browser generates a 20-byte
+  high-entropy recovery code (Base32, displayed as 8 groups of 4
+  characters, 160 bits of entropy) and uses it as PBKDF2 input to
+  independently re-wrap the *same* ``privateBlob`` that the password
+  wraps (``wrapPrivateKeyForRecovery`` in ``static/js/qv-crypto.js``).
+  The result (``recovery_salt``, ``encrypted_private_key_recovery``) is
+  stored alongside the account; the recovery code itself is shown once
+  in a one-time modal at registration and never transmitted or stored.
+  ``GET /api/auth/recovery-bundle`` (rate limited, no auth) returns the
+  wrapped blob for a username; ``POST /api/auth/reset-with-recovery``
+  (rate limited) accepts a new SRP verifier and a re-wrapped private key
+  blob, but only after the caller proves possession of the recovery code
+  by reconstructing the account's ``public_key`` from the decrypted
+  blob (``derivePublicKeyFromPrivateBlob``) and the server verifies it
+  with ``hmac.compare_digest``. This does not bypass MFA or any other
+  second factor; it only replaces the SRP verifier and the
+  password-wrapping of the existing keypair, which is unchanged.
+- **Follow-up:** Add a "rotate recovery code" action to account
+  settings (re-run ``wrapPrivateKeyForRecovery`` with a freshly
+  generated code while authenticated, so a user who suspects their
+  recovery code was exposed can invalidate it without losing access).
 
 ### 5. Garbage-collecting stale SRP sessions
 
@@ -102,6 +117,65 @@ during the v8 hardening pass. Each item has a category, an owner, a
   Adding ``pip-audit`` and ``pip-compile --generate-hashes`` to CI
   is the next step; the ``make upgrade-deps`` target needs to land.
 
+### 10. Audit log retention and encryption at rest
+
+- **Category:** operational
+- **Status:** not implemented
+- **Why deferred:** ``QV_AUDIT_LOG_IP=0`` / ``QV_AUDIT_LOG_UA=0`` (see
+  "Items completed" below) stop new IP/User-Agent data from being
+  written, but do not address how long existing audit log lines are
+  retained on disk, or whether they are encrypted at rest. Forwarding
+  to an external SIEM is covered by item 6; this item is specifically
+  about the local stdout/file sink an operator may be using before
+  any forwarding is configured.
+- **Next:** Document a recommended log rotation policy (e.g.
+  ``logrotate`` with a short retention window for high-risk
+  deployments) and, for operators who must retain logs longer,
+  recommend writing them to an encrypted volume.
+
+### 11. Forward secrecy for the hybrid PQ messaging channel
+
+- **Category:** cryptography
+- **Status:** not implemented
+- **Why deferred:** The current scheme uses a static, long-lived
+  ML-KEM-768 + X25519 keypair per user (the same keypair protected by
+  ``encrypted_private_key`` / ``encrypted_private_key_recovery``).
+  Each message is sealed with a fresh per-message X25519 ephemeral key
+  *and* a fresh per-message ML-KEM encapsulation to the recipient's
+  static ML-KEM public key, then combined via HKDF-SHA256 into the
+  message's wrap key (see the ``kem``/wrap-key derivation in
+  ``static/js/qv-crypto.js``). The per-message X25519 ephemeral does
+  not provide forward secrecy on its own here: because both the X25519
+  shared secret and the ML-KEM shared secret feed the *same* HKDF, an
+  attacker who later compromises the recipient's static ML-KEM secret
+  key can decapsulate the ``kem`` ciphertext of *every* message ever
+  sent to that public key and recover every historical wrap key,
+  regardless of the ephemeral X25519 keys (which are not retained, but
+  are not needed for this attack). In short: compromise of one
+  long-term secret key retroactively breaks confidentiality of the
+  entire message history sent to that key.
+- **Recommended direction:** This needs a real protocol redesign, not a
+  patch to the wrap/unwrap functions:
+  - Move to rotating, signed "pre-key" bundles for ML-KEM (and X25519),
+    refreshed periodically and signed with the long-term identity key
+    once ``ML-DSA-65`` rotation proofs (item 3) land, so a compromised
+    static key only exposes messages encapsulated to that specific
+    pre-key, not the entire history.
+  - Longer term, adopt a PQXDH-style initial handshake (hybrid
+    ML-KEM + X25519 X3DH analogue) followed by a symmetric-key ratchet
+    (Double-Ratchet-style) for ongoing session keys, so each message
+    key is derived from an evolving ratchet state that is deleted after
+    use and cannot be recomputed from any single long-term secret.
+- **Explicitly out of scope for this pass:** This is its own
+  dedicated, reviewed design effort. It is not bundled into this
+  hardening pass because an incorrect implementation could silently
+  produce messages that are unreadable by the recipient, or that
+  falsely claim forward secrecy while still being recoverable from a
+  static key. No changes were made in this pass to
+  ``static/js/qv-crypto.js``'s message wrap/unwrap functions,
+  ``models/message.py``, ``controllers/message.py``, or the message
+  wire format.
+
 ## Items completed in this hardening pass
 
 - Application factory with secure defaults (``app_factory.py``)
@@ -133,3 +207,19 @@ during the v8 hardening pass. Each item has a category, an owner, a
 - ``requirements.txt`` pinned to specific versions
 - ``make backupdb`` target (alias of ``cleandb``) added; the
   destructive target now requires a confirmation prompt
+- ``QV_AUDIT_LOG_IP`` / ``QV_AUDIT_LOG_UA`` toggles (default on) added to
+  ``audit_event`` so operators serving high-risk users over Tor can omit
+  client IP addresses and User-Agent strings from the audit log
+- ``QV_ENABLE_SUBSCRIPTIONS`` feature flag (default on) added so operators
+  who do not want to offer paid plans can disable the subscription
+  blueprint and nav link entirely
+- ``tests/`` pytest suite added: pure-Python SRP-6a roundtrip
+  (``tests/test_srp.py``) and audit-log/CSRF helper tests
+  (``tests/test_security.py``); ``make test`` runs it
+- ``QV-RECOVERY-1`` cryptographic account recovery: a one-time,
+  client-generated recovery code re-wraps the existing private key
+  blob (``static/js/qv-crypto.js``); ``GET /api/auth/recovery-bundle``
+  and ``POST /api/auth/reset-with-recovery`` (``views/auth.py``) let a
+  user reset their password and SRP verifier after proving possession
+  of the recovery code, without the server ever learning the code or
+  the private key

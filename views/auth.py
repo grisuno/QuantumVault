@@ -22,6 +22,7 @@ Every state-changing JSON route is decorated with
 without the matching CSRF token is rejected with HTTP 403 and audited.
 """
 
+import hmac
 import os
 from functools import wraps
 
@@ -47,6 +48,7 @@ from wtforms.validators import DataRequired
 from controllers.auth import AuthController
 from controllers.contact import ContactController
 from models.user import UserModel
+from utils.mailer import mail_is_configured, send_transactional_email
 from utils.security import audit_event, json_csrf_protect
 
 
@@ -215,6 +217,8 @@ def handle_register():
         phone=data.get("phone"),
         first_name=data.get("first_name"),
         last_name=data.get("last_name"),
+        recovery_salt=data.get("recovery_salt"),
+        encrypted_private_key_recovery=data.get("encrypted_private_key_recovery"),
     ):
         flash("Registration successful. Please log in.")
         return jsonify({
@@ -233,11 +237,35 @@ def login():
     return render_template("login.html", form=form)
 
 
+@auth_bp.route("/recover", methods=["GET"])
+def recover():
+    """Render the QV-RECOVERY-1 account-recovery page.
+
+    Available to anonymous visitors: a forgotten password means the
+    visitor cannot authenticate, by definition.
+    """
+    if current_user.is_authenticated:
+        return redirect(url_for("views.home"))
+    return render_template("recover.html")
+
+
 # SRP key for per-username rate limiting: combine the remote IP and
 # the username so a botnet can still be slowed per-account.
 def _srp_key() -> str:
     username = ""
     if request.is_json:
+        body = request.get_json(silent=True) or {}
+        username = (body.get("username") or "").lower()
+    return f"{get_remote_address()}|{username}"
+
+
+# Per-username (in addition to per-IP) rate limiting for the QV-RECOVERY-1
+# endpoints, mirroring _srp_key. GET /api/auth/recovery-bundle carries the
+# username as a query parameter rather than a JSON body.
+def _recovery_key() -> str:
+    if request.method == "GET":
+        username = (request.args.get("username") or "").lower()
+    else:
         body = request.get_json(silent=True) or {}
         username = (body.get("username") or "").lower()
     return f"{get_remote_address()}|{username}"
@@ -475,6 +503,92 @@ def get_user_keys():
         "public_key": user_data["public_key"],
         "encrypted_private_key": user_data["encrypted_private_key"],
     })
+
+
+@auth_bp.route("/api/auth/recovery-bundle", methods=["GET"])
+@limiter.limit("10 per minute", key_func=_recovery_key)
+def get_recovery_bundle():
+    """Return the QV-RECOVERY-1 bundle for a username, if one was generated.
+
+    No authentication is required: a forgotten password by definition
+    means the caller cannot log in. The returned values are opaque to
+    anyone without the recovery code: ``encrypted_private_key_recovery``
+    is AES-256-GCM ciphertext keyed by a PBKDF2 derivation of the
+    recovery code, so exposing it to an unauthenticated caller does not
+    weaken the zero-knowledge guarantees.
+    """
+    username = request.args.get("username")
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+
+    controller = get_auth_controller()
+    bundle = controller.user_db.get_recovery_bundle(username)
+    if not bundle:
+        return jsonify({"error": "No recovery code is configured for this account."}), 404
+
+    return jsonify(bundle)
+
+
+@auth_bp.route("/api/auth/reset-with-recovery", methods=["POST"])
+@limiter.limit("5 per hour", key_func=_recovery_key)
+@json_csrf_protect
+def reset_with_recovery():
+    """Reset SRP credentials and the password-wrapped private key via QV-RECOVERY-1.
+
+    The browser has already decrypted ``encrypted_private_key_recovery``
+    using a key derived from the recovery code and reconstructed the
+    account's public key from the recovered private key blob (see
+    ``derivePublicKeyFromPrivateBlob`` in ``static/js/qv-crypto.js``).
+    That reconstruction is supplied as ``public_key_proof``: AES-GCM
+    authentication means a wrong recovery code fails to decrypt at all,
+    so only a caller who supplied the correct code can produce a
+    ``public_key_proof`` that matches the stored ``public_key``
+    byte-for-byte. The underlying keypair and ``public_key`` are not
+    changed; only the SRP verifier and the password-wrapping of the
+    existing private key blob are replaced.
+    """
+    data = request.get_json(silent=True) or {}
+    required_fields = [
+        "username", "public_key_proof", "srp_salt", "srp_verifier",
+        "kdf_salt", "encrypted_private_key",
+    ]
+    if not all(field in data and data[field] for field in required_fields):
+        return jsonify({"success": False, "error": "Missing required fields"}), 400
+
+    username = data["username"]
+    controller = get_auth_controller()
+    user_data = controller.user_db.get_user(username)
+    if not user_data or not user_data.get("public_key"):
+        audit_event("recovery_reset_denied", username=username, reason="user_not_found")
+        return jsonify({"success": False, "error": "Invalid recovery code."}), 403
+
+    if not hmac.compare_digest(data["public_key_proof"], user_data["public_key"]):
+        audit_event("recovery_reset_denied", username=username, reason="proof_mismatch")
+        return jsonify({"success": False, "error": "Invalid recovery code."}), 403
+
+    controller.user_db.reset_credentials_with_recovery(
+        username=username,
+        srp_salt=data["srp_salt"],
+        srp_verifier=data["srp_verifier"],
+        kdf_salt=data["kdf_salt"],
+        encrypted_private_key=data["encrypted_private_key"],
+    )
+    audit_event("recovery_reset_success", username=username)
+
+    if mail_is_configured() and user_data.get("email"):
+        send_transactional_email(
+            subject="QuantumVault: your password was reset using a recovery code",
+            recipients=[user_data["email"]],
+            body=(
+                "Your QuantumVault account password was just reset using your "
+                "account recovery code. If this was not you, your recovery "
+                "code may be compromised: log in immediately, set a new "
+                "password, and generate a new recovery code from your "
+                "account settings."
+            ),
+        )
+
+    return jsonify({"success": True, "redirect": url_for("auth.login")})
 
 
 @auth_bp.route("/api/csrf-token", methods=["GET", "OPTIONS"])

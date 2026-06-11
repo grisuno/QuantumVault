@@ -179,6 +179,8 @@ class UserDB:
                 ('mfa_enabled', "ALTER TABLE users ADD COLUMN mfa_enabled BOOLEAN DEFAULT FALSE"),
                 ('phone_verification_code_hash', "ALTER TABLE users ADD COLUMN phone_verification_code_hash TEXT"),
                 ('mfa_code_hash', "ALTER TABLE users ADD COLUMN mfa_code_hash TEXT"),
+                ('recovery_salt', "ALTER TABLE users ADD COLUMN recovery_salt TEXT"),
+                ('encrypted_private_key_recovery', "ALTER TABLE users ADD COLUMN encrypted_private_key_recovery TEXT"),
             ):
                 if column not in existing:
                     db.execute(ddl)
@@ -324,7 +326,8 @@ class UserDB:
                     kdf_salt: str, email: str, phone: str, first_name: str, last_name: str, role: str, storage_quota: int,
                     trial_start: Optional[datetime], trial_end: Optional[datetime], subscription_status: str,
                     email_verified: bool, confirmation_token: Optional[str], phone_verified: bool,
-                    phone_verification_code_hash: Optional[str], phone_code_expires: Optional[datetime], mfa_enabled: bool) -> None:
+                    phone_verification_code_hash: Optional[str], phone_code_expires: Optional[datetime], mfa_enabled: bool,
+                    recovery_salt: Optional[str] = None, encrypted_private_key_recovery: Optional[str] = None) -> None:
         """Persist a new user from client-provided zero-knowledge credentials.
 
         All cryptographic material (salt, verifier, public key, encrypted
@@ -333,6 +336,13 @@ class UserDB:
         Phone and MFA codes are stored as the peppered hash supplied by
         the controller; the plaintext only ever lives in the SMS that
         leaves the building.
+
+        ``recovery_salt`` and ``encrypted_private_key_recovery`` are the
+        QV-RECOVERY-1 fields: an independent PBKDF2 salt and AES-256-GCM
+        wrapping of the same ``privateBlob``, keyed by a client-generated
+        high-entropy recovery code instead of the account password. Both
+        are optional so older clients that do not yet generate a recovery
+        code can still register.
         """
         confirmation_token_expires = datetime.now(timezone.utc) + timedelta(hours=24) if confirmation_token else None
 
@@ -340,9 +350,9 @@ class UserDB:
             cursor = db.cursor()
             try:
                 cursor.execute(
-                    """INSERT INTO users (username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, confirmation_token_expires, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                    (username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, confirmation_token_expires, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled)
+                    """INSERT INTO users (username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, confirmation_token_expires, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled, recovery_salt, encrypted_private_key_recovery)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, confirmation_token_expires, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled, recovery_salt, encrypted_private_key_recovery)
                 )
                 db.commit()
             except sqlite3.Error as e:
@@ -511,6 +521,61 @@ class UserDB:
             user = db.execute('''SELECT * FROM users WHERE confirmation_token = ?''', (token,)).fetchone()
             return self._convert_row_to_dict(user) if user else None
 
+    def get_recovery_bundle(self, username: str) -> Optional[dict]:
+        """Return the QV-RECOVERY-1 bundle for a username, if one exists.
+
+        Args:
+            username (str): Username to look up.
+
+        Returns:
+            A dict with ``recovery_salt``, ``encrypted_private_key_recovery``,
+            and ``public_key`` if the account has a recovery bundle
+            configured, or ``None`` if the account does not exist or has
+            not generated a recovery code (e.g. accounts created before
+            QV-RECOVERY-1 was added).
+        """
+        user = self.get_user(username)
+        if not user:
+            return None
+        if not user["recovery_salt"] or not user["encrypted_private_key_recovery"]:
+            return None
+        return {
+            "recovery_salt": user["recovery_salt"],
+            "encrypted_private_key_recovery": user["encrypted_private_key_recovery"],
+            "public_key": user["public_key"],
+        }
+
+    def reset_credentials_with_recovery(self, username: str, srp_salt: str, srp_verifier: str,
+                                        kdf_salt: str, encrypted_private_key: str) -> None:
+        """Replace a user's password-derived credentials after a verified recovery.
+
+        Called only after the caller has verified ``public_key_proof``
+        against the stored ``public_key`` (proof that the requester
+        possesses the recovery code, since it is the only way to recover
+        the matching ``privateBlob`` and re-derive the public key). The
+        ``public_key`` and the underlying keypair are unchanged; only the
+        SRP verifier and the password-wrapping of the existing private key
+        blob are replaced.
+
+        Args:
+            username (str): Username whose credentials are being reset.
+            srp_salt (str): New SRP salt, hex-encoded.
+            srp_verifier (str): New SRP verifier, hex-encoded.
+            kdf_salt (str): New PBKDF2 salt for the password-wrapped private key, hex-encoded.
+            encrypted_private_key (str): The same private key blob, re-wrapped under the new password.
+        """
+        with sqlite3.connect(self.db_path) as db:
+            try:
+                db.execute(
+                    """UPDATE users SET srp_salt = ?, srp_verifier = ?, kdf_salt = ?, encrypted_private_key = ?
+                       WHERE username = ?""",
+                    (srp_salt, srp_verifier, kdf_salt, encrypted_private_key, username),
+                )
+                db.commit()
+            except sqlite3.Error:
+                db.rollback()
+                raise
+
     def update_role(self, username: str, role: str, storage_quota: int = 10 * 1024 * 1024, subscription_status: str = "active") -> None:
         """Update a user's role, storage quota, and subscription status.
 
@@ -622,6 +687,8 @@ class UserDB:
             "mfa_code": value("mfa_code") or value("mfa_code_hash"),
             "mfa_code_expires": self._parse_datetime(value("mfa_code_expires")),
             "mfa_enabled": bool(value("mfa_enabled", False)),
+            "recovery_salt": value("recovery_salt"),
+            "encrypted_private_key_recovery": value("encrypted_private_key_recovery"),
         }
 
     def fetch_one(self, query: str, params: tuple = ()) -> Optional[dict]:
