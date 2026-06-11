@@ -1,0 +1,3 @@
+pytest
+pytest-flask
+boto3-stubs[s3]

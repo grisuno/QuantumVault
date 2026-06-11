@@ -1,0 +1,46 @@
+version: '3.8'
+
+# Self-hosted, zero-trust-friendly object storage and ephemeral session state.
+#
+# Garage is an open-source, S3-compatible distributed object store written in
+# Rust. It exposes an S3 API on :3900 and an admin API on :3903. We provision
+# it via scripts/garage-init.sh, which creates a layout, bucket, and a scoped
+# API key for the QuantumVault bucket.
+#
+# Redis backs the SRP-6a ephemeral session store (utils.srp6a.SRPSessionStore)
+# and the Flask-Limiter counters used by /api/srp/* and /register.
+
+services:
+  garage:
+    image: dxflrs/garage:v1.0.1
+    ports:
+      - "3900:3900"   # S3 API
+      - "3903:3903"   # Admin API
+    environment:
+      GARAGE_CONFIG_FILE: /etc/garage.toml
+    volumes:
+      - ./garage.toml:/etc/garage.toml:ro
+      - garage_meta:/var/lib/garage/meta
+      - garage_data:/var/lib/garage/data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3903/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "no", "--save", ""]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  garage_meta:
+  garage_data:

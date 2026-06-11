@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Convenience wrapper: delegates to the Makefile so the same target works
+# for `make run`, `./run`, and CI scripts. Run `make help` for the full list.
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")"
+exec make "${@:-run}"

@@ -1,1 +1,39 @@
+# QuantumVault pinned production dependencies.
+#
+# Versions are pinned to the latest known-good release as of the last
+# `make upgrade-deps` run. To refresh:
+#
+#     make upgrade-deps
+#
+# Security-critical packages: any update here MUST be re-validated against
+# the Wycheproof test vectors in static/js/qv-crypto.js and the SRP-6a
+# round-trip in tests/test_srp.py.
 
+Flask==3.1.3
+flask-talisman==1.1.0
+Flask-Login==0.6.3
+Flask-WTF==1.3.0
+Flask-Limiter==4.1.1
+Flask-Cors==6.0.4
+Flask-Mail==0.10.0
+WTForms==3.2.2
+
+pydantic==2.13.4
+cryptography==48.0.0
+argon2-cffi==25.1.0
+
+boto3==1.43.24
+botocore==1.43.24
+
+redis==8.0.0
+APScheduler==3.11.2
+paypalrestsdk==1.13.3
+pyoqs-sdk==1.0
+clicksend-client==5.0.91
+
+python-dotenv==1.2.2
+pytz==2026.2
+
+# Production WSGI server. Only required for ``make serve``; ``make run``
+# still uses the Werkzeug dev server for local development.
+gunicorn==23.0.0
