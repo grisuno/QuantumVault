@@ -1,0 +1,19 @@
+{
+  "SERVER_NAME": "www.quantumvault.pro",
+  "PREFERRED_URL_SCHEME": "https",
+  "SQLALCHEMY_DATABASE_URI": "sqlite:///instance/users.db",
+  "SQLALCHEMY_DATABASE_PATH": "instance/users.db",
+  "SQLALCHEMY_TRACK_MODIFICATIONS": "False",
+  "MAX_CONTENT_LENGTH": 10485760,
+  "MAIL_SERVER": "email-smtp.us-east-2.amazonaws.com",
+  "MAIL_PORT": 587,
+  "MAIL_USE_TLS": "True",
+  "MAIL_USE_SSL": "False",
+  "MAIL_DEFAULT_SENDER": "noreply@quantumvault.pro",
+  "storage_uri": "redis://localhost:6379",
+  "cert": "cert.pem",
+  "key": "key.pem",
+  "port": 4443,
+  "host": "0.0.0.0",
+  "debug": "False"
+}

@@ -1,0 +1,53 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowS3Access",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::quantumvault-prod-925941223184",
+        "arn:aws:s3:::quantumvault-prod-925941223184/*"
+      ]
+    },
+    {
+      "Sid": "AllowSNSPublishForSMS",
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowIAMReadAccess",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetUser",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListAttachedUserPolicies",
+        "iam:ListUserPolicies"
+      ],
+      "Resource": [
+        "arn:aws:iam::925941223184:user/quantum",
+        "arn:aws:iam::925941223184:policy/QuantumVaultBoundary"
+      ]
+    },
+    {
+      "Sid": "AllowBoundaryManagement",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicyVersion",
+        "iam:DeleteUserPermissionsBoundary",
+        "iam:PutUserPermissionsBoundary"
+      ],
+      "Resource": [
+        "arn:aws:iam::925941223184:user/quantum",
+        "arn:aws:iam::925941223184:policy/QuantumVaultBoundary"
+      ]
+    }
+  ]
+}

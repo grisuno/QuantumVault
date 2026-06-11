@@ -1,0 +1,27 @@
+# QuantumVault self-hosted S3-compatible object storage (Garage).
+#
+# Single-node configuration suitable for development. For production, run
+# three or more Garage nodes and bump replication_factor accordingly. The
+# data and metadata directories are mounted as Docker volumes from
+# docker-compose.yml.
+
+metadata_dir = "/var/lib/garage/meta"
+data_dir = "/var/lib/garage/data"
+db_engine = "sqlite"
+
+replication_factor = 1
+rpc_bind_addr = "[::]:3901"
+rpc_public_addr = "127.0.0.1:3901"
+rpc_secret = "06a7f725b53b3ae6b36e4534f3dcbd9e546cfd5e3435b3fda6a4255843a96a3c"
+
+[s3_api]
+s3_region = "garage"
+api_bind_addr = "[::]:3900"
+
+[s3_web]
+# Disabled: QuantumVault only uses the S3 API; there is no public web UI.
+# bind_addr = "[::]:3902"
+
+[admin]
+api_bind_addr = "[::]:3903"
+admin_token = "261d89e3b491f9b6b436a5b3cba30739ddae824b2d68e5c24c2a02a1f7c88a91"
