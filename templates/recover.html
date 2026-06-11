@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/static/shield.png" />
+        <title>Account Recovery - QuantumVault</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #020617;
+                color: #f8fafc;
+                font-family:
+                    Inter,
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                padding: 2rem;
+            }
+            .card {
+                width: 100%;
+                max-width: 28rem;
+                background-color: #0f172a;
+                border: 1px solid #1e293b;
+                border-radius: 0.75rem;
+                padding: 2rem;
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #3b82f6;
+            }
+            h1 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin: 0 0 0.5rem;
+                text-align: center;
+            }
+            .subtitle {
+                color: #94a3b8;
+                font-size: 0.875rem;
+                text-align: center;
+                margin: 0 0 1.5rem;
+            }
+            label {
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #e2e8f0;
+                margin-bottom: 0.375rem;
+            }
+            .field {
+                margin-bottom: 1rem;
+            }
+            .input-field {
+                width: 100%;
+                background-color: #0f172a;
+                border: 1px solid #334155;
+                border-radius: 0.5rem;
+                color: #f1f5f9;
+                padding: 0.5rem 0.75rem;
+                font-size: 1rem;
+                font-family: inherit;
+            }
+            .input-field:focus {
+                outline: 2px solid #3b82f6;
+                outline-offset: 1px;
+                border-color: transparent;
+            }
+            .hint {
+                font-size: 0.75rem;
+                color: #64748b;
+                margin-top: 0.25rem;
+            }
+            .btn-primary {
+                width: 100%;
+                background-color: #2563eb;
+                color: #ffffff;
+                border: none;
+                border-radius: 0.5rem;
+                padding: 0.625rem 1rem;
+                font-size: 1rem;
+                font-weight: 500;
+                font-family: inherit;
+                cursor: pointer;
+            }
+            .btn-primary:hover {
+                background-color: #1d4ed8;
+            }
+            .btn-primary:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+            .status {
+                margin-top: 1rem;
+                font-size: 0.875rem;
+                min-height: 1.25rem;
+            }
+            .status-error {
+                color: #ef4444;
+            }
+            .status-info {
+                color: #60a5fa;
+            }
+            .footer-links {
+                margin-top: 1.5rem;
+                text-align: center;
+                font-size: 0.875rem;
+                color: #94a3b8;
+            }
+            .footer-links a {
+                color: #3b82f6;
+                font-weight: 500;
+                text-decoration: none;
+            }
+            .footer-links a:hover {
+                color: #60a5fa;
+            }
+            .notice {
+                background-color: rgba(37, 99, 235, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                border-radius: 0.5rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.8125rem;
+                color: #cbd5e1;
+                margin-bottom: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="brand">QuantumVault</div>
+            <h1>Account Recovery</h1>
+            <p class="subtitle">
+                Use your QV-RECOVERY-1 code to set a new password.
+            </p>
+            <div class="notice">
+                Your recovery code was shown once when you created your
+                account and never sent to or stored on the server in
+                plaintext. If you did not save it, this account cannot be
+                recovered: QuantumVault's zero-knowledge design means
+                nobody, including us, can reset it for you.
+            </div>
+            <noscript>
+                <div class="status status-error">
+                    JavaScript is required for account recovery. The recovery
+                    code decrypts your private key blob entirely in your
+                    browser; the server never sees the recovery code or the
+                    decrypted key.
+                </div>
+            </noscript>
+            <form id="recover-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input
+                        class="input-field"
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        required
+                    />
+                </div>
+                <div class="field">
+                    <label for="recovery_code">Recovery code</label>
+                    <input
+                        class="input-field"
+                        type="text"
+                        id="recovery_code"
+                        name="recovery_code"
+                        placeholder="XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
+                        autocomplete="off"
+                        autocapitalize="characters"
+                        spellcheck="false"
+                        required
+                    />
+                    <p class="hint">
+                        Enter the code exactly as it was shown at
+                        registration. Dashes and spacing do not matter.
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="new_password">New password</label>
+                    <input
+                        class="input-field"
+                        type="password"
+                        id="new_password"
+                        name="new_password"
+                        autocomplete="new-password"
+                        required
+                    />
+                </div>
+                <div class="field">
+                    <label for="confirm_password">Confirm new password</label>
+                    <input
+                        class="input-field"
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        autocomplete="new-password"
+                        required
+                    />
+                </div>
+                <button type="submit" class="btn-primary">
+                    Reset Password
+                </button>
+                <div id="recover-status" class="status" role="status"></div>
+            </form>
+            <div class="footer-links">
+                <a href="{{ url_for('auth.login') }}">Back to sign in</a>
+            </div>
+        </div>
+        <script type="module" src="/static/js/recover.js"></script>
+    </body>
+</html>

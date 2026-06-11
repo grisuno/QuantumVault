@@ -276,6 +276,13 @@ def create_app(
     app.config["S3_BUCKET"] = config.s3_bucket
     app.config["S3_REGION"] = config.s3_region
 
+    # Operators that do not want to offer paid plans can disable the
+    # subscription blueprint and nav link entirely.
+    app.config["ENABLE_SUBSCRIPTIONS"] = (
+        os.environ.get("QV_ENABLE_SUBSCRIPTIONS", "1") == "1"
+    )
+    app.jinja_env.globals["ENABLE_SUBSCRIPTIONS"] = app.config["ENABLE_SUBSCRIPTIONS"]
+
     # ProxyFix must run only when behind a trusted reverse proxy. The
     # operator toggles QV_TRUSTED_PROXY=1 to opt in. Without it the
     # client IP is whatever connected to gunicorn directly, which is
@@ -371,24 +378,28 @@ def create_app(
     from views.file import file_bp
     from views.message import message_bp
     from views.privacy import privacy_bp
-    from views.subscription import subscription_bp
     from views.sync import sync_bp
     from views.terms import terms_bp
     from views.views import views_bp
 
-    for bp in (
+    blueprints = [
         auth_bp,
         file_bp,
         message_bp,
         admin_bp,
         views_bp,
-        subscription_bp,
         about_bp,
         terms_bp,
         privacy_bp,
         faq_bp,
         sync_bp,
-    ):
+    ]
+
+    if app.config["ENABLE_SUBSCRIPTIONS"]:
+        from views.subscription import subscription_bp
+        blueprints.append(subscription_bp)
+
+    for bp in blueprints:
         app.register_blueprint(bp)
 
     @login_manager.user_loader

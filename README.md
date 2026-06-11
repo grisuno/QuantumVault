@@ -18,6 +18,7 @@ LazyOwn RedTeam is a security research and offensive security collective. We spe
 - **Encrypt and store files** client-side before they ever leave the user's device, then store them as opaque ciphertext on the server.
 - **Exchange end-to-end encrypted messages** sealed with a hybrid post-quantum key exchange so that only the sender and the intended recipient can ever read them.
 - **Authenticate without ever sending a password**, using SRP-6a, a zero-knowledge password proof.
+- **Recover a forgotten password without a server-side reset**, using a one-time recovery code generated in the browser at registration.
 - **Resist quantum and classical attacks alike**, since breaking the hybrid construction requires breaking both the post-quantum and the classical primitive.
 
 ### Zero-Knowledge, Zero-Trust by Design
@@ -38,8 +39,35 @@ All cryptographic operations that matter, key generation, encryption, and decryp
 | Key derivation | **HKDF-SHA256** |
 | Symmetric encryption | **AES-256-GCM** |
 | Authentication | **SRP-6a** (zero-knowledge password proof, password never leaves the client) |
+| Account recovery | **QV-RECOVERY-1** (160-bit recovery code, independently re-wraps the existing private key blob) |
 
 The hybrid construction means that an attacker would need to break **both** ML-KEM-768 and X25519 to recover a user's keys, today or with a future quantum computer.
+
+### Account recovery (QV-RECOVERY-1)
+
+Because the server never has the password or the private key, a forgotten
+password cannot be reset the way a traditional service would. Instead, at
+registration the browser generates a 20-byte (160-bit) recovery code,
+displayed once as 8 groups of 4 characters (e.g.
+`ABCD-EFGH-JKMN-...`), and uses it to independently encrypt the same
+private-key blob that the password protects. The recovery code is never
+sent to or stored on the server, only the resulting ciphertext and its
+salt.
+
+To recover an account, visit `/recover`, enter the username, the
+recovery code, and a new password. The browser fetches the stored
+ciphertext, decrypts it locally with a key derived from the recovery
+code, proves to the server that the decryption succeeded (by
+reconstructing the account's public key from the recovered blob), and
+then re-wraps the same private key under the new password. The
+underlying keypair never changes, so previously stored messages and
+files remain decryptable.
+
+**The recovery code is shown exactly once**, in a one-time dialog right
+after registration. If it is lost and the password is also forgotten,
+the account's encrypted data cannot be recovered by anyone, including
+the operator: this is a direct consequence of the zero-knowledge design,
+not a missing feature.
 
 ## Architecture and Stack
 
@@ -121,6 +149,39 @@ Configuration lives in `.env` (copy from `.env.example`, generated automatically
 - **SMS / MFA (ClickSend)**: `CLICKSEND_USERNAME`, `CLICKSEND_API_KEY`. Leave blank to skip SMS in development.
 - **Garage admin / RPC**: `GARAGE_ADMIN_TOKEN`, `GARAGE_RPC_SECRET`, `GARAGE_KEY_NAME`, `GARAGE_ADMIN_URL`
 - **Flask**: `FLASK_DEBUG`
+- **Feature flags**: `QV_ENABLE_SUBSCRIPTIONS` (default `1`) — set to `0` to disable the paid-plans blueprint and nav link for operators who only want the free, self-hosted core.
+- **Privacy hardening**: `QV_AUDIT_LOG_IP`, `QV_AUDIT_LOG_UA` (both default `1`), `QV_TRUSTED_PROXY` (default `0`). See "Running for high-risk users (Tor)" below.
+
+### Running for high-risk users (Tor)
+
+QuantumVault's zero-knowledge cryptography already keeps message/file
+content, private keys, and passwords away from the server. The settings
+below additionally reduce the *operational metadata* an instance retains,
+for operators serving journalists, activists, or anyone else whose safety
+depends on minimizing what a compromised or subpoenaed server can reveal:
+
+- Set `QV_AUDIT_LOG_IP=0` and `QV_AUDIT_LOG_UA=0` so the structured audit
+  log (`utils/security.py` `audit_event`) records `ip` and `ua` as `null`
+  instead of the requester's address and User-Agent string. The audit log
+  still records timestamps, event names, and correlation IDs, so abuse
+  patterns remain visible without storing identifying details.
+- Leave `QV_TRUSTED_PROXY` unset (or `0`). This setting is for operators
+  who run their own reverse proxy in front of gunicorn and want
+  `X-Forwarded-For` honored; behind Tor, the address Tor presents is not a
+  meaningful client identifier, so there is nothing to "trust" and the
+  default (use the directly-connecting socket address) is correct.
+- Serve the instance as a Tor onion service by pointing a `HiddenServicePort`
+  in `torrc` at the port gunicorn binds to (see `make serve` /
+  `wsgi.py`). No application code changes are needed — Tor handles
+  the `.onion` address and end-to-end transport encryption; QuantumVault's
+  own TLS/HSTS settings (`_build_talisman_kwargs` in `app_factory.py`) can
+  remain as configured for the clearnet listener, if any, or be left at
+  their defaults for an onion-only deployment reached over Tor's own
+  encrypted circuits.
+- Standard web server access logs (nginx/gunicorn) are outside
+  QuantumVault's control; disable or rotate them aggressively at the
+  reverse-proxy layer if they are not needed, since they can record client
+  addresses independently of the application's own audit log.
 
 ## Common Make Targets
 
@@ -139,6 +200,7 @@ Run `make help` to list all available targets. The most relevant ones:
 | `make db-reset` | Wipe the development SQLite database |
 | `make backupdb` | Snapshot `instance/users.db` to `backups/` |
 | `make doctor` | Import-smoke test of every project module to report missing dependencies |
+| `make test` | Run the pytest suite (SRP-6a roundtrip, audit-log redaction, CSRF helper tests) |
 | `make audit` | Run the security audit stack: `pip-audit` + `bandit` + secret scanning |
 | `make pip-audit` | Check the dependency tree for known vulnerabilities |
 | `make bandit` | Static security scan of the Python codebase |

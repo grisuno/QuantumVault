@@ -82,6 +82,29 @@ function bytesToBase64(bytes) {
   return btoa(binary);
 }
 
+// RFC 4648 Base32 alphabet, no padding. Used for QV-RECOVERY-1 codes:
+// 20 random bytes (160 bits) encode to exactly 32 characters with no
+// leftover bits, so no padding character is ever needed.
+const BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+
+function bytesToBase32(bytes) {
+  let bits = 0;
+  let value = 0;
+  let output = "";
+  for (const byte of bytes) {
+    value = (value << 8) | byte;
+    bits += 8;
+    while (bits >= 5) {
+      output += BASE32_ALPHABET[(value >>> (bits - 5)) & 0x1f];
+      bits -= 5;
+    }
+  }
+  if (bits > 0) {
+    output += BASE32_ALPHABET[(value << (5 - bits)) & 0x1f];
+  }
+  return output;
+}
+
 function base64ToBytes(b64) {
   const binary = atob(b64);
   const out = new Uint8Array(binary.length);
@@ -339,6 +362,70 @@ async function unwrapKey(privateBlob, wrappedFekB64) {
   return aesGcmDecrypt(wrapKeyBytes, base64ToBytes(parsed.sealed));
 }
 
+// --- Account recovery (QV-RECOVERY-1) ---
+//
+// A high-entropy recovery code independently re-wraps the same hybrid
+// privateBlob that the password wraps. It does not change the user's
+// keypair, so messages and files encrypted before a recovery reset stay
+// decryptable afterwards. The server stores only the recovery-code-wrapped
+// blob and its salt; it never sees the recovery code itself.
+
+// Generate a QV-RECOVERY-1 code: 20 random bytes (160 bits) Base32-encoded
+// (RFC 4648, no padding) and grouped as XXXX-XXXX-... for readability.
+export function generateRecoveryCode() {
+  const raw = bytesToBase32(randomBytes(20));
+  const groups = [];
+  for (let i = 0; i < raw.length; i += 4) {
+    groups.push(raw.slice(i, i + 4));
+  }
+  return groups.join("-");
+}
+
+// Normalize a user-entered recovery code: strip surrounding whitespace,
+// remove group separators, and uppercase, so "abcd-efgh" and "ABCDEFGH"
+// derive the same key.
+function normalizeRecoveryCode(recoveryCode) {
+  return recoveryCode.trim().toUpperCase().replace(/[^A-Z2-7]/g, "");
+}
+
+// Re-wrap an existing privateBlob under a key derived from a recovery code,
+// using the same PBKDF2-SHA256 + AES-256-GCM scheme as the password path,
+// with its own independent salt.
+export async function wrapPrivateKeyForRecovery(privateBlob, recoveryCode) {
+  const recoverySalt = bytesToHex(randomBytes(16));
+  const recoveryKey = await deriveMasterKey(
+    normalizeRecoveryCode(recoveryCode),
+    recoverySalt,
+  );
+  const encryptedPrivateKeyRecovery = bytesToBase64(
+    await aesGcmEncrypt(recoveryKey, privateBlob),
+  );
+  return { recoverySalt, encryptedPrivateKeyRecovery };
+}
+
+// Reconstruct the public key (the same {v, mlkem, x} structure produced by
+// generateIdentity) from a decrypted privateBlob. The noble ML-KEM-768
+// secretKey is encoded as [innerSK(1152) | publicKey(1184) | H(pk)(32) |
+// z(32)], so the public key is recoverable directly; the X25519 public key
+// is derived from its secret via x25519.getPublicKey. Used as a
+// proof-of-possession when resetting credentials with a recovery code: the
+// server accepts the reset only if this matches the stored public_key.
+export function derivePublicKeyFromPrivateBlob(privateBlob) {
+  const priv = parsePrivateBlob(privateBlob);
+  const mlkemPublicKey = priv.mlkem.slice(1152, 1152 + 1184);
+  const xPublicKey = x25519.getPublicKey(priv.x);
+
+  return bytesToBase64(
+    textEncoder.encode(
+      JSON.stringify({
+        v: 1,
+        mlkem: bytesToBase64(mlkemPublicKey),
+        x: bytesToBase64(xPublicKey),
+      }),
+    ),
+  );
+}
+
 // --- Network helpers ---
 
 async function postJson(url, body, csrfToken) {
@@ -358,6 +445,12 @@ async function postJson(url, body, csrfToken) {
 // --- High-level flows used by templates ---
 
 // Build the zero-knowledge registration payload entirely in the browser.
+//
+// Returns `{ payload, recoveryCode }`: `payload` is the JSON body to POST to
+// the registration endpoint (it includes the recovery-code-wrapped private
+// key, but never the recovery code itself), and `recoveryCode` is the
+// plaintext QV-RECOVERY-1 code to show the user exactly once. The server
+// never sees `recoveryCode`.
 export async function buildRegistration(username, password, profile) {
   const srpSalt = bytesToHex(randomBytes(16));
   const kdfSalt = bytesToHex(randomBytes(16));
@@ -369,23 +462,89 @@ export async function buildRegistration(username, password, profile) {
     await aesGcmEncrypt(masterKey, identity.privateBlob),
   );
 
+  const recoveryCode = generateRecoveryCode();
+  const { recoverySalt, encryptedPrivateKeyRecovery } =
+    await wrapPrivateKeyForRecovery(identity.privateBlob, recoveryCode);
+
   return {
-    username,
-    srp_salt: srpSalt,
-    srp_verifier: srpVerifier,
-    public_key: identity.publicKeyB64,
-    encrypted_private_key: encryptedPrivateKey,
-    kdf_salt: kdfSalt,
-    email: profile.email,
-    phone: profile.phone,
-    first_name: profile.first_name,
-    last_name: profile.last_name,
+    payload: {
+      username,
+      srp_salt: srpSalt,
+      srp_verifier: srpVerifier,
+      public_key: identity.publicKeyB64,
+      encrypted_private_key: encryptedPrivateKey,
+      kdf_salt: kdfSalt,
+      recovery_salt: recoverySalt,
+      encrypted_private_key_recovery: encryptedPrivateKeyRecovery,
+      email: profile.email,
+      phone: profile.phone,
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+    },
+    recoveryCode,
   };
 }
 
 export async function register(formAction, csrfToken, username, password, profile) {
-  const payload = await buildRegistration(username, password, profile);
+  const { payload } = await buildRegistration(username, password, profile);
   return postJson(formAction, payload, csrfToken);
+}
+
+// Reset SRP credentials and the password-encrypted private key using a
+// QV-RECOVERY-1 recovery code, without ever exposing the user's keypair to
+// the server. Fetches the recovery-wrapped privateBlob, decrypts it locally
+// with a key derived from the recovery code, proves possession of the
+// resulting keypair by reconstructing its public key, and re-wraps the same
+// privateBlob under the new password.
+export async function recoverAccount(csrfToken, username, recoveryCode, newPassword) {
+  const bundleResponse = await fetch(
+    `/api/auth/recovery-bundle?username=${encodeURIComponent(username)}`,
+    { credentials: "same-origin" },
+  );
+  if (!bundleResponse.ok) {
+    const error = await bundleResponse.json().catch(() => ({}));
+    throw new Error(error.error || "No recovery code is configured for this account.");
+  }
+  const bundle = await bundleResponse.json();
+
+  const recoveryKey = await deriveMasterKey(
+    normalizeRecoveryCode(recoveryCode),
+    bundle.recovery_salt,
+  );
+
+  let privateBlob;
+  try {
+    privateBlob = await aesGcmDecrypt(
+      recoveryKey,
+      base64ToBytes(bundle.encrypted_private_key_recovery),
+    );
+  } catch (e) {
+    throw new Error("Invalid recovery code.");
+  }
+
+  const publicKeyProof = derivePublicKeyFromPrivateBlob(privateBlob);
+
+  const srpSalt = bytesToHex(randomBytes(16));
+  const srpVerifier = deriveVerifier(username, newPassword, srpSalt);
+
+  const kdfSalt = bytesToHex(randomBytes(16));
+  const masterKey = await deriveMasterKey(newPassword, kdfSalt);
+  const encryptedPrivateKey = bytesToBase64(
+    await aesGcmEncrypt(masterKey, privateBlob),
+  );
+
+  return postJson(
+    "/api/auth/reset-with-recovery",
+    {
+      username,
+      public_key_proof: publicKeyProof,
+      srp_salt: srpSalt,
+      srp_verifier: srpVerifier,
+      kdf_salt: kdfSalt,
+      encrypted_private_key: encryptedPrivateKey,
+    },
+    csrfToken,
+  );
 }
 
 export async function login(csrfToken, username, password) {
