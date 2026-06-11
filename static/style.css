@@ -1,0 +1,623 @@
+/* /home/admin/quantumvault/static/css/quantumvault-styles.css */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: "Inter", "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        135deg,
+        #020617 0%,
+        #0a1128 50%,
+        #020617 100%
+    ); /* Fondo oscuro profundo, como el espacio */
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-attachment: fixed;
+}
+
+/* Contenedor principal para centrar contenido */
+.container {
+    max-width: 1200px; /* Ancho máximo para pantallas grandes */
+    width: 90%; /* Usa el 90% del ancho para reducir márgenes laterales */
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo translúcido */
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px); /* Efecto de vidrio esmerilado */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para encabezados */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #00d4ff; /* Color cian futurista */
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); /* Sombra luminosa */
+    margin-bottom: 20px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Animación de brillo para encabezados */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    100% {
+        text-shadow:
+            0 0 20px rgba(0, 212, 255, 0.8),
+            0 0 30px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* Estilos para formularios */
+form {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para inputs, textarea y select */
+input,
+textarea,
+select {
+    margin: 10px 0;
+    padding: 12px;
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para formularios */
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    box-shadow:
+        0 0 10px rgba(0, 212, 255, 0.5),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Estilo específico para textarea */
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* Estilos para listas */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para listas */
+}
+
+/* Estilos para elementos de lista */
+li {
+    margin: 5px 0;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(0, 212, 255, 0.4);
+    color: white;
+}
+
+/* Estilos para enlaces */
+a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #00d4ff;
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    color: #00d4ff;
+    text-decoration: none;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* Estilo para botones de Bootstrap */
+.btn-primary,
+.btn {
+    background: linear-gradient(135deg, #3730a3, #1e40af);
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    color: white;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before,
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.btn-primary:hover::before,
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover,
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+    background: linear-gradient(135deg, #4338ca, #2563eb);
+}
+
+/* Estilo para alertas de Bootstrap */
+.alert {
+    max-width: 800px;
+    width: 100%;
+    margin: 10px auto;
+    border-radius: 8px;
+    animation: slideIn 0.5s ease-in-out;
+    backdrop-filter: blur(4px);
+    border: 1px solid transparent;
+    padding: 1rem;
+}
+
+.alert-success {
+    background: rgba(22, 163, 74, 0.15);
+    border-color: rgba(22, 163, 74, 0.3);
+    color: #86efac;
+}
+
+.alert-danger,
+.alert-error {
+    background: rgba(220, 38, 38, 0.15);
+    border-color: rgba(220, 38, 38, 0.3);
+    color: #fca5a5;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+}
+
+.alert-warning {
+    background: rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.3);
+    color: #fcd34d;
+}
+
+/* Animación para alertas */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background: rgba(15, 23, 42, 0.95); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    max-width: 1200px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Estilo para el brand de la navbar */
+.navbar-brand {
+    color: #00d4ff !important;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    font-size: 1.3rem;
+}
+
+/* Estilo para los enlaces de la navbar */
+.navbar-nav .nav-link {
+    color: #e0e0e0 !important;
+    transition: color 0.3s ease;
+    margin: 0 8px;
+    position: relative;
+    padding: 5px 0;
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00d4ff;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #00d4ff !important;
+}
+
+/* Estilo para cards de Bootstrap */
+.card {
+    border-radius: 12px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    background: rgba(37, 99, 235, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: #00d4ff;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-footer {
+    background: rgba(37, 99, 235, 0.05);
+    border-top: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 1rem 1.25rem;
+}
+
+/* Estilo para tablas */
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+    background-color: transparent;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.5);
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+.table tbody + tbody {
+    border-top: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Estilo para el drop-zone (vista de sincronización) */
+.drop-zone {
+    border: 3px dashed rgba(59, 130, 246, 0.5);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    background: rgba(2, 6, 23, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.drop-zone::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(59, 130, 246, 0.2),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.drop-zone:hover::before,
+.drop-zone.dragover::before {
+    left: 100%;
+}
+
+.drop-zone.dragover {
+    border-color: #00d4ff;
+    background-color: rgba(37, 99, 235, 0.1);
+    transform: scale(1.01);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+}
+
+.drop-zone h3 {
+    color: #00d4ff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.drop-zone p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+/* Lista de archivos (vista de sincronización) */
+.file-list {
+    margin-top: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid rgba(30, 41, 59, 0.5);
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 rgba(15, 23, 42, 0.3);
+}
+
+.file-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.file-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 3px;
+}
+
+.file-list::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 3px;
+}
+
+.file-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.3);
+    font-size: 0.875rem;
+    transition: background 0.2s ease;
+    border-radius: 4px;
+    margin-bottom: 2px;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-item:hover {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.file-item strong {
+    color: #e0e0e0;
+}
+
+.file-item small {
+    color: #9ca3af;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Barra de progreso del archivo */
+.file-progress {
+    height: 4px;
+    background-color: rgba(51, 65, 85, 0.5);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+    position: relative;
+}
+
+.file-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #00d4ff);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Barra de progreso general (vista de sincronización) */
+#overallProgress {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(51, 65, 85, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+#overallProgressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #00d4ff);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Estado/Mensajes (vista de sincronización) */
+.status {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.75rem 0;
+    display: none;
+    border: 1px solid transparent;
+    backdrop-filter: blur(4px);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.4s ease-out;
+}
+
+.status.success {
+    border-color: rgba(22, 163, 74, 0.5);
+    color: #86efac;
+    background: rgba(22, 163, 74, 0.1);
+}
+
+.status.error {
+    border-color: rgba(220, 38, 38, 0.5);
+    color: #fca5a5;
+    background: rgba(220, 38, 38, 0.1);
+}
+
+.status.info {
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #93c5fd;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Animación de carga (opcional para el botón) */
+.btn-primary:disabled::after,
+.btn:disabled::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid transparent;
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    input,
+    textarea,
+    select {
+        max-width: 100%;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0 4px;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .drop-zone {
+        padding: 2rem 1rem;
+    }
+}
