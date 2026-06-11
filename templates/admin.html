@@ -1,0 +1,50 @@
+<!-- templates/admin.html -->
+<!--
+  Admin panel: plans index.
+
+  This page is a read-only catalog with edit links. Plan creation
+  lives in /admin<token>/plans (template: manage_plans.html) and
+  per-plan edit lives in /admin<token>/plans/edit/<name>.
+
+  User identity (list, edit, suspend, MFA reset, confirmation
+  rotation) is the superadmin panel's job at /superadmin<token>.
+-->
+{% extends "base.html" %} {% block title %}Admin Panel{% endblock %} {% block
+content %}
+<h1>Admin Panel</h1>
+<p class="text-muted small">
+  Plan catalog. For per-user actions
+  (role, MFA reset, confirmation, suspend/activate) go to the
+  <a href="{{ url_for('admin.superadmin') }}">superadmin panel</a>.
+</p>
+
+<div class="d-flex gap-2 mt-3">
+    <a
+        href="{{ url_for('admin.manage_plans') }}"
+        class="btn btn-primary"
+        >Manage Plans</a
+    >
+    {% if user.role in ['admin', 'superadmin'] %}
+    <a href="{{ url_for('admin.admin_contacts') }}" class="btn btn-secondary"
+        >View All Contacts</a
+    >
+    {% endif %}
+</div>
+
+<h2 class="mt-4">Plan Catalog</h2>
+<ul class="list-group mt-3">
+    {% for plan in plans %}
+    <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+    >
+        {{ plan.name }} (Storage: {{ plan.storage_quota // (1024 * 1024) }} MB,
+        Trial: {{ plan.trial_days }} days, Price: ${{ plan.price }})
+        <a
+            href="{{ url_for('admin.edit_plan', plan_name=plan.name, _external=True) }}"
+            class="btn btn-sm btn-primary"
+            >Edit</a
+        >
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

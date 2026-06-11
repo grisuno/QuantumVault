@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumVault</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="static/shield.png" type="image/png" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand codedText" href="{{ url_for('views.home') }}">QuantumVault</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('file.upload') }}">Upload files</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('message.messages') }}">Messages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('subscription.subscribe') }}">Subscribe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.login') }}">Sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.show_register') }}">Sign up</a>
+                            </li>
+                        {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('about.about') }}">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('terms.terms') }}">Terms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('privacy.privacy') }}">Privacy</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h1 class="display-4 text-center text-white mb-4 fw-bold" style="text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);">
+            Welcome to QuantumVault
+        </h1>
+        {% if user.is_authenticated %}
+            <p class="text-center text-light mb-4 fs-5">
+                Hi, {{ user.username }}! <span class="fw-semibold">Rol: {{ user.role }} | State: {{ user.subscription_status }}</span>
+            </p>
+            <form method="POST" action="{{ url_for('auth.toggle_mfa') }}" class="text-center mb-4">
+                {{ form.hidden_tag() }}
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="mfa_enabled" name="mfa_enabled" {% if user.mfa_enabled %}checked{% endif %}>
+                    <label class="form-check-label text-light" for="mfa_enabled">Enable Multi-Factor Authentication (MFA)</label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Update MFA Setting</button>
+            </form>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="{{ url_for('file.upload') }}"
+                   class="btn btn-primary position-relative px-4 py-2 fw-semibold border-0"
+                   style="background: linear-gradient(90deg, #0d6efd, #00d4ff); transition: all 0.3s ease;"
+                   onmouseover="this.style.boxShadow='0 0 15px rgba(0, 255, 255, 0.6)'; this.style.transform='scale(1.05)';"
+                   onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                       Upload files
+                </a>
+                <a href="{{ url_for('message.messages') }}"
+                   class="btn btn-primary position-relative px-4 py-2 fw-semibold border-0"
+                   style="background: linear-gradient(90deg, #0d6efd, #00d4ff); transition: all 0.3s ease;"
+                   onmouseover="this.style.boxShadow='0 0 15px rgba(0, 255, 255, 0.6)'; this.style.transform='scale(1.05)';"
+                   onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                    Messages
+                </a>
+                {% if user.role in ['admin', 'superadmin'] %}
+                    <a href="{{ url_for('admin.admin') }}"
+                       class="btn btn-warning position-relative px-4 py-2 fw-semibold border-0"
+                       style="background: linear-gradient(90deg, #ffc107, #ff8c00); transition: all 0.3s ease;"
+                       onmouseover="this.style.boxShadow='0 0 15px rgba(255, 193, 7, 0.6)'; this.style.transform='scale(1.05)';"
+                       onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                        Admin panel
+                    </a>
+                {% endif %}
+                {% if user.role == 'superadmin' %}
+                    <a href="{{ url_for('admin.superadmin') }}"
+                       class="btn btn-danger position-relative px-4 py-2 fw-semibold border-0"
+                       style="background: linear-gradient(90deg, #dc3545, #ff073a); transition: all 0.3s ease;"
+                       onmouseover="this.style.boxShadow='0 0 15px rgba(255, 7, 58, 0.6)'; this.style.transform='scale(1.05)';"
+                       onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                        Superadmin panel
+                    </a>
+                {% endif %}
+                <a href="{{ url_for('subscription.subscribe') }}"
+                   class="btn btn-success position-relative px-4 py-2 fw-semibold border-0"
+                   style="background: linear-gradient(90deg, #28a745, #00ff00); transition: all 0.3s ease;"
+                   onmouseover="this.style.boxShadow='0 0 15px rgba(40, 167, 69, 0.6)'; this.style.transform='scale(1.05)';"
+                   onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                       Subscribe
+                </a>
+                <a href="{{ url_for('auth.logout') }}"
+                   class="btn btn-secondary position-relative px-4 py-2 fw-semibold border-0"
+                   style="background: linear-gradient(90deg, #6c757d, #adb5bd); transition: all 0.3s ease;"
+                   onmouseover="this.style.boxShadow='0 0 15px rgba(255, 255, 255, 0.3)'; this.style.transform='scale(1.05)';"
+                   onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                       Logout
+                </a>
+                <a href="{{ url_for('auth.contact') }}" class="btn btn-secondary position-relative px-4 py-2 fw-semibold border-0"
+                style="background: linear-gradient(90deg, #6c757d, #adb5bd); transition: all 0.3s ease;"
+                onmouseover="this.style.boxShadow='0 0 15px rgba(255, 255, 255, 0.3)'; this.style.transform='scale(1.05)';"
+                onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';" >Contact Support</a>
+                <!-- En tu plantilla base -->
+                <a href="{{ url_for('sync.sync_page') }}" class="btn btn-secondary position-relative px-4 py-2 fw-semibold border-0" style="background: linear-gradient(90deg, #6c757d, #adb5bd); transition: all 0.3s ease;"
+                onmouseover="this.style.boxShadow='0 0 15px rgba(255, 255, 255, 0.3)'; this.style.transform='scale(1.05)';"
+                onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">Data Sync</a>
+            </div>
+        {% else %}
+            <p class="text-center text-light fs-5">
+                Please,
+                <a href="{{ url_for('auth.login') }}"
+                   class="text-info text-decoration-underline fw-semibold"
+                   style="transition: color 0.2s ease;"
+                   onmouseover="this.style.color='#00d4ff';"
+                   onmouseout="this.style.color='#0dcaf0';">Sign in</a>
+                or
+                <a href="{{ url_for('auth.show_register') }}"
+                   class="text-info text-decoration-underline fw-semibold"
+                   style="transition: color 0.2s ease;"
+                   onmouseover="this.style.color='#00d4ff';"
+                   onmouseout="this.style.color='#0dcaf0';">Sign up</a>.
+                <div class="text-center text-light fs-5">
+                    We currently serve
+                    <span style="text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);"
+                          onmouseover="this.style.color='#00d4ff';"
+                          onmouseout="this.style.color='#0dcaf0';">{{ number_users }} QuantumVault users.</span>
+                </div>
+            </p>
+        {% endif %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/coded-text.js"></script>
+</body>
+</html>

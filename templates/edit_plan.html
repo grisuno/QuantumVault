@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Edit Plan - {{ plan.name }}{%
+endblock %} {% block content %}
+<h1>Edit Plan: {{ plan.name }}</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }} {{
+        form.name(class="form-control", readonly=True) }}
+    </div>
+    <div class="mb-3">
+        {{ form.storage_quota.label(class="form-label") }} {{
+        form.storage_quota(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.trial_days.label(class="form-label") }} {{
+        form.trial_days(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.price.label(class="form-label") }} {{
+        form.price(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<a
+    href="{{ url_for('admin.manage_plans', _external=True) }}"
+    class="btn btn-secondary mt-3"
+    >Back to Plan Management</a
+>
+{% endblock %}

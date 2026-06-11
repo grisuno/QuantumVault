@@ -1,0 +1,120 @@
+<!-- templates/faq.html -->
+{% extends "base.html" %} {% block title %}FAQ - QuantumVault{% endblock %} {%
+block content %}
+<div class="container mt-4">
+    <h1>Frequently Asked Questions</h1>
+    <p>
+        Welcome to the QuantumVault FAQ. Below you'll find answers to the most
+        common questions about this software, how it protects your data, and
+        what its open-source, zero-knowledge design means for you.
+    </p>
+
+    <h2>What is QuantumVault?</h2>
+    <p>
+        QuantumVault is free, open-source software (licensed under the
+        <strong>GNU AGPLv3</strong>) that provides a zero-knowledge,
+        zero-trust platform for end-to-end encrypted messaging and encrypted
+        file storage, using a hybrid post-quantum cryptographic design.
+        Anyone can run their own instance.
+    </p>
+
+    <h2>How does QuantumVault encrypt my data?</h2>
+    <p>
+        QuantumVault uses a hybrid encryption model combining
+        <strong>ML-KEM-768</strong> (post-quantum key encapsulation, FIPS 203)
+        and <strong>X25519</strong> (classical elliptic-curve key exchange),
+        combined via HKDF-SHA256, to wrap keys used with
+        <strong>AES-256-GCM</strong> for authenticated symmetric encryption.
+        All of this happens client-side, in your browser, before any data is
+        sent to the server.
+    </p>
+
+    <h2>Can the operator of an instance access my files or messages?</h2>
+    <p>
+        No. QuantumVault is end-to-end encrypted and zero-knowledge: your
+        private keys are generated in your browser, encrypted with a key
+        derived from your password (PBKDF2-SHA256, 600,000 iterations), and
+        only the encrypted blob is ever sent to the server. Login itself uses
+        SRP-6a, so your password never travels over the network either. The
+        operator of an instance &mdash; even with full access to the server
+        and database &mdash; cannot recover your plaintext content or your
+        keys. This is a property of the cryptography, not a policy promise,
+        and you can verify it by reading the source code.
+    </p>
+
+    <h2>What happens if I lose my password or my keys?</h2>
+    <p>
+        Your data becomes permanently unrecoverable. There is no key recovery
+        or "reset" mechanism, by design: any such mechanism would require a
+        backdoor that defeats the zero-knowledge model. Back up your password
+        and any exported key material securely.
+    </p>
+
+    <h2>Where is my data stored?</h2>
+    <p>
+        That depends on the specific instance you are using. QuantumVault is
+        self-hosted software, and each operator chooses their own storage
+        backend and infrastructure. In every case, only encrypted ciphertext
+        is stored &mdash; the storage layer never sees plaintext content or
+        private keys.
+    </p>
+
+    <h2>Is QuantumVault resistant to quantum computer attacks?</h2>
+    <p>
+        Yes. The hybrid ML-KEM-768 + X25519 construction means an attacker
+        would need to break both the post-quantum and the classical key
+        exchange to recover your keys, providing protection against both
+        current attacks and future quantum computers.
+    </p>
+
+    <h2>Is there a size limit for uploaded files, or usage limits?</h2>
+    <p>
+        Any limits on file size, storage, or messaging are configured by the
+        operator of the instance you are using, based on their own
+        infrastructure. QuantumVault itself does not impose artificial
+        restrictions in the source code.
+    </p>
+
+    <h2>Can I share files with others?</h2>
+    <p>
+        Direct file sharing and access delegation are under active
+        development. As with all of QuantumVault, this work is open source
+        and contributions are welcome.
+    </p>
+
+    <h2>Is this software free to use?</h2>
+    <p>
+        Yes. QuantumVault is free software under the AGPLv3: free to use, free
+        to inspect, free to modify, and free to redistribute. Anyone may run
+        their own instance at no cost. An operator running a public instance
+        may choose to offer optional paid plans to cover their own
+        infrastructure costs, but the software itself carries no licensing
+        fee.
+    </p>
+
+    <h2>Who developed QuantumVault?</h2>
+    <p>
+        QuantumVault was developed by <strong>LazyOwn RedTeam</strong>, a
+        security research and offensive security collective, and released as
+        free software so that journalists, activists, and the general public
+        can communicate securely &mdash; with hybrid post-quantum end-to-end
+        encryption &mdash; in defense of free expression and a free press.
+    </p>
+
+    <h2>Who is responsible if something goes wrong on a given instance?</h2>
+    <p>
+        QuantumVault is distributed "as is", without warranty, as permitted
+        under the AGPLv3 (see the <a href="{{ url_for('terms.terms') }}">Terms
+        and Conditions</a>). Whoever deploys an instance is responsible for
+        operating it, for complying with the laws applicable to them, and for
+        any commitments they make to their own users. LazyOwn RedTeam
+        publishes the software, not a managed service.
+    </p>
+
+    <p class="mt-4">
+        <strong>Still have questions?</strong> Read the source code, open an
+        issue in the project's repository, or contact the administrator of
+        the instance you are using.
+    </p>
+</div>
+{% endblock %}

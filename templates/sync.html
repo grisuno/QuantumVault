@@ -1,0 +1,493 @@
+{% extends "base.html" %} {% block title %}FAQ - QuantumVault{% endblock %} {%
+block content %}
+
+<div class="container">
+    <div class="card">
+        <h1 class="text-xl font-bold mb-4">📁 Directory Sync</h1>
+        <div id="dropZone" class="drop-zone">
+            <h3 class="text-lg font-semibold mb-2">📁 Drag and Drop</h3>
+            <p class="text-dark-300">or click to select files</p>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input
+                type="file"
+                id="fileInput"
+                webkitdirectory
+                multiple
+                style="display: none"
+            />
+        </div>
+
+        <div id="fileList" class="file-list" style="display: none">
+            <h4 class="font-medium mb-2">Selected files:</h4>
+            <div id="filesContainer"></div>
+        </div>
+
+        <div
+            id="actions"
+            class="mt-4"
+            style="display: none; text-align: center"
+        >
+            <button id="syncBtn" class="btn-primary">🔄 Safe Sync</button>
+            <button
+                id="clearBtn"
+                class="btn btn-danger position-relative px-4 py-2 fw-semibold border-0 __web-inspector-hide-shortcut__"
+                style="
+                    background: linear-gradient(
+                        90deg,
+                        rgb(220, 53, 69),
+                        rgb(255, 7, 58)
+                    );
+                    transition: 0.3s;
+                    box-shadow: none;
+                    transform: scale(1);
+                "
+                onmouseover="this.style.boxShadow='0 0 15px rgba(255, 7, 58, 0.6)'; this.style.transform='scale(1.05)';"
+                onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';"
+            >
+                🗑️ Clean
+            </button>
+        </div>
+
+        <div id="status" class="status"></div>
+        <div
+            id="overallProgress"
+            class="w-full bg-dark-700 rounded-full h-2.5 mt-4"
+            style="display: none"
+        >
+            <div
+                id="overallProgressFill"
+                class="bg-primary-600 h-2.5 rounded-full"
+                style="width: 0%"
+            ></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
+<script>
+    let files = [];
+    const dropZone = document.getElementById("dropZone");
+    const fileInput = document.getElementById("fileInput");
+    const fileList = document.getElementById("fileList");
+    const filesContainer = document.getElementById("filesContainer");
+    const actions = document.getElementById("actions");
+    const syncBtn = document.getElementById("syncBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const statusDiv = document.getElementById("status");
+    const overallProgress = document.getElementById("overallProgress");
+    const overallProgressFill = document.getElementById("overallProgressFill");
+    let userPublicKey = null;
+    let username = "{{ username | safe}}";
+
+    // Obtener el nombre de usuario del contexto actual
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!username) {
+            showStatus(
+                "⚠️ Usuario no identificado. Por favor, inicia sesión.",
+                "error",
+            );
+            syncBtn.disabled = true;
+        }
+    });
+
+    // Eventos Drag & Drop
+    dropZone.addEventListener("click", () => fileInput.click());
+    fileInput.addEventListener("change", handleFileSelect);
+
+    ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) =>
+        dropZone.addEventListener(eventName, highlight, false),
+    );
+
+    ["dragleave", "drop"].forEach((eventName) =>
+        dropZone.addEventListener(eventName, unhighlight, false),
+    );
+
+    dropZone.addEventListener("drop", handleDrop, false);
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight() {
+        dropZone.classList.add("dragover");
+    }
+
+    function unhighlight() {
+        dropZone.classList.remove("dragover");
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const droppedFiles = dt.items
+            ? Array.from(dt.items)
+                  .filter((item) => item.kind === "file")
+                  .map((item) => item.webkitGetAsEntry())
+            : Array.from(dt.files);
+
+        traverseFileTree(droppedFiles);
+    }
+
+    function traverseFileTree(items) {
+        files = [];
+        const promises = [];
+
+        const traverse = (item, path = "") => {
+            if (item.isFile) {
+                const promise = new Promise((resolve) => {
+                    item.file((file) => {
+                        // Añadir la ruta relativa como una propiedad personalizada
+                        Object.defineProperty(file, "webkitRelativePath", {
+                            value: path + file.name,
+                            writable: false,
+                        });
+                        files.push(file);
+                        resolve();
+                    });
+                });
+                promises.push(promise);
+            } else if (item.isDirectory) {
+                const dirReader = item.createReader();
+                dirReader.readEntries((entries) => {
+                    entries.forEach((entry) =>
+                        traverse(entry, path + item.name + "/"),
+                    );
+                });
+            }
+        };
+
+        items.forEach((item) => {
+            if (item.isFile) {
+                files.push(item);
+            } else if (item.isDirectory) {
+                traverse(item);
+            }
+        });
+
+        Promise.all(promises).then(() => {
+            if (files.length > 0) {
+                displayFiles(files);
+            } else {
+                showStatus("Can't read the files.", "error");
+            }
+        });
+    }
+
+    function handleFileSelect(e) {
+        files = Array.from(e.target.files);
+        if (files.length > 0) {
+            displayFiles(files);
+        }
+    }
+
+    function displayFiles(fileArray) {
+        filesContainer.innerHTML = "";
+        fileArray.forEach((file) => {
+            const fileItem = document.createElement("div");
+            fileItem.className = "file-item";
+            fileItem.dataset.path = file.webkitRelativePath || file.name;
+            fileItem.innerHTML = `
+                <strong>${file.webkitRelativePath || file.name}</strong><br>
+                <small>Size: ${formatFileSize(file.size)} | Tipo: ${file.type || "N/A"}</small>
+                <div class="file-progress"><div class="file-progress-bar"></div></div>
+            `;
+            filesContainer.appendChild(fileItem);
+        });
+        fileList.style.display = "block";
+        actions.style.display = "block";
+        showStatus(`📁 ${fileArray.length} Selected files`, "info");
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const sizes = ["Bytes", "KB", "MB", "GB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    }
+
+    function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.className = `status ${type}`;
+        statusDiv.style.display = "block";
+        if (type === "success") {
+            setTimeout(() => {
+                statusDiv.style.display = "none";
+            }, 5000);
+        }
+    }
+
+    function updateOverallProgress(percent) {
+        overallProgressFill.style.width = percent + "%";
+        if (percent >= 100) {
+            setTimeout(() => {
+                overallProgress.style.display = "none";
+            }, 1000);
+        }
+    }
+
+    function updateFileProgress(filePath, percent) {
+        const fileItem = [...filesContainer.children].find(
+            (el) => el.dataset.path === filePath,
+        );
+        if (fileItem) {
+            const progressBar = fileItem.querySelector(".file-progress-bar");
+            if (progressBar) {
+                progressBar.style.width = percent + "%";
+            }
+        }
+    }
+
+    async function getPublicKey() {
+        if (userPublicKey) return userPublicKey; // ✅ Devuelve si ya existe
+
+        if (!username) {
+            throw new Error("User not found");
+        }
+
+        showStatus("🔐 Get Public Key...", "info");
+        const csrfToken = document.querySelector("[name=csrf_token]").value;
+
+        try {
+            const pubKeyResponse = await fetch(
+                `/api/auth/pubkey?username=${encodeURIComponent(username)}`,
+                {
+                    headers: { "X-CSRFToken": csrfToken },
+                },
+            );
+
+            if (!pubKeyResponse.ok) {
+                const errorData = await pubKeyResponse.json().catch(() => ({}));
+                throw new Error(
+                    errorData.error ||
+                        `Error ${pubKeyResponse.status} obteniendo clave pública`,
+                );
+            }
+
+            const data = await pubKeyResponse.json();
+            // ✅ Asigna y devuelve la clave pública
+            userPublicKey = data.publicKey;
+            return userPublicKey; // Es crucial devolverla
+        } catch (error) {
+            showStatus(
+                `❌ Error getting public key: ${error.message}`,
+                "error",
+            );
+            throw error;
+        }
+    }
+
+    async function encryptFile(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                try {
+                    // Convertir a WordArray para JSEncrypt
+                    const wordArray = CryptoJS.lib.WordArray.create(
+                        event.target.result,
+                    );
+                    const fileContent = wordArray.toString(CryptoJS.enc.Base64);
+
+                    // Cifrar con la clave pública RSA
+                    const encrypt = new JSEncrypt();
+                    encrypt.setPublicKey(userPublicKey);
+                    const encrypted = encrypt.encrypt(fileContent);
+
+                    if (!encrypted) {
+                        reject(new Error("Error crypting files"));
+                        return;
+                    }
+
+                    resolve(encrypted);
+                } catch (e) {
+                    reject(e);
+                }
+            };
+            reader.onerror = () => reject(new Error("Error reading the file"));
+            reader.readAsArrayBuffer(file);
+        });
+    }
+
+    // --- MODIFICAR: Hacer setupEncryptionSession async ---
+    async function setupEncryptionSession() {
+        if (window.ENCRYPTION_SESSION) {
+            console.log("Crypted sessions established");
+            return; // Ya está configurado
+        }
+
+        if (!userPublicKey) {
+            throw new Error("Error public key");
+        }
+
+        try {
+            // 1. Generar una clave AES aleatoria (256 bits)
+            const aesKey = CryptoJS.lib.WordArray.random(32);
+            const aesKeyHex = aesKey.toString();
+
+            // 2. Cifrar la clave AES con la clave pública RSA
+            const encrypt = new JSEncrypt();
+            encrypt.setPublicKey(userPublicKey);
+            const encryptedAESKey = encrypt.encrypt(aesKeyHex);
+
+            if (!encryptedAESKey) {
+                throw new Error("error crypt");
+            }
+
+            // 3. Guardar en window.ENCRYPTION_SESSION
+            window.ENCRYPTION_SESSION = {
+                key: aesKey, // No se usa, pero por consistencia
+                encryptedKey: encryptedAESKey,
+            };
+        } catch (e) {
+            console.error("❌ Error ciphering:", e);
+            throw new Error(`error: ${e.message}`);
+        }
+    }
+
+    // --- Modificar processFile ---
+    async function processFile(file) {
+        const filePath = file.webkitRelativePath || file.name;
+        updateFileProgress(filePath, 10);
+
+        try {
+            // 1. Verificar que la sesión esté establecida
+            if (
+                !window.ENCRYPTION_SESSION ||
+                !window.ENCRYPTION_SESSION.encryptedKey
+            ) {
+                throw new Error("Sessions error");
+            }
+
+            updateFileProgress(filePath, 60);
+
+            // 2. Preparar datos para el backend
+            const formData = new FormData();
+            formData.append("filename", filePath.split("/").pop());
+            formData.append("relative_path", filePath);
+            formData.append("size", file.size);
+
+            // Añadir la clave AES cifrada
+            formData.append(
+                "encrypted_aes_key",
+                window.ENCRYPTION_SESSION.encryptedKey,
+            );
+
+            // Añadir el archivo en texto claro
+            formData.append("file", file);
+
+            // 3. Enviar al backend
+            updateFileProgress(filePath, 80);
+            const response = await fetch("/secure_sync", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRFToken": document.querySelector(
+                        'input[name="csrf_token"]',
+                    ).value,
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(
+                    errorData.error || `Error ${response.status} sync`,
+                );
+            }
+
+            updateFileProgress(filePath, 100);
+            return true;
+        } catch (error) {
+            console.error(`Error proccessing file: ${filePath}:`, error);
+            updateFileProgress(filePath, 100);
+            throw error;
+        }
+    }
+
+    clearBtn.addEventListener("click", () => {
+        files = [];
+        fileInput.value = "";
+        fileList.style.display = "none";
+        actions.style.display = "none";
+        statusDiv.style.display = "none";
+        dropZone.classList.remove("dragover");
+        showStatus("🧹 Cleaned", "info");
+        setTimeout(() => {
+            statusDiv.style.display = "none";
+        }, 2000);
+    });
+
+    syncBtn.addEventListener("click", async () => {
+        if (files.length === 0) {
+            showStatus("No files to sync", "error");
+            return;
+        }
+
+        if (!username) {
+            showStatus("⚠️ Please login", "error");
+            return;
+        }
+
+        syncBtn.disabled = true;
+        syncBtn.textContent = "⏳ Sync...";
+        overallProgress.style.display = "block";
+        updateOverallProgress(0);
+        showStatus("📤 Beging sync...", "info");
+
+        try {
+            // 1. Obtener clave pública
+            await getPublicKey();
+
+            // 2. Establecer sesión de cifrado (una sola vez)
+            await setupEncryptionSession(); // ⚠️ Asegúrate de que esta línea se ejecute
+
+            let successCount = 0;
+            let errorCount = 0;
+            const totalFiles = files.length;
+
+            // 3. Procesar cada archivo
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                try {
+                    await processFile(file);
+                    successCount++;
+                    showStatus(
+                        `✅ ${file.webkitRelativePath || file.name} uploaded success`,
+                        "success",
+                    );
+                } catch (error) {
+                    errorCount++;
+                    showStatus(
+                        `❌ Error : ${file.webkitRelativePath || file.name}: ${error.message}`,
+                        "error",
+                    );
+                }
+                updateOverallProgress(((i + 1) / totalFiles) * 100);
+            }
+
+            // Mensaje final
+            if (errorCount === 0) {
+                showStatus(
+                    `✅ Completed sync: ${successCount}/${totalFiles}.`,
+                    "success",
+                );
+            } else {
+                showStatus(
+                    `⚠️ Error sync: ${successCount}/${totalFiles} uploaded, ${errorCount} fail.`,
+                    "error",
+                );
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            showStatus(`❌ Error: ${error.message}`, "error");
+        } finally {
+            syncBtn.disabled = false;
+            syncBtn.textContent = "🔄 Safe Sync";
+        }
+    });
+</script>
+{% endblock %}

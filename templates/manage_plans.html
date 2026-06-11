@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Manage Plans{% endblock %} {% block
+content %}
+<h1>Manage Plans</h1>
+<h2>Create New Plan</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }} {{
+        form.name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.storage_quota.label(class="form-label") }} {{
+        form.storage_quota(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.trial_days.label(class="form-label") }} {{
+        form.trial_days(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.price.label(class="form-label") }} {{
+        form.price(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<h2 class="mt-4">Existing Plans</h2>
+<ul class="list-group">
+    {% for plan in plans %}
+    <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+    >
+        {{ plan.name }} (Storage: {{ plan.storage_quota // (1024 * 1024) }} MB,
+        Trial: {{ plan.trial_days }} days, Price: ${{ plan.price }})
+        <a
+            href="{{ url_for('admin.edit_plan', plan_name=plan.name, _external=True) }}"
+            class="btn btn-sm btn-primary"
+            >Edit</a
+        >
+    </li>
+    {% endfor %}
+</ul>
+<a
+    href="{{ url_for('admin.admin', _external=True) }}"
+    class="btn btn-secondary mt-3"
+    >Back to Admin Panel</a
+>
+{% endblock %}

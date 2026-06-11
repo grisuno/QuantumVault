@@ -1,0 +1,87 @@
+<!-- templates/superadmin_edit_user.html -->
+<!--
+  Full profile edit for a single user.
+
+  Lives under /superadmin<token>/edit/<username>. The form intentionally
+  omits three categories of column:
+
+  1. confirmation_token / phone_verification_code: rotated by the
+     privileged endpoints (resend-confirmation, etc.) so a hand-edited
+     static value cannot expire and would either lock the user out or
+     be reused forever.
+
+  2. KEM/SRP blob columns (srp_salt, srp_verifier, public_key,
+     encrypted_private_key, kdf_salt): the server has no UI to rewrite
+     them. Modifying any of them would silently brick the user's login
+     and there is no recovery short of a fresh registration.
+
+  3. Password: the server is zero-knowledge. A "change password" UI
+     lives in the user's own profile, not here, and never reaches the
+     server in cleartext.
+-->
+{% extends "base.html" %} {% block title %}Edit User - {{ user.username }}{%
+endblock %} {% block content %}
+<h1>Edit User: <code>{{ user.username }}</code></h1>
+<p class="text-muted small">
+  Privileged identity edit. For per-row one-click actions (reset MFA,
+  re-issue confirmation, suspend/activate) go back to the
+  <a href="{{ url_for('admin.superadmin') }}">superadmin panel</a>.
+</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }} {{
+        form.username(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.role.label(class="form-label") }} {{
+        form.role(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }} {{
+        form.email(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.phone.label(class="form-label") }} {{
+        form.phone(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.first_name.label(class="form-label") }} {{
+        form.first_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.last_name.label(class="form-label") }} {{
+        form.last_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.storage_quota.label(class="form-label") }} {{
+        form.storage_quota(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.subscription_status.label(class="form-label") }} {{
+        form.subscription_status(class="form-control") }}
+    </div>
+    <div class="mb-3 form-check">
+        {{ form.email_verified(class="form-check-input") }}
+        {{ form.email_verified.label(class="form-check-label") }}
+    </div>
+    <div class="mb-3 form-check">
+        {{ form.phone_verified(class="form-check-input") }}
+        {{ form.phone_verified.label(class="form-check-label") }}
+    </div>
+    <div class="mb-3">
+        {{ form.trial_start.label(class="form-label") }} {{
+        form.trial_start(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.trial_end.label(class="form-label") }} {{
+        form.trial_end(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<a
+    href="{{ url_for('admin.superadmin') }}"
+    class="btn btn-secondary mt-3"
+    >Back to Superadmin Panel</a
+>
+{% endblock %}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Suscribirse - QuantumVault</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+        <link rel="icon" href="static/shield.png" type="image/png" />
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{{ url_for('views.home') }}"
+                        >QuantumVault</a
+                    >
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('file.upload') }}"
+                                    >Upload files</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('message.messages') }}"
+                                    >Messages</a
+                                >
+                            </li>
+                            {% if user.role in ['admin', 'superadmin'] %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('admin.admin') }}"
+                                    >Admin Panel</a
+                                >
+                            </li>
+                            {% endif %} {% if user.role == 'superadmin' %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('admin.superadmin') }}"
+                                    >Superadmin Panel</a
+                                >
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('subscription.subscribe') }}"
+                                    >Subscribe</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('auth.logout') }}"
+                                    >Logout</a
+                                >
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('auth.login') }}"
+                                    >Sign in</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('auth.show_register') }}"
+                                    >Sign up</a
+                                >
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('about.about') }}"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('terms.terms') }}"
+                                    >Terms</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ url_for('privacy.privacy') }}"
+                                    >Privacy</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <h1 class="mb-4">Choose your subscription plan</h1>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %} {{ message }}<br />
+                {% endfor %}
+            </div>
+            {% endif %} {% endwith %}
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form
+                        method="POST"
+                        action="{{ url_for('subscription.subscribe') }}"
+                    >
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.plan.label(class="form-label") }} {{
+                            form.plan(class="form-select") }}
+                        </div>
+                        {% if user.is_authenticated %} {{ form.submit(class="btn
+                        btn-primary") }} {% else %}
+                        <p>
+                            Please,
+                            <a href="{{ url_for('auth.login') }}">sign in</a> to
+                            subscribe.
+                        </p>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
