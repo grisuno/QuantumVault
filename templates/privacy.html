@@ -1,0 +1,108 @@
+<!-- templates/privacy.html -->
+{% extends "base.html" %} {% block title %}Privacy Policy - QuantumVault{%
+endblock %} {% block content %}
+<div class="container mt-4">
+    <h1>Privacy Policy</h1>
+    <p>
+        QuantumVault is free, open-source, zero-knowledge software. This page
+        describes what the software itself collects and, more importantly,
+        what it is structurally <em>unable</em> to access, regardless of the
+        intentions of whoever operates a given instance ("the operator").
+        Because each instance is independently self-hosted under the AGPLv3,
+        the operator of the instance you are using is the party responsible
+        for its data practices, retention periods, and any applicable local
+        law; this page describes the guarantees built into the software
+        itself, which apply to every instance.
+    </p>
+
+    <h2>What the Operator Can Never See</h2>
+    <ul>
+        <li>
+            <strong>Your password:</strong> authentication uses SRP-6a, a
+            zero-knowledge proof. Your password is never transmitted, in any
+            form, to the server.
+        </li>
+        <li>
+            <strong>Your private keys:</strong> your hybrid ML-KEM-768 +
+            X25519 key pair is generated in your browser and stored only as a
+            blob encrypted with a key derived from your password
+            (PBKDF2-SHA256, 600,000 iterations). The server only ever
+            receives that encrypted blob.
+        </li>
+        <li>
+            <strong>Message and file contents:</strong> messages and files
+            are encrypted client-side with AES-256-GCM before upload. The
+            server stores and relays opaque ciphertext only.
+        </li>
+    </ul>
+
+    <h2>Information the Software Collects</h2>
+    <p>
+        To provide the service, an instance necessarily stores some
+        information:
+    </p>
+    <ul>
+        <li>
+            <strong>Account information:</strong> the email address (and any
+            other identifier, such as a phone number, if the registration
+            form requires it) used to create and recover access to your
+            account, plus your SRP verifier (a value that proves you know
+            your password without revealing it).
+        </li>
+        <li>
+            <strong>Encrypted payloads:</strong> your encrypted private key
+            blob, encrypted files, and encrypted messages, all opaque to the
+            server.
+        </li>
+        <li>
+            <strong>Public keys:</strong> your ML-KEM-768 and X25519 public
+            keys, which are not secret and are needed by other users to
+            encrypt data to you.
+        </li>
+        <li>
+            <strong>Operational metadata:</strong> standard web server logs
+            (such as IP addresses, timestamps, and request metadata), and
+            message/file timestamps and sizes, which are not protected by
+            end-to-end encryption and may be visible to the operator of an
+            instance.
+        </li>
+    </ul>
+
+    <h2>How This Information Is Used</h2>
+    <p>The data described above is used only to:</p>
+    <ul>
+        <li>Authenticate you and maintain your session</li>
+        <li>Store and relay your encrypted data so you can retrieve it</li>
+        <li>Operate, secure, and maintain the instance</li>
+        <li>Comply with legal obligations applicable to the operator</li>
+    </ul>
+    <p>
+        Because QuantumVault is AGPLv3, the source code that processes this
+        data is publicly available, so anyone can verify these claims
+        directly rather than relying on a promise.
+    </p>
+
+    <h2>Your Rights</h2>
+    <p>
+        You may request to view, correct, or delete the account metadata held
+        by an instance (email/identifiers, account status, and stored
+        ciphertext) at any time, by contacting the administrator of that
+        instance. Because content is end-to-end encrypted, deleting your
+        account and its stored ciphertext is equivalent to deleting your
+        data &mdash; no one, including the operator, can decrypt it
+        afterward. No instance sells your data, and the software contains no
+        mechanism for monetizing or sharing your data with third parties.
+    </p>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+        This page describes the privacy properties of the QuantumVault
+        software itself and is updated alongside the software. Operators of
+        individual instances may publish additional, instance-specific
+        privacy information (for example, their jurisdiction, log retention
+        period, or contact details) separately.
+    </p>
+
+    <p><strong>Last Updated:</strong> June 2026</p>
+</div>
+{% endblock %}

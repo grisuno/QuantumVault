@@ -1,0 +1,104 @@
+<!--templates/about.html -->
+{% extends "base.html" %} {% block title %}About Us - QuantumVault{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>About QuantumVault</h1>
+    <p>
+        <strong>QuantumVault</strong> is free and open-source software,
+        released under the <strong>GNU Affero General Public License v3.0
+        (AGPLv3)</strong>, that lets anyone run their own zero-knowledge,
+        zero-trust, end-to-end encrypted messaging and file vault using
+        hybrid post-quantum cryptography.
+    </p>
+
+    <h2>What QuantumVault Does</h2>
+    <p>
+        QuantumVault combines a post-quantum key encapsulation mechanism
+        (<strong>ML-KEM-768</strong>, FIPS 203) with classical
+        <strong>X25519</strong> elliptic-curve key exchange, derives keys via
+        HKDF-SHA256, and seals data with <strong>AES-256-GCM</strong>. Every
+        cryptographic operation that matters &mdash; key generation,
+        encryption, decryption &mdash; happens
+        <strong>in your browser</strong>, using vendored, audit-friendly
+        cryptographic libraries. The platform lets you:
+    </p>
+    <ul>
+        <li>
+            <strong>Encrypt and store files</strong>: files are encrypted
+            client-side before they ever leave your device, then stored as
+            opaque ciphertext on the server you connect to.
+        </li>
+        <li>
+            <strong>Exchange end-to-end encrypted messages</strong>: messages
+            are sealed with a hybrid post-quantum key exchange so that only
+            the sender and the intended recipient can ever read them.
+        </li>
+        <li>
+            <strong>Authenticate without ever sending your password</strong>:
+            login uses SRP-6a, a zero-knowledge password proof &mdash; your
+            password never crosses the network in any form.
+        </li>
+        <li>
+            <strong>Resist quantum and classical attacks alike</strong>: the
+            hybrid construction means an attacker would need to break
+            <em>both</em> ML-KEM-768 and X25519 to recover your keys, today
+            or with a future quantum computer.
+        </li>
+    </ul>
+
+    <h2>Zero-Knowledge, Zero-Trust by Design</h2>
+    <p>
+        "Zero-knowledge" means the server storing your data never has access
+        to your plaintext, your private keys, or your password &mdash; not
+        because of a policy promise, but because the cryptography makes it
+        structurally impossible. "Zero-trust" means you do not need to trust
+        the operator of a QuantumVault instance to keep that promise: you can
+        read the source code yourself, verify the cryptographic primitives in
+        use, and confirm that the protections described here are real.
+    </p>
+    <p>
+        The architecture is intentionally hybrid: communications are relayed
+        and encrypted blobs are stored through a central server for
+        convenience and reachability, but that server is reduced to a
+        transport and storage layer. It never holds the keys needed to read
+        what passes through it.
+    </p>
+
+    <h2>Why LazyOwn RedTeam Released This as Free Software</h2>
+    <p>
+        QuantumVault was built by <strong>LazyOwn RedTeam</strong>, a
+        security research and offensive security collective. We spend our
+        time finding the gaps that surveillance, censorship, and authoritarian
+        control exploit &mdash; and we know how often ordinary people,
+        journalists, activists, and dissidents are left without tools they
+        can actually trust.
+    </p>
+    <p>
+        Rather than keep this technology behind a paywall or a closed SaaS,
+        we are releasing QuantumVault to the public as AGPLv3 free software.
+        Anyone &mdash; an independent newsroom, an NGO, a community group, or
+        an individual &mdash; can deploy their own instance, inspect every
+        line of code, modify it, and run it under their own infrastructure
+        and their own responsibility. Our goal is to make robust, post-quantum
+        end-to-end encrypted communication available as a public good, in
+        defense of free expression and a free press against any form of
+        tyranny or censorship.
+    </p>
+
+    <h2>Free Software, Self-Hosted</h2>
+    <p>
+        Because QuantumVault is AGPLv3, anyone running a modified version of
+        it as a network service must make the corresponding source code
+        available to its users. This keeps every deployment auditable. Each
+        instance of QuantumVault is operated independently by whoever deployed
+        it; LazyOwn RedTeam provides the software, not a hosted service, and
+        does not control or have visibility into independently operated
+        instances.
+    </p>
+
+    <p>
+        <strong>QuantumVault: free software, post-quantum encryption, for a
+        free press and free expression.</strong>
+    </p>
+</div>
+{% endblock %}

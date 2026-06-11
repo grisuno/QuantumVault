@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block title %}Messages{% endblock %} {% block
+content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Send and Receive Messages</h1>
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <h2 class="mb-3">Send Message</h2>
+            <form
+                method="POST"
+                id="messageForm"
+                data-username="{{ username }}"
+            >
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.recipient.label(class="form-label") }} {{
+                    form.recipient(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.message.label(class="form-label") }} {{
+                    form.message(class="form-control", rows=4, id="message") }}
+                </div>
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mt-4 mb-0">📄 Received Messages</h2>
+                <button type="button" id="decryptInboxButton" class="btn btn-outline-primary btn-sm">
+                    🔓 Decrypt
+                </button>
+            </div>
+            <ul class="list-group">
+                {% for msg in messages %}
+                <li class="list-group-item">
+                    <div class="mb-1">
+                        <strong>From:</strong> {{ msg.sender }}
+                    </div>
+                    <div class="quantum mb-1">{{ msg.message }}</div>
+                    <div class="text-muted">
+                        <small>ID: {{ msg.id }}</small>
+                    </div>
+                </li>
+                {% else %}
+                <li class="list-group-item">📄 No messages found.</li>
+                {% endfor %}
+            </ul>
+            {% if total_pages > 1 %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="{% if page == 1 %}disabled{% endif %}">
+                        <a
+                            class="btn"
+                            href="{% if page > 1 %}{{ url_for('message.messages', page=page-1) }}{% else %}#{% endif %}"
+                            >Previous</a
+                        >
+                    </li>
+                    {% for p in range(1, total_pages + 1) %}
+                    <li class="{% if p == page %}active{% endif %}">
+                        <a
+                            class="btn"
+                            href="{{ url_for('message.messages', page=p) }}"
+                            >{{ p }}</a
+                        >
+                    </li>
+                    {% endfor %}
+                    <li class="{% if page == total_pages %}disabled{% endif %}">
+                        <a
+                            class="btn"
+                            href="{% if page < total_pages %}{{ url_for('message.messages', page=page+1) }}{% else %}#{% endif %}"
+                            >Next</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+<script type="module" src="/static/js/messages.js"></script>
+{% endblock %}

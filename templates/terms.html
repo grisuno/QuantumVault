@@ -1,0 +1,65 @@
+<!-- templates/terms.html -->
+{% extends "base.html" %} {% block title %}Terms of Service - QuantumVault{%
+endblock %} {% block content %}
+<div class="container mt-4">
+
+    <h1>TERMS AND CONDITIONS OF USE</h1>
+    <p>QuantumVault &mdash; Free and Open-Source Software (AGPLv3)<br>
+    Last Updated: June 2026</p>
+
+    <h2>1. Nature of This Document</h2>
+    <p>QuantumVault ("the Software") is free and open-source software developed by <strong>LazyOwn RedTeam</strong> and released under the <strong>GNU Affero General Public License, version 3 (AGPLv3)</strong>. The full text of the AGPLv3 is available at <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">https://www.gnu.org/licenses/agpl-3.0.html</a> and governs your rights to use, study, modify, and redistribute the Software's source code. These Terms and Conditions ("Terms") apply <em>in addition</em> to the AGPLv3 and govern your use of a running instance of QuantumVault ("the Service") &mdash; that is, the website or server you are interacting with right now.</p>
+
+    <h2>2. Who Operates This Service</h2>
+    <p>QuantumVault is self-hosted software: anyone may download the source code and run their own independent instance. The party that deployed and operates the instance you are currently using ("the Operator") is solely responsible for that instance &mdash; its availability, configuration, hosting jurisdiction, moderation policies, and compliance with laws applicable to it. <strong>LazyOwn RedTeam authors and publishes the Software but does not operate, control, or have access to independently deployed instances</strong>, and is not a party to your use of any such instance unless it is the Operator of the specific instance you are using.</p>
+
+    <h2>3. Use at Your Own Responsibility</h2>
+    <p>Because QuantumVault is free software distributed without charge, it is provided, to the maximum extent permitted by applicable law, <strong>"AS IS" and without warranty of any kind</strong>, in accordance with Sections 15 and 16 of the AGPLv3:</p>
+    <p style="margin-left: 1.5em;"><em>"There is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing, the copyright holders and/or other parties provide the program 'as is' without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. In no event, unless required by applicable law or agreed to in writing, will any copyright holder, or any other party who modifies and/or conveys the program as permitted above, be liable to you for damages, including any general, special, incidental or consequential damages arising out of the use or inability to use the program."</em></p>
+    <p>If you operate your own instance, you do so under your own responsibility and at your own risk: you are responsible for securing your server, keeping the Software up to date, and for any consequences arising from your deployment, configuration, or use of it. If you are a user of an instance operated by someone else, your relationship for matters of availability, support, and account administration is with that Operator, not with LazyOwn RedTeam.</p>
+
+    <h2>4. The Zero-Knowledge Architecture</h2>
+    <p>QuantumVault is designed so that all sensitive cryptography &mdash; key generation, encryption, and decryption &mdash; happens client-side, in your browser, using a hybrid post-quantum scheme (ML-KEM-768 + X25519, combined via HKDF-SHA256, with AES-256-GCM for authenticated encryption) and SRP-6a for password authentication. As a direct consequence:</p>
+    <ul>
+        <li>Your password is never transmitted to or stored by the Service in any recoverable form.</li>
+        <li>Your private keys exist on the Service only as a blob encrypted with a key derived from your password; the Service cannot decrypt this blob.</li>
+        <li>Your messages and files are stored and relayed as ciphertext that the Service cannot decrypt.</li>
+        <li>If you lose your password, your encrypted data becomes permanently unrecoverable. There is no backdoor, master key, or recovery mechanism &mdash; this is an intentional property of the design, not an oversight.</li>
+    </ul>
+    <p>Operational metadata that is not protected by end-to-end encryption (such as account identifiers, IP addresses in server logs, and message/file timestamps and sizes) may be visible to the Operator as described in the <a href="{{ url_for('privacy.privacy') }}">Privacy Policy</a>.</p>
+
+    <h2>5. Account Registration and Security</h2>
+    <p>To use certain features you must register an account, providing an email address and any other information the registration form requests. You are responsible for keeping your password and any exported key material safe &mdash; because of the zero-knowledge design described above, neither the Operator nor LazyOwn RedTeam can reset your password or recover your data if it is lost. The Operator may require email confirmation or other verification steps before granting full access to an account on their instance.</p>
+
+    <h2>6. Acceptable Use</h2>
+    <p>When using a QuantumVault instance, you agree not to:</p>
+    <ul>
+        <li>Attempt to disrupt, overload, or impair the availability of the instance (e.g., denial-of-service activity);</li>
+        <li>Attempt to gain unauthorized access to other users' accounts, data, or to the Operator's infrastructure;</li>
+        <li>Use the Service to distribute malware, or for purposes that are unlawful under the law applicable to you or to the Operator;</li>
+        <li>Use the Service to violate the rights of others.</li>
+    </ul>
+    <p>An Operator may suspend or terminate accounts on their own instance for violations of this section or of their own published policies. Because the Operator generally cannot inspect end-to-end encrypted content, enforcement is necessarily based on metadata, reports, or behavior visible to the instance, not on reading your messages or files.</p>
+
+    <h2>7. Your Content</h2>
+    <p>You retain all rights to the files and messages you create and encrypt using QuantumVault. Neither LazyOwn RedTeam nor any Operator claims any ownership, license, or other rights over your content. As described above, content is end-to-end encrypted and the Operator cannot access it in any case.</p>
+
+    <h2>8. Source Code, Modifications, and the AGPLv3 Network Clause</h2>
+    <p>You are free to obtain, study, modify, and run your own copy of QuantumVault under the terms of the AGPLv3. If you operate a modified version of QuantumVault as a network service that users interact with remotely, the AGPLv3 (Section 13) requires that you make the corresponding modified source code available to those users. This requirement exists to keep every QuantumVault instance auditable and to preserve the zero-knowledge guarantees described in Section 4 for the benefit of everyone who uses it.</p>
+
+    <h2>9. Fees</h2>
+    <p>The Software itself is free of charge under the AGPLv3. An Operator may, at their own discretion, charge for access to their specific instance (for example, to cover hosting costs or offer expanded storage), in which case any pricing, billing, and refund terms are set by that Operator and are independent of these Terms.</p>
+
+    <h2>10. Termination</h2>
+    <p>You may stop using the Service, or delete your account, at any time. Because of the zero-knowledge design, deleting your account and its associated ciphertext renders your data permanently inaccessible to everyone, including the Operator. An Operator may suspend or terminate access to their instance in accordance with Section 6 and any additional policies they publish.</p>
+
+    <h2>11. Changes to These Terms</h2>
+    <p>These Terms may be updated alongside the Software to reflect changes in its design or licensing. The current version is always available on this page. An Operator may supplement these Terms with additional, instance-specific terms (for example, regarding their jurisdiction or support channels), which they are responsible for publishing separately.</p>
+
+    <h2>12. Severability and Governing Law</h2>
+    <p>If any provision of these Terms is found to be unenforceable, the remaining provisions remain in full effect. Nothing in these Terms limits the rights granted to you under the AGPLv3. Any dispute concerning the Software's license is governed by the AGPLv3 itself; any dispute concerning a specific instance's operation is a matter between you and that instance's Operator, under the law applicable to that relationship.</p>
+
+    <h2>13. Our Mission</h2>
+    <p>LazyOwn RedTeam released QuantumVault as free software so that journalists, activists, and ordinary people can communicate with hybrid post-quantum end-to-end encryption, free from surveillance, censorship, or any single point of control over their right to private communication and free expression. We hope you put it to good use.</p>
+</div>
+{% endblock %}

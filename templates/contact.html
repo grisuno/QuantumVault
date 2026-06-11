@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact - QuantumVault</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+        <link
+            rel="icon"
+            href="{{ url_for('static', filename='shield.png') }}"
+            type="image/png"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔐 Contact QuantumVault Support</h1>
+            {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+            <h2>Send a Message</h2>
+            {% for message in get_flashed_messages() %}
+            <div
+                class="alert alert-{{ 'success' if 'successfully' in message else 'danger' }}"
+            >
+                {{ message }}
+            </div>
+            {% endfor %}
+            <form method="POST" action="{{ url_for('auth.contact') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group mb-3">
+                    {{ form.subject.label(class="form-label") }} {{
+                    form.subject(class="form-control") }} {% if
+                    form.subject.errors %} {% for error in form.subject.errors
+                    %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %} {% endif %}
+                </div>
+                <div class="form-group mb-3">
+                    {{ form.message.label(class="form-label") }} {{
+                    form.message(class="form-control", rows=5) }} {% if
+                    form.message.errors %} {% for error in form.message.errors
+                    %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %} {% endif %}
+                </div>
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+            <h2 class="mt-4">Your Messages</h2>
+            {% if contacts %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Sent On</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.subject }}</td>
+                        <td>{{ contact.message | truncate(50) }}</td>
+                        <td>
+                            {{ contact.created_at.strftime('%Y-%m-%d %H:%M:%S')
+                            if contact.created_at else 'N/A' }}
+                        </td>
+                        <td>{{ contact.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No messages sent yet.</p>
+            {% endif %}
+            <a href="{{ url_for('views.home') }}" class="btn btn-secondary mt-2"
+                >Back to Home</a
+            >
+            {% else %}
+            <p>
+                Please <a href="{{ url_for('auth.login') }}">log in</a> to
+                contact support.
+            </p>
+            {% endif %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
