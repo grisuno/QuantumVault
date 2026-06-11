@@ -98,8 +98,8 @@ QuantumVault's server side does not require `liboqs` or any native post-quantum 
 ## Quick Start
 
 ```bash
-git clone <this-repository>
-cd v8
+git clone https://github.com/grisuno/QuantumVault.git
+cd QuantumVault
 
 # One-shot setup: creates the virtualenv, installs Python dependencies,
 # generates .env from .env.example, and (if Docker is available) brings
