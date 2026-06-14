@@ -21,8 +21,10 @@ We hope you put it to good use.
 
 LazyOwn RedTeam is a security research and offensive security collective. We spend our time finding the gaps that surveillance, censorship, and authoritarian control exploit, and we know how often ordinary people, journalists, activists, and dissidents are left without tools they can actually trust. Rather than keep this technology behind a paywall or a closed SaaS, we are releasing QuantumVault to the public so that anyone, an independent newsroom, an NGO, a community group, or an individual, can deploy their own instance, inspect every line of code, modify it, and run it under their own infrastructure and their own responsibility.
 
+
 ## What QuantumVault Does
 
+- **Deniable Vault (VeriCrypt)**: Plausibly deniable encrypted storage con outer/inner volumes.
 - **Encrypt and store files** client-side before they ever leave the user's device, then store them as opaque ciphertext on the server.
 - **Exchange end-to-end encrypted messages** sealed with a hybrid post-quantum key exchange so that only the sender and the intended recipient can ever read them.
 - **Authenticate without ever sending a password**, using SRP-6a, a zero-knowledge password proof.
