@@ -145,9 +145,18 @@ function modPow(base, exponent, modulus) {
   return result;
 }
 
+// WebCrypto's getRandomValues rejects a single request larger than 65,536
+// bytes (the same limit in every browser and in Node). Fill large buffers in
+// chunks so callers that need megabyte-scale randomness — notably the deniable
+// vault's slot padding — work without hitting QuotaExceededError.
+const MAX_RANDOM_CHUNK_BYTES = 65536;
+
 function randomBytes(length) {
   const out = new Uint8Array(length);
-  crypto.getRandomValues(out);
+  for (let offset = 0; offset < length; offset += MAX_RANDOM_CHUNK_BYTES) {
+    const end = Math.min(offset + MAX_RANDOM_CHUNK_BYTES, length);
+    crypto.getRandomValues(out.subarray(offset, end));
+  }
   return out;
 }
 
@@ -161,10 +170,15 @@ function Hint(...arrays) {
 
 // --- WebCrypto symmetric primitives ---
 
-async function deriveMasterKey(password, kdfSaltHex) {
+// Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2
+// iteration count. This is the single PBKDF2 implementation in the client;
+// deriveMasterKey pins it to the account-password iteration count, while the
+// deniable vault (qv-deniable.js) drives it with the server-advertised count
+// so a policy change needs no client edit.
+export async function deriveKeyFromPassphrase(passphrase, saltHex, iterations) {
   const baseKey = await crypto.subtle.importKey(
     "raw",
-    textEncoder.encode(password),
+    textEncoder.encode(passphrase),
     "PBKDF2",
     false,
     ["deriveBits"],
@@ -172,14 +186,18 @@ async function deriveMasterKey(password, kdfSaltHex) {
   const bits = await crypto.subtle.deriveBits(
     {
       name: "PBKDF2",
-      salt: hexToBytes(kdfSaltHex),
-      iterations: PBKDF2_ITERATIONS,
+      salt: hexToBytes(saltHex),
+      iterations,
       hash: "SHA-256",
     },
     baseKey,
     256,
   );
   return new Uint8Array(bits);
+}
+
+async function deriveMasterKey(password, kdfSaltHex) {
+  return deriveKeyFromPassphrase(password, kdfSaltHex, PBKDF2_ITERATIONS);
 }
 
 async function aesGcmEncrypt(keyBytes, plaintext) {
@@ -203,6 +221,24 @@ async function aesGcmDecrypt(keyBytes, ivAndCiphertext) {
     await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ciphertext),
   );
 }
+
+// The number of leading bytes in an aesGcmEncrypt() output that hold the
+// AES-GCM nonce. Exported so qv-deniable.js can split the combined output
+// into the separate (nonce, ciphertext) fields its envelope stores.
+export const GCM_NONCE_BYTES = GCM_IV_BYTES;
+
+// Low-level primitives reused by the deniable vault module (qv-deniable.js),
+// exported here so that module does not re-implement the project's audited
+// crypto helpers: one implementation, two callers.
+export {
+  randomBytes,
+  bytesToHex,
+  hexToBytes,
+  bytesToBase64,
+  base64ToBytes,
+  aesGcmEncrypt,
+  aesGcmDecrypt,
+};
 
 // --- SRP-6a (QV-SRP-1), mirrors utils/srp6a.py ---
 

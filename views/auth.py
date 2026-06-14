@@ -378,6 +378,29 @@ def verify_phone():
     return render_template("verify_phone.html", form=form, username=username)
 
 
+@auth_bp.route("/resend_phone_verification", methods=["POST"])
+@limiter.limit("3 per minute")
+def resend_phone_verification():
+    """Re-send the phone verification code for an account.
+
+    The username is supplied as a query parameter by the verify-phone
+    template's resend form. The form carries the CSRF token, so the
+    app-wide CSRFProtect guard applies. The handler never reveals whether
+    the account exists: it always redirects back with a neutral message.
+    """
+    username = request.args.get("username") or request.form.get("username") or ""
+    if not username:
+        flash("Missing username for phone verification.")
+        return redirect(url_for("auth.login"))
+
+    controller = get_auth_controller()
+    if controller.resend_phone_code(username):
+        flash("A new verification code has been sent.")
+    else:
+        flash("Could not resend the verification code. Please try again later.")
+    return redirect(url_for("auth.verify_phone", username=username))
+
+
 @auth_bp.route("/verify_mfa", methods=["GET", "POST"])
 @limiter.limit("5 per minute")
 def verify_mfa():

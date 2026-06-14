@@ -372,6 +372,7 @@ def create_app(
 
     # Blueprints
     from views.about import about_bp
+    from views.account import account_bp
     from views.admin import admin_bp
     from views.auth import auth_bp
     from views.faq import faq_bp
@@ -387,6 +388,7 @@ def create_app(
         file_bp,
         message_bp,
         admin_bp,
+        account_bp,
         views_bp,
         about_bp,
         terms_bp,

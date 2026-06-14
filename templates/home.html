@@ -84,6 +84,13 @@
                    onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
                     Messages
                 </a>
+                <a href="{{ url_for('account.settings') }}"
+                   class="btn btn-primary position-relative px-4 py-2 fw-semibold border-0"
+                   style="background: linear-gradient(90deg, #0d6efd, #00d4ff); transition: all 0.3s ease;"
+                   onmouseover="this.style.boxShadow='0 0 15px rgba(0, 255, 255, 0.6)'; this.style.transform='scale(1.05)';"
+                   onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
+                    Account Settings
+                </a>
                 {% if user.role in ['admin', 'superadmin'] %}
                     <a href="{{ url_for('admin.admin') }}"
                        class="btn btn-warning position-relative px-4 py-2 fw-semibold border-0"
