@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <h1 class="mb-3">Account Settings</h1>
+
+    <section class="mb-4">
+      <h2 class="h4">Secure notes</h2>
+      <p class="text-muted">
+        Store private notes that are encrypted in your browser before they ever
+        reach the server. Notes are saved under a passphrase; only that
+        passphrase can read them back. You may save a second, independent set of
+        notes under a different passphrase. Notes saved under one passphrase are
+        invisible to anyone who knows only the other, and the stored data looks
+        the same whether or not a second set exists.
+      </p>
+
+      <div class="alert alert-info" role="alert">
+        Encryption and decryption happen entirely in your browser using
+        PBKDF2-SHA256 and AES-256-GCM, both resistant to quantum attack. Your
+        passphrases and notes never leave this device, and the server cannot
+        tell how many passphrases you have set or what any of them protect. If
+        you forget a passphrase, the notes saved under it cannot be recovered.
+      </div>
+
+      <noscript>
+        <div class="alert alert-danger" role="alert">
+          JavaScript is required. Notes are encrypted and decrypted in your
+          browser; the server never receives a passphrase or any note text.
+        </div>
+      </noscript>
+
+      <input type="hidden" id="dv-csrf-token" value="{{ csrf_token() }}" />
+
+      <h3 class="h5 mt-4">Save notes</h3>
+      <form id="dv-configure-form" autocomplete="off">
+        <fieldset class="mb-3">
+          <legend class="h6">First passphrase</legend>
+          <div class="mb-2">
+            <label for="dv-decoy-passphrase" class="form-label">Passphrase</label>
+            <input type="password" class="form-control" id="dv-decoy-passphrase"
+                   autocomplete="new-password" required />
+          </div>
+          <div class="mb-2">
+            <label for="dv-decoy-data" class="form-label">Notes</label>
+            <textarea class="form-control" id="dv-decoy-data" rows="4"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="mb-3">
+          <legend class="h6">Second passphrase (optional)</legend>
+          <div class="mb-2">
+            <label for="dv-hidden-passphrase" class="form-label">Passphrase</label>
+            <input type="password" class="form-control" id="dv-hidden-passphrase"
+                   autocomplete="new-password" />
+            <div class="form-text">
+              Leave blank to store random data in the second slot. The saved
+              container keeps the same shape either way.
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="dv-hidden-data" class="form-label">Notes</label>
+            <textarea class="form-control" id="dv-hidden-data" rows="4"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" id="dv-reset-button" class="btn btn-outline-danger">
+          Reset all notes
+        </button>
+      </form>
+
+      <h3 class="h5 mt-4">Open notes</h3>
+      <form id="dv-open-form" autocomplete="off">
+        <div class="mb-2">
+          <label for="dv-open-passphrase" class="form-label">Passphrase</label>
+          <input type="password" class="form-control" id="dv-open-passphrase"
+                 autocomplete="off" required />
+        </div>
+        <button type="submit" class="btn btn-secondary">Open</button>
+      </form>
+
+      <div class="mb-2 mt-3">
+        <label for="dv-open-output" class="form-label">Notes</label>
+        <textarea class="form-control" id="dv-open-output" rows="4" readonly></textarea>
+      </div>
+
+      <div id="dv-status" class="mt-3" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/account.js') }}"></script>
+{% endblock %}

@@ -306,6 +306,45 @@ class AuthController:
             audit_event("phone_verify_db_error", username=username, reason=type(e).__name__)
             return False
 
+    def resend_phone_code(self, username: str) -> bool:
+        """Issue and send a fresh phone verification code.
+
+        Generates a new one-time code, stores its peppered hash with a
+        30-minute expiry (overwriting any previous pending code), and
+        dispatches it by SMS. Returns False when the account is unknown,
+        has no phone number, is already verified, or the SMS provider is
+        not configured, so the caller can surface an honest result.
+
+        Args:
+            username: The account requesting a new code.
+
+        Returns:
+            True if a new code was generated, stored, and accepted by the
+            SMS provider; False otherwise.
+        """
+        user_data = self.user_db.get_user(username)
+        if not user_data or not user_data.get("phone"):
+            audit_event("phone_resend_unknown_user", username=username)
+            return False
+        if user_data.get("phone_verified"):
+            audit_event("phone_resend_already_verified", username=username)
+            return False
+
+        code = new_one_time_code(6)
+        expires_at = _now_utc() + timedelta(minutes=30)
+        try:
+            self.user_db.update_user_phone_status(
+                username=username,
+                phone_verification_code_hash=hash_secret(code),
+                phone_code_expires=expires_at,
+            )
+            sent = self.send_sms_verification(user_data["phone"], code, username)
+            audit_event("phone_resend", username=username, sent=sent)
+            return sent
+        except Exception as e:
+            audit_event("phone_resend_error", username=username, reason=type(e).__name__)
+            return False
+
     def _is_code_valid(self, expires_at) -> bool:
         """Return True if a verification code has not yet expired."""
         if not expires_at:

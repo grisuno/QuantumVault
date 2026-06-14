@@ -1,0 +1,16 @@
+metadata_dir = "/home/grisun0/src_note/src2/postcuantum/QuantumVault/.run/garage/meta"
+data_dir = "/home/grisun0/src_note/src2/postcuantum/QuantumVault/.run/garage/data"
+db_engine = "sqlite"
+
+replication_factor = 1
+rpc_bind_addr = "127.0.0.1:3901"
+rpc_public_addr = "127.0.0.1:3901"
+rpc_secret = "8d02143a8720a2473839ad925f214ab9044e07cd8bba8553da5b2e1620474b94"
+
+[s3_api]
+s3_region = "garage"
+api_bind_addr = "127.0.0.1:3900"
+
+[admin]
+api_bind_addr = "127.0.0.1:3903"
+admin_token = "2f98ca0dd8285391519d324d6437037b6295a6a0a06c2f0bd0edb0d3eb2b9dcf"

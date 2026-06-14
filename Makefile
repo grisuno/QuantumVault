@@ -395,6 +395,12 @@ test:                           ## Run the pytest suite (SRP roundtrip, security
 	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
 	@cd $(CURDIR) && $(PY) -m pytest -q
 
+.PHONY: verify-crypto
+verify-crypto:                  ## Run the browser-crypto verification scripts (recovery, deniable vault).
+	@command -v node >/dev/null 2>&1 || { echo "ERROR: node is required for the crypto verification scripts." 1>&2; exit 1; }
+	@cd $(CURDIR) && node scripts/verify_recovery_crypto.mjs
+	@cd $(CURDIR) && node scripts/verify_deniable_crypto.mjs
+
 .PHONY: upgrade-deps
 upgrade-deps:                   ## Refresh the venv to match the latest requirements.txt lock.
 	@if [ ! -d "$(VENV)" ]; then $(MAKE) deps; fi

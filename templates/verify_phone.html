@@ -51,6 +51,7 @@ content %}
                 method="POST"
                 action="{{ url_for('auth.resend_phone_verification', username=username) }}"
             >
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                 <button type="submit" class="btn btn-secondary mt-2">
                     Resend Verification Code
                 </button>
