@@ -9,7 +9,7 @@
 
 <img width="1882" height="979" alt="image" src="https://github.com/user-attachments/assets/e8f11d33-85ba-4123-b31c-d70a08d7454b" />
 
-**Zero-knowledge, zero-trust, end-to-end encrypted messaging and file vault, secured with hybrid post-quantum cryptography.**
+From the creators of LazyOwn Redteam Framework comes a free and open-source **Zero-knowledge, zero-trust, end-to-end encrypted messaging and file vault, secured with hybrid post-quantum cryptography.**
 
 QuantumVault is free and open-source software released under the **GNU Affero General Public License v3.0 (AGPLv3)**.
 
