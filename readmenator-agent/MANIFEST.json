@@ -1,0 +1,24 @@
+{
+  "tool": "readmenator",
+  "generated_at": "2026-09-11T05:05:18Z",
+  "project_root": "/tmp/push_QuantumVault_20260911_012907",
+  "files": 71,
+  "symbols": 434,
+  "imports": 2744,
+  "resolved_imports": 81,
+  "security_findings": 0,
+  "languages": {
+    "py": 54,
+    "go": 3,
+    "sh": 5,
+    "js": 9
+  },
+  "entrypoints": [],
+  "start_here": "INDEX.md",
+  "workflow": [
+    "grep -n '<keyword>' INDEX.md",
+    "cat KB_<subsystem>.md",
+    "grep -n '<file>' ARCHITECTURE.md SYMBOLS.md"
+  ],
+  "regenerate": "readmenator . --rebuild"
+}
