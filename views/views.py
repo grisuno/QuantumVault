@@ -6,6 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import BooleanField, SubmitField
 
 from models.user import UserDB
+from utils.utils import database_path
 
 
 views_bp = Blueprint("views", __name__)
@@ -24,7 +25,7 @@ def home():
     rather than loading every row into memory, so the cost is O(1)
     regardless of the user table size.
     """
-    user_db = UserDB("instance/users.db")
+    user_db = UserDB(database_path())
     number_users = user_db.count_users()
     form = MFAEnableForm()
     return render_template("home.html", user=current_user, number_users=number_users, form=form)

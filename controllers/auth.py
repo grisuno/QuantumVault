@@ -30,6 +30,7 @@ from models.user import UserModel, UserDB
 from models.plans import PlanDB
 from utils import srp6a
 from utils.mailer import external_url, mail_is_configured, send_transactional_email
+from utils.utils import database_path
 from utils.security import (
     audit_event,
     constant_time_compare,
@@ -111,7 +112,7 @@ class AuthController:
             phone_verification_code = new_one_time_code(6)
             phone_code_expires = _now_utc() + timedelta(minutes=30)
 
-            plan_db = PlanDB('instance/users.db')
+            plan_db = PlanDB(database_path())
             plan = plan_db.get_plan("free")
             trial_start = _now_utc()
             trial_end = trial_start + timedelta(days=plan["trial_days"])

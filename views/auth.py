@@ -50,6 +50,7 @@ from controllers.contact import ContactController
 from models.user import UserModel
 from utils.mailer import mail_is_configured, send_transactional_email
 from utils.security import audit_event, json_csrf_protect
+from utils.utils import database_path
 
 
 auth_bp = Blueprint("auth", __name__)
@@ -130,7 +131,7 @@ class LoginForm(FlaskForm):
 
 def get_auth_controller() -> AuthController:
     return AuthController(
-        "instance/users.db",
+        database_path(),
         current_app.config["MAIL"],
         current_app.config["STORAGE_URI"],
     )
@@ -463,7 +464,7 @@ def contact():
 
     form = ContactForm()
     if form.validate_on_submit():
-        controller = ContactController("instance/users.db")
+        controller = ContactController(database_path())
         subject = str(form.subject.data or "")
         message = str(form.message.data or "")
         if controller.create_contact(

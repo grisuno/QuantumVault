@@ -9,23 +9,23 @@ from wtforms import SelectField, SubmitField
 from wtforms.validators import DataRequired
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from utils.utils import database_path
 from .auth import role_required
 
 subscription_bp = Blueprint('subscription', __name__)
 limiter = Limiter(key_func=get_remote_address)
 
-# Configurar PayPal en modo sandbox
 paypalrestsdk.configure({
-    "mode": "live",
-    "client_id": "***REMOVED-PAYPAL-CLIENT-ID***",
-    "client_secret": "***REMOVED-PAYPAL-CLIENT-SECRET***"
+    "mode": os.environ.get("PAYPAL_MODE", "sandbox"),
+    "client_id": os.environ.get("PAYPAL_CLIENT_ID", ""),
+    "client_secret": os.environ.get("PAYPAL_CLIENT_SECRET", ""),
 })
 
 class SubscriptionForm(FlaskForm):
     """Formulario para seleccionar un plan de suscripción."""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        plan_db = PlanDB('instance/users.db')
+        plan_db = PlanDB(database_path())
         plans = plan_db.get_all_plans()
         self.plan.choices = [(plan['name'], f"{plan['name'].capitalize()} (${plan['price']}/mes)") for plan in plans if plan['name'] != 'free']
 
@@ -43,7 +43,7 @@ def subscribe():
             return redirect(url_for('auth.login'))
 
         plan_name = form.plan.data
-        plan_db = PlanDB('instance/users.db')
+        plan_db = PlanDB(database_path())
         plan = plan_db.get_plan(plan_name)
         if not plan:
             flash('Invalid plan selected.')
@@ -102,7 +102,7 @@ def payment_success():
 
     try:
         payment = paypalrestsdk.Payment.find(payment_id)
-        plan_db = PlanDB('instance/users.db')
+        plan_db = PlanDB(database_path())
         # Verificar que el monto pagado coincide con el plan
         amount_paid = float(payment.transactions[0].amount.total)
         if not plan_db.validate_plan_payment(pending_plan, amount_paid):
@@ -110,7 +110,7 @@ def payment_success():
             return redirect(url_for('subscription.subscribe'))
 
         if payment.execute({"payer_id": payer_id}):
-            user_db = UserDB('instance/users.db')
+            user_db = UserDB(database_path())
             plan = plan_db.get_plan(pending_plan)
             user_db.update_role(
                 username=current_user.username,

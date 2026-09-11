@@ -39,6 +39,7 @@ from controllers.deniable_vault import (
     DeniableVaultController,
     EnvelopeValidationError,
 )
+from controllers.facade import FacadeConfig
 from models.deniable_vault import DeniableVaultDB
 from utils.security import audit_event, json_csrf_protect
 
@@ -62,12 +63,19 @@ def get_deniable_vault_controller() -> DeniableVaultController:
 @account_bp.route("/account", methods=["GET"])
 @login_required
 def settings():
-    """Render the account settings page."""
+    """Render the account settings page.
+
+    When the cover facade is enabled the decoy feature requires a deniable
+    passphrase, so the page asks for one. The server never learns whether a
+    passphrase has been set: it only exposes the instance-level facade flag.
+    """
     controller = get_deniable_vault_controller()
+    facade_enabled = FacadeConfig.from_mapping(current_app.config).gate_configured
     return render_template(
         "account.html",
         user=current_user,
         parameters=controller.config.public_parameters(),
+        facade_enabled=facade_enabled,
     )
 
 

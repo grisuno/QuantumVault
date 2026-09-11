@@ -79,6 +79,30 @@ the account's encrypted data cannot be recovered by anyone, including
 the operator: this is a direct consequence of the zero-knowledge design,
 not a missing feature.
 
+## Cover Facade (plausible-deniability decoy site)
+
+For a user under surveillance or coercion, the most dangerous signal is the mere
+presence of an encryption tool. The cover facade hides QuantumVault behind an
+innocuous public site so an observer who opens the instance URL sees a
+commonplace page, not a vault.
+
+- **Enable per instance** with `QV_FACADE_ENABLED=1` and a gate phrase hash in
+  `QV_FACADE_GATE_HASH` (see `docs/FACADE.md` for the full environment contract).
+- **Five built-in cover templates** ship with the application (search portal,
+  newsletter, technology blog, art gallery, nonprofit), selected with
+  `QV_FACADE_COVER_TEMPLATE`. Every cosmetic string is configurable.
+- **Custom templates**: an operator may upload a Jinja template into
+  `QV_FACADE_COVER_DIR` and select it with `QV_FACADE_COVER_TEMPLATE=custom`.
+  Templates are validated before rendering: only a closed variable allow-list is
+  permitted, and imports, attribute traversal, scripts, event handlers, external
+  form actions, and embeds are rejected.
+- **Two-step gate**: a correct secret phrase reveals the ordinary login; a duress
+  phrase marks the session as duress so the browser preselects the decoy slot.
+  A miss keeps the cover, and every attempt performs the same Argon2id work so
+  the response is not an oracle.
+- **Untrusted input everywhere**: cover variables are bounded, canonicalized, and
+  stripped of control and spoofing characters, and rendered autoescaped.
+
 ## Architecture and Stack
 
 | Layer | Technology |
@@ -210,7 +234,8 @@ Run `make help` to list all available targets. The most relevant ones:
 | `make db-reset` | Wipe the development SQLite database |
 | `make backupdb` | Snapshot `instance/users.db` to `backups/` |
 | `make doctor` | Import-smoke test of every project module to report missing dependencies |
-| `make test` | Run the pytest suite (SRP-6a roundtrip, audit-log redaction, CSRF helper tests) |
+| `make test` | Run the pytest suite (SRP-6a roundtrip, audit-log redaction, facade, cover, CSRF helper tests) |
+| `make mutate` | Run mutation testing for the facade and cover contracts |
 | `make audit` | Run the security audit stack: `pip-audit` + `bandit` + secret scanning |
 | `make pip-audit` | Check the dependency tree for known vulnerabilities |
 | `make bandit` | Static security scan of the Python codebase |

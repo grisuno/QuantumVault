@@ -5,9 +5,10 @@ wraps the CEK with the recipient's and sender's hybrid public keys. The
 server stores only opaque material; it cannot derive plaintext or any key.
 """
 
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 from models.message import MessageModel, MessageDB
 from models.user import UserDB
+from utils.utils import database_path
 import uuid
 from flask import flash
 
@@ -15,18 +16,19 @@ from flask import flash
 class MessageController:
     """Handles message persistence in the zero-knowledge flow."""
 
-    def __init__(self, users_path: str, users_db_path: str = "instance/users.db"):
+    def __init__(self, users_path: str, users_db_path: Optional[str] = None):
         """Initialize the controller.
 
         Args:
             users_path: Base directory under which each user has a
                 ``messages/`` subdirectory.
             users_db_path: Path to the SQLite user database, used to verify
-                that a message recipient is a registered account.
+                that a message recipient is a registered account. Defaults
+                to the configured database path when omitted.
         """
         self.message_db = MessageDB(users_path)
         self.users_path = users_path
-        self.user_db = UserDB(users_db_path)
+        self.user_db = UserDB(users_db_path or database_path())
 
     def send_encrypted_message(
         self,

@@ -3,9 +3,27 @@ import json
 from typing import TypedDict, Union
 import re
 import os
+from flask import current_app, has_app_context
 from werkzeug.utils import secure_filename
 
 _TRUTHY = frozenset({"1", "true", "yes", "on"})
+
+
+def database_path() -> str:
+    """Return the SQLite database path from config, with a legacy fallback.
+
+    Request-path code must never hard-code a database location: in tests and
+    in multi-instance deployments the configured path is the only correct
+    one, and a hard-coded path silently writes to (or reads from) the wrong
+    file. Outside an application context, for standalone scripts, the
+    ``QV_USERS_DB`` environment variable or the historical default is used.
+    """
+    if has_app_context():
+        configured = current_app.config.get("SQLALCHEMY_DATABASE_PATH")
+        if configured:
+            return configured
+    return os.environ.get("QV_USERS_DB", "instance/users.db")
+
 
 
 def as_bool(value: Union[str, bool, int, None], default: bool = False) -> bool:

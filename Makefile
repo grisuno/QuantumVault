@@ -395,6 +395,11 @@ test:                           ## Run the pytest suite (SRP roundtrip, security
 	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
 	@cd $(CURDIR) && $(PY) -m pytest -q
 
+.PHONY: mutate
+mutate:                         ## Run mutation testing for the facade and cover contracts.
+	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
+	@cd $(CURDIR) && $(PY) -B tools/mutation_test.py
+
 .PHONY: verify-crypto
 verify-crypto:                  ## Run the browser-crypto verification scripts (recovery, deniable vault).
 	@command -v node >/dev/null 2>&1 || { echo "ERROR: node is required for the crypto verification scripts." 1>&2; exit 1; }

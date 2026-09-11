@@ -7,6 +7,7 @@ from wtforms import StringField, SelectField, SubmitField, BooleanField, Integer
 from wtforms.validators import DataRequired, Optional, Email, NumberRange
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from utils.utils import database_path
 from .auth import role_required
 from controllers.contact import ContactController
 from models.superadmin_audit import SuperadminAuditDB
@@ -491,7 +492,7 @@ def admin_contacts():
     if page < 1:
         page = 1
     per_page = 10
-    controller = ContactController('instance/users.db')  # Crear instancia directamente
+    controller = ContactController(database_path())  # Crear instancia directamente
     contacts, total_contacts = controller.contact_db.get_all_contacts(page, per_page)
     total_pages = (total_contacts + per_page - 1) // per_page
     return render_template(

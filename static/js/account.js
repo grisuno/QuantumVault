@@ -72,9 +72,14 @@ function collectSlots() {
 
 async function handleConfigure(event) {
   event.preventDefault();
+  const requiresHidden = event.currentTarget.dataset.dvRequireHidden === "1";
   const slots = collectSlots();
   if (!slots[0].passphrase) {
     setStatus("A passphrase is required.", "error");
+    return;
+  }
+  if (requiresHidden && slots.length < 2) {
+    setStatus("A deniable passphrase is required while the decoy site is enabled.", "error");
     return;
   }
   if (slots.length > 1 && slots[1].passphrase === slots[0].passphrase) {

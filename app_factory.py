@@ -429,4 +429,8 @@ def create_app(
     if config_overrides:
         app.config.update(config_overrides)
 
+    from views.facade import register_facade
+
+    register_facade(app)
+
     return app

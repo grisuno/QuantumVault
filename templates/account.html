@@ -33,8 +33,20 @@
 
       <input type="hidden" id="dv-csrf-token" value="{{ csrf_token() }}" />
 
+      {% if facade_enabled %}
+      <div class="alert alert-warning" role="alert" id="dv-facade-required-notice">
+        The decoy site is enabled on this instance, so a deniable passphrase is
+        required. Set a second passphrase below that differs from the first. If
+        you are ever forced to open this account, enter the second passphrase:
+        it opens only the notes saved under it and reveals nothing about the
+        first set. The server cannot verify this and never learns either
+        passphrase.
+      </div>
+      {% endif %}
+
       <h3 class="h5 mt-4">Save notes</h3>
-      <form id="dv-configure-form" autocomplete="off">
+      <form id="dv-configure-form" autocomplete="off"
+            data-dv-require-hidden="{{ '1' if facade_enabled else '0' }}">
         <fieldset class="mb-3">
           <legend class="h6">First passphrase</legend>
           <div class="mb-2">
@@ -49,14 +61,21 @@
         </fieldset>
 
         <fieldset class="mb-3">
-          <legend class="h6">Second passphrase (optional)</legend>
+          <legend class="h6">
+            Second passphrase {% if facade_enabled %}(required){% else %}(optional){% endif %}
+          </legend>
           <div class="mb-2">
             <label for="dv-hidden-passphrase" class="form-label">Passphrase</label>
             <input type="password" class="form-control" id="dv-hidden-passphrase"
-                   autocomplete="new-password" />
+                   autocomplete="new-password" {% if facade_enabled %}required{% endif %} />
             <div class="form-text">
+              {% if facade_enabled %}
+              Required while the decoy site is enabled. Use a passphrase that
+              differs from the first.
+              {% else %}
               Leave blank to store random data in the second slot. The saved
               container keeps the same shape either way.
+              {% endif %}
             </div>
           </div>
           <div class="mb-2">
