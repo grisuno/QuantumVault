@@ -12,7 +12,7 @@
 **Total Files Parsed:** 81 | **Total Symbols Extracted:** 741 | **Total Imports:** 475
  | **Resolved Imports:** 108
 
-<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:e8ad0fe | date:2026-07-18 -->
+<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:05a4468 | date:2026-07-18 -->
 
 
 ## Table of Contents
@@ -271,26 +271,26 @@ Taint analysis traces how dangerous imports propagate through the codebase via t
   Path: test_secure_channel.py -> secure_channel.py
 - `test_secure_channel.py` imports `subprocess` (1 hop to `admin.py`) [high]
   Path: test_secure_channel.py -> admin.py
-- `test_secure_channel.py` imports `subprocess` (2 hops to `utils.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> utils.py
-- `test_secure_channel.py` imports `subprocess` (2 hops to `auth.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> auth.py
-- `test_secure_channel.py` imports `subprocess` (2 hops to `superadmin_audit.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> superadmin_audit.py
-- `test_secure_channel.py` imports `subprocess` (2 hops to `plans.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> plans.py
 - `test_secure_channel.py` imports `subprocess` (2 hops to `user.py`) [high]
   Path: test_secure_channel.py -> admin.py -> user.py
 - `test_secure_channel.py` imports `subprocess` (2 hops to `contact.py`) [high]
   Path: test_secure_channel.py -> admin.py -> contact.py
-- `test_secure_channel.py` imports `subprocess` (3 hops to `mailer.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> auth.py -> mailer.py
+- `test_secure_channel.py` imports `subprocess` (2 hops to `plans.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> plans.py
+- `test_secure_channel.py` imports `subprocess` (2 hops to `superadmin_audit.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> superadmin_audit.py
+- `test_secure_channel.py` imports `subprocess` (2 hops to `utils.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> utils.py
+- `test_secure_channel.py` imports `subprocess` (2 hops to `auth.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> auth.py
+- `test_secure_channel.py` imports `subprocess` (3 hops to `contact.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> contact.py -> contact.py
 - `test_secure_channel.py` imports `subprocess` (3 hops to `security.py`) [high]
   Path: test_secure_channel.py -> admin.py -> auth.py -> security.py
 - `test_secure_channel.py` imports `subprocess` (3 hops to `auth.py`) [high]
   Path: test_secure_channel.py -> admin.py -> auth.py -> auth.py
-- `test_secure_channel.py` imports `subprocess` (3 hops to `contact.py`) [high]
-  Path: test_secure_channel.py -> admin.py -> contact.py -> contact.py
+- `test_secure_channel.py` imports `subprocess` (3 hops to `mailer.py`) [high]
+  Path: test_secure_channel.py -> admin.py -> auth.py -> mailer.py
 - `mutation_test.py` imports `subprocess` (0 hop to `mutation_test.py`) [high]
   Path: mutation_test.py
 
