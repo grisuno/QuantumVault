@@ -58,7 +58,7 @@ def register_facade(app: Flask) -> Optional[FacadeGate]:
 
     @app.post(GATE_ENDPOINT)
     def facade_gate() -> Response:
-        decision = gate.evaluate(request.form.get("q", ""))
+        decision = gate.evaluate(request.form.get(config.gate_field, ""))
         if decision.outcome is GateOutcome.MISS or not decision.ticket:
             return render_cover()
         session[GATE_TICKET_KEY] = decision.ticket

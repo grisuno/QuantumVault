@@ -1,13 +1,15 @@
 # QuantumVault v8 - one-shot dev orchestration.
 #
-# Uso:
-#   make help            # lista targets
-#   make                 # alias de `make run` (arranca la app asumiendo deps OK)
-#   make setup           # build completo desde cero
-#   make run             # arranca la app Flask en foreground (y redis local si hace falta)
-#   make stop            # baja el Flask y el redis local que arrancó `make run`
-#   make audit           # corre la auditoría zero-trust
-#   make clean           # borra caches y artefactos locales (NO toca instance/users.db)
+# Usage:
+#   make help            # list targets
+#   make                 # alias for `make run` (starts the app, assumes deps are OK)
+#   make setup           # full build from scratch
+#   make run             # start the Flask app in the foreground (and local redis if needed)
+#   make stop            # stop Flask and the local redis started by `make run`
+#   make doctor          # check the operator environment (binaries, services, channel backends)
+#   make doctor-fix      # install everything `make doctor` reports missing
+#   make audit           # run the zero-trust audit
+#   make clean           # remove caches and local artifacts (does NOT touch instance/users.db)
 
 # --- Config -------------------------------------------------------------------
 
@@ -385,10 +387,16 @@ kill:                           ## Force-kill any process bound to :4443 and any
 	@echo "[kill] done, :4443 is free"
 
 .PHONY: doctor
-doctor:                         ## Import-smoke: try every project module, report missing deps.
+doctor:                         ## Check the full operator environment: modules, binaries, redis, garage, channel backends.
 	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
-	@echo "[doctor] importing project modules with the venv's python ..."
+	@echo "[doctor] checking the operator environment ..."
 	@cd $(CURDIR) && $(PY) scripts/doctor.py
+
+.PHONY: doctor-fix
+doctor-fix:                     ## Install everything `make doctor` reports missing (pip deps, apt packages, cloudflared, garage).
+	@if [ ! -d "$(VENV)" ]; then $(MAKE) deps; fi
+	@echo "[doctor-fix] installing missing pieces, then re-checking ..."
+	@cd $(CURDIR) && $(PY) scripts/doctor.py --fix
 
 .PHONY: test
 test:                           ## Run the pytest suite (SRP roundtrip, security helpers).

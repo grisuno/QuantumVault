@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-preset="classic">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery Workflow | Live System Map</title>
+<link href="https://unpkg.com/vis-network@9/styles/vis-network.min.css" rel="stylesheet">
+<script src="https://unpkg.com/vis-network@9/standalone/umd/vis-network.min.js"></script>
+<style>
+:root{--canvas:#020617;--mask:#0f172a;--ink:#ffffff;--muted:#94a3b8;--border:#1e293b;--box:#0f172a;--boxink:#ffffff}
+html[data-theme="light"]{--canvas:#f8fafc;--mask:#ffffff;--ink:#0f172a;--muted:#475569;--border:#e2e8f0;--box:#ffffff;--boxink:#0f172a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.toolbar{display:flex;gap:8px;align-items:center;padding:10px 14px;background:var(--mask);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.brand{font-weight:700;font-size:14px;letter-spacing:.04em}
+.kind{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.live{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+.toolbar input{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;min-width:220px;font:inherit;font-size:12px}
+.toolbar button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font:inherit;font-size:12px;cursor:pointer;min-height:32px}
+.toolbar button:hover,.toolbar button:focus-visible{border-color:#22d3ee;outline:2px solid #22d3ee;outline-offset:2px}
+.home-link{color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;text-decoration:none;background:var(--canvas)}
+.home-link:hover,.home-link:focus-visible{border-color:#22d3ee;outline:2px solid #22d3ee;outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:calc(100vh - 53px)}
+.stage{position:relative;padding:16px;overflow:auto}
+#network{width:100%;height:78vh;min-height:520px;background:var(--canvas);border:1px solid var(--border);border-radius:16px}
+#network:focus-visible{outline:2px solid #22d3ee;outline-offset:3px}
+.symbols{font-size:11px;margin-top:10px;overflow:auto}
+.symbols table{width:100%;border-collapse:collapse}
+.symbols th{text-align:left;color:var(--muted);font-weight:400;border-bottom:1px solid var(--border);padding:3px 4px}
+.symbols td{border-bottom:1px solid var(--border);padding:3px 4px;vertical-align:top}
+.symbols code{font-size:11px}
+.symbols .filedoc{color:var(--muted);margin:0 0 8px;line-height:1.6}
+.symbols .neighbors{color:var(--muted);margin:8px 0 0;line-height:1.6}
+.passport{background:var(--mask);border-left:1px solid var(--border);padding:16px;overflow:auto}
+.passport h2{font-size:13px;margin:0 0 8px}
+.passport .row{font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7}
+.counts{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip{border:1px solid var(--border);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--ink);background:transparent;cursor:pointer;font:inherit}
+.views{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.views button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:6px 9px;font:inherit;font-size:11px;cursor:pointer}
+.journey{font-size:12px;line-height:1.7}
+.receipt{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:8px;margin-top:10px}
+.routebox{display:flex;gap:6px;margin-top:8px}
+.routebox input{flex:1;background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:7px;font:inherit;font-size:12px;min-width:0}
+.routebox button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font:inherit;font-size:12px;cursor:pointer}
+.present .layout{grid-template-columns:minmax(0,1fr)}
+.present .passport{display:none}
+dialog{background:var(--mask);color:var(--ink);border:1px solid var(--border);border-radius:12px;max-width:520px}
+dialog kbd{border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:11px}
+@media (max-width:960px){.layout{grid-template-columns:minmax(0,1fr)}.passport{border-left:none;border-top:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<header class="toolbar" aria-label="Map controls">
+<span class="brand">System Maps</span>
+<span class="live">Live physics</span>
+<a class="home-link" href="index.html">Gallery</a>
+<span class="kind">workflow | Delivery Workflow</span>
+<input id="search" type="search" placeholder="Search nodes ( / )" aria-label="Search nodes" title="Filter nodes by label or id. Shortcut: /">
+<button type="button" data-action="reach-up" aria-label="Trace upstream reach" title="Show everything that reaches the focused node (authored relationships only)">Upstream</button>
+<button type="button" data-action="reach-down" aria-label="Trace downstream reach" title="Show everything the focused node reaches (authored relationships only)">Downstream</button>
+<button type="button" data-action="lens" aria-label="Compare roles" title="Highlight one semantic role and compare counts; activate again to clear">Lens</button>
+<button type="button" data-action="views-prev" aria-label="Previous chapter" title="Show the previous guided chapter">[</button>
+<button type="button" data-action="views-next" aria-label="Next chapter" title="Show the next guided chapter">]</button>
+<button type="button" data-action="play" aria-label="Play guided story" title="Play all guided chapters in order">Play</button>
+<button type="button" data-action="stabilize" aria-label="Stabilize layout" title="Re-run the physics stabilization">Stabilize</button>
+<button type="button" data-action="physics" aria-label="Toggle physics" title="Freeze or resume the live physics engine">Physics</button>
+<button type="button" data-action="present" aria-label="Enter presentation stage" title="Hide the side panel for presenting">Present</button>
+<button type="button" data-action="style" aria-label="Cycle visual preset" title="Cycle visual preset: classic, flow, blueprint, editorial">Style</button>
+<button type="button" data-action="theme" aria-label="Toggle theme" title="Toggle dark and light themes">Theme</button>
+<button type="button" data-action="export" aria-label="Open export menu" title="Download a PNG snapshot or the typed JSON">Export</button>
+<button type="button" data-action="help" aria-label="Open diagram guide" title="Open the diagram guide with every shortcut">?</button>
+</header>
+<div class="layout">
+<main class="stage">
+<div id="network" tabindex="0" role="application" aria-label="Delivery Workflow live network. Drag nodes to rearrange them."></div>
+</main>
+<aside class="passport" aria-live="polite" aria-label="Semantic passport">
+<h2 id="passport-title">Diagram guide</h2>
+<div class="row" id="passport-meta"></div>
+<div class="views" id="chapters"></div>
+<div class="counts" id="role-counts"></div>
+<div class="row">1. Drag any node; physics settles the rest. 2. Click a node to focus it. 3. Upstream and Downstream trace authored reach. 4. Path probes the exact route between two ids. 5. Play walks the guided chapters. Press ? for every shortcut. This page loads its network engine from a CDN and needs network access.</div>
+<div class="routebox"><input id="route-from" placeholder="route from id" aria-label="Route source" title="Source node id for the route probe"><input id="route-to" placeholder="route to id" aria-label="Route target" title="Target node id for the route probe"><button type="button" data-action="route" aria-label="Probe directed route" title="Highlight the shortest authored directed path">Path</button></div>
+<div class="journey" id="journey"></div>
+<div class="symbols" id="node-symbols"></div>
+<div class="receipt" id="receipt"></div>
+</aside>
+</div>
+<dialog id="guide" aria-label="Diagram guide dialog">
+<h2>Diagram guide</h2>
+<p><kbd>/</kbd> search &middot; <kbd>R</kbd> route probe &middot; <kbd>L</kbd> role lens &middot; <kbd>P</kbd> play &middot; <kbd>[</kbd> <kbd>]</kbd> chapters &middot; <kbd>F</kbd> present &middot; <kbd>S</kbd> style &middot; <kbd>T</kbd> theme &middot; <kbd>E</kbd> export &middot; <kbd>+</kbd> <kbd>-</kbd> <kbd>0</kbd> zoom &middot; <kbd>B</kbd> physics</p>
+<p>Drag nodes freely; Stabilize re-runs the physics engine and Physics freezes it. Reach, routes, lens, and chapters reuse authored relationships only. Deep links restore <code>#focus=id</code>, <code>#focus=id&amp;reach=upstream|downstream</code>, <code>#route=a~b</code>, <code>#lens=role</code>, and <code>#view=id</code>.</p>
+<button type="button" data-action="close-guide" title="Close the diagram guide">Close</button>
+</dialog>
+<dialog id="exports" aria-label="Export dialog">
+<h2>Export</h2>
+<p>PNG captures the live canvas; JSON carries the typed source.</p>
+<button type="button" data-action="export-png" title="Download a PNG snapshot of the live canvas">Download PNG</button>
+<button type="button" data-action="export-json" title="Download the typed JSON behind this diagram">Download typed JSON</button>
+<button type="button" data-action="close-exports" title="Close the export menu">Close</button>
+</dialog>
+<script type="application/json" id="vis-nodes">[{"id": "app_factory.py", "label": "app_factory.py", "title": "\u003cb>app_factory.py\u003c/b>\u003cbr>frontend | presentation | py\u003cbr>Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or Werkzeug&#x27;s dev server with debug) - ``wsg...\u003cbr>symbols: 8 (_is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session)", "group": "frontend", "language": "py", "doc": "Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or Werkzeug's dev server with debug) - ``wsgi.py`` (prod: gunicorn / uWSGI behind a reverse proxy)  The factory enforces three things that the old ``app.py``-as-script pattern could not:  1. No Werkzeug debug PIN is ever exposed. Debug mode is gated on the ``FLASK_DEBUG`` environment variable and the Werkzeug debugger is disabled regardless. 2. Security headers (CSP, HSTS, X-Frame-Options, etc.) are installed via Flask-Talisman in production. The strict policy is the default; tests can override ``security_overrides`` to relax specific headers. 3. The session cookie is hardened: HttpOnly, SameSite=Lax, Secure when the request is HTTPS. ``PERMANENT_SESSION_LIFETIME`` caps the idle/absolute lifetime so an unattended browser does not retain auth indefinitely.  Keeping every global side-effect (``app.config[...]``, blueprint registration, extension init) inside the factory means importing ``quantumvault.app_factory`` is free of side effects. That property matters because ``gunicorn`` forks workers and a top-level ``app = create_app()`` in a module would import-time-bind the app to the parent process and re-execute initialization in each worker.", "symbols": [{"name": "_is_production", "kind": "function", "line": "70", "signature": "def _is_production()", "doc": "Return True unless the operator explicitly opts into dev mode."}, {"name": "_build_csp", "kind": "function", "line": "81", "signature": "def _build_csp()", "doc": "Return the strict Content-Security-Policy used in production.\n\nThe policy allows:\n\n- ``'self'`` for everything by default\n- the JSDelivr CDN pinned to the specific packages the SPA needs\n  (Bootstrap CSS, EasyMDE CSS/JS, marked). These are loaded with\n  SRI from the templates.\n- ``'unsafe-inline'`` for styles is required because EasyMDE injects\n  inline styles; for scripts it is forbidden.\n- WebAssembly is allowed (``'wasm-unsafe-eval'``) so the client can\n  later compile liboqs-portable to WASM and avoid pure-JS PQ.\n\nAdding a new third-party origin to this list is a security review\ngate. Do not add origins without updating docs/SECURITY_TODO.md."}, {"name": "_build_talisman_kwargs", "kind": "function", "line": "112", "signature": "def _build_talisman_kwargs()", "doc": "Return kwargs to pass to ``Talisman`` based on the runtime env."}, {"name": "_configure_secret_key", "kind": "function", "line": "153", "signature": "def _configure_secret_key(app, config)", "doc": "Set ``app.config['SECRET_KEY']`` from env, payload.json, or a random value.\n\nThe previous code set a fresh 24-byte hex on every process start.\nThat is correct for development (sessions reset, no surprises) but\nin production the operator MUST set ``FLASK_SECRET_KEY`` (or\n``SECRET_KEY``) to a stable, 32+ byte value. Otherwise every\ngunicorn worker restart invalidates every session, including\nCSRF tokens, and the audit log will show a flood of CSRF rejections.\n\nFor backward compatibility, ``payload.json``'s ``SECRET_KEY`` is\naccepted as a third source so a project that was bootstrapped by\n``make env`` keeps working without a code change. The env var\nalways wins over ``payload.json`` so an operator can override."}, {"name": "_configure_session", "kind": "function", "line": "196", "signature": "def _configure_session(app)", "doc": "Apply session lifetime and cookie hardening.\n\nThe defaults are deliberately conservative:\n\n- 8 hours of permanent session lifetime (then user must re-login)\n- 30 minutes of idle lifetime (rolling refresh on every request)\n- Cookies are HttpOnly, SameSite=Lax, and Secure in production"}, {"name": "_configure_logging", "kind": "function", "line": "213", "signature": "def _configure_logging(app)", "doc": "Wire up a structured application logger.\n\nThe Werkzeug access log goes through Flask's default handler at\nINFO. Application errors use the standard ``app.logger``. The\naudit logger (``quantumvault.audit``) is configured separately in\n:mod:`utils.security` and writes one-line JSON to stdout."}, {"name": "create_app", "kind": "function", "line": "230", "signature": "def create_app(config_overrides, security_overrides)", "doc": "Build and return a fully-configured Flask application.\n\nArgs:\n    config_overrides: Values to merge into ``app.config`` after\n        defaults are applied. Useful for tests that need to swap\n        the database path or disable the rate limiter.\n    security_overrides: Values to merge into the Talisman kwargs.\n        Used by tests to disable CSP and the HTTPS redirect without\n        forking the whole factory.\n\nReturns:\n    A Flask application ready to be served by gunicorn or the\n    Werkzeug dev server."}, {"name": "load_user", "kind": "function", "line": "408", "signature": "def load_user(user_id)", "doc": ""}], "symbolTotal": 8}, {"id": "models/plans.py", "label": "plans.py", "title": "\u003cb>plans.py\u003c/b>\u003cbr>backend | business_logic | py\u003cbr>symbols: 10 (PlanDB, __init__, _init_db, get_plan, get_all_plans)", "group": "backend", "language": "py", "doc": "", "symbols": [{"name": "PlanDB", "kind": "class", "line": "4", "signature": "class PlanDB", "doc": "Database operations for subscription plans."}, {"name": "__init__", "kind": "method", "line": "6", "signature": "def __init__(self, db_path)", "doc": "Initialize the PlanDB with the database path.\n\nArgs:\n    db_path (str): Path to the SQLite database file."}, {"name": "_init_db", "kind": "method", "line": "15", "signature": "def _init_db(self)", "doc": "Initialize the plans table with required fields."}, {"name": "get_plan", "kind": "method", "line": "37", "signature": "def get_plan(self, plan_name)", "doc": "Retrieve a plan by name.\n\nArgs:\n    plan_name (str): Name of the plan to search for.\n\nReturns:\n    Optional[Dict]: Plan data as a dictionary or None if not found."}, {"name": "get_all_plans", "kind": "method", "line": "50", "signature": "def get_all_plans(self)", "doc": "Retrieve all plans.\n\nReturns:\n    List[Dict]: List of dictionaries containing plan data."}, {"name": "create_plan", "kind": "method", "line": "60", "signature": "def create_plan(self, name, storage_quota, trial_days, price)", "doc": "Create a new plan.\n\nArgs:\n    name (str): Name of the plan.\n    storage_quota (int): Storage quota in bytes.\n    trial_days (int): Number of trial days.\n    price (float): Price of the plan."}, {"name": "update_plan", "kind": "method", "line": "78", "signature": "def update_plan(self, name, storage_quota, trial_days, price)", "doc": "Update an existing plan.\n\nArgs:\n    name (str): Name of the plan to update.\n    storage_quota (Optional[int]): New storage quota in bytes.\n    trial_days (Optional[int]): New number of trial days.\n    price (Optional[float]): New price of the plan."}, {"name": "delete_plan", "kind": "method", "line": "113", "signature": "def delete_plan(self, name)", "doc": "Delete a plan by name.\n\nArgs:\n    name (str): Name of the plan to delete."}, {"name": "_convert_row_to_dict", "kind": "method", "line": "127", "signature": "def _convert_row_to_dict(self, row)", "doc": "Convert an SQLite row to a dictionary."}, {"name": "validate_plan_payment", "kind": "method", "line": "139", "signature": "def validate_plan_payment(self, plan_name, amount_paid)", "doc": "Validate that the paid amount matches the plan price.\n\nArgs:\n    plan_name (str): Name of the plan.\n    amount_paid (float): Amount paid.\n\nReturns:\n    bool: True if the amount matches the plan price within tolerance."}], "symbolTotal": 10}, {"id": "static/js/messages.js", "label": "messages.js", "title": "\u003cb>messages.js\u003c/b>\u003cbr>cloud | infrastructure | js\u003cbr>Messages page controller (zero-knowledge end-to-end messaging).  Loaded as an external ES module so it complies with the strict Content-Security-Policy (script-...\u003cbr>symbols: 6 (getCsrfToken, handleSend, collectEnvelopes, handleDecryptInbox, initEditor)", "group": "cloud", "language": "js", "doc": "Messages page controller (zero-knowledge end-to-end messaging).  Loaded as an external ES module so it complies with the strict Content-Security-Policy (script-src 'self'). Sending encrypts the message to the recipient's hybrid public key in the browser; receiving decrypts the opaque envelopes locally after prompting for the password. Decrypted text is rendered with textContent (never innerHTML) so a malicious sender cannot inject HTML/script into the recipient's page.", "symbols": [{"name": "getCsrfToken", "kind": "function", "line": "11", "signature": "", "doc": ""}, {"name": "handleSend", "kind": "function", "line": "17", "signature": "", "doc": ""}, {"name": "collectEnvelopes", "kind": "function", "line": "43", "signature": "", "doc": ""}, {"name": "handleDecryptInbox", "kind": "function", "line": "60", "signature": "", "doc": ""}, {"name": "initEditor", "kind": "function", "line": "87", "signature": "", "doc": ""}, {"name": "init", "kind": "function", "line": "108", "signature": "", "doc": ""}], "symbolTotal": 6}, {"id": "tests/test_secure_channel.py", "label": "test_secure_channel.py", "title": "\u003cb>test_secure_channel.py\u003c/b>\u003cbr>external | testing | py\u003cbr>Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChannelConfig resolution, URL validation, manager lifecycle with injected process la...\u003cbr>symbols: 67 (test_config_defaults_to_disabled_without_binaries, test_config_reads_mode_and_port_from_env, test_config_rejects_out_of_range_port, test_url_validators_accept_only_expected_shapes, test_manager_starts_hybrid_with_injected_launcher +42 more)", "group": "external", "language": "py", "doc": "Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChannelConfig resolution, URL validation, manager lifecycle with injected process launcher, atomic state redaction in audit details, and superadmin HTTP gating.", "symbols": [{"name": "test_config_defaults_to_disabled_without_binaries", "kind": "function", "line": "30", "signature": "def test_config_defaults_to_disabled_without_binaries()", "doc": "Unconfigured environment resolves to a disabled channel."}, {"name": "test_config_reads_mode_and_port_from_env", "kind": "function", "line": "37", "signature": "def test_config_reads_mode_and_port_from_env()", "doc": "Mode and local port resolve from environment with bounds."}, {"name": "test_config_rejects_out_of_range_port", "kind": "function", "line": "47", "signature": "def test_config_rejects_out_of_range_port()", "doc": "Ports outside 1..65535 fall back to the default."}, {"name": "test_url_validators_accept_only_expected_shapes", "kind": "function", "line": "55", "signature": "def test_url_validators_accept_only_expected_shapes()", "doc": "Validators accept quick-tunnel and v3 onion shapes only."}, {"name": "test_manager_starts_hybrid_with_injected_launcher", "kind": "function", "line": "64", "signature": "def test_manager_starts_hybrid_with_injected_launcher(tmp_path)", "doc": "Start launches both backends and persists redacted state."}, {"name": "fake_launcher", "kind": "function", "line": "67", "signature": "def fake_launcher(cmd, log_path)", "doc": ""}, {"name": "test_manager_rejects_invalid_mode", "kind": "function", "line": "90", "signature": "def test_manager_rejects_invalid_mode(tmp_path)", "doc": "Disabled mode cannot be started explicitly."}, {"name": "test_manager_stop_clears_state_with_killer", "kind": "function", "line": "101", "signature": "def test_manager_stop_clears_state_with_killer(tmp_path)", "doc": "Stop kills tracked pids and removes persisted state."}, {"name": "fake_launcher", "kind": "function", "line": "105", "signature": "def fake_launcher(cmd, log_path)", "doc": ""}, {"name": "test_audit_details_never_carry_urls", "kind": "function", "line": "122", "signature": "def test_audit_details_never_carry_urls()", "doc": "Audit helper redacts full URLs to mode plus fingerprint."}, {"name": "test_superadmin_channel_routes_require_superadmin", "kind": "function", "line": "133", "signature": "def test_superadmin_channel_routes_require_superadmin(client)", "doc": "Anonymous POST to channel endpoints redirects to login."}, {"name": "test_env_template_documents_channel_keys", "kind": "function", "line": "139", "signature": "def test_env_template_documents_channel_keys()", "doc": "Repository env template exposes every channel key."}, {"name": "test_channel_state_file_permissions", "kind": "function", "line": "153", "signature": "def test_channel_state_file_permissions(tmp_path)", "doc": "Persisted state is owner-only."}, {"name": "test_validators_reject_non_string_inputs", "kind": "function", "line": "164", "signature": "def test_validators_reject_non_string_inputs()", "doc": "Non-string values never validate as backend addresses."}, {"name": "test_port_boundaries_accept_edges_and_reject_outside", "kind": "function", "line": "175", "signature": "def test_port_boundaries_accept_edges_and_reject_outside()", "doc": "TCP port coercion honors 1 and 65535 as valid edges."}, {"name": "test_config_blank_values_fall_back_to_defaults", "kind": "function", "line": "186", "signature": "def test_config_blank_values_fall_back_to_defaults()", "doc": "Empty or whitespace binary and dir values resolve to defaults."}, {"name": "test_config_explicit_values_are_preserved", "kind": "function", "line": "203", "signature": "def test_config_explicit_values_are_preserved()", "doc": "Explicit binary and dir values survive resolution."}, {"name": "test_config_env_beats_mapping", "kind": "function", "line": "219", "signature": "def test_config_env_beats_mapping()", "doc": "Environment takes precedence over the mapping for every key."}, {"name": "test_channel_status_defaults_and_single_side_active", "kind": "function", "line": "229", "signature": "def test_channel_status_defaults_and_single_side_active()", "doc": "Ephemeral defaults True and either backend alone counts as active."}, {"name": "test_default_launcher_detaches_process", "kind": "function", "line": "254", "signature": "def test_default_launcher_detaches_process(monkeypatch)", "doc": "Launcher spawns detached daemons with piped stdio."}, {"name": "_FakeProcess", "kind": "class", "line": "260", "signature": "class _FakeProcess", "doc": ""}, {"name": "_fake_popen", "kind": "method", "line": "263", "signature": "def _fake_popen(cmd)", "doc": ""}, {"name": "test_default_killer_ignores_non_positive_pid", "kind": "function", "line": "276", "signature": "def test_default_killer_ignores_non_positive_pid(monkeypatch)", "doc": "Zero and negative pids never reach os.kill."}, {"name": "test_default_killer_falls_back_to_kill", "kind": "function", "line": "286", "signature": "def test_default_killer_falls_back_to_kill(monkeypatch)", "doc": "Group kill failure falls back to plain kill before giving up."}, {"name": "_raise_pg", "kind": "method", "line": "290", "signature": "def _raise_pg(pid, sig)", "doc": ""}], "symbolTotal": 67}, {"id": "static/js/qv-crypto.js", "label": "qv-crypto.js", "title": "\u003cb>qv-crypto.js\u003c/b>\u003cbr>external | utility | js\u003cbr>QuantumVault zero-knowledge browser crypto.  Single source of truth for all client-side cryptography. The password and every private key are generated, used, an...\u003cbr>symbols: 40 (concatBytes, hexToBytes, bytesToHex, bytesToBase64, bytesToBase32 +15 more)", "group": "external", "language": "js", "doc": "QuantumVault zero-knowledge browser crypto.  Single source of truth for all client-side cryptography. The password and every private key are generated, used, and stored encrypted in the browser; only opaque ciphertext, the SRP salt/verifier, the public key, and the password-encrypted private key blob ever reach the server.  Primitives: - Authentication: SRP-6a (RFC 5054 2048-bit group, SHA-256), scheme \"QV-SRP-1\" mirroring utils/srp6a.py byte-for-byte. - Key wrapping: hybrid KEM = ML-KEM-768 (post-quantum) + X25519 (classical), combined via HKDF-SHA256, sealing keys with AES-256-GCM. - Private-key protection: PBKDF2-SHA256 (600k iterations) derives the master key that encrypts the user's private key blob.  All cryptographic primitives are loaded from the local `vendor/` directory instead of a CDN. The vendored bundles are pinned to specific upstream versions, served as first-party static assets, and benefit from the same SRI / CSP protections as the rest of the application. The version comment on each import is the upstream package version that was vendored.  noble/hashes 1.8.0 — SHA-2, HKDF, utils, browser crypto provider", "symbols": [{"name": "concatBytes", "kind": "function", "line": "52", "signature": "", "doc": "-- Encoding helpers ---"}, {"name": "hexToBytes", "kind": "function", "line": "63", "signature": "", "doc": ""}, {"name": "bytesToHex", "kind": "function", "line": "72", "signature": "", "doc": ""}, {"name": "bytesToBase64", "kind": "function", "line": "78", "signature": "", "doc": ""}, {"name": "bytesToBase32", "kind": "function", "line": "89", "signature": "", "doc": ""}, {"name": "base64ToBytes", "kind": "function", "line": "107", "signature": "", "doc": ""}, {"name": "bytesToBigInt", "kind": "function", "line": "114", "signature": "", "doc": ""}, {"name": "i2osp", "kind": "function", "line": "121", "signature": "", "doc": ""}, {"name": "mod", "kind": "function", "line": "131", "signature": "", "doc": ""}, {"name": "modPow", "kind": "function", "line": "135", "signature": "", "doc": ""}, {"name": "randomBytes", "kind": "function", "line": "153", "signature": "", "doc": ""}, {"name": "H", "kind": "function", "line": "162", "signature": "", "doc": ""}, {"name": "Hint", "kind": "function", "line": "166", "signature": "", "doc": ""}, {"name": "deriveKeyFromPassphrase", "kind": "function", "line": "178", "signature": "", "doc": "Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2 iteration count. This is the single PBKDF2 implementation in the client; deriveMasterKey pins it to the account-password iteration count, while the deniable vault (qv-deniable.js) drives it with the server-advertised count so a policy change needs no client edit."}, {"name": "deriveMasterKey", "kind": "function", "line": "199", "signature": "", "doc": ""}, {"name": "aesGcmEncrypt", "kind": "function", "line": "203", "signature": "", "doc": ""}, {"name": "aesGcmDecrypt", "kind": "function", "line": "214", "signature": "", "doc": ""}, {"name": "computeK", "kind": "function", "line": "244", "signature": "", "doc": "-- SRP-6a (QV-SRP-1), mirrors utils/srp6a.py ---"}, {"name": "deriveVerifier", "kind": "function", "line": "249", "signature": "", "doc": ""}, {"name": "srpLogin", "kind": "function", "line": "257", "signature": "", "doc": "Run a full SRP-6a login against the server, verifying the server proof M2."}, {"name": "generateIdentity", "kind": "function", "line": "309", "signature": "", "doc": ""}, {"name": "parsePublicKey", "kind": "function", "line": "337", "signature": "", "doc": ""}, {"name": "parsePrivateBlob", "kind": "function", "line": "345", "signature": "", "doc": ""}, {"name": "deriveWrapKey", "kind": "function", "line": "353", "signature": "", "doc": ""}, {"name": "wrapKey", "kind": "function", "line": "365", "signature": "", "doc": "Seal a file encryption key to a recipient's hybrid public key."}], "symbolTotal": 40}]</script>
+<script type="application/json" id="vis-edges">[{"from": "app_factory.py", "to": "models/plans.py", "title": "next", "dashes": true}, {"from": "models/plans.py", "to": "static/js/messages.js", "title": "next", "dashes": true}, {"from": "static/js/messages.js", "to": "static/js/qv-crypto.js", "title": "resolved_imports", "dashes": false}, {"from": "static/js/messages.js", "to": "tests/test_secure_channel.py", "title": "next", "dashes": true}, {"from": "tests/test_secure_channel.py", "to": "static/js/qv-crypto.js", "title": "next", "dashes": true}]</script>
+<script type="application/json" id="vis-views">[{"id": "primary-path", "title": "Primary path", "focus": ["app_factory.py", "models/plans.py", "static/js/messages.js", "tests/test_secure_channel.py", "static/js/qv-crypto.js"], "description": "Follow the dominant authored path first."}, {"id": "happy-path", "title": "Happy path", "focus": ["app_factory.py", "static/js/messages.js", "static/js/qv-crypto.js"], "description": "Trace the shortest authored route end to end."}, {"id": "hub-focus", "title": "Hub focus", "focus": ["static/js/messages.js"], "description": "Inspect the most connected authored hub."}, {"id": "side-branches", "title": "Side branches", "focus": ["static/js/messages.js", "tests/test_secure_channel.py", "static/js/qv-crypto.js"], "description": "Review supporting detail without losing orientation."}, {"id": "full-map", "title": "Full map", "focus": ["app_factory.py", "models/plans.py", "static/js/messages.js", "tests/test_secure_channel.py", "static/js/qv-crypto.js"], "description": "Restore the complete authored context."}]</script>
+<script type="application/json" id="vis-meta">{"kind": "workflow", "title": "Delivery Workflow", "nodeCount": 5, "edgeCount": 5, "totalFiles": "81", "neighbors": 8}</script>
+<script type="application/json" id="vis-physics">{"enabled": true, "barnesHut": {"gravitationalConstant": -60000, "centralGravity": 0.15, "springLength": 320, "damping": 0.12}, "stabilization": {"iterations": 250}}</script>
+<script type="application/json" id="vis-roles">{"frontend": "#22d3ee", "backend": "#34d399", "database": "#a78bfa", "cloud": "#fbbf24", "security": "#fb7185", "messagebus": "#fb923c", "external": "#94a3b8"}</script>
+<script>
+(function(){
+"use strict";
+var rawNodes=JSON.parse(document.getElementById("vis-nodes").textContent||"[]");
+var rawEdges=JSON.parse(document.getElementById("vis-edges").textContent||"[]");
+var views=JSON.parse(document.getElementById("vis-views").textContent||"[]");
+var meta=JSON.parse(document.getElementById("vis-meta").textContent||"{}");
+var physics=JSON.parse(document.getElementById("vis-physics").textContent||"{}");
+var roleColors=JSON.parse(document.getElementById("vis-roles").textContent||"{}");
+var root=document.documentElement;
+var container=document.getElementById("network");
+var search=document.getElementById("search");
+var passportTitle=document.getElementById("passport-title");
+var passportMeta=document.getElementById("passport-meta");
+var journey=document.getElementById("journey");
+var receipt=document.getElementById("receipt");
+var chapters=document.getElementById("chapters");
+var roleCounts=document.getElementById("role-counts");
+var nodeSymbols=document.getElementById("node-symbols");
+var guide=document.getElementById("guide");
+var exportsDialog=document.getElementById("exports");
+var state={focus:null,reach:null,lens:null,view:-1,physicsOn:true};
+var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function themeBox(){return root.getAttribute("data-theme")==="light"?{box:"#ffffff",ink:"#0f172a"}:{box:"#0f172a",ink:"#ffffff"};}
+function paintNodes(){
+var palette=themeBox();
+var update=rawNodes.map(function(n){
+return {id:n.id,color:{background:palette.box,border:roleColors[n.group]||"#94a3b8",highlight:{background:palette.box,border:roleColors[n.group]||"#94a3b8"}},font:{color:palette.ink,size:13,face:"monospace"}};});
+visNodes.update(update);}
+var visNodes=new vis.DataSet(rawNodes.map(function(n){return {id:n.id,label:n.label,title:n.title,group:n.group,shape:"box"};}));
+var visEdges=new vis.DataSet(rawEdges.map(function(e,index){return {id:"e"+index,from:e.from,to:e.to,title:e.label,arrows:"to",dashes:!!e.dashes,smooth:{type:"dynamic"},color:{opacity:0.7}};}));
+paintNodes();
+var network=new vis.Network(container,{nodes:visNodes,edges:visEdges},{
+physics:physics,
+interaction:{hover:true,navigationButtons:false,keyboard:false},
+nodes:{shape:"box",borderWidth:2,margin:10},
+edges:{arrows:{to:{enabled:true}},smooth:{type:"dynamic"}}});
+if(reduced&&physics.enabled){try{network.stabilize(50);}catch(e){}}
+function outgoing(id){return rawEdges.filter(function(e){return e.from===id;});}
+function incoming(id){return rawEdges.filter(function(e){return e.to===id;});}
+function nodeById(id){for(var i=0;i<rawNodes.length;i++){if(rawNodes[i].id===id){return rawNodes[i];}}return null;}
+function escapeHtml(text){
+return String(text==null?"":text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function neighborNames(ids){
+var cap=(meta.neighbors||8);
+return ids.slice().sort().slice(0,cap).map(function(id){var n=nodeById(id);return escapeHtml(n?n.label:id);});}
+function renderNodeDetail(node){
+if(!nodeSymbols){return;}
+var ins=incoming(node.id).map(function(e){return e.from;});
+var outs=outgoing(node.id).map(function(e){return e.to;});
+var html="";
+if(node.doc){html+='<p class="filedoc">'+escapeHtml(node.doc)+"</p>";}
+var symbols=node.symbols||[];
+if(symbols.length){
+html+="<table><thead><tr><th>Symbol</th><th>Kind</th><th>Line</th></tr></thead><tbody>";
+symbols.forEach(function(s){
+var docTitle=s.doc?(' title="'+escapeHtml(s.doc)+'"'):"";
+var name="<span"+docTitle+">"+escapeHtml(s.name)+"</span>"+(s.signature?" <code>"+escapeHtml(s.signature)+"</code>":"");
+html+="<tr><td>"+name+"</td><td>"+escapeHtml(s.kind)+"</td><td>"+escapeHtml(s.line)+"</td></tr>";});
+html+="</tbody></table>";
+var hidden=(node.symbolTotal||symbols.length)-symbols.length;
+if(hidden>0){html+='<p class="filedoc">+'+hidden+' more symbols in source.</p>';}}
+else{html+='<p class="filedoc">No symbols extracted.</p>';}
+html+='<p class="neighbors">Imports '+outs.length+(outs.length?": "+neighborNames(outs).join(", "):"")+"</p>";
+html+='<p class="neighbors">Imported by '+ins.length+(ins.length?": "+neighborNames(ins).join(", "):"")+"</p>";
+nodeSymbols.innerHTML=html;}
+function clearNodeDetail(){
+if(nodeSymbols){nodeSymbols.innerHTML="";}
+passportTitle.textContent="Diagram guide";}
+function clearNodeDetailSilent(){
+if(nodeSymbols){nodeSymbols.innerHTML="";}}
+function bfsReach(start,direction){
+var seen={};seen[start]=0;var queue=[start];var order=[start];
+while(queue.length){var current=queue.shift();var nexts=direction==="downstream"?outgoing(current):incoming(current);
+for(var i=0;i<nexts.length;i++){var nid=direction==="downstream"?nexts[i].to:nexts[i].from;
+if(!(nid in seen)){seen[nid]=seen[current]+1;queue.push(nid);order.push(nid);}}}
+return {members:order,hops:seen};}
+function bfsRoute(from,to){
+if(from===to){return [from];}
+var prev={};var seen={};seen[from]=true;var queue=[from];
+while(queue.length){var current=queue.shift();var nexts=outgoing(current);
+for(var i=0;i<nexts.length;i++){var nid=nexts[i].to;
+if(!(nid in seen)){seen[nid]=true;prev[nid]=current;
+if(nid===to){var path=[to];var c=to;while(c!==from){c=prev[c];path.unshift(c);}return path;}
+queue.push(nid);}}}
+return [];}
+function showOnly(allowed){
+var nodeUpdate=rawNodes.map(function(n){return {id:n.id,hidden:!allowed[n.id]};});
+visNodes.update(nodeUpdate);
+var edgeUpdate=rawEdges.map(function(e,index){return {id:"e"+index,hidden:!(allowed[e.from]&&allowed[e.to])};});
+visEdges.update(edgeUpdate);}
+function showAll(){
+var nodeUpdate=rawNodes.map(function(n){return {id:n.id,hidden:false};});
+visNodes.update(nodeUpdate);
+var edgeUpdate=rawEdges.map(function(e,index){return {id:"e"+index,hidden:false};});
+visEdges.update(edgeUpdate);}
+function setHash(value){try{history.replaceState(null,"",value);}catch(e){location.hash=value;}}
+function focusNode(id,reach){
+var node=nodeById(id);if(!node){return;}
+state.focus=id;state.reach=reach||null;
+var allowed={};allowed[id]=true;
+if(state.reach){var found=bfsReach(id,state.reach);found.members.forEach(function(m){allowed[m]=true;});
+var hops=0;for(var k in found.hops){if(found.hops[k]>hops){hops=found.hops[k];}}
+receipt.textContent=(state.reach==="downstream"?"Downstream":"Upstream")+" reach: "+found.members.length+" nodes, "+hops+" max hops. Authored relationships only.";}
+else{receipt.textContent="In: "+incoming(id).length+" | Out: "+outgoing(id).length+" | Views: "+views.length;}
+showOnly(allowed);
+network.selectNodes([id]);
+passportTitle.textContent=node.label;
+passportMeta.textContent=node.id+" | role "+node.group+" | "+(node.language||"")+" | "+(node.symbolTotal||0)+" symbols";
+renderNodeDetail(node);
+var hash="#focus="+encodeURIComponent(id);
+if(state.reach){hash+="&reach="+state.reach;}
+setHash(hash);}
+function probeRoute(){
+var from=document.getElementById("route-from").value.trim();
+var to=document.getElementById("route-to").value.trim();
+if(!from||!to){return;}
+var path=bfsRoute(from,to);
+if(!path.length){journey.textContent="No authored directed route from "+from+" to "+to+".";receipt.textContent="Route probe: 0 links.";return;}
+var allowed={};path.forEach(function(n){allowed[n]=true;});
+showOnly(allowed);
+network.selectNodes(path);
+try{network.fit({nodes:path,animation:reduced?false:{duration:600}});}catch(e){}
+var names=path.map(function(n){var node=nodeById(n);return node?node.label:n;});
+journey.textContent="Journey: "+names.join(" -> ")+" ("+(path.length-1)+" hops).";
+receipt.textContent="Route probe: "+path.length+" nodes, "+(path.length-1)+" links.";
+setHash("#route="+encodeURIComponent(from)+"~"+encodeURIComponent(to));}
+function applyLens(role){
+state.lens=role;
+if(!role){showAll();clearNodeDetail();receipt.textContent="Lens cleared.";setHash("#");return;}
+var counts={};rawNodes.forEach(function(n){counts[n.group]=(counts[n.group]||0)+1;});
+var allowed={};rawNodes.forEach(function(n){if(n.group===role){allowed[n.id]=true;}});
+showOnly(allowed);
+var parts=[];for(var k in counts){parts.push(k+": "+counts[k]);}
+receipt.textContent="Lens "+role+": "+(counts[role]||0)+" of "+rawNodes.length+" nodes. "+parts.join(" | ");
+setHash("#lens="+encodeURIComponent(role));}
+function showView(index){
+if(!views.length){return;}
+state.view=(index+views.length)%views.length;
+var view=views[state.view];
+chapters.querySelectorAll("button").forEach(function(b,i){b.disabled=(i===state.view);});
+passportTitle.textContent=view.title;
+passportMeta.textContent=view.description||"";
+clearNodeDetailSilent();
+if(!view.focus.length){showAll();}
+else{var allowed={};view.focus.forEach(function(n){allowed[n]=true;});showOnly(allowed);network.selectNodes(view.focus);}
+journey.textContent=view.focus.length?("Chapter focus: "+view.focus.join(", ")):"";
+receipt.textContent="Chapter "+(state.view+1)+" of "+views.length+".";
+setHash("#view="+encodeURIComponent(view.id));}
+function renderChapters(){
+chapters.innerHTML="";
+views.forEach(function(view,index){var b=document.createElement("button");b.type="button";b.textContent=view.title;b.setAttribute("aria-label","Show chapter "+view.title);b.setAttribute("title","Focus the "+view.title+" chapter");b.addEventListener("click",function(){showView(index);});chapters.appendChild(b);});}
+function renderRoleCounts(){
+var counts={};rawNodes.forEach(function(n){counts[n.group]=(counts[n.group]||0)+1;});
+roleCounts.innerHTML="";
+Object.keys(counts).sort().forEach(function(role){var s=document.createElement("button");s.type="button";s.className="chip";s.textContent=role+": "+counts[role];s.setAttribute("aria-label","Filter role "+role);s.setAttribute("title","Highlight the "+role+" role");s.addEventListener("click",function(){applyLens(role);});roleCounts.appendChild(s);});}
+function cyclePreset(){
+var presets=["classic","flow","blueprint","editorial"];
+var current=root.getAttribute("data-preset")||"classic";
+root.setAttribute("data-preset",presets[(presets.indexOf(current)+1)%presets.length]);}
+function toggleTheme(){
+var current=root.getAttribute("data-theme")||"dark";
+root.setAttribute("data-theme",current==="dark"?"light":"dark");
+paintNodes();}
+function togglePhysics(){
+state.physicsOn=!state.physicsOn;
+try{network.setOptions({physics:{enabled:state.physicsOn}});}catch(e){}
+receipt.textContent=state.physicsOn?"Physics resumed.":"Physics frozen; nodes stay draggable.";}
+function exportPNG(){
+try{
+var link=document.createElement("a");
+link.href=network.canvas.frame.canvas.toDataURL("image/png");
+link.download="system-map-"+(meta.kind||"map")+".png";
+document.body.appendChild(link);link.click();
+setTimeout(function(){link.remove();},400);
+receipt.textContent="PNG snapshot downloaded.";
+}catch(e){receipt.textContent="PNG export unavailable in this browser.";}}
+function exportJSON(){
+var payload={kind:meta.kind,title:meta.title,nodes:rawNodes,edges:rawEdges,views:views};
+var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+var link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="system-map-"+(meta.kind||"map")+".json";document.body.appendChild(link);link.click();
+setTimeout(function(){URL.revokeObjectURL(link.href);link.remove();},400);}
+function readHash(){
+var hash=location.hash||"";
+if(hash.indexOf("#route=")===0){var parts=hash.slice(7).split("~");if(parts.length===2){document.getElementById("route-from").value=decodeURIComponent(parts[0]);document.getElementById("route-to").value=decodeURIComponent(parts[1]);probeRoute();}return;}
+if(hash.indexOf("#lens=")===0){applyLens(decodeURIComponent(hash.slice(6)));return;}
+if(hash.indexOf("#view=")===0){var id=decodeURIComponent(hash.slice(6));for(var i=0;i<views.length;i++){if(views[i].id===id){showView(i);return;}}return;}
+if(hash.indexOf("#focus=")===0){var rest=hash.slice(7).split("&reach=");focusNode(decodeURIComponent(rest[0]),rest[1]?decodeURIComponent(rest[1]):null);return;}}
+network.on("click",function(params){
+if(params.nodes.length>0){focusNode(params.nodes[0]);}});
+network.on("stabilized",function(){receipt.textContent="Physics stabilized: "+rawNodes.length+" nodes placed.";});
+document.querySelectorAll("[data-action]").forEach(function(btn){
+btn.addEventListener("click",function(){
+var action=btn.getAttribute("data-action");
+if(action==="reach-up"&&state.focus){focusNode(state.focus,"upstream");}
+else if(action==="reach-down"&&state.focus){focusNode(state.focus,"downstream");}
+else if(action==="route"){probeRoute();}
+else if(action==="lens"){applyLens(state.lens?null:"backend");}
+else if(action==="views-prev"){showView(state.view-1);}
+else if(action==="views-next"){showView(state.view+1);}
+else if(action==="play"){var i=0;var step=function(){if(i>=views.length){return;}showView(i);i++;if(!reduced){setTimeout(step,1400);}};step();}
+else if(action==="stabilize"){try{network.stabilize();}catch(e){}receipt.textContent="Stabilizing physics...";}
+else if(action==="physics"){togglePhysics();}
+else if(action==="present"){document.body.classList.toggle("present");}
+else if(action==="style"){cyclePreset();}
+else if(action==="theme"){toggleTheme();}
+else if(action==="export"){if(typeof exportsDialog.showModal==="function"){exportsDialog.showModal();}}
+else if(action==="help"){if(typeof guide.showModal==="function"){guide.showModal();}}
+else if(action==="close-guide"){guide.close();}
+else if(action==="close-exports"){exportsDialog.close();}
+else if(action==="export-png"){exportPNG();}
+else if(action==="export-json"){exportJSON();}});});
+search.addEventListener("input",function(){
+var term=search.value.trim().toLowerCase();
+if(!term){showAll();return;}
+var allowed={};rawNodes.forEach(function(n){
+if(n.label.toLowerCase().indexOf(term)>=0||n.id.toLowerCase().indexOf(term)>=0){allowed[n.id]=true;}});
+showOnly(allowed);});
+document.addEventListener("keydown",function(ev){
+if(ev.target&&(ev.target.tagName==="INPUT"||ev.target.tagName==="TEXTAREA")){return;}
+if(ev.key==="/"){ev.preventDefault();search.focus();}
+else if(ev.key==="R"||ev.key==="r"){var f=document.getElementById("route-from");if(f){f.focus();}}
+else if(ev.key==="L"||ev.key==="l"){applyLens(state.lens?null:"backend");}
+else if(ev.key==="P"||ev.key==="p"){showView(state.view+1);}
+else if(ev.key==="["){showView(state.view-1);}
+else if(ev.key==="]"){showView(state.view+1);}
+else if(ev.key==="B"||ev.key==="b"){togglePhysics();}
+else if(ev.key==="F"||ev.key==="f"){document.body.classList.toggle("present");}
+else if(ev.key==="S"||ev.key==="s"){cyclePreset();}
+else if(ev.key==="T"||ev.key==="t"){toggleTheme();}
+else if(ev.key==="E"||ev.key==="e"){if(typeof exportsDialog.showModal==="function"){exportsDialog.showModal();}}
+else if(ev.key==="?"){if(typeof guide.showModal==="function"){guide.showModal();}}
+else if(ev.key==="+"){try{network.zoomIn();}catch(e){}}
+else if(ev.key==="-"){try{network.zoomOut();}catch(e){}}
+else if(ev.key==="0"){try{network.fit();}catch(e){}}});
+passportMeta.textContent=(meta.nodeCount||rawNodes.length)+" of "+(meta.totalFiles||rawNodes.length)+" files | "+(meta.edgeCount||rawEdges.length)+" links | "+views.length+" chapters. Primary scope only; full listing lives in the knowledge base.";
+receipt.textContent="Live physics network. Drag nodes, search, focus, trace reach, probe routes, compare roles, or play chapters.";
+renderChapters();renderRoleCounts();readHash();
+})();
+</script>
+</body>
+</html>

@@ -17,7 +17,31 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+for _key in [key for key in os.environ if key.startswith("QV_")]:
+    del os.environ[_key]
 os.environ.setdefault("QV_ENV", "dev")
+
+
+@pytest.fixture(autouse=True)
+def _hermetic_env(monkeypatch):
+    """Keep the suite hermetic against the operator's local ``.env`` file.
+
+    ``load_payload`` calls ``dotenv.load_dotenv()`` at app creation, which
+    would inject the developer's local ``QV_*`` values (often empty facade
+    hashes) into ``os.environ`` and shadow the explicit mappings under
+    test. Neutralizing the loader makes every test run against the
+    mappings it declares, matching CI where no ``.env`` exists.
+    """
+    for key in [key for key in os.environ if key.startswith("QV_")]:
+        if key != "QV_ENV":
+            monkeypatch.delenv(key, raising=False)
+    try:
+        import dotenv
+
+        monkeypatch.setattr(dotenv, "load_dotenv", lambda *args, **kwargs: False)
+    except ImportError:
+        pass
+    yield
 os.environ.setdefault("STORAGE_URI", "memory://")
 os.environ.setdefault("FLASK_SECRET_KEY", "test-only-secret-key-do-not-use-in-prod")
 # ``create_app`` always builds a boto3 S3 client, and botocore rejects an

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-preset="classic">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Sequence | Live System Map</title>
+<link href="https://unpkg.com/vis-network@9/styles/vis-network.min.css" rel="stylesheet">
+<script src="https://unpkg.com/vis-network@9/standalone/umd/vis-network.min.js"></script>
+<style>
+:root{--canvas:#020617;--mask:#0f172a;--ink:#ffffff;--muted:#94a3b8;--border:#1e293b;--box:#0f172a;--boxink:#ffffff}
+html[data-theme="light"]{--canvas:#f8fafc;--mask:#ffffff;--ink:#0f172a;--muted:#475569;--border:#e2e8f0;--box:#ffffff;--boxink:#0f172a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.toolbar{display:flex;gap:8px;align-items:center;padding:10px 14px;background:var(--mask);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.brand{font-weight:700;font-size:14px;letter-spacing:.04em}
+.kind{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.live{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+.toolbar input{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;min-width:220px;font:inherit;font-size:12px}
+.toolbar button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font:inherit;font-size:12px;cursor:pointer;min-height:32px}
+.toolbar button:hover,.toolbar button:focus-visible{border-color:#22d3ee;outline:2px solid #22d3ee;outline-offset:2px}
+.home-link{color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;text-decoration:none;background:var(--canvas)}
+.home-link:hover,.home-link:focus-visible{border-color:#22d3ee;outline:2px solid #22d3ee;outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:calc(100vh - 53px)}
+.stage{position:relative;padding:16px;overflow:auto}
+#network{width:100%;height:78vh;min-height:520px;background:var(--canvas);border:1px solid var(--border);border-radius:16px}
+#network:focus-visible{outline:2px solid #22d3ee;outline-offset:3px}
+.symbols{font-size:11px;margin-top:10px;overflow:auto}
+.symbols table{width:100%;border-collapse:collapse}
+.symbols th{text-align:left;color:var(--muted);font-weight:400;border-bottom:1px solid var(--border);padding:3px 4px}
+.symbols td{border-bottom:1px solid var(--border);padding:3px 4px;vertical-align:top}
+.symbols code{font-size:11px}
+.symbols .filedoc{color:var(--muted);margin:0 0 8px;line-height:1.6}
+.symbols .neighbors{color:var(--muted);margin:8px 0 0;line-height:1.6}
+.passport{background:var(--mask);border-left:1px solid var(--border);padding:16px;overflow:auto}
+.passport h2{font-size:13px;margin:0 0 8px}
+.passport .row{font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7}
+.counts{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip{border:1px solid var(--border);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--ink);background:transparent;cursor:pointer;font:inherit}
+.views{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.views button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:6px 9px;font:inherit;font-size:11px;cursor:pointer}
+.journey{font-size:12px;line-height:1.7}
+.receipt{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:8px;margin-top:10px}
+.routebox{display:flex;gap:6px;margin-top:8px}
+.routebox input{flex:1;background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:7px;font:inherit;font-size:12px;min-width:0}
+.routebox button{background:var(--canvas);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font:inherit;font-size:12px;cursor:pointer}
+.present .layout{grid-template-columns:minmax(0,1fr)}
+.present .passport{display:none}
+dialog{background:var(--mask);color:var(--ink);border:1px solid var(--border);border-radius:12px;max-width:520px}
+dialog kbd{border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:11px}
+@media (max-width:960px){.layout{grid-template-columns:minmax(0,1fr)}.passport{border-left:none;border-top:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<header class="toolbar" aria-label="Map controls">
+<span class="brand">System Maps</span>
+<span class="live">Live physics</span>
+<a class="home-link" href="index.html">Gallery</a>
+<span class="kind">sequence | Request Sequence</span>
+<input id="search" type="search" placeholder="Search nodes ( / )" aria-label="Search nodes" title="Filter nodes by label or id. Shortcut: /">
+<button type="button" data-action="reach-up" aria-label="Trace upstream reach" title="Show everything that reaches the focused node (authored relationships only)">Upstream</button>
+<button type="button" data-action="reach-down" aria-label="Trace downstream reach" title="Show everything the focused node reaches (authored relationships only)">Downstream</button>
+<button type="button" data-action="lens" aria-label="Compare roles" title="Highlight one semantic role and compare counts; activate again to clear">Lens</button>
+<button type="button" data-action="views-prev" aria-label="Previous chapter" title="Show the previous guided chapter">[</button>
+<button type="button" data-action="views-next" aria-label="Next chapter" title="Show the next guided chapter">]</button>
+<button type="button" data-action="play" aria-label="Play guided story" title="Play all guided chapters in order">Play</button>
+<button type="button" data-action="stabilize" aria-label="Stabilize layout" title="Re-run the physics stabilization">Stabilize</button>
+<button type="button" data-action="physics" aria-label="Toggle physics" title="Freeze or resume the live physics engine">Physics</button>
+<button type="button" data-action="present" aria-label="Enter presentation stage" title="Hide the side panel for presenting">Present</button>
+<button type="button" data-action="style" aria-label="Cycle visual preset" title="Cycle visual preset: classic, flow, blueprint, editorial">Style</button>
+<button type="button" data-action="theme" aria-label="Toggle theme" title="Toggle dark and light themes">Theme</button>
+<button type="button" data-action="export" aria-label="Open export menu" title="Download a PNG snapshot or the typed JSON">Export</button>
+<button type="button" data-action="help" aria-label="Open diagram guide" title="Open the diagram guide with every shortcut">?</button>
+</header>
+<div class="layout">
+<main class="stage">
+<div id="network" tabindex="0" role="application" aria-label="Request Sequence live network. Drag nodes to rearrange them."></div>
+</main>
+<aside class="passport" aria-live="polite" aria-label="Semantic passport">
+<h2 id="passport-title">Diagram guide</h2>
+<div class="row" id="passport-meta"></div>
+<div class="views" id="chapters"></div>
+<div class="counts" id="role-counts"></div>
+<div class="row">1. Drag any node; physics settles the rest. 2. Click a node to focus it. 3. Upstream and Downstream trace authored reach. 4. Path probes the exact route between two ids. 5. Play walks the guided chapters. Press ? for every shortcut. This page loads its network engine from a CDN and needs network access.</div>
+<div class="routebox"><input id="route-from" placeholder="route from id" aria-label="Route source" title="Source node id for the route probe"><input id="route-to" placeholder="route to id" aria-label="Route target" title="Target node id for the route probe"><button type="button" data-action="route" aria-label="Probe directed route" title="Highlight the shortest authored directed path">Path</button></div>
+<div class="journey" id="journey"></div>
+<div class="symbols" id="node-symbols"></div>
+<div class="receipt" id="receipt"></div>
+</aside>
+</div>
+<dialog id="guide" aria-label="Diagram guide dialog">
+<h2>Diagram guide</h2>
+<p><kbd>/</kbd> search &middot; <kbd>R</kbd> route probe &middot; <kbd>L</kbd> role lens &middot; <kbd>P</kbd> play &middot; <kbd>[</kbd> <kbd>]</kbd> chapters &middot; <kbd>F</kbd> present &middot; <kbd>S</kbd> style &middot; <kbd>T</kbd> theme &middot; <kbd>E</kbd> export &middot; <kbd>+</kbd> <kbd>-</kbd> <kbd>0</kbd> zoom &middot; <kbd>B</kbd> physics</p>
+<p>Drag nodes freely; Stabilize re-runs the physics engine and Physics freezes it. Reach, routes, lens, and chapters reuse authored relationships only. Deep links restore <code>#focus=id</code>, <code>#focus=id&amp;reach=upstream|downstream</code>, <code>#route=a~b</code>, <code>#lens=role</code>, and <code>#view=id</code>.</p>
+<button type="button" data-action="close-guide" title="Close the diagram guide">Close</button>
+</dialog>
+<dialog id="exports" aria-label="Export dialog">
+<h2>Export</h2>
+<p>PNG captures the live canvas; JSON carries the typed source.</p>
+<button type="button" data-action="export-png" title="Download a PNG snapshot of the live canvas">Download PNG</button>
+<button type="button" data-action="export-json" title="Download the typed JSON behind this diagram">Download typed JSON</button>
+<button type="button" data-action="close-exports" title="Close the export menu">Close</button>
+</dialog>
+<script type="application/json" id="vis-nodes">[{"id": "app_factory.py", "label": "app_factory.py", "title": "\u003cb>app_factory.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or Werkzeug&#x27;s dev server with debug) - ``wsg...\u003cbr>symbols: 8 (_is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session)", "group": "frontend", "language": "py", "doc": "Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or Werkzeug's dev server with debug) - ``wsgi.py`` (prod: gunicorn / uWSGI behind a reverse proxy)  The factory enforces three things that the old ``app.py``-as-script pattern could not:  1. No Werkzeug debug PIN is ever exposed. Debug mode is gated on the ``FLASK_DEBUG`` environment variable and the Werkzeug debugger is disabled regardless. 2. Security headers (CSP, HSTS, X-Frame-Options, etc.) are installed via Flask-Talisman in production. The strict policy is the default; tests can override ``security_overrides`` to relax specific headers. 3. The session cookie is hardened: HttpOnly, SameSite=Lax, Secure when the request is HTTPS. ``PERMANENT_SESSION_LIFETIME`` caps the idle/absolute lifetime so an unattended browser does not retain auth indefinitely.  Keeping every global side-effect (``app.config[...]``, blueprint registration, extension init) inside the factory means importing ``quantumvault.app_factory`` is free of side effects. That property matters because ``gunicorn`` forks workers and a top-level ``app = create_app()`` in a module would import-time-bind the app to the parent process and re-execute initialization in each worker.", "symbols": [{"name": "_is_production", "kind": "function", "line": "70", "signature": "def _is_production()", "doc": "Return True unless the operator explicitly opts into dev mode."}, {"name": "_build_csp", "kind": "function", "line": "81", "signature": "def _build_csp()", "doc": "Return the strict Content-Security-Policy used in production.\n\nThe policy allows:\n\n- ``'self'`` for everything by default\n- the JSDelivr CDN pinned to the specific packages the SPA needs\n  (Bootstrap CSS, EasyMDE CSS/JS, marked). These are loaded with\n  SRI from the templates.\n- ``'unsafe-inline'`` for styles is required because EasyMDE injects\n  inline styles; for scripts it is forbidden.\n- WebAssembly is allowed (``'wasm-unsafe-eval'``) so the client can\n  later compile liboqs-portable to WASM and avoid pure-JS PQ.\n\nAdding a new third-party origin to this list is a security review\ngate. Do not add origins without updating docs/SECURITY_TODO.md."}, {"name": "_build_talisman_kwargs", "kind": "function", "line": "112", "signature": "def _build_talisman_kwargs()", "doc": "Return kwargs to pass to ``Talisman`` based on the runtime env."}, {"name": "_configure_secret_key", "kind": "function", "line": "153", "signature": "def _configure_secret_key(app, config)", "doc": "Set ``app.config['SECRET_KEY']`` from env, payload.json, or a random value.\n\nThe previous code set a fresh 24-byte hex on every process start.\nThat is correct for development (sessions reset, no surprises) but\nin production the operator MUST set ``FLASK_SECRET_KEY`` (or\n``SECRET_KEY``) to a stable, 32+ byte value. Otherwise every\ngunicorn worker restart invalidates every session, including\nCSRF tokens, and the audit log will show a flood of CSRF rejections.\n\nFor backward compatibility, ``payload.json``'s ``SECRET_KEY`` is\naccepted as a third source so a project that was bootstrapped by\n``make env`` keeps working without a code change. The env var\nalways wins over ``payload.json`` so an operator can override."}, {"name": "_configure_session", "kind": "function", "line": "196", "signature": "def _configure_session(app)", "doc": "Apply session lifetime and cookie hardening.\n\nThe defaults are deliberately conservative:\n\n- 8 hours of permanent session lifetime (then user must re-login)\n- 30 minutes of idle lifetime (rolling refresh on every request)\n- Cookies are HttpOnly, SameSite=Lax, and Secure in production"}, {"name": "_configure_logging", "kind": "function", "line": "213", "signature": "def _configure_logging(app)", "doc": "Wire up a structured application logger.\n\nThe Werkzeug access log goes through Flask's default handler at\nINFO. Application errors use the standard ``app.logger``. The\naudit logger (``quantumvault.audit``) is configured separately in\n:mod:`utils.security` and writes one-line JSON to stdout."}, {"name": "create_app", "kind": "function", "line": "230", "signature": "def create_app(config_overrides, security_overrides)", "doc": "Build and return a fully-configured Flask application.\n\nArgs:\n    config_overrides: Values to merge into ``app.config`` after\n        defaults are applied. Useful for tests that need to swap\n        the database path or disable the rate limiter.\n    security_overrides: Values to merge into the Talisman kwargs.\n        Used by tests to disable CSP and the HTTPS redirect without\n        forking the whole factory.\n\nReturns:\n    A Flask application ready to be served by gunicorn or the\n    Werkzeug dev server."}, {"name": "load_user", "kind": "function", "line": "408", "signature": "def load_user(user_id)", "doc": ""}], "symbolTotal": 8}, {"id": "utils/utils.py", "label": "utils.py", "title": "\u003cb>utils.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>utils/utils.py\u003cbr>symbols: 8 (database_path, as_bool, sanitize_path, Payload, Config)", "group": "frontend", "language": "py", "doc": "utils/utils.py", "symbols": [{"name": "database_path", "kind": "function", "line": "12", "signature": "def database_path()", "doc": "Return the SQLite database path from config, with a legacy fallback.\n\nRequest-path code must never hard-code a database location: in tests and\nin multi-instance deployments the configured path is the only correct\none, and a hard-coded path silently writes to (or reads from) the wrong\nfile. Outside an application context, for standalone scripts, the\n``QV_USERS_DB`` environment variable or the historical default is used."}, {"name": "as_bool", "kind": "function", "line": "29", "signature": "def as_bool(value, default)", "doc": "Coerce an environment or payload value into a real boolean.\n\nStrings such as ``\"True\"`` and ``\"False\"`` are both truthy when passed\nstraight to Flask, which silently enables flags that were meant to be\ndisabled. This normalizes them so ``MAIL_USE_TLS=\"False\"`` disables TLS.\n\nArgs:\n    value: The raw value from ``os.environ`` or ``payload.json``.\n    default: The value to return when ``value`` is ``None``.\n\nReturns:\n    The coerced boolean."}, {"name": "sanitize_path", "kind": "function", "line": "49", "signature": "def sanitize_path(path)", "doc": "Sanitiza una ruta de archivo para prevenir LFI y path traversal.\n- Elimina caracteres peligrosos\n- Normaliza la ruta\n- Asegura que no contenga '..' o rutas absolutas"}, {"name": "Payload", "kind": "class", "line": "80", "signature": "class Payload(TypedDict)", "doc": "Non-secret application configuration loaded from ``payload.json``."}, {"name": "Config", "kind": "class", "line": "103", "signature": "class Config", "doc": "Application configuration sourced from ``payload.json`` and the environment.\n\nNon-secret defaults come from ``payload.json``; secrets and infrastructure\nendpoints (mail credentials, object storage, Redis) are overlaid from\nenvironment variables so that no credential is committed to the repository.\n\nEvery attribute is declared on the class so static analyzers see the\nfull shape; :meth:`__init__` populates them from the loaded payload."}, {"name": "__init__", "kind": "method", "line": "145", "signature": "def __init__(self, config_dict)", "doc": ""}, {"name": "__getitem__", "kind": "method", "line": "165", "signature": "def __getitem__(self, key)", "doc": ""}, {"name": "load_payload", "kind": "method", "line": "168", "signature": "def load_payload()", "doc": "Load non-secret application configuration from ``payload.json``.\n\nA local ``.env`` file is loaded first (when ``python-dotenv`` is available)\nso environment-based secrets are populated before :class:`Config` reads them.\n\nReturns:\n    The parsed configuration dictionary."}], "symbolTotal": 8}, {"id": "models/user.py", "label": "user.py", "title": "\u003cb>user.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>symbols: 27 (UserModel, get_id, is_active, UserDB, __init__ +2 more)", "group": "frontend", "language": "py", "doc": "", "symbols": [{"name": "UserModel", "kind": "class", "line": "8", "signature": "class UserModel(BaseModel, UserMixin)", "doc": "Pydantic model for a user with Flask-Login support.\n\nAttributes:\n    id: Unique user ID.\n    username: Unique username.\n    role: User role (free, bronze, silver, gold, admin, superadmin).\n    email: User's email address.\n    phone: User's phone number.\n    first_name: User's first name.\n    last_name: User's last name.\n    storage_quota: Storage quota in bytes.\n    trial_start: Trial period start date.\n    trial_end: Trial period end date.\n    subscription_status: Subscription status (active, inactive).\n    email_verified: Whether the email is verified.\n    confirmation_token: Email confirmation token.\n    phone_verified: Whether the phone number is verified.\n    phone_verification_code_hash: Peppered hash of the phone verification code.\n    phone_code_expires: Phone verification code expiration.\n    mfa_code_hash: Peppered hash of the current MFA code.\n    mfa_code_expires: MFA code expiration.\n    mfa_enabled: Whether MFA is enabled for the user."}, {"name": "get_id", "kind": "method", "line": "52", "signature": "def get_id(self)", "doc": "Return the user ID as a string (required by Flask-Login).\n\nReturns:\n    str: The user ID as a string, or an empty string when the\n        user is anonymous."}, {"name": "is_active", "kind": "method", "line": "70", "signature": "def is_active(self)", "doc": "Return True while the user can use the application.\n\nInactive (lapsed-subscription) users can still sign in to renew\nor download their data, so we do NOT tie this to\n``subscription_status``. The previous implementation returned\nFalse for inactive users, which logged them out of every\n@login_required route. Subscription-gated features should\ncheck ``subscription_status`` directly in the view that needs\nthe gate, not via Flask-Login's activation hook."}, {"name": "UserDB", "kind": "class", "line": "83", "signature": "class UserDB", "doc": "Database operations for users."}, {"name": "__init__", "kind": "method", "line": "85", "signature": "def __init__(self, db_path)", "doc": "Initialize the UserDB with the database path.\n\nArgs:\n    db_path (str): Path to the SQLite database file."}, {"name": "_init_db", "kind": "method", "line": "105", "signature": "def _init_db(self)", "doc": "Initialize the users table with all fields for zero-knowledge auth.\n\nThe table stores only zero-knowledge credential material: the SRP salt\nand verifier (the password itself is never received), the user's public\nkey, the password-encrypted private key blob, and the key-derivation\nsalt used to protect that blob. The server can decrypt none of it.\n\nPhone verification codes and MFA codes are stored as peppered\nSHA-256 digests (``*_code_hash`` columns) instead of plaintext so\na database dump does not hand an attacker ready-to-use codes.\n\nThe ``phone`` column is not unique: phone numbers are recycled by\ncarriers and SIM-swap attacks invalidate the uniqueness guarantee\nanyway. ``email`` remains unique because it is the primary\nrecovery identity.\n\nIf the table was created by an older v7 schema (which carried\nNOT NULL KEM blob columns the v8 controller never writes),\nmigrate in place: rebuild the table under the v8 shape and preserve\nthe surviving identity columns. The legacy password blobs are\nintentionally dropped: v7 ciphertexts are useless without the\nmatching v7 KEM code path that has been removed."}, {"name": "_has_phone_unique_constraint", "kind": "method", "line": "193", "signature": "def _has_phone_unique_constraint(self)", "doc": "Return True if the ``users.phone`` column is UNIQUE.\n\nSQLite does not expose UNIQUE column constraints via ``PRAGMA\ntable_info``; the only reliable signal is the auto-index that\nSQLite materialises for any ``UNIQUE`` column (``sqlite_autoindex_users_N``)."}, {"name": "_drop_phone_unique_if_present", "kind": "method", "line": "214", "signature": "def _drop_phone_unique_if_present(self)", "doc": "Remove the UNIQUE constraint on ``users.phone``.\n\nThe v7 schema declared ``phone TEXT UNIQUE``. Carriers recycle\nnumbers, so the uniqueness guarantee is illusory; it also makes\naccount recovery hostile when a number changes hands.\n\nSQLite forbids ``DROP INDEX`` on an auto-index backing a UNIQUE\ncolumn, so we have to rebuild the table. The rebuild follows\nthe same shape as :meth:`_migrate_from_v7` but copies every\ncolumn by position (the schema is now already v8-shaped thanks\nto the prior migration step, so we know the column order)."}, {"name": "_migrate_from_v7", "kind": "method", "line": "271", "signature": "def _migrate_from_v7(self, legacy_columns)", "doc": "Rebuild the users table to drop legacy v7 NOT NULL KEM columns.\n\nSQLite cannot drop a column or relax a NOT NULL constraint in place,\nso we rename the old table, create a fresh v8-shaped users table,\ncopy every surviving column, then drop the renamed legacy table."}, {"name": "create_user", "kind": "method", "line": "325", "signature": "def create_user(self, username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled, recovery_salt, encrypted_private_key_recovery)", "doc": "Persist a new user from client-provided zero-knowledge credentials.\n\nAll cryptographic material (salt, verifier, public key, encrypted\nprivate key, KDF salt) is generated on the client; this method only\nstores opaque values and never derives or sees the password.\nPhone and MFA codes are stored as the peppered hash supplied by\nthe controller; the plaintext only ever lives in the SMS that\nleaves the building.\n\n``recovery_salt`` and ``encrypted_private_key_recovery`` are the\nQV-RECOVERY-1 fields: an independent PBKDF2 salt and AES-256-GCM\nwrapping of the same ``privateBlob``, keyed by a client-generated\nhigh-entropy recovery code instead of the account password. Both\nare optional so older clients that do not yet generate a recovery\ncode can still register."}, {"name": "update_user_phone_status", "kind": "method", "line": "362", "signature": "def update_user_phone_status(self, username, phone_verified, phone_verification_code_hash, phone_code_expires)", "doc": "Update phone verification status and related fields.\n\nThe ``phone_verification_code_hash`` parameter accepts the\npeppered SHA-256 digest. Passing ``None`` clears the stored\nhash (e.g. after the user verifies successfully)."}, {"name": "update_user_mfa_status", "kind": "method", "line": "396", "signature": "def update_user_mfa_status(self, username, mfa_code_hash, mfa_code_expires, mfa_enabled)", "doc": "Update MFA code, expiration, and enabled status.\n\nThe ``mfa_code_hash`` parameter accepts the peppered SHA-256\ndigest of the freshly-generated 6-digit code. ``mfa_enabled`` is\na tri-state: ``None`` leaves the value alone."}, {"name": "update_user", "kind": "method", "line": "430", "signature": "def update_user(self, username, email_verified, confirmation_token)", "doc": "Update specific user fields."}, {"name": "get_user", "kind": "method", "line": "454", "signature": "def get_user(self, username)", "doc": "Retrieve a user by username.\n\nArgs:\n    username (str): Username to search for.\n\nReturns:\n    Optional[dict]: User data as a dictionary or None if not found."}, {"name": "get_user_by_id", "kind": "method", "line": "468", "signature": "def get_user_by_id(self, user_id)", "doc": "Retrieve a user by ID.\n\nArgs:\n    user_id (int): ID of the user to search for.\n\nReturns:\n    Optional[dict]: User data as a dictionary or None if not found."}, {"name": "get_user_by_email", "kind": "method", "line": "482", "signature": "def get_user_by_email(self, email)", "doc": "Retrieve a user by email address.\n\nArgs:\n    email (str): Email address to search for.\n\nReturns:\n    Optional[dict]: User data as a dictionary or None if not found."}, {"name": "get_user_by_phone", "kind": "method", "line": "496", "signature": "def get_user_by_phone(self, phone)", "doc": "Retrieve a user by phone number.\n\nArgs:\n    phone (str): Phone number to search for.\n\nReturns:\n    Optional[dict]: User data as a dictionary or None if not found."}, {"name": "get_user_by_confirmation_token", "kind": "method", "line": "510", "signature": "def get_user_by_confirmation_token(self, token)", "doc": "Retrieve a user by confirmation token.\n\nArgs:\n    token (str): Confirmation token to search for.\n\nReturns:\n    Optional[dict]: User data as a dictionary or None if not found."}, {"name": "get_recovery_bundle", "kind": "method", "line": "524", "signature": "def get_recovery_bundle(self, username)", "doc": "Return the QV-RECOVERY-1 bundle for a username, if one exists.\n\nArgs:\n    username (str): Username to look up.\n\nReturns:\n    A dict with ``recovery_salt``, ``encrypted_private_key_recovery``,\n    and ``public_key`` if the account has a recovery bundle\n    configured, or ``None`` if the account does not exist or has\n    not generated a recovery code (e.g. accounts created before\n    QV-RECOVERY-1 was added)."}, {"name": "reset_credentials_with_recovery", "kind": "method", "line": "548", "signature": "def reset_credentials_with_recovery(self, username, srp_salt, srp_verifier, kdf_salt, encrypted_private_key)", "doc": "Replace a user's password-derived credentials after a verified recovery.\n\nCalled only after the caller has verified ``public_key_proof``\nagainst the stored ``public_key`` (proof that the requester\npossesses the recovery code, since it is the only way to recover\nthe matching ``privateBlob`` and re-derive the public key). The\n``public_key`` and the underlying keypair are unchanged; only the\nSRP verifier and the password-wrapping of the existing private key\nblob are replaced.\n\nArgs:\n    username (str): Username whose credentials are being reset.\n    srp_salt (str): New SRP salt, hex-encoded.\n    srp_verifier (str): New SRP verifier, hex-encoded.\n    kdf_salt (str): New PBKDF2 salt for the password-wrapped private key, hex-encoded.\n    encrypted_private_key (str): The same private key blob, re-wrapped under the new password."}, {"name": "update_role", "kind": "method", "line": "579", "signature": "def update_role(self, username, role, storage_quota, subscription_status)", "doc": "Update a user's role, storage quota, and subscription status.\n\nArgs:\n    username (str): Username of the user to update.\n    role (str): New role for the user.\n    storage_quota (int): New storage quota in bytes (default: 10MB).\n    subscription_status (str): New subscription status (default: 'active')."}, {"name": "count_users", "kind": "method", "line": "592", "signature": "def count_users(self)", "doc": "Return the total number of users.\n\nImplemented as ``SELECT COUNT(*)`` rather than ``len(get_all_users())``\nso the home page does not materialise the entire table on every\nrequest."}, {"name": "get_all_users", "kind": "method", "line": "603", "signature": "def get_all_users(self)", "doc": "Retrieve all users.\n\nReturns:\n    list[dict]: List of dictionaries containing user data."}, {"name": "_parse_datetime", "kind": "method", "line": "615", "signature": "def _parse_datetime(value)", "doc": "Parse a stored timestamp into a datetime, tolerating the format.\n\nArgs:\n    value: A datetime, an ISO-like timestamp string, or None.\n\nReturns:\n    The parsed datetime, or None when the value is empty or unparseable."}, {"name": "_convert_row_to_dict", "kind": "method", "line": "638", "signature": "def _convert_row_to_dict(self, row)", "doc": "Convert a name-keyed SQLite row into a plain dictionary.\n\nReads access columns by name (the connection uses ``sqlite3.Row``), so\nthe mapping is robust to column ordering and additive migrations.\n\nArgs:\n    row: A ``sqlite3.Row`` produced by a read query, or None.\n\nReturns:\n    A dictionary of user fields, or None when the row is empty."}], "symbolTotal": 27}, {"id": "views/auth.py", "label": "auth.py", "title": "\u003cb>auth.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>Authentication and account-management views.  Routes:  - ``GET  /register``            : render the registration form - ``POST /register``            : create a...\u003cbr>symbols: 29 (role_required, decorator, decorated_function, PhoneVerificationForm, MFAForm +4 more)", "group": "frontend", "language": "py", "doc": "Authentication and account-management views.  Routes:  - ``GET  /register``            : render the registration form - ``POST /register``            : create a new account from a zero-knowledge payload - ``GET  /login``               : render the login form - ``POST /api/srp/hello``       : SRP-6a step 1, returns salt and server challenge B - ``POST /api/srp/verify``      : SRP-6a step 2, returns server proof M2 and starts a session - ``GET  /logout``              : clear the session - ``GET  /confirm/\u003ctoken>``     : mark an email as verified - ``GET/POST /verify_phone``    : enter the phone verification code - ``GET/POST /verify_mfa``      : enter the MFA code - ``POST /toggle_mfa``          : enable or disable MFA for the current user - ``GET  /contact``             : render and accept the contact form - ``GET  /api/auth/pubkey``     : return a user's hybrid public key - ``GET  /api/auth/user-keys``  : return the current user's keying material - ``GET  /api/csrf-token``      : issue the CSRF token for SPA use  Every state-changing JSON route is decorated with :func:`utils.security.json_csrf_protect` so a cross-origin request without the matching CSRF token is rejected with HTTP 403 and audited.", "symbols": [{"name": "role_required", "kind": "function", "line": "71", "signature": "def role_required()", "doc": "Restrict a route to authenticated users holding one of the given roles.\n\nThe check is an intersection of ``VALID_ROLES`` and the caller-\nsupplied roles so a typo in a future route (e.g. ``role_required(\"user\")``)\ncannot accidentally grant access because the role never existed."}, {"name": "decorator", "kind": "method", "line": "85", "signature": "def decorator(f)", "doc": ""}, {"name": "decorated_function", "kind": "method", "line": "87", "signature": "def decorated_function()", "doc": ""}, {"name": "PhoneVerificationForm", "kind": "class", "line": "98", "signature": "class PhoneVerificationForm(FlaskForm)", "doc": ""}, {"name": "MFAForm", "kind": "class", "line": "103", "signature": "class MFAForm(FlaskForm)", "doc": ""}, {"name": "ContactForm", "kind": "class", "line": "108", "signature": "class ContactForm(FlaskForm)", "doc": ""}, {"name": "RegisterForm", "kind": "class", "line": "114", "signature": "class RegisterForm(FlaskForm)", "doc": ""}, {"name": "LoginForm", "kind": "class", "line": "124", "signature": "class LoginForm(FlaskForm)", "doc": ""}, {"name": "get_auth_controller", "kind": "method", "line": "132", "signature": "def get_auth_controller()", "doc": ""}, {"name": "show_register", "kind": "method", "line": "143", "signature": "def show_register()", "doc": ""}, {"name": "handle_register", "kind": "method", "line": "150", "signature": "def handle_register()", "doc": ""}, {"name": "login", "kind": "method", "line": "234", "signature": "def login()", "doc": ""}, {"name": "recover", "kind": "method", "line": "242", "signature": "def recover()", "doc": "Render the QV-RECOVERY-1 account-recovery page.\n\nAvailable to anonymous visitors: a forgotten password means the\nvisitor cannot authenticate, by definition."}, {"name": "_srp_key", "kind": "method", "line": "255", "signature": "def _srp_key()", "doc": ""}, {"name": "_recovery_key", "kind": "method", "line": "266", "signature": "def _recovery_key()", "doc": ""}, {"name": "srp_hello", "kind": "method", "line": "278", "signature": "def srp_hello()", "doc": "First SRP-6a step: receive the client public value A, return salt and B."}, {"name": "srp_verify", "kind": "method", "line": "299", "signature": "def srp_verify()", "doc": "Second SRP-6a step: verify the client proof M1 and return server proof M2."}, {"name": "logout", "kind": "method", "line": "337", "signature": "def logout()", "doc": ""}, {"name": "confirm_email", "kind": "method", "line": "344", "signature": "def confirm_email(token)", "doc": ""}, {"name": "verify_phone", "kind": "method", "line": "367", "signature": "def verify_phone()", "doc": ""}, {"name": "resend_phone_verification", "kind": "method", "line": "384", "signature": "def resend_phone_verification()", "doc": "Re-send the phone verification code for an account.\n\nThe username is supplied as a query parameter by the verify-phone\ntemplate's resend form. The form carries the CSRF token, so the\napp-wide CSRFProtect guard applies. The handler never reveals whether\nthe account exists: it always redirects back with a neutral message."}, {"name": "verify_mfa", "kind": "method", "line": "407", "signature": "def verify_mfa()", "doc": ""}, {"name": "toggle_mfa", "kind": "method", "line": "429", "signature": "def toggle_mfa()", "doc": ""}, {"name": "contact", "kind": "method", "line": "454", "signature": "def contact()", "doc": "Render the contact form and persist a message from the current user.\n\nThe page is only meaningful for authenticated users: messages are tied to\na ``user_id`` foreign key in ``contacts``. Anonymous visitors are sent\nto the login page so they can sign in (or register) before contacting."}, {"name": "get_public_key", "kind": "method", "line": "485", "signature": "def get_public_key()", "doc": "Return a user's hybrid public key so the browser can wrap data to them."}], "symbolTotal": 29}, {"id": "views/admin.py", "label": "admin.py", "title": "\u003cb>admin.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>symbols: 19 (_audit_action, _channel_manager, _s3_reachable, _read_log_tail, _channel_diagnostics)", "group": "frontend", "language": "py", "doc": "", "symbols": [{"name": "_audit_action", "kind": "function", "line": "31", "signature": "def _audit_action(actor, action, target_user, ip, details)", "doc": "Append one superadmin audit row with a single construction site."}, {"name": "_channel_manager", "kind": "function", "line": "48", "signature": "def _channel_manager()", "doc": "Build the disposable channel manager from env and app config."}, {"name": "_s3_reachable", "kind": "function", "line": "54", "signature": "def _s3_reachable(timeout)", "doc": "Return whether the Garage S3 endpoint answers a TCP probe.\n\nThe file inventory below fans out one listing per user, each\nwith its own retry budget. Probing once up front keeps a downed\nobject store from turning every panel view into a retry storm\nin the logs. A closed port means every listing would fail\nanyway, so skipping them loses nothing."}, {"name": "_read_log_tail", "kind": "function", "line": "84", "signature": "def _read_log_tail(state_dir, limit)", "doc": "Return the last lines of backend logs for operator diagnosis.\n\nOnly the superadmin panel sees this, and it never leaves the\nserver: Jinja autoescaping renders it as text. Missing logs\nyield an empty string instead of an error."}, {"name": "_channel_diagnostics", "kind": "function", "line": "116", "signature": "def _channel_diagnostics(manager)", "doc": "Collect binary availability and paths without launching anything."}, {"name": "UserEditForm", "kind": "class", "line": "141", "signature": "class UserEditForm(FlaskForm)", "doc": "Form for editing user details.\n\nIntentionally does NOT carry these fields:\n\n* ``confirmation_token`` — rotated by the resend-confirmation\n  endpoint, never hand-edited. A static token cannot expire and\n  would either lock the user out or be reused forever.\n* ``phone_verification_code`` — same reason; the column stores\n  a hash, not the cleartext code, so a superadmin UI input is\n  meaningless.\n* KEM/SRP blob columns (srp_salt, srp_verifier, public_key,\n  encrypted_private_key, kdf_salt) — the server has no UI to\n  rewrite them. Modifying any of them would silently brick the\n  user's login.\n\n``password`` is also absent: the server is zero-knowledge, so a\n\"change password\" UI lives in the user's own profile, not here."}, {"name": "PlanForm", "kind": "class", "line": "174", "signature": "class PlanForm(FlaskForm)", "doc": "Form for creating or editing a subscription plan."}, {"name": "admin", "kind": "method", "line": "186", "signature": "def admin()", "doc": "Plan catalog read view.\n\nPlan CRUD lives at ``/admin\u003ctoken>/plans`` and\n``/admin\u003ctoken>/plans/edit/\u003cname>`` so a single page is not also\na destructive form. This view is now strictly a list of\navailable plans, with a per-row edit link.\n\nUser identity (list, edit, suspend, MFA reset, confirmation\nrotation) is the superadmin panel's job and lives at\n``/superadmin\u003ctoken>``."}, {"name": "superadmin_edit_user", "kind": "method", "line": "208", "signature": "def superadmin_edit_user(username)", "doc": "Full profile edit for a single user.\n\nLives under ``/superadmin\u003ctoken>`` because every field here touches\nidentity directly (role, verifications, quota, subscription). Admin\nrole no longer has access: the superadmin panel is the only place\nthat can rewrite those columns.\n\nFields intentionally NOT editable through this form:\n\n* ``confirmation_token`` — rotated by the resend-confirmation\n  endpoint, never hand-edited (a static token cannot expire).\n* ``phone_verification_code`` — same reason, lives in a hashed\n  column anyway so even a superadmin should not see it.\n* KEM/SRP blob columns (srp_salt, srp_verifier, public_key,\n  encrypted_private_key, kdf_salt) — modifying any of these would\n  silently brick the user's login. The server has no UI to rewrite\n  them and never should."}, {"name": "manage_plans", "kind": "method", "line": "313", "signature": "def manage_plans()", "doc": "Handle plan management."}, {"name": "edit_plan", "kind": "method", "line": "337", "signature": "def edit_plan(plan_name)", "doc": "Handle editing of plan details."}, {"name": "superadmin", "kind": "method", "line": "373", "signature": "def superadmin()", "doc": "Superadmin identity-recovery and inventory panel.\n\nRead-only by design. The server is zero-knowledge, so it can never\ndecrypt user content; instead this view surfaces the actions a\nsuperadmin actually has to perform during incident response:\n\n* inventory of encrypted file names per user (metadata only)\n* last 50 audit log entries (who did what to which account)\n* the user table with per-row privileged action buttons\n\nMutating actions live in the three POST handlers below. The GET\nhandler must never accept a side-effect query string, otherwise an\nattacker could trigger a reset by luring a superadmin to follow a\ncrafted link."}, {"name": "superadmin_reset_mfa", "kind": "method", "line": "476", "signature": "def superadmin_reset_mfa(username)", "doc": "Disable MFA and clear the pending code for ``username``.\n\nUsed when a user loses their authenticator device. We do NOT\ntouch the password, the email, or the KEM material — losing a\nsecond factor should not invalidate the rest of the identity."}, {"name": "superadmin_resend_confirmation", "kind": "method", "line": "523", "signature": "def superadmin_resend_confirmation(username)", "doc": "Issue a fresh ``confirmation_token`` for ``username``.\n\nThe token's 24h expiry is recomputed by ``update_user`` (see\nmodels/user.py:337). If the user already verified, we still issue\na new token so the link can be reused as a magic-link login path\n— useful when a user has lost access to their primary device."}, {"name": "superadmin_toggle_suspend", "kind": "method", "line": "570", "signature": "def superadmin_toggle_suspend(username)", "doc": "Flip ``subscription_status`` between active and inactive.\n\nSuspension is a billing/operational lever (refuse new uploads,\nblock new devices) that does not require touching the KEM\nmaterial. Reactivation brings the user back into the same\nposition they were in before suspension."}, {"name": "superadmin_channel_start", "kind": "method", "line": "620", "signature": "def superadmin_channel_start()", "doc": "Start a disposable secure channel in the requested mode.\n\nAccepts ``cloudflared``, ``tor``, or ``hybrid`` from the panel form.\nAny other value is rejected so a crafted POST cannot smuggle a mode\nthe supervisor does not know. Audit details carry only the mode\nplus address fingerprints, never the addresses themselves."}, {"name": "superadmin_channel_stop", "kind": "method", "line": "659", "signature": "def superadmin_channel_stop()", "doc": "Dispose the running channel and remove its addresses."}, {"name": "superadmin_channel_rotate", "kind": "method", "line": "682", "signature": "def superadmin_channel_rotate()", "doc": "Dispose current addresses and publish fresh ones in the same mode."}, {"name": "admin_contacts", "kind": "method", "line": "705", "signature": "def admin_contacts()", "doc": ""}], "symbolTotal": 19}, {"id": "utils/security.py", "label": "security.py", "title": "\u003cb>security.py\u003c/b>\u003cbr>frontend | lifeline | py\u003cbr>Centralized security primitives for QuantumVault.  Single source of truth for:  - The structured audit log used by every security-relevant event (registration, ...\u003cbr>symbols: 10 (_get_audit_logger, _correlation_id, audit_event, constant_time_compare, hash_secret)", "group": "frontend", "language": "py", "doc": "Centralized security primitives for QuantumVault.  Single source of truth for:  - The structured audit log used by every security-relevant event (registration, login, MFA, lockouts, contact, role changes, etc.). - A JSON-CSRF decorator that protects ``/api/*`` POST/PUT/DELETE routes against cross-origin forgery via the ``X-CSRF-Token`` header (the same token already issued by ``/api/csrf-token``). - Small helpers for constant-time comparison and secret hashing of short-lived codes (phone verification, MFA, recovery codes).  Keeping these in one module makes the threat model auditable: if a new endpoint is added and it touches the audit logger, the call site becomes trivially visible during a security review.", "symbols": [{"name": "_get_audit_logger", "kind": "function", "line": "46", "signature": "def _get_audit_logger()", "doc": "Return the process-wide audit logger, configured on first use.\n\nThe audit logger writes single-line JSON records to stdout. Every\nsecurity-relevant event (login success/failure, registration, MFA,\ncontact message, role change, account lockout, CSRF rejection) must\ncall :func:`audit_event` so that incident response has a single\nstream to correlate against."}, {"name": "_correlation_id", "kind": "function", "line": "72", "signature": "def _correlation_id()", "doc": "Return the per-request correlation id, generating one if missing.\n\nThe id is stored on Flask's ``g`` so a single request emits multiple\naudit events that share the same key, which is what an operator needs\nwhen reconstructing a session."}, {"name": "audit_event", "kind": "function", "line": "86", "signature": "def audit_event(event)", "doc": "Emit a structured audit record.\n\nArgs:\n    event: A short, snake_case event name, e.g. ``login_success`` or\n        ``mfa_failure``.\n    **fields: Additional structured fields to record. The keys\n        ``ts`` (unix epoch in milliseconds), ``event``, ``cid``\n        (correlation id), ``ip``, and ``ua`` are added automatically.\n\nThe ``ip`` and ``ua`` fields are recorded as ``None`` when\n``QV_AUDIT_LOG_IP=0`` or ``QV_AUDIT_LOG_UA=0`` respectively, for\noperators running for high-risk users (e.g. behind Tor) who do not\nwant client IP addresses or User-Agent strings persisted to logs.\nBoth default to enabled (``\"1\"``)."}, {"name": "constant_time_compare", "kind": "function", "line": "123", "signature": "def constant_time_compare(a, b)", "doc": "Return True if the two strings match in constant time.\n\nA regular ``==`` leaks length and content-prefix information via\nshort-circuit evaluation. This wraps :func:`hmac.compare_digest`\nwhich compares the whole input even when lengths differ."}, {"name": "hash_secret", "kind": "function", "line": "135", "signature": "def hash_secret(secret)", "doc": "Hash a short-lived secret (phone code, MFA, recovery code) for storage.\n\nUses SHA-256 with a server-side pepper. The pepper is read from the\n``QV_SECRET_PEPPER`` environment variable and falls back to a value\nderived from ``SECRET_KEY`` so the hash is non-deterministic across\nreinstalls but stable for a given deployment.\n\nThe goal is to avoid storing plaintext codes in the database: a DB\ndump no longer hands an attacker ready-to-use codes. Phone codes\nare 6 digits and MFA codes are 6 digits, so a peppered SHA-256 is\nmore than sufficient: an attacker with the DB but without the\npepper must precompute a 10^6-entry rainbow table per deployment."}, {"name": "verify_secret", "kind": "function", "line": "156", "signature": "def verify_secret(secret, expected_hash)", "doc": "Verify a short-lived secret against its stored hash."}, {"name": "new_one_time_code", "kind": "function", "line": "163", "signature": "def new_one_time_code(length)", "doc": "Return a cryptographically random numeric verification code."}, {"name": "_extract_csrf_token", "kind": "function", "line": "172", "signature": "def _extract_csrf_token()", "doc": "Return the CSRF token from the request header or body.\n\nMirrors Flask-WTF's own lookup order so a client that sets either\n``X-CSRFToken`` or ``X-CSRF-Token`` (the two spellings Flask-WTF accepts\nin ``WTF_CSRF_HEADERS``), or a ``csrf_token`` form/JSON field, is handled\nuniformly. The browser crypto in ``static/js/qv-crypto.js`` sends the\n``X-CSRFToken`` header."}, {"name": "json_csrf_protect", "kind": "function", "line": "193", "signature": "def json_csrf_protect(view)", "doc": "Decorator: require a valid CSRF token on JSON state-changing requests.\n\nThe token is the one Flask-WTF issues through ``form.hidden_tag()`` or\n``/api/csrf-token``. It is a *signed* value, so it is validated with\n:func:`flask_wtf.csrf.validate_csrf`, which unsigns it and compares it to\nthe raw token held in the session; a direct string comparison against the\nsession value never matches and must not be used. A missing or invalid\ntoken is rejected with HTTP 403 and recorded in the audit log.\n\nGET, HEAD and OPTIONS pass through unchanged because they are not\nstate-changing. Use this on every ``/api/`` route that mutates state."}, {"name": "wrapper", "kind": "function", "line": "207", "signature": "def wrapper()", "doc": ""}], "symbolTotal": 10}]</script>
+<script type="application/json" id="vis-edges">[{"from": "app_factory.py", "to": "models/user.py", "title": "resolved_imports", "dashes": false}, {"from": "app_factory.py", "to": "utils/utils.py", "title": "resolved_imports", "dashes": false}, {"from": "app_factory.py", "to": "views/admin.py", "title": "resolved_imports", "dashes": false}, {"from": "app_factory.py", "to": "views/auth.py", "title": "resolved_imports", "dashes": false}, {"from": "utils/security.py", "to": "utils/utils.py", "title": "resolved_imports", "dashes": false}, {"from": "views/admin.py", "to": "models/user.py", "title": "resolved_imports", "dashes": false}, {"from": "views/admin.py", "to": "utils/utils.py", "title": "resolved_imports", "dashes": false}, {"from": "views/admin.py", "to": "utils/utils.py", "title": "resolved_imports", "dashes": false}, {"from": "views/admin.py", "to": "views/auth.py", "title": "resolved_imports", "dashes": false}, {"from": "views/auth.py", "to": "models/user.py", "title": "resolved_imports", "dashes": false}, {"from": "views/auth.py", "to": "utils/security.py", "title": "resolved_imports", "dashes": false}, {"from": "views/auth.py", "to": "utils/utils.py", "title": "resolved_imports", "dashes": false}]</script>
+<script type="application/json" id="vis-views">[{"id": "primary-path", "title": "Primary path", "focus": ["app_factory.py", "utils/utils.py", "models/user.py", "views/auth.py", "views/admin.py", "utils/security.py"], "description": "Follow the dominant authored path first."}, {"id": "happy-path", "title": "Happy path", "focus": ["app_factory.py", "views/auth.py", "utils/security.py"], "description": "Trace the shortest authored route end to end."}, {"id": "hub-focus", "title": "Hub focus", "focus": ["app_factory.py"], "description": "Inspect the most connected authored hub."}, {"id": "side-branches", "title": "Side branches", "focus": ["views/auth.py", "views/admin.py", "utils/security.py"], "description": "Review supporting detail without losing orientation."}, {"id": "full-map", "title": "Full map", "focus": ["app_factory.py", "utils/utils.py", "models/user.py", "views/auth.py", "views/admin.py", "utils/security.py"], "description": "Restore the complete authored context."}]</script>
+<script type="application/json" id="vis-meta">{"kind": "sequence", "title": "Request Sequence", "nodeCount": 6, "edgeCount": 12, "totalFiles": "81", "neighbors": 8}</script>
+<script type="application/json" id="vis-physics">{"enabled": true, "barnesHut": {"gravitationalConstant": -60000, "centralGravity": 0.15, "springLength": 320, "damping": 0.12}, "stabilization": {"iterations": 250}}</script>
+<script type="application/json" id="vis-roles">{"frontend": "#22d3ee", "backend": "#34d399", "database": "#a78bfa", "cloud": "#fbbf24", "security": "#fb7185", "messagebus": "#fb923c", "external": "#94a3b8"}</script>
+<script>
+(function(){
+"use strict";
+var rawNodes=JSON.parse(document.getElementById("vis-nodes").textContent||"[]");
+var rawEdges=JSON.parse(document.getElementById("vis-edges").textContent||"[]");
+var views=JSON.parse(document.getElementById("vis-views").textContent||"[]");
+var meta=JSON.parse(document.getElementById("vis-meta").textContent||"{}");
+var physics=JSON.parse(document.getElementById("vis-physics").textContent||"{}");
+var roleColors=JSON.parse(document.getElementById("vis-roles").textContent||"{}");
+var root=document.documentElement;
+var container=document.getElementById("network");
+var search=document.getElementById("search");
+var passportTitle=document.getElementById("passport-title");
+var passportMeta=document.getElementById("passport-meta");
+var journey=document.getElementById("journey");
+var receipt=document.getElementById("receipt");
+var chapters=document.getElementById("chapters");
+var roleCounts=document.getElementById("role-counts");
+var nodeSymbols=document.getElementById("node-symbols");
+var guide=document.getElementById("guide");
+var exportsDialog=document.getElementById("exports");
+var state={focus:null,reach:null,lens:null,view:-1,physicsOn:true};
+var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function themeBox(){return root.getAttribute("data-theme")==="light"?{box:"#ffffff",ink:"#0f172a"}:{box:"#0f172a",ink:"#ffffff"};}
+function paintNodes(){
+var palette=themeBox();
+var update=rawNodes.map(function(n){
+return {id:n.id,color:{background:palette.box,border:roleColors[n.group]||"#94a3b8",highlight:{background:palette.box,border:roleColors[n.group]||"#94a3b8"}},font:{color:palette.ink,size:13,face:"monospace"}};});
+visNodes.update(update);}
+var visNodes=new vis.DataSet(rawNodes.map(function(n){return {id:n.id,label:n.label,title:n.title,group:n.group,shape:"box"};}));
+var visEdges=new vis.DataSet(rawEdges.map(function(e,index){return {id:"e"+index,from:e.from,to:e.to,title:e.label,arrows:"to",dashes:!!e.dashes,smooth:{type:"dynamic"},color:{opacity:0.7}};}));
+paintNodes();
+var network=new vis.Network(container,{nodes:visNodes,edges:visEdges},{
+physics:physics,
+interaction:{hover:true,navigationButtons:false,keyboard:false},
+nodes:{shape:"box",borderWidth:2,margin:10},
+edges:{arrows:{to:{enabled:true}},smooth:{type:"dynamic"}}});
+if(reduced&&physics.enabled){try{network.stabilize(50);}catch(e){}}
+function outgoing(id){return rawEdges.filter(function(e){return e.from===id;});}
+function incoming(id){return rawEdges.filter(function(e){return e.to===id;});}
+function nodeById(id){for(var i=0;i<rawNodes.length;i++){if(rawNodes[i].id===id){return rawNodes[i];}}return null;}
+function escapeHtml(text){
+return String(text==null?"":text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function neighborNames(ids){
+var cap=(meta.neighbors||8);
+return ids.slice().sort().slice(0,cap).map(function(id){var n=nodeById(id);return escapeHtml(n?n.label:id);});}
+function renderNodeDetail(node){
+if(!nodeSymbols){return;}
+var ins=incoming(node.id).map(function(e){return e.from;});
+var outs=outgoing(node.id).map(function(e){return e.to;});
+var html="";
+if(node.doc){html+='<p class="filedoc">'+escapeHtml(node.doc)+"</p>";}
+var symbols=node.symbols||[];
+if(symbols.length){
+html+="<table><thead><tr><th>Symbol</th><th>Kind</th><th>Line</th></tr></thead><tbody>";
+symbols.forEach(function(s){
+var docTitle=s.doc?(' title="'+escapeHtml(s.doc)+'"'):"";
+var name="<span"+docTitle+">"+escapeHtml(s.name)+"</span>"+(s.signature?" <code>"+escapeHtml(s.signature)+"</code>":"");
+html+="<tr><td>"+name+"</td><td>"+escapeHtml(s.kind)+"</td><td>"+escapeHtml(s.line)+"</td></tr>";});
+html+="</tbody></table>";
+var hidden=(node.symbolTotal||symbols.length)-symbols.length;
+if(hidden>0){html+='<p class="filedoc">+'+hidden+' more symbols in source.</p>';}}
+else{html+='<p class="filedoc">No symbols extracted.</p>';}
+html+='<p class="neighbors">Imports '+outs.length+(outs.length?": "+neighborNames(outs).join(", "):"")+"</p>";
+html+='<p class="neighbors">Imported by '+ins.length+(ins.length?": "+neighborNames(ins).join(", "):"")+"</p>";
+nodeSymbols.innerHTML=html;}
+function clearNodeDetail(){
+if(nodeSymbols){nodeSymbols.innerHTML="";}
+passportTitle.textContent="Diagram guide";}
+function clearNodeDetailSilent(){
+if(nodeSymbols){nodeSymbols.innerHTML="";}}
+function bfsReach(start,direction){
+var seen={};seen[start]=0;var queue=[start];var order=[start];
+while(queue.length){var current=queue.shift();var nexts=direction==="downstream"?outgoing(current):incoming(current);
+for(var i=0;i<nexts.length;i++){var nid=direction==="downstream"?nexts[i].to:nexts[i].from;
+if(!(nid in seen)){seen[nid]=seen[current]+1;queue.push(nid);order.push(nid);}}}
+return {members:order,hops:seen};}
+function bfsRoute(from,to){
+if(from===to){return [from];}
+var prev={};var seen={};seen[from]=true;var queue=[from];
+while(queue.length){var current=queue.shift();var nexts=outgoing(current);
+for(var i=0;i<nexts.length;i++){var nid=nexts[i].to;
+if(!(nid in seen)){seen[nid]=true;prev[nid]=current;
+if(nid===to){var path=[to];var c=to;while(c!==from){c=prev[c];path.unshift(c);}return path;}
+queue.push(nid);}}}
+return [];}
+function showOnly(allowed){
+var nodeUpdate=rawNodes.map(function(n){return {id:n.id,hidden:!allowed[n.id]};});
+visNodes.update(nodeUpdate);
+var edgeUpdate=rawEdges.map(function(e,index){return {id:"e"+index,hidden:!(allowed[e.from]&&allowed[e.to])};});
+visEdges.update(edgeUpdate);}
+function showAll(){
+var nodeUpdate=rawNodes.map(function(n){return {id:n.id,hidden:false};});
+visNodes.update(nodeUpdate);
+var edgeUpdate=rawEdges.map(function(e,index){return {id:"e"+index,hidden:false};});
+visEdges.update(edgeUpdate);}
+function setHash(value){try{history.replaceState(null,"",value);}catch(e){location.hash=value;}}
+function focusNode(id,reach){
+var node=nodeById(id);if(!node){return;}
+state.focus=id;state.reach=reach||null;
+var allowed={};allowed[id]=true;
+if(state.reach){var found=bfsReach(id,state.reach);found.members.forEach(function(m){allowed[m]=true;});
+var hops=0;for(var k in found.hops){if(found.hops[k]>hops){hops=found.hops[k];}}
+receipt.textContent=(state.reach==="downstream"?"Downstream":"Upstream")+" reach: "+found.members.length+" nodes, "+hops+" max hops. Authored relationships only.";}
+else{receipt.textContent="In: "+incoming(id).length+" | Out: "+outgoing(id).length+" | Views: "+views.length;}
+showOnly(allowed);
+network.selectNodes([id]);
+passportTitle.textContent=node.label;
+passportMeta.textContent=node.id+" | role "+node.group+" | "+(node.language||"")+" | "+(node.symbolTotal||0)+" symbols";
+renderNodeDetail(node);
+var hash="#focus="+encodeURIComponent(id);
+if(state.reach){hash+="&reach="+state.reach;}
+setHash(hash);}
+function probeRoute(){
+var from=document.getElementById("route-from").value.trim();
+var to=document.getElementById("route-to").value.trim();
+if(!from||!to){return;}
+var path=bfsRoute(from,to);
+if(!path.length){journey.textContent="No authored directed route from "+from+" to "+to+".";receipt.textContent="Route probe: 0 links.";return;}
+var allowed={};path.forEach(function(n){allowed[n]=true;});
+showOnly(allowed);
+network.selectNodes(path);
+try{network.fit({nodes:path,animation:reduced?false:{duration:600}});}catch(e){}
+var names=path.map(function(n){var node=nodeById(n);return node?node.label:n;});
+journey.textContent="Journey: "+names.join(" -> ")+" ("+(path.length-1)+" hops).";
+receipt.textContent="Route probe: "+path.length+" nodes, "+(path.length-1)+" links.";
+setHash("#route="+encodeURIComponent(from)+"~"+encodeURIComponent(to));}
+function applyLens(role){
+state.lens=role;
+if(!role){showAll();clearNodeDetail();receipt.textContent="Lens cleared.";setHash("#");return;}
+var counts={};rawNodes.forEach(function(n){counts[n.group]=(counts[n.group]||0)+1;});
+var allowed={};rawNodes.forEach(function(n){if(n.group===role){allowed[n.id]=true;}});
+showOnly(allowed);
+var parts=[];for(var k in counts){parts.push(k+": "+counts[k]);}
+receipt.textContent="Lens "+role+": "+(counts[role]||0)+" of "+rawNodes.length+" nodes. "+parts.join(" | ");
+setHash("#lens="+encodeURIComponent(role));}
+function showView(index){
+if(!views.length){return;}
+state.view=(index+views.length)%views.length;
+var view=views[state.view];
+chapters.querySelectorAll("button").forEach(function(b,i){b.disabled=(i===state.view);});
+passportTitle.textContent=view.title;
+passportMeta.textContent=view.description||"";
+clearNodeDetailSilent();
+if(!view.focus.length){showAll();}
+else{var allowed={};view.focus.forEach(function(n){allowed[n]=true;});showOnly(allowed);network.selectNodes(view.focus);}
+journey.textContent=view.focus.length?("Chapter focus: "+view.focus.join(", ")):"";
+receipt.textContent="Chapter "+(state.view+1)+" of "+views.length+".";
+setHash("#view="+encodeURIComponent(view.id));}
+function renderChapters(){
+chapters.innerHTML="";
+views.forEach(function(view,index){var b=document.createElement("button");b.type="button";b.textContent=view.title;b.setAttribute("aria-label","Show chapter "+view.title);b.setAttribute("title","Focus the "+view.title+" chapter");b.addEventListener("click",function(){showView(index);});chapters.appendChild(b);});}
+function renderRoleCounts(){
+var counts={};rawNodes.forEach(function(n){counts[n.group]=(counts[n.group]||0)+1;});
+roleCounts.innerHTML="";
+Object.keys(counts).sort().forEach(function(role){var s=document.createElement("button");s.type="button";s.className="chip";s.textContent=role+": "+counts[role];s.setAttribute("aria-label","Filter role "+role);s.setAttribute("title","Highlight the "+role+" role");s.addEventListener("click",function(){applyLens(role);});roleCounts.appendChild(s);});}
+function cyclePreset(){
+var presets=["classic","flow","blueprint","editorial"];
+var current=root.getAttribute("data-preset")||"classic";
+root.setAttribute("data-preset",presets[(presets.indexOf(current)+1)%presets.length]);}
+function toggleTheme(){
+var current=root.getAttribute("data-theme")||"dark";
+root.setAttribute("data-theme",current==="dark"?"light":"dark");
+paintNodes();}
+function togglePhysics(){
+state.physicsOn=!state.physicsOn;
+try{network.setOptions({physics:{enabled:state.physicsOn}});}catch(e){}
+receipt.textContent=state.physicsOn?"Physics resumed.":"Physics frozen; nodes stay draggable.";}
+function exportPNG(){
+try{
+var link=document.createElement("a");
+link.href=network.canvas.frame.canvas.toDataURL("image/png");
+link.download="system-map-"+(meta.kind||"map")+".png";
+document.body.appendChild(link);link.click();
+setTimeout(function(){link.remove();},400);
+receipt.textContent="PNG snapshot downloaded.";
+}catch(e){receipt.textContent="PNG export unavailable in this browser.";}}
+function exportJSON(){
+var payload={kind:meta.kind,title:meta.title,nodes:rawNodes,edges:rawEdges,views:views};
+var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+var link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="system-map-"+(meta.kind||"map")+".json";document.body.appendChild(link);link.click();
+setTimeout(function(){URL.revokeObjectURL(link.href);link.remove();},400);}
+function readHash(){
+var hash=location.hash||"";
+if(hash.indexOf("#route=")===0){var parts=hash.slice(7).split("~");if(parts.length===2){document.getElementById("route-from").value=decodeURIComponent(parts[0]);document.getElementById("route-to").value=decodeURIComponent(parts[1]);probeRoute();}return;}
+if(hash.indexOf("#lens=")===0){applyLens(decodeURIComponent(hash.slice(6)));return;}
+if(hash.indexOf("#view=")===0){var id=decodeURIComponent(hash.slice(6));for(var i=0;i<views.length;i++){if(views[i].id===id){showView(i);return;}}return;}
+if(hash.indexOf("#focus=")===0){var rest=hash.slice(7).split("&reach=");focusNode(decodeURIComponent(rest[0]),rest[1]?decodeURIComponent(rest[1]):null);return;}}
+network.on("click",function(params){
+if(params.nodes.length>0){focusNode(params.nodes[0]);}});
+network.on("stabilized",function(){receipt.textContent="Physics stabilized: "+rawNodes.length+" nodes placed.";});
+document.querySelectorAll("[data-action]").forEach(function(btn){
+btn.addEventListener("click",function(){
+var action=btn.getAttribute("data-action");
+if(action==="reach-up"&&state.focus){focusNode(state.focus,"upstream");}
+else if(action==="reach-down"&&state.focus){focusNode(state.focus,"downstream");}
+else if(action==="route"){probeRoute();}
+else if(action==="lens"){applyLens(state.lens?null:"backend");}
+else if(action==="views-prev"){showView(state.view-1);}
+else if(action==="views-next"){showView(state.view+1);}
+else if(action==="play"){var i=0;var step=function(){if(i>=views.length){return;}showView(i);i++;if(!reduced){setTimeout(step,1400);}};step();}
+else if(action==="stabilize"){try{network.stabilize();}catch(e){}receipt.textContent="Stabilizing physics...";}
+else if(action==="physics"){togglePhysics();}
+else if(action==="present"){document.body.classList.toggle("present");}
+else if(action==="style"){cyclePreset();}
+else if(action==="theme"){toggleTheme();}
+else if(action==="export"){if(typeof exportsDialog.showModal==="function"){exportsDialog.showModal();}}
+else if(action==="help"){if(typeof guide.showModal==="function"){guide.showModal();}}
+else if(action==="close-guide"){guide.close();}
+else if(action==="close-exports"){exportsDialog.close();}
+else if(action==="export-png"){exportPNG();}
+else if(action==="export-json"){exportJSON();}});});
+search.addEventListener("input",function(){
+var term=search.value.trim().toLowerCase();
+if(!term){showAll();return;}
+var allowed={};rawNodes.forEach(function(n){
+if(n.label.toLowerCase().indexOf(term)>=0||n.id.toLowerCase().indexOf(term)>=0){allowed[n.id]=true;}});
+showOnly(allowed);});
+document.addEventListener("keydown",function(ev){
+if(ev.target&&(ev.target.tagName==="INPUT"||ev.target.tagName==="TEXTAREA")){return;}
+if(ev.key==="/"){ev.preventDefault();search.focus();}
+else if(ev.key==="R"||ev.key==="r"){var f=document.getElementById("route-from");if(f){f.focus();}}
+else if(ev.key==="L"||ev.key==="l"){applyLens(state.lens?null:"backend");}
+else if(ev.key==="P"||ev.key==="p"){showView(state.view+1);}
+else if(ev.key==="["){showView(state.view-1);}
+else if(ev.key==="]"){showView(state.view+1);}
+else if(ev.key==="B"||ev.key==="b"){togglePhysics();}
+else if(ev.key==="F"||ev.key==="f"){document.body.classList.toggle("present");}
+else if(ev.key==="S"||ev.key==="s"){cyclePreset();}
+else if(ev.key==="T"||ev.key==="t"){toggleTheme();}
+else if(ev.key==="E"||ev.key==="e"){if(typeof exportsDialog.showModal==="function"){exportsDialog.showModal();}}
+else if(ev.key==="?"){if(typeof guide.showModal==="function"){guide.showModal();}}
+else if(ev.key==="+"){try{network.zoomIn();}catch(e){}}
+else if(ev.key==="-"){try{network.zoomOut();}catch(e){}}
+else if(ev.key==="0"){try{network.fit();}catch(e){}}});
+passportMeta.textContent=(meta.nodeCount||rawNodes.length)+" of "+(meta.totalFiles||rawNodes.length)+" files | "+(meta.edgeCount||rawEdges.length)+" links | "+views.length+" chapters. Primary scope only; full listing lives in the knowledge base.";
+receipt.textContent="Live physics network. Drag nodes, search, focus, trace reach, probe routes, compare roles, or play chapters.";
+renderChapters();renderRoleCounts();readHash();
+})();
+</script>
+</body>
+</html>

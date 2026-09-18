@@ -10,6 +10,11 @@ from flask_limiter.util import get_remote_address
 from utils.utils import database_path
 from .auth import role_required
 from controllers.contact import ContactController
+from controllers.secure_channel import (
+    ChannelMode,
+    SecureChannelConfig,
+    SecureChannelManager,
+)
 from models.superadmin_audit import SuperadminAuditDB
 import os
 import secrets
@@ -21,6 +26,118 @@ admin_bp = Blueprint('admin', __name__)
 limiter = Limiter(key_func=get_remote_address)
 token = secrets.token_urlsafe(32)
 config = Config(load_payload())
+
+
+def _audit_action(
+    actor: str,
+    action: str,
+    target_user: str | None,
+    ip: str | None,
+    details: str,
+) -> None:
+    """Append one superadmin audit row with a single construction site."""
+    SuperadminAuditDB(config.SQLALCHEMY_DATABASE_PATH).record(
+        actor=actor,
+        action=action,
+        target_user=target_user,
+        ip=ip,
+        details=details,
+    )
+
+
+def _channel_manager() -> SecureChannelManager:
+    """Build the disposable channel manager from env and app config."""
+    channel_config = SecureChannelConfig.from_mapping(current_app.config)
+    return SecureChannelManager.from_config(channel_config)
+
+
+def _s3_reachable(timeout: float = 1.0) -> bool:
+    """Return whether the Garage S3 endpoint answers a TCP probe.
+
+    The file inventory below fans out one listing per user, each
+    with its own retry budget. Probing once up front keeps a downed
+    object store from turning every panel view into a retry storm
+    in the logs. A closed port means every listing would fail
+    anyway, so skipping them loses nothing.
+    """
+    from urllib.parse import urlparse
+
+    endpoint = (
+        current_app.config.get("S3_ENDPOINT_URL")
+        or os.environ.get("S3_ENDPOINT_URL", "")
+    )
+    try:
+        parts = urlparse(endpoint)
+        host = parts.hostname or "localhost"
+        port = parts.port or 3900
+    except ValueError:
+        return False
+    import socket
+
+    try:
+        with socket.create_connection((host, port), timeout=timeout):
+            return True
+    except OSError:
+        return False
+
+
+def _read_log_tail(state_dir: str, limit: int = 15) -> str:
+    """Return the last lines of backend logs for operator diagnosis.
+
+    Only the superadmin panel sees this, and it never leaves the
+    server: Jinja autoescaping renders it as text. Missing logs
+    yield an empty string instead of an error.
+    """
+    from pathlib import Path
+
+    lines: list[str] = []
+    candidates = [Path(state_dir) / "cloudflared.log"]
+    try:
+        tor_logs = sorted(
+            Path(state_dir).glob("tor-data-*/tor.log"),
+            key=lambda entry: entry.stat().st_mtime,
+        )
+    except OSError:
+        tor_logs = []
+    if tor_logs:
+        candidates.append(tor_logs[-1])
+    for candidate in candidates:
+        try:
+            text = candidate.read_text(encoding="utf-8", errors="replace")
+        except (FileNotFoundError, OSError):
+            continue
+        trailing = text.splitlines()[-limit:]
+        if trailing:
+            lines.append(f"--- {candidate.name} ---")
+            lines.extend(trailing)
+    return "\n".join(lines[-limit:])
+
+
+def _channel_diagnostics(manager: SecureChannelManager) -> dict:
+    """Collect binary availability and paths without launching anything."""
+    import shutil
+    from pathlib import Path
+
+    backends: dict[str, dict[str, object]] = {}
+    for label, binary in (
+        ("cloudflared", manager.cloudflared_bin),
+        ("tor", manager.tor_bin),
+    ):
+        if "/" in binary:
+            resolved = binary if Path(binary).is_file() else None
+        else:
+            resolved = shutil.which(binary)
+        backends[label] = {
+            "configured": binary,
+            "resolved": resolved or "",
+            "available": resolved is not None,
+        }
+    return {
+        **backends,
+        "state_dir": manager.state_dir,
+        "local_port": manager.local_port,
+        "log_tail": _read_log_tail(manager.state_dir),
+    }
 class UserEditForm(FlaskForm):
     """Form for editing user details.
 
@@ -295,18 +412,32 @@ def superadmin():
     # Encrypted-file inventory: list names per user, not contents.
     # The S3 list is the same call the old panel made, we just don't
     # render a "Download decrypted" button next to each row anymore.
+    # One probe up front: when Garage is down every listing would
+    # fail with retries, so skip the fan-out instead of logging a
+    # storm on each panel view.
     file_inventory = []
-    for u in user_rows:
-        try:
-            names = file_controller.list_encrypted_files(u["username"])
-        except Exception:
-            # S3 transient failure should not break the whole panel;
-            # an empty inventory for that user is honest enough.
-            names = []
-        for name in names:
-            file_inventory.append({"username": u["username"], "file": name})
+    if _s3_reachable():
+        for u in user_rows:
+            try:
+                names = file_controller.list_encrypted_files(u["username"])
+            except Exception:
+                # S3 transient failure should not break the whole panel;
+                # an empty inventory for that user is honest enough.
+                names = []
+            for name in names:
+                file_inventory.append({"username": u["username"], "file": name})
 
     audit_entries = audit_db.recent(limit=50)
+
+    channel_manager = _channel_manager()
+    try:
+        channel_status = channel_manager.status()
+    except Exception:
+        channel_status = None
+    try:
+        channel_diag: object = _channel_diagnostics(channel_manager)
+    except Exception:
+        channel_diag = None
 
     return render_template(
         "superadmin.html",
@@ -315,6 +446,8 @@ def superadmin():
         audit=audit_entries,
         token=token,
         user=current_user,
+        channel=channel_status,
+        channel_diag=channel_diag,
     )
 
 
@@ -348,7 +481,6 @@ def superadmin_reset_mfa(username: str):
     second factor should not invalidate the rest of the identity.
     """
     user_db = UserDB(config.SQLALCHEMY_DATABASE_PATH)
-    audit_db = SuperadminAuditDB(config.SQLALCHEMY_DATABASE_PATH)
 
     user = user_db.get_user(username)
     if not user:
@@ -367,12 +499,12 @@ def superadmin_reset_mfa(username: str):
         flash(f"MFA reset failed: {type(exc).__name__}: {exc}", "error")
         return redirect(url_for('admin.superadmin'))
 
-    audit_db.record(
-        actor=current_user.username,
-        action="reset_mfa",
-        target_user=username,
-        ip=request.remote_addr,
-        details=f"mfa_enabled={was_enabled}->False",
+    _audit_action(
+        current_user.username,
+        "reset_mfa",
+        username,
+        request.remote_addr,
+        f"mfa_enabled={was_enabled}->False",
     )
     flash(
         f"MFA cleared for {username!r}. The user will be prompted to "
@@ -397,7 +529,6 @@ def superadmin_resend_confirmation(username: str):
     — useful when a user has lost access to their primary device.
     """
     user_db = UserDB(config.SQLALCHEMY_DATABASE_PATH)
-    audit_db = SuperadminAuditDB(config.SQLALCHEMY_DATABASE_PATH)
 
     user = user_db.get_user(username)
     if not user:
@@ -415,12 +546,12 @@ def superadmin_resend_confirmation(username: str):
         )
         return redirect(url_for('admin.superadmin'))
 
-    audit_db.record(
-        actor=current_user.username,
-        action="resend_confirmation",
-        target_user=username,
-        ip=request.remote_addr,
-        details="confirmation_token rotated",
+    _audit_action(
+        current_user.username,
+        "resend_confirmation",
+        username,
+        request.remote_addr,
+        "confirmation_token rotated",
     )
     flash(
         f"New confirmation token issued for {username!r}. "
@@ -445,7 +576,6 @@ def superadmin_toggle_suspend(username: str):
     position they were in before suspension.
     """
     user_db = UserDB(config.SQLALCHEMY_DATABASE_PATH)
-    audit_db = SuperadminAuditDB(config.SQLALCHEMY_DATABASE_PATH)
 
     user = user_db.get_user(username)
     if not user:
@@ -469,17 +599,102 @@ def superadmin_toggle_suspend(username: str):
         )
         return redirect(url_for('admin.superadmin'))
 
-    audit_db.record(
-        actor=current_user.username,
-        action="toggle_suspend",
-        target_user=username,
-        ip=request.remote_addr,
-        details=f"subscription_status={previous}->{new_status}",
+    _audit_action(
+        current_user.username,
+        "toggle_suspend",
+        username,
+        request.remote_addr,
+        f"subscription_status={previous}->{new_status}",
     )
     flash(
         f"User {username!r} subscription: {previous} -> {new_status}.",
         "success",
     )
+    return redirect(url_for('admin.superadmin'))
+
+
+@admin_bp.route(f'/superadmin{token}/channel-start', methods=['POST'])
+@login_required
+@role_required('superadmin')
+@limiter.limit("5 per minute")
+def superadmin_channel_start():
+    """Start a disposable secure channel in the requested mode.
+
+    Accepts ``cloudflared``, ``tor``, or ``hybrid`` from the panel form.
+    Any other value is rejected so a crafted POST cannot smuggle a mode
+    the supervisor does not know. Audit details carry only the mode
+    plus address fingerprints, never the addresses themselves.
+    """
+    raw_mode = (request.form.get("mode") or "").strip().lower()
+    mode = ChannelMode.parse(raw_mode)
+    if mode is ChannelMode.DISABLED:
+        flash("Unknown channel mode. Choose cloudflared, tor, or hybrid.", "error")
+        return redirect(url_for('admin.superadmin'))
+    manager = _channel_manager()
+    try:
+        current = manager.start(mode)
+    except (ValueError, RuntimeError, OSError) as exc:
+        flash(
+            f"Channel start failed: {type(exc).__name__}: {exc}. "
+            "Run `make doctor-fix` on the server or contact your "
+            "administrator.",
+            "error",
+        )
+        return redirect(url_for('admin.superadmin'))
+    _audit_action(
+        current_user.username,
+        "channel_start",
+        None,
+        request.remote_addr,
+        manager.audit_details("start", current.mode, current.cloud_url, current.onion_url),
+    )
+    flash(f"Secure channel started in {current.mode.value} mode.", "success")
+    return redirect(url_for('admin.superadmin'))
+
+
+@admin_bp.route(f'/superadmin{token}/channel-stop', methods=['POST'])
+@login_required
+@role_required('superadmin')
+@limiter.limit("5 per minute")
+def superadmin_channel_stop():
+    """Dispose the running channel and remove its addresses."""
+    manager = _channel_manager()
+    try:
+        manager.stop()
+    except (RuntimeError, OSError) as exc:
+        flash(f"Channel stop failed: {type(exc).__name__}: {exc}", "error")
+        return redirect(url_for('admin.superadmin'))
+    _audit_action(
+        current_user.username,
+        "channel_stop",
+        None,
+        request.remote_addr,
+        "stop mode=any",
+    )
+    flash("Secure channel disposed.", "success")
+    return redirect(url_for('admin.superadmin'))
+
+
+@admin_bp.route(f'/superadmin{token}/channel-rotate', methods=['POST'])
+@login_required
+@role_required('superadmin')
+@limiter.limit("5 per minute")
+def superadmin_channel_rotate():
+    """Dispose current addresses and publish fresh ones in the same mode."""
+    manager = _channel_manager()
+    try:
+        current = manager.rotate()
+    except (ValueError, RuntimeError, OSError) as exc:
+        flash(f"Channel rotation failed: {type(exc).__name__}: {exc}", "error")
+        return redirect(url_for('admin.superadmin'))
+    _audit_action(
+        current_user.username,
+        "channel_rotate",
+        None,
+        request.remote_addr,
+        manager.audit_details("rotate", current.mode, current.cloud_url, current.onion_url),
+    )
+    flash(f"Secure channel rotated in {current.mode.value} mode.", "success")
     return redirect(url_for('admin.superadmin'))
 
 

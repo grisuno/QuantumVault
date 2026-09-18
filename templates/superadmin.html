@@ -32,6 +32,97 @@
   {% endif %}
 {% endwith %}
 
+<h2 class="mt-4">Disposable Secure Channels</h2>
+<p class="small" style="color:#cbd5e1;">
+  Ephemeral inbound paths via Cloudflare quick tunnel, Tor onion service,
+  or both (hybrid). Addresses are disposable: rotate publishes fresh ones
+  and destroys the old. Only the mode and address fingerprints reach the
+  audit log, never the addresses themselves.
+</p>
+{% if channel and channel.active %}
+<table class="table table-sm">
+  <thead>
+    <tr><th>mode</th><th>cloudflare</th><th>onion</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="badge bg-success">{{ channel.mode.value }}</span></td>
+      <td><code>{{ channel.cloud_url or '—' }}</code></td>
+      <td><code>{{ channel.onion_url or '—' }}</code></td>
+    </tr>
+  </tbody>
+</table>
+<form method="post" action="{{ url_for('admin.superadmin_channel_rotate') }}" class="d-inline">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <button type="submit" class="btn btn-sm btn-outline-warning"
+          onclick="return confirm('Rotate channel addresses? Old addresses stop working.')">rotate</button>
+</form>
+<form method="post" action="{{ url_for('admin.superadmin_channel_stop') }}" class="d-inline">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <button type="submit" class="btn btn-sm btn-outline-danger"
+          onclick="return confirm('Dispose the secure channel?')">dispose</button>
+</form>
+{% else %}
+<p class="small" style="color:#cbd5e1;">No disposable channel is running.</p>
+{% if channel_diag %}
+<table class="table table-sm">
+  <thead>
+    <tr><th>backend</th><th>binary</th><th>status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>cloudflared</td>
+      <td><code>{{ channel_diag.cloudflared.configured }}</code></td>
+      <td>
+        {% if channel_diag.cloudflared.available %}
+          <span class="badge bg-success">found</span>
+          <code>{{ channel_diag.cloudflared.resolved }}</code>
+        {% else %}
+          <span class="badge bg-danger">missing</span>
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>tor</td>
+      <td><code>{{ channel_diag.tor.configured }}</code></td>
+      <td>
+        {% if channel_diag.tor.available %}
+          <span class="badge bg-success">found</span>
+          <code>{{ channel_diag.tor.resolved }}</code>
+        {% else %}
+          <span class="badge bg-danger">missing</span>
+        {% endif %}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="small" style="color:#cbd5e1;">
+  Forwarding to <code>127.0.0.1:{{ channel_diag.local_port }}</code>,
+  state in <code>{{ channel_diag.state_dir }}</code>.
+  {% if not channel_diag.cloudflared.available %}
+  Hybrid and cloudflared modes need the binary. Run
+  <code>make doctor-fix</code> on the server or contact your
+  administrator (advanced: set
+  <code>QV_CHANNEL_CLOUDFLARED_BIN</code> to its path). Tor-only mode
+  works without it.
+  {% endif %}
+</p>
+{% if channel_diag.log_tail %}
+<p class="small" style="color:#cbd5e1;">Last backend log lines:</p>
+<pre class="small p-2" style="color:#e2e8f0;background:rgba(0,0,0,0.35);border-radius:6px;white-space:pre-wrap;">{{ channel_diag.log_tail }}</pre>
+{% endif %}
+{% endif %}
+<form method="post" action="{{ url_for('admin.superadmin_channel_start') }}" class="d-inline">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <select name="mode" class="form-select form-select-sm d-inline w-auto">
+    <option value="hybrid">hybrid (cloudflare + tor)</option>
+    <option value="tor">tor</option>
+    <option value="cloudflared">cloudflared</option>
+  </select>
+  <button type="submit" class="btn btn-sm btn-outline-success">start channel</button>
+</form>
+{% endif %}
+
 <h2 class="mt-4">Users</h2>
 <table class="table table-striped table-sm">
   <thead>
@@ -81,18 +172,21 @@
       </td>
       <td>
         <form method="post" action="{{ url_for('admin.superadmin_reset_mfa', username=u.username) }}" class="d-inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <button type="submit" class="btn btn-sm btn-outline-warning"
                   onclick="return confirm('Clear MFA for {{ u.username }}?')">reset MFA</button>
         </form>
       </td>
       <td>
         <form method="post" action="{{ url_for('admin.superadmin_resend_confirmation', username=u.username) }}" class="d-inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <button type="submit" class="btn btn-sm btn-outline-info"
                   onclick="return confirm('Rotate confirmation token for {{ u.username }}?')">re-issue token</button>
         </form>
       </td>
       <td>
         <form method="post" action="{{ url_for('admin.superadmin_toggle_suspend', username=u.username) }}" class="d-inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           {% if u.subscription_status == 'active' %}
             <button type="submit" class="btn btn-sm btn-outline-danger"
                     onclick="return confirm('Suspend {{ u.username }}?')">suspend</button>

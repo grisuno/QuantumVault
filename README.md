@@ -216,6 +216,16 @@ depends on minimizing what a compromised or subpoenaed server can reveal:
   QuantumVault's control; disable or rotate them aggressively at the
   reverse-proxy layer if they are not needed, since they can record client
   addresses independently of the application's own audit log.
+- For disposable inbound addresses instead of a static `torrc` entry,
+  use the superadmin panel's secure channels (see
+  `docs/SECURE_CHANNELS.md`): one click publishes a Cloudflare quick
+  tunnel, a disposable onion service, or both (hybrid), and rotation
+  destroys the old addresses. Audit records keep only fingerprints,
+  never the addresses. First run `make doctor` on the server to check
+  that `tor`, `cloudflared`, Redis, and Garage are present;
+  `make doctor-fix` installs what is missing. Set
+  `QV_CHANNEL_LOCAL_SCHEME=https` when the local listener speaks TLS
+  (the dev server does), otherwise the tunnel answers Bad Gateway.
 
 ## Common Make Targets
 
@@ -233,7 +243,8 @@ Run `make help` to list all available targets. The most relevant ones:
 | `make redis-up` / `make redis-down` / `make redis-status` | Manage a native Redis instance |
 | `make db-reset` | Wipe the development SQLite database |
 | `make backupdb` | Snapshot `instance/users.db` to `backups/` |
-| `make doctor` | Import-smoke test of every project module to report missing dependencies |
+| `make doctor` | Check the full operator environment: modules, binaries, redis, garage, channel backends |
+| `make doctor-fix` | Install everything `make doctor` reports missing (pip deps, apt packages, cloudflared, garage) |
 | `make test` | Run the pytest suite (SRP-6a roundtrip, audit-log redaction, facade, cover, CSRF helper tests) |
 | `make mutate` | Run mutation testing for the facade and cover contracts |
 | `make audit` | Run the security audit stack: `pip-audit` + `bandit` + secret scanning |
@@ -260,3 +271,27 @@ QuantumVault is released under the **GNU Affero General Public License v3.0 (AGP
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y2Z73AV)
+
+<!-- readmenator-kb-link -->
+## Knowledge Base
+
+This project has been analyzed by [ReadMenator](https://github.com/grisuno/ReadMenator),
+a zero-token polyglot static analysis tool. Analysis outputs are available:
+
+- **[KNOWLEDGE_BASE.md](./KNOWLEDGE_BASE.md)** -- Full architecture reference with all
+  classes, functions, imports, dependency graphs, UML class diagrams, security
+  audit findings, community analysis, and more.
+- **[readmenator-agent/](./readmenator-agent/)** -- Agent-friendly, grep-optimized index.
+  - `INDEX.md` -- Quick reference: what each file does
+  - `API.md` -- Public function contracts
+  - `GOTCHAS.md` -- Change warnings
+  - `SECURITY.md` -- Findings by severity
+- **[readmenator-wiki/](./readmenator-wiki/)** -- Navigable wiki (start here for the big picture).
+  - `index.md` -- Entry point: overview, reading order, god nodes, connections
+  - `community_*.md` -- One synthesis page per code community
+  - `REPORT.md` -- Honest audit: coverage, confidence, limits
+
+AI agents: Read `readmenator-wiki/index.md` first for the big picture, then `readmenator-agent/INDEX.md` for grep-friendly lookup.
+Developers: Read `KNOWLEDGE_BASE.md` for full architecture reference.
+<!-- /readmenator-kb-link -->
+

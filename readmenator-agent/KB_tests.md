@@ -1,0 +1,352 @@
+# Subsystem: tests
+
+## tests/__init__.py
+- Layer: testing
+- Language: py
+
+## tests/conftest.py
+- Layer: testing
+- Doc: Shared pytest fixtures for the QuantumVault test suite.  Builds the Flask app via :func:`app_factory.create_app` in a mo
+- Language: py
+- Symbols:
+  - `_hermetic_env` (function, line 26) `def _hermetic_env(monkeypatch)`
+  - `_push_request_context` (function, line 58) `def _push_request_context()`
+  - `app` (function, line 76) `def app(tmp_path)`
+  - `client` (function, line 101) `def client(app)`
+  - `_ListLogHandler` (class, line 106) `class _ListLogHandler(Handler)`
+  - `audit_records` (method, line 118) `def audit_records()`
+  - `__init__` (method, line 109) `def __init__(self)`
+  - `emit` (method, line 113) `def emit(self, record)`
+- Depends on: `app_factory.py`, `utils/security.py`
+
+## tests/test_account_facade.py
+- Layer: testing
+- Doc: Behaviour contract: the decoy site requires a deniable passphrase.  When the cover facade is enabled, the account page m
+- Language: py
+- Symbols:
+  - `fast_hasher` (function, line 23) `def fast_hasher()`
+  - `_make_user` (function, line 27) `def _make_user(db_path, username)`
+  - `_authenticated_client` (function, line 55) `def _authenticated_client(application, db_path)`
+  - `_build` (function, line 65) `def _build(tmp_path, fast_hasher)`
+  - `test_facade_enabled_requires_a_deniable_passphrase` (function, line 88) `def test_facade_enabled_requires_a_deniable_passphrase(tmp_path, fast_hasher)`
+  - `test_facade_disabled_keeps_it_optional` (function, line 99) `def test_facade_disabled_keeps_it_optional(tmp_path, fast_hasher)`
+- Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
+
+## tests/test_auth_phone.py
+- Layer: testing
+- Doc: Regression tests for the phone-verification page and resend route.  The verify-phone template links its "Resend Verifica
+- Language: py
+- Symbols:
+  - `test_verify_phone_page_renders` (function, line 18) `def test_verify_phone_page_renders(client)`
+  - `test_resend_endpoint_is_registered` (function, line 25) `def test_resend_endpoint_is_registered(app)`
+  - `test_resend_route_accepts_only_post` (function, line 31) `def test_resend_route_accepts_only_post(app)`
+
+## tests/test_cover.py
+- Layer: testing
+- Doc: Specification tests for the QV-FACADE-2 configurable cover templates.  Behaviour is specified per collaborator (catalog,
+- Language: py
+- Symbols:
+  - `fast_hasher` (function, line 42) `def fast_hasher()`
+  - `renderer` (function, line 47) `def renderer()`
+  - `store` (function, line 52) `def store(tmp_path, renderer)`
+  - `_facade_overrides` (function, line 56) `def _facade_overrides(fast_hasher)`
+  - `_client` (function, line 68) `def _client(tmp_path, fast_hasher)`
+  - `TestCatalog` (class, line 83) `class TestCatalog`
+  - `TestSanitizer` (class, line 103) `class TestSanitizer`
+  - `TestRenderer` (class, line 158) `class TestRenderer`
+  - `TestCustomStore` (class, line 189) `class TestCustomStore`
+  - `TestCoverService` (class, line 244) `class TestCoverService`
+  - `TestCoverHttp` (class, line 280) `class TestCoverHttp`
+  - `test_catalog_ships_five_distinct_templates` (method, line 84) `def test_catalog_ships_five_distinct_templates(self)`
+  - `test_default_template_exists` (method, line 89) `def test_default_template_exists(self)`
+  - `test_every_template_validates_and_renders` (method, line 92) `def test_every_template_validates_and_renders(self, renderer)`
+  - `test_empty_payload_fills_defaults` (method, line 104) `def test_empty_payload_fills_defaults(self)`
+  - `test_unknown_variable_is_rejected` (method, line 109) `def test_unknown_variable_is_rejected(self)`
+  - `test_invalid_email_is_rejected` (method, line 113) `def test_invalid_email_is_rejected(self)`
+  - `test_control_characters_are_stripped` (method, line 117) `def test_control_characters_are_stripped(self)`
+  - `test_overlong_value_is_rejected` (method, line 121) `def test_overlong_value_is_rejected(self)`
+  - `test_multiline_body_preserves_line_breaks` (method, line 125) `def test_multiline_body_preserves_line_breaks(self)`
+  - `test_single_line_value_flattens_line_breaks` (method, line 129) `def test_single_line_value_flattens_line_breaks(self)`
+  - `test_multiline_flag_matches_spec` (method, line 137) `def test_multiline_flag_matches_spec(self, spec)`
+  - `test_text_boundary_is_inclusive` (method, line 144) `def test_text_boundary_is_inclusive(self)`
+  - `test_email_boundary_is_inclusive` (method, line 150) `def test_email_boundary_is_inclusive(self)`
+  - `test_variables_are_autoescaped` (method, line 159) `def test_variables_are_autoescaped(self, renderer)`
+  - `test_unknown_variable_is_rejected` (method, line 164) `def test_unknown_variable_is_rejected(self, renderer)`
+  - `test_dunder_access_is_rejected` (method, line 168) `def test_dunder_access_is_rejected(self, renderer)`
+  - `test_inline_script_is_rejected` (method, line 172) `def test_inline_script_is_rejected(self, renderer)`
+  - `test_external_form_action_is_rejected` (method, line 176) `def test_external_form_action_is_rejected(self, renderer)`
+  - `test_template_import_is_rejected` (method, line 180) `def test_template_import_is_rejected(self, renderer)`
+  - `test_blank_source_is_rejected` (method, line 184) `def test_blank_source_is_rejected(self, renderer)`
+  - `test_valid_template_round_trips` (method, line 190) `def test_valid_template_round_trips(self, store)`
+  - `test_bad_extension_is_rejected` (method, line 196) `def test_bad_extension_is_rejected(self, store)`
+  - `test_oversize_template_is_rejected` (method, line 200) `def test_oversize_template_is_rejected(self, store)`
+  - `test_path_traversal_is_neutralized` (method, line 204) `def test_path_traversal_is_neutralized(self, store)`
+  - `test_script_template_is_rejected` (method, line 209) `def test_script_template_is_rejected(self, store)`
+  - `test_missing_template_raises` (method, line 213) `def test_missing_template_raises(self, store)`
+  - `test_non_bytes_payload_is_rejected` (method, line 217) `def test_non_bytes_payload_is_rejected(self, store)`
+  - `test_disallowed_character_filename_is_rejected` (method, line 221) `def test_disallowed_character_filename_is_rejected(self, store)`
+  - `test_exactly_max_size_is_accepted` (method, line 225) `def test_exactly_max_size_is_accepted(self, store)`
+  - `test_nested_directory_is_created` (method, line 229) `def test_nested_directory_is_created(self, tmp_path, renderer)`
+  - `test_two_templates_share_the_store` (method, line 233) `def test_two_templates_share_the_store(self, store)`
+  - `test_directory_with_allowed_suffix_is_ignored` (method, line 238) `def test_directory_with_allowed_suffix_is_ignored(self, store)`
+  - `test_selects_a_builtin_template` (method, line 245) `def test_selects_a_builtin_template(self, renderer, store)`
+  - `test_unknown_template_falls_back_to_default` (method, line 250) `def test_unknown_template_falls_back_to_default(self, renderer, store)`
+  - `test_missing_custom_template_falls_back_to_default` (method, line 255) `def test_missing_custom_template_falls_back_to_default(self, renderer, store)`
+  - `test_custom_template_is_rendered` (method, line 260) `def test_custom_template_is_rendered(self, renderer, store)`
+  - `test_builtin_selection_ignores_a_custom_name` (method, line 267) `def test_builtin_selection_ignores_a_custom_name(self, renderer, store)`
+  - `test_custom_selection_renders_the_custom_marker` (method, line 274) `def test_custom_selection_renders_the_custom_marker(self, renderer, store)`
+  - `test_default_cover_selects_search_portal` (method, line 281) `def test_default_cover_selects_search_portal(self, tmp_path, fast_hasher)`
+  - `test_configured_template_is_served` (method, line 287) `def test_configured_template_is_served(self, tmp_path, fast_hasher)`
+  - `test_gate_still_works_with_configured_template` (method, line 298) `def test_gate_still_works_with_configured_template(self, tmp_path, fast_hasher)`
+- Depends on: `app_factory.py`, `controllers/facade.py`
+
+## tests/test_deniable_vault.py
+- Layer: testing
+- Doc: Specification tests for the QV-DENIABLE-1 deniable vault feature.  The feature is split across layers, each tested in is
+- Language: py
+- Symbols:
+  - `config` (function, line 50) `def config()`
+  - `validator` (function, line 56) `def validator(config)`
+  - `_ciphertext` (function, line 61) `def _ciphertext(config, length)`
+  - `_valid_envelope` (function, line 71) `def _valid_envelope(config)`
+  - `_make_user` (function, line 91) `def _make_user(app, username, role)`
+  - `_login` (function, line 120) `def _login(client, app, username, role)`
+  - `_csrf` (function, line 130) `def _csrf(client)`
+  - `TestDeniableVaultConfig` (class, line 140) `class TestDeniableVaultConfig`
+  - `TestEnvelopeValidator` (class, line 185) `class TestEnvelopeValidator`
+  - `TestRandomContainer` (class, line 272) `class TestRandomContainer`
+  - `TestDeniableVaultDB` (class, line 293) `class TestDeniableVaultDB`
+  - `TestDeniableVaultController` (class, line 325) `class TestDeniableVaultController`
+  - `TestDeniableVaultApi` (class, line 390) `class TestDeniableVaultApi`
+  - `test_defaults_are_self_consistent` (method, line 141) `def test_defaults_are_self_consistent(self)`
+  - `test_expected_ct_length_matches_base64_formula` (method, line 150) `def test_expected_ct_length_matches_base64_formula(self, config)`
+  - `test_mapping_overrides_defaults` (method, line 154) `def test_mapping_overrides_defaults(self)`
+  - `test_environment_overrides_mapping` (method, line 161) `def test_environment_overrides_mapping(self, monkeypatch)`
+  - `test_allowed_kdf_csv_is_parsed` (method, line 166) `def test_allowed_kdf_csv_is_parsed(self, monkeypatch)`
+  - `test_public_parameters_round_trip_to_json` (method, line 172) `def test_public_parameters_round_trip_to_json(self, config)`
+  - `test_accepts_a_well_formed_envelope` (method, line 186) `def test_accepts_a_well_formed_envelope(self, validator, config)`
+  - `test_rejects_non_dict` (method, line 189) `def test_rejects_non_dict(self, validator)`
+  - `test_rejects_wrong_schema_version` (method, line 194) `def test_rejects_wrong_schema_version(self, validator, config)`
+  - `test_rejects_unknown_kdf` (method, line 200) `def test_rejects_unknown_kdf(self, validator, config)`
+  - `test_rejects_iterations_below_minimum` (method, line 206) `def test_rejects_iterations_below_minimum(self, validator, config)`
+  - `test_rejects_iterations_above_maximum` (method, line 212) `def test_rejects_iterations_above_maximum(self, validator, config)`
+  - `test_rejects_wrong_slot_count` (method, line 218) `def test_rejects_wrong_slot_count(self, validator, config)`
+  - `test_rejects_bad_salt_length` (method, line 224) `def test_rejects_bad_salt_length(self, validator, config)`
+  - `test_rejects_non_hex_salt` (method, line 230) `def test_rejects_non_hex_salt(self, validator, config)`
+  - `test_rejects_bad_nonce_length` (method, line 236) `def test_rejects_bad_nonce_length(self, validator, config)`
+  - `test_rejects_ciphertext_of_wrong_length` (method, line 242) `def test_rejects_ciphertext_of_wrong_length(self, validator, config)`
+  - `test_rejects_unequal_slot_ciphertext_lengths` (method, line 248) `def test_rejects_unequal_slot_ciphertext_lengths(self, validator, config)`
+  - `test_rejects_invalid_base64_ciphertext` (method, line 254) `def test_rejects_invalid_base64_ciphertext(self, validator, config)`
+  - `test_rejects_missing_slot_keys` (method, line 260) `def test_rejects_missing_slot_keys(self, validator, config)`
+  - `test_random_container_passes_validation` (method, line 273) `def test_random_container_passes_validation(self, config, validator)`
+  - `test_random_containers_differ` (method, line 276) `def test_random_containers_differ(self, config)`
+  - `test_random_container_has_fixed_shape` (method, line 281) `def test_random_container_has_fixed_shape(self, config)`
+  - `test_upsert_then_get_round_trips_verbatim` (method, line 294) `def test_upsert_then_get_round_trips_verbatim(self, tmp_path)`
+  - `test_upsert_replaces_existing_row` (method, line 303) `def test_upsert_replaces_existing_row(self, tmp_path)`
+  - `test_get_missing_returns_none` (method, line 309) `def test_get_missing_returns_none(self, tmp_path)`
+  - `test_exists` (method, line 313) `def test_exists(self, tmp_path)`
+  - `_controller` (method, line 326) `def _controller(self, tmp_path)`
+  - `test_load_or_provision_mints_when_absent` (method, line 331) `def test_load_or_provision_mints_when_absent(self, app, tmp_path)`
+  - `test_load_or_provision_is_stable` (method, line 339) `def test_load_or_provision_is_stable(self, app, tmp_path)`
+  - `test_save_then_load_round_trips` (method, line 346) `def test_save_then_load_round_trips(self, app, tmp_path)`
+  - `test_save_rejects_invalid_envelope` (method, line 354) `def test_save_rejects_invalid_envelope(self, app, tmp_path)`
+  - `test_reset_replaces_with_a_valid_random_container` (method, line 363) `def test_reset_replaces_with_a_valid_random_container(self, app, tmp_path)`
+  - `test_audit_is_generic_and_never_contains_ciphertext` (method, line 373) `def test_audit_is_generic_and_never_contains_ciphertext(self, app, tmp_path, audit_records)`
+  - `test_settings_page_requires_authentication` (method, line 391) `def test_settings_page_requires_authentication(self, client)`
+  - `test_get_api_requires_authentication` (method, line 395) `def test_get_api_requires_authentication(self, client)`
+  - `test_settings_page_renders_for_authenticated_user` (method, line 399) `def test_settings_page_renders_for_authenticated_user(self, client, app)`
+  - `test_get_always_returns_an_envelope_and_parameters` (method, line 406) `def test_get_always_returns_an_envelope_and_parameters(self, client, app)`
+  - `test_put_without_csrf_is_rejected` (method, line 414) `def test_put_without_csrf_is_rejected(self, client, app)`
+  - `test_put_get_reset_round_trip` (method, line 422) `def test_put_get_reset_round_trip(self, client, app)`
+  - `test_put_rejects_malformed_envelope` (method, line 447) `def test_put_rejects_malformed_envelope(self, client, app)`
+  - `test_vault_is_scoped_to_the_authenticated_user` (method, line 461) `def test_vault_is_scoped_to_the_authenticated_user(self, client, app)`
+- Depends on: `controllers/deniable_vault.py`, `models/deniable_vault.py`, `models/user.py`
+
+## tests/test_doctor.py
+- Layer: testing
+- Doc: Behaviour contracts for scripts/doctor.py.  Covers binary and module checks, host/port parsing, release URL builders, ap
+- Language: py
+- Symbols:
+  - `test_check_binary_finds_present_binary` (function, line 23) `def test_check_binary_finds_present_binary()`
+  - `test_check_binary_flags_missing_binary` (function, line 30) `def test_check_binary_flags_missing_binary()`
+  - `test_check_binary_honors_absolute_override` (function, line 38) `def test_check_binary_honors_absolute_override(tmp_path)`
+  - `test_check_module_reports_status` (function, line 48) `def test_check_module_reports_status()`
+  - `test_check_python_accepts_current_runtime` (function, line 56) `def test_check_python_accepts_current_runtime()`
+  - `test_parse_host_port_shapes` (function, line 62) `def test_parse_host_port_shapes()`
+  - `test_check_tcp_refused_reports_remedy` (function, line 83) `def test_check_tcp_refused_reports_remedy()`
+  - `test_release_url_builders` (function, line 90) `def test_release_url_builders()`
+  - `test_apt_command_uses_sudo_outside_root` (function, line 105) `def test_apt_command_uses_sudo_outside_root()`
+  - `test_report_exit_code_reflects_failures` (function, line 115) `def test_report_exit_code_reflects_failures()`
+  - `test_load_env_file_parses_assignments` (function, line 129) `def test_load_env_file_parses_assignments(tmp_path)`
+  - `test_upsert_env_replaces_and_appends` (function, line 140) `def test_upsert_env_replaces_and_appends(tmp_path)`
+
+## tests/test_facade.py
+- Layer: testing
+- Doc: Specification tests for the QV-FACADE-1 cover facade and two-step gate.  The feature is specified behaviorally (given/wh
+- Language: py
+- Symbols:
+  - `fast_hasher` (function, line 54) `def fast_hasher()`
+  - `gate_config` (function, line 67) `def gate_config(fast_hasher)`
+  - `_facade_overrides` (function, line 78) `def _facade_overrides(fast_hasher)`
+  - `facade_client` (function, line 93) `def facade_client(tmp_path, fast_hasher)`
+  - `_make_user` (function, line 109) `def _make_user(app_or_path, username)`
+  - `_csrf` (function, line 138) `def _csrf(client)`
+  - `TestFacadeConfig` (class, line 148) `class TestFacadeConfig`
+  - `TestGatePhraseHasher` (class, line 209) `class TestGatePhraseHasher`
+  - `TestGateTicket` (class, line 250) `class TestGateTicket`
+  - `TestFacadeGate` (class, line 288) `class TestFacadeGate`
+  - `TestFacadeHttp` (class, line 396) `class TestFacadeHttp`
+  - `test_defaults_keep_the_facade_off` (method, line 149) `def test_defaults_keep_the_facade_off(self)`
+  - `test_defaults_keep_duress_alert_off` (method, line 154) `def test_defaults_keep_duress_alert_off(self)`
+  - `test_defaults_are_self_consistent` (method, line 157) `def test_defaults_are_self_consistent(self)`
+  - `test_mapping_overrides_defaults` (method, line 165) `def test_mapping_overrides_defaults(self)`
+  - `test_environment_overrides_mapping` (method, line 172) `def test_environment_overrides_mapping(self, monkeypatch)`
+  - `test_protected_paths_csv_is_parsed` (method, line 177) `def test_protected_paths_csv_is_parsed(self)`
+  - `test_gate_configured_requires_enabled_and_a_hash` (method, line 183) `def test_gate_configured_requires_enabled_and_a_hash(self)`
+  - `test_cover_context_is_cosmetic_and_json_serializable` (method, line 194) `def test_cover_context_is_cosmetic_and_json_serializable(self)`
+  - `test_hash_then_verify_accepts_the_phrase` (method, line 210) `def test_hash_then_verify_accepts_the_phrase(self, fast_hasher)`
+  - `test_verify_rejects_a_wrong_phrase` (method, line 214) `def test_verify_rejects_a_wrong_phrase(self, fast_hasher)`
+  - `test_hash_is_salted_so_two_hashes_differ` (method, line 218) `def test_hash_is_salted_so_two_hashes_differ(self, fast_hasher)`
+  - `test_verify_rejects_an_empty_stored_hash` (method, line 221) `def test_verify_rejects_an_empty_stored_hash(self, fast_hasher)`
+  - `test_verify_rejects_a_malformed_stored_hash` (method, line 224) `def test_verify_rejects_a_malformed_stored_hash(self, fast_hasher)`
+  - `test_verify_rejects_a_non_string_stored_hash` (method, line 227) `def test_verify_rejects_a_non_string_stored_hash(self, fast_hasher)`
+  - `test_from_config_builds_a_working_hasher` (method, line 231) `def test_from_config_builds_a_working_hasher(self)`
+  - `test_issue_then_verify_round_trips_the_mode` (method, line 251) `def test_issue_then_verify_round_trips_the_mode(self)`
+  - `test_issue_rejects_an_unknown_mode` (method, line 256) `def test_issue_rejects_an_unknown_mode(self)`
+  - `test_verify_rejects_an_expired_ticket` (method, line 261) `def test_verify_rejects_an_expired_ticket(self)`
+  - `test_verify_rejects_a_ticket_signed_with_another_key` (method, line 267) `def test_verify_rejects_a_ticket_signed_with_another_key(self)`
+  - `test_verify_rejects_garbage_and_none` (method, line 272) `def test_verify_rejects_garbage_and_none(self)`
+  - `test_verify_rejects_a_non_string_token` (method, line 277) `def test_verify_rejects_a_non_string_token(self)`
+  - `_gate` (method, line 289) `def _gate(self, config)`
+  - `test_real_phrase_yields_a_real_ticket` (method, line 292) `def test_real_phrase_yields_a_real_ticket(self, app, gate_config)`
+  - `test_duress_phrase_yields_a_duress_ticket` (method, line 300) `def test_duress_phrase_yields_a_duress_ticket(self, app, gate_config)`
+  - `test_wrong_phrase_is_a_miss_with_no_ticket` (method, line 307) `def test_wrong_phrase_is_a_miss_with_no_ticket(self, app, gate_config)`
+  - `test_miss_without_a_duress_hash` (method, line 314) `def test_miss_without_a_duress_hash(self, app, fast_hasher)`
+  - `test_minimum_length_phrase_is_accepted` (method, line 325) `def test_minimum_length_phrase_is_accepted(self, app, fast_hasher)`
+  - `test_maximum_length_phrase_is_accepted` (method, line 337) `def test_maximum_length_phrase_is_accepted(self, app, fast_hasher)`
+  - `test_too_short_phrase_is_a_miss` (method, line 349) `def test_too_short_phrase_is_a_miss(self, app, gate_config)`
+  - `test_too_long_phrase_is_a_miss` (method, line 355) `def test_too_long_phrase_is_a_miss(self, app, gate_config)`
+  - `test_audit_is_generic_and_never_contains_the_phrase` (method, line 361) `def test_audit_is_generic_and_never_contains_the_phrase(self, app, gate_config, audit_records)`
+  - `test_duress_alert_is_opt_in_and_generically_named` (method, line 372) `def test_duress_alert_is_opt_in_and_generically_named(self, app, fast_hasher, audit_records)`
+  - `test_anonymous_login_page_is_replaced_by_the_cover` (method, line 397) `def test_anonymous_login_page_is_replaced_by_the_cover(self, facade_client)`
+  - `test_anonymous_root_is_replaced_by_the_cover` (method, line 403) `def test_anonymous_root_is_replaced_by_the_cover(self, facade_client)`
+  - `test_wrong_phrase_keeps_the_cover_and_does_not_redirect` (method, line 409) `def test_wrong_phrase_keeps_the_cover_and_does_not_redirect(self, facade_client)`
+  - `test_real_phrase_reveals_the_login` (method, line 417) `def test_real_phrase_reveals_the_login(self, facade_client)`
+  - `test_duress_phrase_marks_the_session` (method, line 432) `def test_duress_phrase_marks_the_session(self, facade_client)`
+  - `test_authenticated_user_bypasses_the_cover` (method, line 441) `def test_authenticated_user_bypasses_the_cover(self, tmp_path, fast_hasher)`
+  - `test_gate_endpoint_is_absent_when_facade_disabled` (method, line 465) `def test_gate_endpoint_is_absent_when_facade_disabled(self, client)`
+  - `test_disabled_facade_serves_the_real_login` (method, line 469) `def test_disabled_facade_serves_the_real_login(self, client)`
+  - `test_enabled_without_a_hash_fails_open_to_the_real_app` (method, line 474) `def test_enabled_without_a_hash_fails_open_to_the_real_app(self, tmp_path)`
+- Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
+
+## tests/test_secure_channel.py
+- Layer: testing
+- Doc: Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChannelConfig resolution, URL validation, ma
+- Language: py
+- Symbols:
+  - `test_config_defaults_to_disabled_without_binaries` (function, line 30) `def test_config_defaults_to_disabled_without_binaries()`
+  - `test_config_reads_mode_and_port_from_env` (function, line 37) `def test_config_reads_mode_and_port_from_env()`
+  - `test_config_rejects_out_of_range_port` (function, line 47) `def test_config_rejects_out_of_range_port()`
+  - `test_url_validators_accept_only_expected_shapes` (function, line 55) `def test_url_validators_accept_only_expected_shapes()`
+  - `test_manager_starts_hybrid_with_injected_launcher` (function, line 64) `def test_manager_starts_hybrid_with_injected_launcher(tmp_path)`
+  - `test_manager_rejects_invalid_mode` (function, line 90) `def test_manager_rejects_invalid_mode(tmp_path)`
+  - `test_manager_stop_clears_state_with_killer` (function, line 101) `def test_manager_stop_clears_state_with_killer(tmp_path)`
+  - `test_audit_details_never_carry_urls` (function, line 122) `def test_audit_details_never_carry_urls()`
+  - `test_superadmin_channel_routes_require_superadmin` (function, line 133) `def test_superadmin_channel_routes_require_superadmin(client)`
+  - `test_env_template_documents_channel_keys` (function, line 139) `def test_env_template_documents_channel_keys()`
+  - `test_channel_state_file_permissions` (function, line 153) `def test_channel_state_file_permissions(tmp_path)`
+  - `test_validators_reject_non_string_inputs` (function, line 164) `def test_validators_reject_non_string_inputs()`
+  - `test_port_boundaries_accept_edges_and_reject_outside` (function, line 175) `def test_port_boundaries_accept_edges_and_reject_outside()`
+  - `test_config_blank_values_fall_back_to_defaults` (function, line 186) `def test_config_blank_values_fall_back_to_defaults()`
+  - `test_config_explicit_values_are_preserved` (function, line 203) `def test_config_explicit_values_are_preserved()`
+  - `test_config_env_beats_mapping` (function, line 219) `def test_config_env_beats_mapping()`
+  - `test_channel_status_defaults_and_single_side_active` (function, line 229) `def test_channel_status_defaults_and_single_side_active()`
+  - `test_default_launcher_detaches_process` (function, line 254) `def test_default_launcher_detaches_process(monkeypatch)`
+  - `test_default_killer_ignores_non_positive_pid` (function, line 276) `def test_default_killer_ignores_non_positive_pid(monkeypatch)`
+  - `test_default_killer_falls_back_to_kill` (function, line 286) `def test_default_killer_falls_back_to_kill(monkeypatch)`
+  - `test_manager_init_blank_binaries_fall_back` (function, line 302) `def test_manager_init_blank_binaries_fall_back()`
+  - `test_rotate_without_state_raises` (function, line 311) `def test_rotate_without_state_raises(tmp_path)`
+  - `test_rotate_disabled_state_raises` (function, line 322) `def test_rotate_disabled_state_raises(tmp_path)`
+  - `test_audit_details_default_verb_and_empty_urls` (function, line 334) `def test_audit_details_default_verb_and_empty_urls()`
+  - `test_status_for_drops_non_positive_pids` (function, line 348) `def test_status_for_drops_non_positive_pids()`
+  - `test_read_state_filters_bad_pids` (function, line 357) `def test_read_state_filters_bad_pids(tmp_path)`
+  - `test_write_state_is_sorted_and_ephemeral` (function, line 378) `def test_write_state_is_sorted_and_ephemeral(tmp_path)`
+  - `test_write_state_twice_in_existing_dir` (function, line 397) `def test_write_state_twice_in_existing_dir(tmp_path)`
+  - `test_write_state_creates_nested_dirs` (function, line 408) `def test_write_state_creates_nested_dirs(tmp_path)`
+  - `test_start_creates_nested_state_dirs` (function, line 416) `def test_start_creates_nested_state_dirs(tmp_path)`
+  - `test_start_tor_only_creates_nested_state_dirs` (function, line 442) `def test_start_tor_only_creates_nested_state_dirs(tmp_path)`
+  - `test_cleanup_scratch_suppresses_rmtree_errors` (function, line 463) `def test_cleanup_scratch_suppresses_rmtree_errors(tmp_path, monkeypatch)`
+  - `test_resolve_binary_with_default_launcher_requires_path` (function, line 480) `def test_resolve_binary_with_default_launcher_requires_path(tmp_path)`
+  - `test_resolve_binary_with_injected_launcher_skips_which` (function, line 497) `def test_resolve_binary_with_injected_launcher_skips_which(tmp_path)`
+  - `test_resolve_binary_absolute_path_must_exist` (function, line 511) `def test_resolve_binary_absolute_path_must_exist(tmp_path)`
+  - `test_pid_live_branches` (function, line 527) `def test_pid_live_branches(monkeypatch, tmp_path)`
+  - `test_normalize_onion_shapes` (function, line 555) `def test_normalize_onion_shapes()`
+  - `test_wait_helpers_respect_deadline_and_content` (function, line 564) `def test_wait_helpers_respect_deadline_and_content(tmp_path, monkeypatch)`
+  - `test_wait_helpers_include_deadline_instant` (function, line 597) `def test_wait_helpers_include_deadline_instant(tmp_path, monkeypatch)`
+  - `test_channel_diagnostics_reports_availability` (function, line 636) `def test_channel_diagnostics_reports_availability(tmp_path)`
+  - `test_channel_diagnostics_missing_absolute_path` (function, line 656) `def test_channel_diagnostics_missing_absolute_path(tmp_path)`
+  - `test_read_log_tail_returns_trailing_lines` (function, line 671) `def test_read_log_tail_returns_trailing_lines(tmp_path)`
+  - `test_superadmin_channel_section_is_readable` (function, line 685) `def test_superadmin_channel_section_is_readable()`
+  - `test_origin_scheme_parsing` (function, line 696) `def test_origin_scheme_parsing()`
+  - `test_config_reads_origin_scheme` (function, line 706) `def test_config_reads_origin_scheme()`
+  - `test_origin_url_points_at_loopback` (function, line 719) `def test_origin_url_points_at_loopback()`
+  - `test_cloudflared_cmd_matches_origin_scheme` (function, line 733) `def test_cloudflared_cmd_matches_origin_scheme(tmp_path)`
+  - `test_s3_probe_skips_dead_endpoint` (function, line 763) `def test_s3_probe_skips_dead_endpoint(app)`
+  - `test_s3_probe_detects_live_endpoint` (function, line 771) `def test_s3_probe_detects_live_endpoint(app)`
+  - `fake_launcher` (function, line 67) `def fake_launcher(cmd, log_path)`
+  - `fake_launcher` (function, line 105) `def fake_launcher(cmd, log_path)`
+  - `_FakeProcess` (class, line 260) `class _FakeProcess`
+  - `_fake_popen` (method, line 263) `def _fake_popen(cmd)`
+  - `_raise_pg` (method, line 290) `def _raise_pg(pid, sig)`
+  - `_record_kill` (method, line 293) `def _record_kill(pid, sig)`
+  - `fake_launcher` (method, line 419) `def fake_launcher(cmd, log_path)`
+  - `fake_launcher` (method, line 445) `def fake_launcher(cmd, log_path)`
+  - `_raise` (method, line 471) `def _raise()`
+  - `_raise_lookup` (method, line 536) `def _raise_lookup(pid, sig)`
+  - `_raise_perm` (method, line 542) `def _raise_perm(pid, sig)`
+  - `_raise_os` (method, line 548) `def _raise_os(pid, sig)`
+  - `_fake_mono` (method, line 573) `def _fake_mono()`
+  - `_fake_sleep` (method, line 576) `def _fake_sleep(secs)`
+  - `_fake_mono` (method, line 606) `def _fake_mono()`
+  - `_fake_sleep` (method, line 609) `def _fake_sleep(secs)`
+  - `_fake_sleep_file` (method, line 627) `def _fake_sleep_file(secs)`
+  - `fake_launcher` (method, line 737) `def fake_launcher(cmd, log_path)`
+- Depends on: `controllers/secure_channel.py`, `views/admin.py`
+
+## tests/test_security.py
+- Layer: testing
+- Doc: Tests for utils/security.py: audit log redaction and JSON CSRF protection.
+- Language: py
+- Symbols:
+  - `test_audit_event_includes_ip_and_ua_by_default` (function, line 12) `def test_audit_event_includes_ip_and_ua_by_default(app, audit_records, monkeypatch)`
+  - `test_audit_event_redacts_ip_and_ua_when_disabled` (function, line 29) `def test_audit_event_redacts_ip_and_ua_when_disabled(app, audit_records, monkeypatch)`
+  - `test_json_csrf_protect_rejects_missing_token` (function, line 45) `def test_json_csrf_protect_rejects_missing_token(app)`
+  - `test_json_csrf_protect_accepts_valid_header_token` (function, line 57) `def test_json_csrf_protect_accepts_valid_header_token(app)`
+  - `test_json_csrf_protect_passes_get_through_without_token` (function, line 77) `def test_json_csrf_protect_passes_get_through_without_token(app)`
+  - `view` (function, line 47) `def view()`
+  - `view` (function, line 59) `def view()`
+  - `view` (function, line 79) `def view()`
+- Depends on: `utils/security.py`
+
+## tests/test_srp.py
+- Layer: testing
+- Doc: Pure-Python SRP-6a (QV-SRP-1) roundtrip test.  Mirrors the client-side math in ``static/js/qv-crypto.js`` (``deriveVerif
+- Language: py
+- Symbols:
+  - `_h` (function, line 16) `def _h()`
+  - `_hint` (function, line 23) `def _hint()`
+  - `_client_derive_verifier` (function, line 27) `def _client_derive_verifier(username, password, salt_hex)`
+  - `_client_compute_proof` (function, line 34) `def _client_compute_proof(username, password, salt_hex, server_a_secret, server_a, server_b)`
+  - `test_srp6a_full_roundtrip_matches_server_proofs` (function, line 74) `def test_srp6a_full_roundtrip_matches_server_proofs()`
+  - `test_srp6a_wrong_password_produces_mismatched_proof` (function, line 104) `def test_srp6a_wrong_password_produces_mismatched_proof()`
+- Depends on: `utils/utils.py`
+
+## tests/test_utils.py
+- Layer: testing
+- Doc: Contract tests for shared utility helpers.
+- Language: py
+- Symbols:
+  - `test_database_path_prefers_the_configured_path` (function, line 8) `def test_database_path_prefers_the_configured_path(app)`
+  - `test_database_path_honors_env_outside_a_context` (function, line 13) `def test_database_path_honors_env_outside_a_context(monkeypatch)`
+  - `test_database_path_default_outside_a_context` (function, line 18) `def test_database_path_default_outside_a_context(monkeypatch)`
+- Depends on: `utils/utils.py`

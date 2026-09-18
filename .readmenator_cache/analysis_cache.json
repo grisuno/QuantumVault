@@ -1,0 +1,212 @@
+{
+  "analysis_v2": {
+    "god_nodes": [
+      [
+        "app_factory.py",
+        46.8
+      ],
+      [
+        "utils/utils.py",
+        30.8
+      ],
+      [
+        "models/user.py",
+        30.7
+      ],
+      [
+        "views/auth.py",
+        24.9
+      ],
+      [
+        "views/admin.py",
+        21.9
+      ],
+      [
+        "utils/security.py",
+        19.0
+      ],
+      [
+        "static/js/qv-crypto.js",
+        16.0
+      ],
+      [
+        "controllers/facade.py",
+        14.6
+      ],
+      [
+        "controllers/auth.py",
+        13.4
+      ],
+      [
+        "tests/test_deniable_vault.py",
+        11.5
+      ]
+    ],
+    "communities": [
+      {
+        "id": 0,
+        "label": "views",
+        "file_ids": [
+          "models/deniable_vault.py",
+          "utils/mailer.py",
+          "utils/scheduler.py",
+          "views/sync.py",
+          "views/about.py",
+          "tests/test_account_facade.py",
+          "controllers/facade.py",
+          "tests/test_srp.py",
+          "utils/security.py",
+          "wsgi.py",
+          "controllers/auth.py",
+          "controllers/secure_channel.py",
+          "tests/test_facade.py",
+          "tests/test_security.py",
+          "app_factory.py",
+          "views/faq.py",
+          "views/terms.py",
+          "views/account.py",
+          "models/user.py",
+          "tests/test_deniable_vault.py",
+          "tests/conftest.py",
+          "controllers/file.py",
+          "controllers/contact.py",
+          "views/facade.py",
+          "controllers/deniable_vault.py",
+          "views/views.py",
+          "models/message.py",
+          "scripts/email_tool.py",
+          "tests/test_utils.py",
+          "models/superadmin_audit.py",
+          "views/privacy.py",
+          "utils/utils.py",
+          "controllers/message.py",
+          "tests/test_secure_channel.py",
+          "views/auth.py",
+          "views/subscription.py",
+          "views/message.py",
+          "scripts/test_bloque1.py",
+          "models/plans.py",
+          "tests/test_cover.py",
+          "models/contact.py",
+          "views/admin.py",
+          "controllers/sync.py",
+          "scripts/makeadmin.py",
+          "views/file.py",
+          "app.py"
+        ],
+        "cohesion": 1.0,
+        "size": 46
+      },
+      {
+        "id": 1,
+        "label": "static/js",
+        "file_ids": [
+          "static/js/messages.js",
+          "static/js/qv-deniable.js",
+          "static/js/recover.js",
+          "static/js/qv-crypto.js",
+          "static/js/register.js",
+          "static/js/login.js",
+          "static/js/upload.js",
+          "static/js/account.js"
+        ],
+        "cohesion": 1.0,
+        "size": 8
+      }
+    ],
+    "surprising_connections": [],
+    "suggested_questions": [
+      "What does app_factory.py depend on, and what depends on it? (23 connections)",
+      "What does utils.py depend on, and what depends on it? (15 connections)",
+      "What does user.py depend on, and what depends on it? (14 connections)",
+      "How are the 46 files in 'views' related to each other?",
+      "What is the overall architecture of this codebase?"
+    ]
+  },
+  "layers": {
+    "__init__.py": "utility",
+    "app.py": "utility",
+    "app_factory.py": "presentation",
+    "client.go": "infrastructure",
+    "client.py": "infrastructure",
+    "controllers/__init__.py": "presentation",
+    "controllers/auth.py": "presentation",
+    "controllers/contact.py": "presentation",
+    "controllers/deniable_vault.py": "presentation",
+    "controllers/facade.py": "presentation",
+    "controllers/file.py": "presentation",
+    "controllers/message.py": "presentation",
+    "controllers/secure_channel.py": "presentation",
+    "controllers/sync.py": "presentation",
+    "enc_dec.go": "utility",
+    "enc_dec.py": "utility",
+    "install.sh": "utility",
+    "make.sh": "utility",
+    "models/__init__.py": "business_logic",
+    "models/contact.py": "presentation",
+    "models/deniable_vault.py": "business_logic",
+    "models/message.py": "presentation",
+    "models/plans.py": "business_logic",
+    "models/superadmin_audit.py": "business_logic",
+    "models/user.py": "presentation",
+    "pq_decrypt_password.py": "utility",
+    "scripts/doctor.py": "utility",
+    "scripts/email_tool.py": "presentation",
+    "scripts/garage-init.sh": "utility",
+    "scripts/garage-native.sh": "utility",
+    "scripts/makeadmin.py": "utility",
+    "scripts/test_bloque1.py": "testing",
+    "server.go": "utility",
+    "server.py": "utility",
+    "static/js/account.js": "utility",
+    "static/js/coded-text.js": "utility",
+    "static/js/login.js": "utility",
+    "static/js/messages.js": "infrastructure",
+    "static/js/qv-crypto.js": "utility",
+    "static/js/qv-deniable.js": "utility",
+    "static/js/recover.js": "utility",
+    "static/js/register.js": "utility",
+    "static/js/upload.js": "utility",
+    "templates/terms.py": "presentation",
+    "test.sh": "testing",
+    "tests/__init__.py": "testing",
+    "tests/conftest.py": "testing",
+    "tests/test_account_facade.py": "testing",
+    "tests/test_auth_phone.py": "testing",
+    "tests/test_cover.py": "testing",
+    "tests/test_deniable_vault.py": "testing",
+    "tests/test_doctor.py": "testing",
+    "tests/test_facade.py": "testing",
+    "tests/test_secure_channel.py": "testing",
+    "tests/test_security.py": "testing",
+    "tests/test_srp.py": "testing",
+    "tests/test_utils.py": "testing",
+    "tools/mutation_test.py": "testing",
+    "utils/__init__.py": "utility",
+    "utils/cache.py": "infrastructure",
+    "utils/mailer.py": "presentation",
+    "utils/plans.py": "utility",
+    "utils/scheduler.py": "presentation",
+    "utils/security.py": "presentation",
+    "utils/srp6a.py": "utility",
+    "utils/utils.py": "presentation",
+    "views/__init__.py": "presentation",
+    "views/about.py": "presentation",
+    "views/account.py": "presentation",
+    "views/admin.py": "presentation",
+    "views/auth.py": "presentation",
+    "views/facade.py": "presentation",
+    "views/faq.py": "presentation",
+    "views/file.py": "presentation",
+    "views/message.py": "presentation",
+    "views/privacy.py": "presentation",
+    "views/subscription.py": "presentation",
+    "views/sync.py": "presentation",
+    "views/terms.py": "presentation",
+    "views/views.py": "presentation",
+    "wsgi.py": "utility"
+  },
+  "security": {
+    "findings": []
+  }
+}
