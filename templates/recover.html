@@ -223,6 +223,6 @@
                 <a href="{{ url_for('auth.login') }}">Back to sign in</a>
             </div>
         </div>
-        <script type="module" src="/static/js/recover.js"></script>
+        <script type="module" src="/static/js/recover.js" integrity="{{ sri_integrity('/static/js/recover.js') }}" crossorigin="anonymous"></script>
     </body>
 </html>

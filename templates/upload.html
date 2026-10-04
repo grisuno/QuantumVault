@@ -30,5 +30,10 @@ content %}
         </div>
     </div>
 </div>
-<script type="module" src="/static/js/upload.js"></script>
+<script
+    type="module"
+    src="/static/js/upload.js"
+    integrity="{{ sri_integrity('/static/js/upload.js') }}"
+    crossorigin="anonymous"
+></script>
 {% endblock %}

@@ -106,29 +106,29 @@
 - Doc: Encrypted file persistence layer.  The server is intentionally blind to plaintext: it only ever stores opaque ciphertext
 - Language: py
 - Symbols:
-  - `_log_s3_error` (function, line 26) `def _log_s3_error(operation, error)`
-  - `safe_filename` (function, line 31) `def safe_filename(name)`
-  - `FileController` (class, line 49) `class FileController`
-  - `__init__` (method, line 52) `def __init__(self, users_path, s3_bucket, s3_client)`
-  - `_key` (method, line 57) `def _key(self, username, filename, suffix)`
-  - `get_storage_usage` (method, line 69) `def get_storage_usage(self, username)`
-  - `upload_encrypted_file` (method, line 83) `def upload_encrypted_file(self, username, file_storage, wrapped_fek)`
-  - `get_encrypted_file_and_key` (method, line 107) `def get_encrypted_file_and_key(self, username, filename)`
-  - `list_encrypted_files` (method, line 137) `def list_encrypted_files(self, username)`
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+  - `_log_s3_error` (function, line 28) `def _log_s3_error(operation, error)`
+  - `safe_filename` (function, line 33) `def safe_filename(name)`
+  - `FileController` (class, line 51) `class FileController`
+  - `__init__` (method, line 54) `def __init__(self, users_path, s3_bucket, s3_client)`
+  - `_key` (method, line 59) `def _key(self, username, filename, suffix)`
+  - `get_storage_usage` (method, line 71) `def get_storage_usage(self, username)`
+  - `upload_encrypted_file` (method, line 85) `def upload_encrypted_file(self, username, file_storage, wrapped_fek)`
+  - `get_encrypted_file_and_key` (method, line 118) `def get_encrypted_file_and_key(self, username, filename)`
+  - `list_encrypted_files` (method, line 148) `def list_encrypted_files(self, username)`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ## controllers/message.py
 - Layer: presentation
 - Doc: Server-side controller for end-to-end encrypted messages.  The browser generates the CEK, encrypts the message with AES-
 - Language: py
 - Symbols:
-  - `MessageController` (class, line 16) `class MessageController`
-  - `__init__` (method, line 19) `def __init__(self, users_path, users_db_path)`
-  - `send_encrypted_message` (method, line 33) `def send_encrypted_message(self, sender, recipient, encrypted_message_b64, cek_for_recipient, cek_for_sender)`
-  - `get_messages` (method, line 75) `def get_messages(self, username, page, per_page)`
-- Depends on: `models/message.py`, `models/user.py`, `utils/utils.py`
-- Imported by: `views/message.py`
+  - `MessageController` (class, line 19) `class MessageController`
+  - `__init__` (method, line 22) `def __init__(self, users_path, users_db_path)`
+  - `send_encrypted_message` (method, line 36) `def send_encrypted_message(self, sender, recipient, encrypted_message_b64, cek_for_recipient, cek_for_sender)`
+  - `get_messages` (method, line 90) `def get_messages(self, username, page, per_page)`
+- Depends on: `models/message.py`, `models/user.py`, `utils/padding.py`, `utils/utils.py`
+- Imported by: `tests/test_padding.py`, `views/message.py`
 
 ## controllers/secure_channel.py
 - Layer: presentation

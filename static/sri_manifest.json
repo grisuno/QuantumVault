@@ -1,0 +1,38 @@
+{
+  "algorithm": "sha384",
+  "assets": {
+    "css/custom.css": "sha384-PflezjtaQolwrJgUQklrtPgQ07EnV5AnH+GPRFLjxcymthxinwOMrMnWsCpNWw7V",
+    "js/account.js": "sha384-A7r5NGfE9V3eCnf2QdVaOFPEGbgTmGDECtpmq6G3k09w/YB78mJD4hW7LX+a1I7a",
+    "js/coded-text.js": "sha384-y0C53Z0hK/Qayipkdv2HtNr6Z1NRuqRFTDycTeIG5Pn2k/JC5Bv0ygqZMZQeMF2b",
+    "js/login.js": "sha384-Q9k/7sg0clRQJ0AHzoOHi+KoSuGFeZswpSjDZMX6dvu6VcqkcWn2LI3HplKX4fKi",
+    "js/messages.js": "sha384-/ZibYZzpkM64/7PGsrD85GLi1Nd57Ywk/PmGhgJZrrFMjEkikBgmpZS+dza8o3zS",
+    "js/qv-crypto.js": "sha384-WOTXbDBJR3JLVvRItvVsB8Lmwutq6TsNckUryLYGaryOjCswhg9u+8HX50DEMDKP",
+    "js/qv-deniable.js": "sha384-GXGiqGJJgrmaZObTJNCtmnQ+KE5OYMlVVq/GAGqfPArRp9h0cyZRDJEryc94dyau",
+    "js/qv-padding.js": "sha384-GmKnHKQDKVS6Pwpu4pDQ9bOAtX+BpoZS/R9A6xN/YOqZWDzx9uxvlVAPJpLI7cNu",
+    "js/recover.js": "sha384-toJUQtD5c8DacO5iNHdFHc+hhcvcK4ytRxXEjtmSgvEAraXR128WEJtww6ldgM7m",
+    "js/register.js": "sha384-8AGP/+0ezmC+QqASFY/g8cm8TCuiTD5RNsN2XNrYS+zkNal7WJ32154NpUfBIe/C",
+    "js/upload.js": "sha384-xX4HSmJSo5QFtNJUNavmomXC4C6+25Ek1HOtTsq6t4b8QgPVysX4ANhHaM1D4M9w",
+    "js/vendor/assert_old.js": "sha384-WaNEUhDca0u3GRrRjOH1RF9zDJIqaNEkoFrD6iDimSdpnf4SLDh4+QJI6JTeAkWK",
+    "js/vendor/crypto.js": "sha384-600JRF2tHUZvVhqwBhcEMfLSTKTtGC7zyyQQ9hHePGhFkOEZIWmHhzVFI8gmyho9",
+    "js/vendor/ed25519.js": "sha384-LRWSMGwgAS11TYsg538D6eQ/eSgaTNnmCuBJyggaoO0XNUJV6oUarHJDzCxskL/o",
+    "js/vendor/hkdf.js": "sha384-ETMAFkWw4tjkFL8GjXPmnzWQ/6wAKYI1grIV9noe8Me8r7uuYcREtEPYs40rkwpT",
+    "js/vendor/ml_kem.js": "sha384-6yh1FZ0mmO/Ib2vlwgMTGhsDfrrSELgEXYpMNE3T62rzuGuXSbktP5r2wKmJ4gqu",
+    "js/vendor/sha2.js": "sha384-XNy55NirlzKZ79uUzJ7Ftmiic3tyGR/J5pNJw8cTT/p6BxfZGWjSnJoQjRcsXq0B",
+    "js/vendor/sha256_old.js": "sha384-w6O/3QdT01DMwh1b6P/p1xdqq1xlUxhSG1GKDdxSMF/Z5fKbD5zuO0NvTIoS15CT",
+    "js/vendor/sha3.js": "sha384-M023tDbfLy6OVKEzFm3WTZXbi/8mw3XbBSOWufQ+4cOq+1dcaCWg0HGamsqKrGKP",
+    "js/vendor/sha512_old.js": "sha384-EyKT3OD68s8eS3J/JP881QAa8J/ik6YVtfSyswatgVl1XuQM3BVJW2JacTuBzt0y",
+    "js/vendor/utils.js": "sha384-vE7q4b0FEWJ0n0jT8PIr7JmY1PaaDPWQTpUwPdYilvI0iZGF2yywtzgsM2vVB6Re",
+    "js/vendor/utils_old.js": "sha384-ptkol9KRz0/coSbV1+8iQhfUa70dmNtGycO+he+MI3K+jVez3ErZx++j65dhdrXO",
+    "style.css": "sha384-+f7Rv0mEqMsq+YcWjefq2y6pG1GpacZWX8wTQJUd6SkaDL288TsTxq8kcEWvhVD3"
+  },
+  "cdn": {
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css": "sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js": "sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz",
+    "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css": "sha384-ZoLYv3S+AsZX+zhbN1D1+WPpc8f+DmLfxfgw+qn0Nq8wJPOYQQXEW5ZrRhcGozlG",
+    "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js": "sha384-mTM6vzy+/UiHrMBClNGViM9qEv0/26iCGqpJKhSzdnjrxbKjO3vkT62ujXQ8B5iv",
+    "https://cdn.jsdelivr.net/npm/marked/marked.min.js": "sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+",
+    "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js": "sha384-mgWScxWVKP8F7PBbpNp7i/aSb17kN0LcifBpahAplF3Mn0GR4/u1oMpWIm2rD8yY",
+    "https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js": "sha384-FwzUI3CDdHbj2MEKbnjj0eCvB+gYurE3x3pW/udNFOVUbrCrl3REWMQ1FBTolvoj"
+  },
+  "version": 1
+}

@@ -103,6 +103,24 @@ commonplace page, not a vault.
 - **Untrusted input everywhere**: cover variables are bounded, canonicalized, and
   stripped of control and spoofing characters, and rendered autoescaped.
 
+## Metadata-size concealment and code integrity
+
+Ciphertext hides content, not length. QuantumVault pads every message and file
+to a fixed bucket before encryption, so the wire reveals only a coarse size
+class (see `docs/PADDING_AND_INTEGRITY.md` for the full contract).
+
+- **Fixed buckets**: messages pad to 512 B … 64 KiB, files to 64 KiB … 10 MiB
+  (`QV_PAD_MESSAGE_BUCKETS` / `QV_PAD_FILE_BUCKETS` override the tables).
+- **Fresh randomness, no pad cache**: pad bytes come from the OS CSPRNG on every
+  envelope and are never stored or reused; only the immutable bucket table is
+  cached, so the cache reveals nothing about any message.
+- **Server enforcement**: envelopes whose size is not a bucket plus GCM overhead
+  are rejected, so one unpadded client cannot re-open the size oracle.
+- **SRI everywhere**: every script and stylesheet carries a Subresource Integrity
+  pin from `static/sri_manifest.json` (`make sri` regenerates, `make verify-build`
+  checks). Third-party beacons and font CDNs were removed rather than pinned, so
+  pages make no third-party requests at all.
+
 ## Architecture and Stack
 
 | Layer | Technology |

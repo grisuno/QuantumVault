@@ -42,6 +42,7 @@
 | `static/js/messages.js` | Messages page controller (zero-knowledge end-to-end messaging).  Loaded as an ex | js | 6 |
 | `static/js/qv-crypto.js` | QuantumVault zero-knowledge browser crypto.  Single source of truth for all clie | js | 40 |
 | `static/js/qv-deniable.js` | QuantumVault deniable vault (QV-DENIABLE-1) browser crypto.  A deniable vault is | js | 7 |
+| `static/js/qv-padding.js` | QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py | js | 5 |
 | `static/js/recover.js` | Account recovery page controller (QV-RECOVERY-1 flow).  Loaded as an external ES | js | 3 |
 | `static/js/register.js` | Registration page controller (zero-knowledge flow).  This module is loaded as an | js | 3 |
 | `static/js/upload.js` | Upload page controller (zero-knowledge file storage).  Loaded as an external ES  | js | 6 |
@@ -55,14 +56,20 @@
 | `tests/test_deniable_vault.py` | Specification tests for the QV-DENIABLE-1 deniable vault feature.  The feature i | tests | 55 |
 | `tests/test_doctor.py` | Behaviour contracts for scripts/doctor.py.  Covers binary and module checks, hos | tests | 12 |
 | `tests/test_facade.py` | Specification tests for the QV-FACADE-1 cover facade and two-step gate.  The fea | tests | 52 |
+| `tests/test_integrity.py` | Contract tests for SRI pins and reproducible builds (QV-SRI-1). | tests | 6 |
+| `tests/test_padding.py` | Contract tests for fixed-bucket padding (QV-PAD-1) and its enforcement. | tests | 24 |
 | `tests/test_secure_channel.py` | Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChan | tests | 67 |
 | `tests/test_security.py` | Tests for utils/security.py: audit log redaction and JSON CSRF protection. | tests | 8 |
 | `tests/test_srp.py` | Pure-Python SRP-6a (QV-SRP-1) roundtrip test.  Mirrors the client-side math in ` | tests | 6 |
 | `tests/test_utils.py` | Contract tests for shared utility helpers. | tests | 3 |
-| `tools/mutation_test.py` | Mutation testing harness for the QuantumVault facade and cover contracts.  Each  | misc | 8 |
+| `tools/generate_sri.py` | Generate the SRI manifest for first-party assets and pinned CDN URLs.  Regenerat | tools | 5 |
+| `tools/mutation_test.py` | Mutation testing harness for the QuantumVault facade and cover contracts.  Each  | tools | 8 |
+| `tools/verify_build.py` | Verify reproducible builds and the fixed code contracts (QV-SRI-1).  Checks perf | tools | 11 |
 | `utils/__init__.py` | - | utils | 0 |
 | `utils/cache.py` | /home/grisun0/src/postcuantum/v1/utils/cache.py | utils | 5 |
+| `utils/integrity.py` | Subresource Integrity manifest helpers (QV-SRI-1).  The manifest at ``static/sri | utils | 8 |
 | `utils/mailer.py` | Transactional email helpers for QuantumVault.  Centralizes how outbound transact | utils | 3 |
+| `utils/padding.py` | Fixed-bucket padding for metadata-size concealment (QV-PAD-1).  An observer who  | utils | 13 |
 | `utils/plans.py` | - | utils | 3 |
 | `utils/scheduler.py` | Background scheduler for trial expiration and inbox cleanup.  Runs two recurring | utils | 5 |
 | `utils/security.py` | Centralized security primitives for QuantumVault.  Single source of truth for:   | utils | 10 |

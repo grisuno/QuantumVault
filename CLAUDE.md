@@ -121,6 +121,24 @@ scope.
   `controllers/secure_channel.py`; an equivalent mutant is removed
   from the source, never excluded in the harness.
 
+## Metadata concealment and code integrity (QV-PAD-1, QV-SRI-1)
+
+- Every message and file plaintext is padded client-side to a fixed bucket
+  (`utils/padding.py` and `static/js/qv-padding.js` share one table) before
+  AES-256-GCM; the wire reveals only the bucket. Bucket tables are
+  overridable through `QV_PAD_MESSAGE_BUCKETS` / `QV_PAD_FILE_BUCKETS`.
+- Pad bytes are fresh OS CSPRNG output per envelope and are never cached,
+  stored, or reused. Only the immutable bucket table is cached, keyed by
+  configuration, never by content or length.
+- The server rejects envelopes whose decoded size is not a bucket plus GCM
+  overhead, so unpadded clients fail closed instead of leaking exact sizes.
+- Every script and stylesheet carries a Subresource Integrity pin from
+  `static/sri_manifest.json` via the `sri_integrity` Jinja global.
+  `tools/generate_sri.py` regenerates the manifest; `tools/verify_build.py`
+  fails closed on hash drift, unpinned references, or bucket-table drift
+  between Python and JavaScript. No page may load third-party beacons,
+  analytics, or font CDNs.
+
 ## Layering
 
 `views` (HTTP) depend on `controllers` and `models`; `controllers` depend on

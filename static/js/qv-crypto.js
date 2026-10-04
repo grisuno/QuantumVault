@@ -10,6 +10,10 @@
 //     "QV-SRP-1" mirroring utils/srp6a.py byte-for-byte.
 //   - Key wrapping: hybrid KEM = ML-KEM-768 (post-quantum) + X25519 (classical),
 //     combined via HKDF-SHA256, sealing keys with AES-256-GCM.
+//   - Size concealment: every message/file plaintext is padded to a fixed
+//     bucket (qv-padding.js, QV-PAD-1) before AES-GCM, so ciphertext lengths
+//     reveal only the bucket. Pad bytes are fresh crypto.getRandomValues per
+//     envelope and are never cached or reused.
 //   - Private-key protection: PBKDF2-SHA256 (600k iterations) derives the master
 //     key that encrypts the user's private key blob.
 //
@@ -28,6 +32,8 @@ import { ml_kem768 } from "./vendor/ml_kem.js";
 
 // noble/curves 1.9.7 — X25519, Ed25519
 import { x25519 } from "./vendor/ed25519.js";
+
+import { padFramed, unframeFramed } from "./qv-padding.js";
 
 const N_HEX =
   "AC6BDB41324A9A9BF166DE5E1389582FAF72B6651987EE07FC3192943DB56050" +
@@ -587,11 +593,14 @@ export async function login(csrfToken, username, password) {
   return srpLogin(username, password, csrfToken);
 }
 
-// Generate a fresh file key, encrypt the file, wrap the key, and upload.
+// Generate a fresh file key, encrypt the padded file, wrap the key, and upload.
+// The file plaintext is padded to a fixed file bucket before AES-GCM so the
+// ciphertext length reveals only the bucket, not the exact file size.
 export async function encryptAndUpload(uploadUrl, csrfToken, file, publicKeyB64) {
   const fek = randomBytes(32);
   const fileBytes = new Uint8Array(await file.arrayBuffer());
-  const encryptedFile = await aesGcmEncrypt(fek, fileBytes);
+  const framed = padFramed(fileBytes, "file");
+  const encryptedFile = await aesGcmEncrypt(fek, framed);
   const wrappedFek = await wrapKey(publicKeyB64, fek);
 
   const form = new FormData();
@@ -646,7 +655,8 @@ export async function downloadAndDecrypt(downloadUrl, username, password) {
   }
 
   const fek = await unwrapKey(privateBlob, data.wrapped_fek_b64);
-  const plaintext = await aesGcmDecrypt(fek, base64ToBytes(data.encrypted_file_b64));
+  const padded = await aesGcmDecrypt(fek, base64ToBytes(data.encrypted_file_b64));
+  const plaintext = unframeFramed(padded, "file");
 
   return {
     filename: data.filename,
@@ -677,7 +687,8 @@ export async function sendSecureMessage(
   message,
 ) {
   const cek = randomBytes(32);
-  const encryptedMessage = await aesGcmEncrypt(cek, textEncoder.encode(message));
+  const framed = padFramed(textEncoder.encode(message), "message");
+  const encryptedMessage = await aesGcmEncrypt(cek, framed);
 
   const recipientPublicKey = await fetchPublicKey(recipient, csrfToken);
   const cekForRecipient = await wrapKey(recipientPublicKey, cek);
@@ -724,10 +735,11 @@ export async function decryptInbox(username, password, envelopes) {
   for (const envelope of envelopes) {
     try {
       const cek = await unwrapKey(privateBlob, envelope.cek_for_recipient);
-      const plaintext = await aesGcmDecrypt(
+      const padded = await aesGcmDecrypt(
         cek,
         base64ToBytes(envelope.encrypted_message_b64),
       );
+      const plaintext = unframeFramed(padded, "message");
       results.push({ ok: true, text: decoder.decode(plaintext) });
     } catch (e) {
       results.push({ ok: false, text: "[Unable to decrypt this message]" });

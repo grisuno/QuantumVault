@@ -14,6 +14,8 @@ from typing import List, Optional, Tuple
 from flask import current_app, flash
 from werkzeug.utils import secure_filename
 
+from utils.padding import config_from_env, is_allowed_ciphertext_len
+
 import boto3
 from botocore.exceptions import BotoCoreError, ClientError
 
@@ -81,17 +83,26 @@ class FileController:
         return total
 
     def upload_encrypted_file(self, username: str, file_storage, wrapped_fek: bytes) -> bool:
-        """Persist an already-encrypted file and its wrapped FEK to S3."""
+        """Persist an already-encrypted file and its wrapped FEK to S3.
+
+        The ciphertext must already be padded client-side to a configured
+        file bucket plus AES-256-GCM overhead. Unpadded uploads are
+        rejected so exact plaintext sizes never reach the wire or storage.
+        """
         filename = safe_filename(getattr(file_storage, "filename", None))
         if not filename:
             flash("Invalid filename.")
             return False
 
         try:
+            body = file_storage.read()
+            if not is_allowed_ciphertext_len(len(body), "file", config_from_env()):
+                flash("Invalid file envelope.")
+                return False
             self.s3_client.put_object(
                 Bucket=self.s3_bucket,
                 Key=self._key(username, filename),
-                Body=file_storage.read(),
+                Body=body,
             )
             self.s3_client.put_object(
                 Bucket=self.s3_bucket,

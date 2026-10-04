@@ -1,10 +1,10 @@
 # static/js
 
-*Community 1 | 8 files | cohesion 1.00*
+*Community 1 | 8 files | cohesion 0.88*
 
 ## Definition
 
-This community groups 8 file(s) rooted at `static/js` with dominant language js (cohesion 1.00). Central symbols: `H`, `Hint`, `aesGcmDecrypt`, `aesGcmEncrypt`, `apiRequest`, `base64ToBytes`, `buildDeniableVault`, `buildRegistration`. Core file: `static/js/qv-crypto.js` (40 symbols). Documented purpose: Account settings controller: secure notes (QV-DENIABLE-1).  Loaded as an external ES module to comply with the strict Content-Security-Policy (script-src 'self'.
+This community groups 8 file(s) rooted at `static/js` with dominant language js (cohesion 0.88). Central symbols: `H`, `Hint`, `aesGcmDecrypt`, `aesGcmEncrypt`, `apiRequest`, `base64ToBytes`, `buildDeniableVault`, `buildRegistration`. Core file: `static/js/qv-crypto.js` (40 symbols). Documented purpose: Account settings controller: secure notes (QV-DENIABLE-1).  Loaded as an external ES module to comply with the strict Content-Security-Policy (script-src 'self'.
 
 ## Files
 
@@ -38,28 +38,34 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 - `handleDecryptInbox` (function, `static/js/messages.js:60`)
 - `initEditor` (function, `static/js/messages.js:87`)
 - `init` (function, `static/js/messages.js:108`)
-- `concatBytes` (function, `static/js/qv-crypto.js:52`) - -- Encoding helpers ---
-- `hexToBytes` (function, `static/js/qv-crypto.js:63`)
-- `bytesToHex` (function, `static/js/qv-crypto.js:72`)
-- `bytesToBase64` (function, `static/js/qv-crypto.js:78`)
-- `bytesToBase32` (function, `static/js/qv-crypto.js:89`)
-- `base64ToBytes` (function, `static/js/qv-crypto.js:107`)
-- `bytesToBigInt` (function, `static/js/qv-crypto.js:114`)
-- `i2osp` (function, `static/js/qv-crypto.js:121`)
-- `mod` (function, `static/js/qv-crypto.js:131`)
-- `modPow` (function, `static/js/qv-crypto.js:135`)
-- `randomBytes` (function, `static/js/qv-crypto.js:153`)
-- `H` (function, `static/js/qv-crypto.js:162`)
-- `Hint` (function, `static/js/qv-crypto.js:166`)
+- `concatBytes` (function, `static/js/qv-crypto.js:58`) - -- Encoding helpers ---
+- `hexToBytes` (function, `static/js/qv-crypto.js:69`)
+- `bytesToHex` (function, `static/js/qv-crypto.js:78`)
+- `bytesToBase64` (function, `static/js/qv-crypto.js:84`)
+- `bytesToBase32` (function, `static/js/qv-crypto.js:95`)
+- `base64ToBytes` (function, `static/js/qv-crypto.js:113`)
+- `bytesToBigInt` (function, `static/js/qv-crypto.js:120`)
+- `i2osp` (function, `static/js/qv-crypto.js:127`)
+- `mod` (function, `static/js/qv-crypto.js:137`)
+- `modPow` (function, `static/js/qv-crypto.js:141`)
+- `randomBytes` (function, `static/js/qv-crypto.js:159`)
+- `H` (function, `static/js/qv-crypto.js:168`)
+- `Hint` (function, `static/js/qv-crypto.js:172`)
 
 ## Internal vs External Edges
 
 - Internal resolved imports (EXTRACTED): 9
-- Cross-boundary resolved imports (EXTRACTED): 0
+- Cross-boundary resolved imports (EXTRACTED): 1
 
 ## Connections
 
+- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: static/js/qv-crypto.js imports static/js/qv-padding.js.
 - [INFERRED] shares_context community 1 <-> 2 (strength 0.5): Inferred shared context (layer utility) with no import path between community 1 (static/js) and community 2 (orphans).
+- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: models/contact.py reaches static/js/account.js in 9 hops.
+- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/contact.py reaches static/js/account.js in 8 hops.
+- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/deniable_vault.py reaches static/js/account.js in 8 hops.
+- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/facade.py reaches static/js/account.js in 8 hops.
+- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/secure_channel.py reaches static/js/account.js in 8 hops.
 
 ## Risks
 
@@ -70,7 +76,7 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 
 - Can the cycle `static/js/qv-crypto.js` -> `static/js/register.js` be broken with an interface?
 - What would break if the most connected file in static/js changed?
-- Should static/js be split, given cohesion 1.00?
+- Should static/js be split, given cohesion 0.88?
 
 ## Sources
 

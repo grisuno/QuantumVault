@@ -239,6 +239,50 @@
   - `test_enabled_without_a_hash_fails_open_to_the_real_app` (method, line 474) `def test_enabled_without_a_hash_fails_open_to_the_real_app(self, tmp_path)`
 - Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
 
+## tests/test_integrity.py
+- Layer: testing
+- Doc: Contract tests for SRI pins and reproducible builds (QV-SRI-1).
+- Language: py
+- Symbols:
+  - `test_compute_sri_format` (function, line 19) `def test_compute_sri_format()`
+  - `test_manifest_exists_and_pins_crypto` (function, line 25) `def test_manifest_exists_and_pins_crypto()`
+  - `test_manifest_hashes_match_files` (function, line 37) `def test_manifest_hashes_match_files()`
+  - `test_template_integrity_resolves_both_forms` (function, line 44) `def test_template_integrity_resolves_both_forms()`
+  - `test_jinja_global_registered` (function, line 51) `def test_jinja_global_registered(app)`
+  - `test_verify_build_passes_on_clean_tree` (function, line 55) `def test_verify_build_passes_on_clean_tree()`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+## tests/test_padding.py
+- Layer: testing
+- Doc: Contract tests for fixed-bucket padding (QV-PAD-1) and its enforcement.
+- Language: py
+- Symbols:
+  - `test_pad_roundtrip_message_sizes` (function, line 26) `def test_pad_roundtrip_message_sizes()`
+  - `test_pad_roundtrip_file_kind` (function, line 33) `def test_pad_roundtrip_file_kind()`
+  - `test_bucket_boundaries` (function, line 38) `def test_bucket_boundaries()`
+  - `test_pad_output_length_is_bucketed` (function, line 44) `def test_pad_output_length_is_bucketed()`
+  - `test_pad_uses_fresh_randomness` (function, line 49) `def test_pad_uses_fresh_randomness()`
+  - `test_pad_rejects_oversize` (function, line 56) `def test_pad_rejects_oversize()`
+  - `test_unpad_rejects_non_bucket_length` (function, line 61) `def test_unpad_rejects_non_bucket_length()`
+  - `test_unpad_rejects_corrupt_prefix` (function, line 66) `def test_unpad_rejects_corrupt_prefix()`
+  - `test_unpad_rejects_wrong_kind` (function, line 74) `def test_unpad_rejects_wrong_kind()`
+  - `test_wire_lengths` (function, line 80) `def test_wire_lengths()`
+  - `test_config_from_env_override` (function, line 87) `def test_config_from_env_override(monkeypatch)`
+  - `test_config_from_env_falls_back_on_garbage` (function, line 94) `def test_config_from_env_falls_back_on_garbage(monkeypatch)`
+  - `test_cache_holds_tables_not_pad_bytes` (function, line 99) `def test_cache_holds_tables_not_pad_bytes()`
+  - `test_message_controller_rejects_unpadded_envelope` (function, line 105) `def test_message_controller_rejects_unpadded_envelope(app, tmp_path, monkeypatch)`
+  - `test_message_controller_rejects_malformed_base64` (function, line 113) `def test_message_controller_rejects_malformed_base64(app, tmp_path, monkeypatch)`
+  - `test_message_controller_accepts_bucketed_envelope` (function, line 120) `def test_message_controller_accepts_bucketed_envelope(app, tmp_path, monkeypatch)`
+  - `_FakeS3` (class, line 128) `class _FakeS3`
+  - `_FakeUpload` (class, line 136) `class _FakeUpload`
+  - `test_file_controller_rejects_unpadded_upload` (method, line 146) `def test_file_controller_rejects_unpadded_upload(app)`
+  - `test_file_controller_accepts_bucketed_upload` (method, line 152) `def test_file_controller_accepts_bucketed_upload(app)`
+  - `__init__` (method, line 129) `def __init__(self)`
+  - `put_object` (method, line 132) `def put_object(self, Bucket, Key, Body)`
+  - `__init__` (method, line 139) `def __init__(self, body)`
+  - `read` (method, line 142) `def read(self)`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
 ## tests/test_secure_channel.py
 - Layer: testing
 - Doc: Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChannelConfig resolution, URL validation, ma

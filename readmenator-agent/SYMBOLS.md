@@ -4,14 +4,14 @@
 |--------|------|-----------|-----------|
 | `_is_production_like` | function | `app.py:58` | `def _is_production_like()` |
 | `main` | function | `app.py:21` | `def main()` |
-| `_build_csp` | function | `app_factory.py:81` | `def _build_csp()` |
-| `_build_talisman_kwargs` | function | `app_factory.py:112` | `def _build_talisman_kwargs()` |
-| `_configure_logging` | function | `app_factory.py:213` | `def _configure_logging(app)` |
-| `_configure_secret_key` | function | `app_factory.py:153` | `def _configure_secret_key(app, config)` |
-| `_configure_session` | function | `app_factory.py:196` | `def _configure_session(app)` |
-| `_is_production` | function | `app_factory.py:70` | `def _is_production()` |
-| `create_app` | function | `app_factory.py:230` | `def create_app(config_overrides, security_overrides)` |
-| `load_user` | function | `app_factory.py:408` | `def load_user(user_id)` |
+| `_build_csp` | function | `app_factory.py:82` | `def _build_csp()` |
+| `_build_talisman_kwargs` | function | `app_factory.py:119` | `def _build_talisman_kwargs()` |
+| `_configure_logging` | function | `app_factory.py:220` | `def _configure_logging(app)` |
+| `_configure_secret_key` | function | `app_factory.py:160` | `def _configure_secret_key(app, config)` |
+| `_configure_session` | function | `app_factory.py:203` | `def _configure_session(app)` |
+| `_is_production` | function | `app_factory.py:71` | `def _is_production()` |
+| `create_app` | function | `app_factory.py:237` | `def create_app(config_overrides, security_overrides)` |
+| `load_user` | function | `app_factory.py:416` | `def load_user(user_id)` |
 | `main` | function | `client.go:13` | `func main(` |
 | `AuthController` | class | `controllers/auth.py:58` | `class AuthController` |
 | `__init__` | method | `controllers/auth.py:61` | `def __init__(self, db_path, mail, storage_uri)` |
@@ -79,19 +79,19 @@
 | `read` | method | `controllers/facade.py:189` | `def read(key)` |
 | `verify` | method | `controllers/facade.py:286` | `def verify(self, phrase, encoded)` |
 | `verify` | method | `controllers/facade.py:322` | `def verify(self, token)` |
-| `FileController` | class | `controllers/file.py:49` | `class FileController` |
-| `__init__` | method | `controllers/file.py:52` | `def __init__(self, users_path, s3_bucket, s3_client)` |
-| `_key` | method | `controllers/file.py:57` | `def _key(self, username, filename, suffix)` |
-| `_log_s3_error` | function | `controllers/file.py:26` | `def _log_s3_error(operation, error)` |
-| `get_encrypted_file_and_key` | method | `controllers/file.py:107` | `def get_encrypted_file_and_key(self, username, filename)` |
-| `get_storage_usage` | method | `controllers/file.py:69` | `def get_storage_usage(self, username)` |
-| `list_encrypted_files` | method | `controllers/file.py:137` | `def list_encrypted_files(self, username)` |
-| `safe_filename` | function | `controllers/file.py:31` | `def safe_filename(name)` |
-| `upload_encrypted_file` | method | `controllers/file.py:83` | `def upload_encrypted_file(self, username, file_storage, wrapped_fek)` |
-| `MessageController` | class | `controllers/message.py:16` | `class MessageController` |
-| `__init__` | method | `controllers/message.py:19` | `def __init__(self, users_path, users_db_path)` |
-| `get_messages` | method | `controllers/message.py:75` | `def get_messages(self, username, page, per_page)` |
-| `send_encrypted_message` | method | `controllers/message.py:33` | `def send_encrypted_message(self, sender, recipient, encrypted_message_b64, cek_for_recipient, cek_for_sender)` |
+| `FileController` | class | `controllers/file.py:51` | `class FileController` |
+| `__init__` | method | `controllers/file.py:54` | `def __init__(self, users_path, s3_bucket, s3_client)` |
+| `_key` | method | `controllers/file.py:59` | `def _key(self, username, filename, suffix)` |
+| `_log_s3_error` | function | `controllers/file.py:28` | `def _log_s3_error(operation, error)` |
+| `get_encrypted_file_and_key` | method | `controllers/file.py:118` | `def get_encrypted_file_and_key(self, username, filename)` |
+| `get_storage_usage` | method | `controllers/file.py:71` | `def get_storage_usage(self, username)` |
+| `list_encrypted_files` | method | `controllers/file.py:148` | `def list_encrypted_files(self, username)` |
+| `safe_filename` | function | `controllers/file.py:33` | `def safe_filename(name)` |
+| `upload_encrypted_file` | method | `controllers/file.py:85` | `def upload_encrypted_file(self, username, file_storage, wrapped_fek)` |
+| `MessageController` | class | `controllers/message.py:19` | `class MessageController` |
+| `__init__` | method | `controllers/message.py:22` | `def __init__(self, users_path, users_db_path)` |
+| `get_messages` | method | `controllers/message.py:90` | `def get_messages(self, username, page, per_page)` |
+| `send_encrypted_message` | method | `controllers/message.py:36` | `def send_encrypted_message(self, sender, recipient, encrypted_message_b64, cek_for_recipient, cek_for_sender)` |
 | `ChannelMode` | class | `controllers/secure_channel.py:65` | `class ChannelMode(Enum)` |
 | `ChannelStatus` | class | `controllers/secure_channel.py:174` | `class ChannelStatus` |
 | `SecureChannelConfig` | class | `controllers/secure_channel.py:116` | `class SecureChannelConfig` |
@@ -277,46 +277,46 @@
 | `handleSend` | function | `static/js/messages.js:17` | `` |
 | `init` | function | `static/js/messages.js:108` | `` |
 | `initEditor` | function | `static/js/messages.js:87` | `` |
-| `H` | function | `static/js/qv-crypto.js:162` | `` |
-| `Hint` | function | `static/js/qv-crypto.js:166` | `` |
-| `aesGcmDecrypt` | function | `static/js/qv-crypto.js:214` | `` |
-| `aesGcmEncrypt` | function | `static/js/qv-crypto.js:203` | `` |
-| `base64ToBytes` | function | `static/js/qv-crypto.js:107` | `` |
-| `buildRegistration` | function | `static/js/qv-crypto.js:490` | `` |
-| `bytesToBase32` | function | `static/js/qv-crypto.js:89` | `` |
-| `bytesToBase64` | function | `static/js/qv-crypto.js:78` | `` |
-| `bytesToBigInt` | function | `static/js/qv-crypto.js:114` | `` |
-| `bytesToHex` | function | `static/js/qv-crypto.js:72` | `` |
-| `computeK` | function | `static/js/qv-crypto.js:244` | `` |
-| `concatBytes` | function | `static/js/qv-crypto.js:52` | `` |
-| `decryptInbox` | function | `static/js/qv-crypto.js:703` | `` |
-| `deriveKeyFromPassphrase` | function | `static/js/qv-crypto.js:178` | `` |
-| `deriveMasterKey` | function | `static/js/qv-crypto.js:199` | `` |
-| `derivePublicKeyFromPrivateBlob` | function | `static/js/qv-crypto.js:449` | `` |
-| `deriveVerifier` | function | `static/js/qv-crypto.js:249` | `` |
-| `deriveWrapKey` | function | `static/js/qv-crypto.js:353` | `` |
-| `downloadAndDecrypt` | function | `static/js/qv-crypto.js:620` | `` |
-| `encryptAndUpload` | function | `static/js/qv-crypto.js:591` | `` |
-| `fetchPublicKey` | function | `static/js/qv-crypto.js:658` | `` |
-| `generateIdentity` | function | `static/js/qv-crypto.js:309` | `` |
-| `generateRecoveryCode` | function | `static/js/qv-crypto.js:411` | `` |
-| `hexToBytes` | function | `static/js/qv-crypto.js:63` | `` |
-| `i2osp` | function | `static/js/qv-crypto.js:121` | `` |
-| `login` | function | `static/js/qv-crypto.js:586` | `` |
-| `mod` | function | `static/js/qv-crypto.js:131` | `` |
-| `modPow` | function | `static/js/qv-crypto.js:135` | `` |
-| `normalizeRecoveryCode` | function | `static/js/qv-crypto.js:422` | `` |
-| `parsePrivateBlob` | function | `static/js/qv-crypto.js:345` | `` |
-| `parsePublicKey` | function | `static/js/qv-crypto.js:337` | `` |
-| `postJson` | function | `static/js/qv-crypto.js:467` | `` |
-| `randomBytes` | function | `static/js/qv-crypto.js:153` | `` |
-| `recoverAccount` | function | `static/js/qv-crypto.js:535` | `` |
-| `register` | function | `static/js/qv-crypto.js:524` | `` |
-| `sendSecureMessage` | function | `static/js/qv-crypto.js:673` | `` |
-| `srpLogin` | function | `static/js/qv-crypto.js:257` | `` |
-| `unwrapKey` | function | `static/js/qv-crypto.js:389` | `` |
-| `wrapKey` | function | `static/js/qv-crypto.js:365` | `` |
-| `wrapPrivateKeyForRecovery` | function | `static/js/qv-crypto.js:430` | `` |
+| `H` | function | `static/js/qv-crypto.js:168` | `` |
+| `Hint` | function | `static/js/qv-crypto.js:172` | `` |
+| `aesGcmDecrypt` | function | `static/js/qv-crypto.js:220` | `` |
+| `aesGcmEncrypt` | function | `static/js/qv-crypto.js:209` | `` |
+| `base64ToBytes` | function | `static/js/qv-crypto.js:113` | `` |
+| `buildRegistration` | function | `static/js/qv-crypto.js:496` | `` |
+| `bytesToBase32` | function | `static/js/qv-crypto.js:95` | `` |
+| `bytesToBase64` | function | `static/js/qv-crypto.js:84` | `` |
+| `bytesToBigInt` | function | `static/js/qv-crypto.js:120` | `` |
+| `bytesToHex` | function | `static/js/qv-crypto.js:78` | `` |
+| `computeK` | function | `static/js/qv-crypto.js:250` | `` |
+| `concatBytes` | function | `static/js/qv-crypto.js:58` | `` |
+| `decryptInbox` | function | `static/js/qv-crypto.js:714` | `` |
+| `deriveKeyFromPassphrase` | function | `static/js/qv-crypto.js:184` | `` |
+| `deriveMasterKey` | function | `static/js/qv-crypto.js:205` | `` |
+| `derivePublicKeyFromPrivateBlob` | function | `static/js/qv-crypto.js:455` | `` |
+| `deriveVerifier` | function | `static/js/qv-crypto.js:255` | `` |
+| `deriveWrapKey` | function | `static/js/qv-crypto.js:359` | `` |
+| `downloadAndDecrypt` | function | `static/js/qv-crypto.js:629` | `` |
+| `encryptAndUpload` | function | `static/js/qv-crypto.js:599` | `` |
+| `fetchPublicKey` | function | `static/js/qv-crypto.js:668` | `` |
+| `generateIdentity` | function | `static/js/qv-crypto.js:315` | `` |
+| `generateRecoveryCode` | function | `static/js/qv-crypto.js:417` | `` |
+| `hexToBytes` | function | `static/js/qv-crypto.js:69` | `` |
+| `i2osp` | function | `static/js/qv-crypto.js:127` | `` |
+| `login` | function | `static/js/qv-crypto.js:592` | `` |
+| `mod` | function | `static/js/qv-crypto.js:137` | `` |
+| `modPow` | function | `static/js/qv-crypto.js:141` | `` |
+| `normalizeRecoveryCode` | function | `static/js/qv-crypto.js:428` | `` |
+| `parsePrivateBlob` | function | `static/js/qv-crypto.js:351` | `` |
+| `parsePublicKey` | function | `static/js/qv-crypto.js:343` | `` |
+| `postJson` | function | `static/js/qv-crypto.js:473` | `` |
+| `randomBytes` | function | `static/js/qv-crypto.js:159` | `` |
+| `recoverAccount` | function | `static/js/qv-crypto.js:541` | `` |
+| `register` | function | `static/js/qv-crypto.js:530` | `` |
+| `sendSecureMessage` | function | `static/js/qv-crypto.js:683` | `` |
+| `srpLogin` | function | `static/js/qv-crypto.js:263` | `` |
+| `unwrapKey` | function | `static/js/qv-crypto.js:395` | `` |
+| `wrapKey` | function | `static/js/qv-crypto.js:371` | `` |
+| `wrapPrivateKeyForRecovery` | function | `static/js/qv-crypto.js:436` | `` |
 | `buildDeniableVault` | function | `static/js/qv-deniable.js:125` | `` |
 | `frame` | function | `static/js/qv-deniable.js:55` | `` |
 | `openDeniableVault` | function | `static/js/qv-deniable.js:170` | `` |
@@ -324,6 +324,11 @@
 | `sealSlot` | function | `static/js/qv-deniable.js:82` | `` |
 | `toBytes` | function | `static/js/qv-deniable.js:47` | `` |
 | `unframe` | function | `static/js/qv-deniable.js:64` | `` |
+| `bucketFor` | function | `static/js/qv-padding.js:20` | `` |
+| `padFramed` | function | `static/js/qv-padding.js:42` | `` |
+| `randomPad` | function | `static/js/qv-padding.js:33` | `` |
+| `tableFor` | function | `static/js/qv-padding.js:15` | `` |
+| `unframeFramed` | function | `static/js/qv-padding.js:54` | `` |
 | `handleRecover` | function | `static/js/recover.js:22` | `` |
 | `init` | function | `static/js/recover.js:79` | `` |
 | `setStatus` | function | `static/js/recover.js:14` | `` |
@@ -525,6 +530,36 @@
 | `test_verify_rejects_garbage_and_none` | method | `tests/test_facade.py:272` | `def test_verify_rejects_garbage_and_none(self)` |
 | `test_wrong_phrase_is_a_miss_with_no_ticket` | method | `tests/test_facade.py:307` | `def test_wrong_phrase_is_a_miss_with_no_ticket(self, app, gate_config)` |
 | `test_wrong_phrase_keeps_the_cover_and_does_not_redirect` | method | `tests/test_facade.py:409` | `def test_wrong_phrase_keeps_the_cover_and_does_not_redirect(self, facade_client)` |
+| `test_compute_sri_format` | function | `tests/test_integrity.py:19` | `def test_compute_sri_format()` |
+| `test_jinja_global_registered` | function | `tests/test_integrity.py:51` | `def test_jinja_global_registered(app)` |
+| `test_manifest_exists_and_pins_crypto` | function | `tests/test_integrity.py:25` | `def test_manifest_exists_and_pins_crypto()` |
+| `test_manifest_hashes_match_files` | function | `tests/test_integrity.py:37` | `def test_manifest_hashes_match_files()` |
+| `test_template_integrity_resolves_both_forms` | function | `tests/test_integrity.py:44` | `def test_template_integrity_resolves_both_forms()` |
+| `test_verify_build_passes_on_clean_tree` | function | `tests/test_integrity.py:55` | `def test_verify_build_passes_on_clean_tree()` |
+| `_FakeS3` | class | `tests/test_padding.py:128` | `class _FakeS3` |
+| `_FakeUpload` | class | `tests/test_padding.py:136` | `class _FakeUpload` |
+| `__init__` | method | `tests/test_padding.py:129` | `def __init__(self)` |
+| `__init__` | method | `tests/test_padding.py:139` | `def __init__(self, body)` |
+| `put_object` | method | `tests/test_padding.py:132` | `def put_object(self, Bucket, Key, Body)` |
+| `read` | method | `tests/test_padding.py:142` | `def read(self)` |
+| `test_bucket_boundaries` | function | `tests/test_padding.py:38` | `def test_bucket_boundaries()` |
+| `test_cache_holds_tables_not_pad_bytes` | function | `tests/test_padding.py:99` | `def test_cache_holds_tables_not_pad_bytes()` |
+| `test_config_from_env_falls_back_on_garbage` | function | `tests/test_padding.py:94` | `def test_config_from_env_falls_back_on_garbage(monkeypatch)` |
+| `test_config_from_env_override` | function | `tests/test_padding.py:87` | `def test_config_from_env_override(monkeypatch)` |
+| `test_file_controller_accepts_bucketed_upload` | method | `tests/test_padding.py:152` | `def test_file_controller_accepts_bucketed_upload(app)` |
+| `test_file_controller_rejects_unpadded_upload` | method | `tests/test_padding.py:146` | `def test_file_controller_rejects_unpadded_upload(app)` |
+| `test_message_controller_accepts_bucketed_envelope` | function | `tests/test_padding.py:120` | `def test_message_controller_accepts_bucketed_envelope(app, tmp_path, monkeypatch)` |
+| `test_message_controller_rejects_malformed_base64` | function | `tests/test_padding.py:113` | `def test_message_controller_rejects_malformed_base64(app, tmp_path, monkeypatch)` |
+| `test_message_controller_rejects_unpadded_envelope` | function | `tests/test_padding.py:105` | `def test_message_controller_rejects_unpadded_envelope(app, tmp_path, monkeypatch)` |
+| `test_pad_output_length_is_bucketed` | function | `tests/test_padding.py:44` | `def test_pad_output_length_is_bucketed()` |
+| `test_pad_rejects_oversize` | function | `tests/test_padding.py:56` | `def test_pad_rejects_oversize()` |
+| `test_pad_roundtrip_file_kind` | function | `tests/test_padding.py:33` | `def test_pad_roundtrip_file_kind()` |
+| `test_pad_roundtrip_message_sizes` | function | `tests/test_padding.py:26` | `def test_pad_roundtrip_message_sizes()` |
+| `test_pad_uses_fresh_randomness` | function | `tests/test_padding.py:49` | `def test_pad_uses_fresh_randomness()` |
+| `test_unpad_rejects_corrupt_prefix` | function | `tests/test_padding.py:66` | `def test_unpad_rejects_corrupt_prefix()` |
+| `test_unpad_rejects_non_bucket_length` | function | `tests/test_padding.py:61` | `def test_unpad_rejects_non_bucket_length()` |
+| `test_unpad_rejects_wrong_kind` | function | `tests/test_padding.py:74` | `def test_unpad_rejects_wrong_kind()` |
+| `test_wire_lengths` | function | `tests/test_padding.py:80` | `def test_wire_lengths()` |
 | `_FakeProcess` | class | `tests/test_secure_channel.py:260` | `class _FakeProcess` |
 | `_fake_mono` | method | `tests/test_secure_channel.py:573` | `def _fake_mono()` |
 | `_fake_mono` | method | `tests/test_secure_channel.py:606` | `def _fake_mono()` |
@@ -609,6 +644,11 @@
 | `test_database_path_default_outside_a_context` | function | `tests/test_utils.py:18` | `def test_database_path_default_outside_a_context(monkeypatch)` |
 | `test_database_path_honors_env_outside_a_context` | function | `tests/test_utils.py:13` | `def test_database_path_honors_env_outside_a_context(monkeypatch)` |
 | `test_database_path_prefers_the_configured_path` | function | `tests/test_utils.py:8` | `def test_database_path_prefers_the_configured_path(app)` |
+| `build_manifest` | function | `tools/generate_sri.py:66` | `def build_manifest(cdn, local)` |
+| `collect_local_assets` | function | `tools/generate_sri.py:41` | `def collect_local_assets()` |
+| `fetch_cdn_assets` | function | `tools/generate_sri.py:56` | `def fetch_cdn_assets()` |
+| `main` | function | `tools/generate_sri.py:81` | `def main(argv)` |
+| `render_manifest` | function | `tools/generate_sri.py:76` | `def render_manifest(manifest)` |
 | `Mutation` | class | `tools/mutation_test.py:56` | `class Mutation` |
 | `_is_equivalent_bool` | method | `tools/mutation_test.py:67` | `def _is_equivalent_bool(tokens, index)` |
 | `apply_mutation` | method | `tools/mutation_test.py:109` | `def apply_mutation(source, mutation)` |
@@ -617,14 +657,46 @@
 | `main` | method | `tools/mutation_test.py:157` | `def main(argv)` |
 | `purge_bytecode` | method | `tools/mutation_test.py:133` | `def purge_bytecode()` |
 | `run_suite` | method | `tools/mutation_test.py:142` | `def run_suite(python, tests)` |
+| `AssetReference` | class | `tools/verify_build.py:34` | `class AssetReference(HTMLParser)` |
+| `__init__` | method | `tools/verify_build.py:37` | `def __init__(self)` |
+| `_normalize_reference` | method | `tools/verify_build.py:60` | `def _normalize_reference(ref)` |
+| `check_bucket_parity` | method | `tools/verify_build.py:126` | `def check_bucket_parity(failures)` |
+| `check_local_hashes` | method | `tools/verify_build.py:95` | `def check_local_hashes(manifest, failures)` |
+| `check_template_references` | method | `tools/verify_build.py:110` | `def check_template_references(manifest, failures)` |
+| `expected_for_reference` | method | `tools/verify_build.py:76` | `def expected_for_reference(manifest, ref)` |
+| `handle_starttag` | method | `tools/verify_build.py:42` | `def handle_starttag(self, tag, attrs)` |
+| `integrity_attribute_ok` | method | `tools/verify_build.py:85` | `def integrity_attribute_ok(integrity, ref, expected)` |
+| `load_manifest` | method | `tools/verify_build.py:71` | `def load_manifest()` |
+| `main` | method | `tools/verify_build.py:141` | `def main()` |
 | `Cache` | class | `utils/cache.py:6` | `class Cache` |
 | `__init__` | method | `utils/cache.py:8` | `def __init__(self)` |
 | `delete` | method | `utils/cache.py:20` | `def delete(self, key)` |
 | `get` | method | `utils/cache.py:11` | `def get(self, key)` |
 | `set` | method | `utils/cache.py:16` | `def set(self, key, value, ttl)` |
+| `_cached_manifest_text` | function | `utils/integrity.py:42` | `def _cached_manifest_text()` |
+| `clear_manifest_cache` | function | `utils/integrity.py:72` | `def clear_manifest_cache()` |
+| `compute_file_sri` | function | `utils/integrity.py:36` | `def compute_file_sri(path, algorithm)` |
+| `compute_sri` | function | `utils/integrity.py:30` | `def compute_sri(data, algorithm)` |
+| `integrity_for` | function | `utils/integrity.py:55` | `def integrity_for(key)` |
+| `load_manifest` | function | `utils/integrity.py:47` | `def load_manifest()` |
+| `manifest_path` | function | `utils/integrity.py:25` | `def manifest_path()` |
+| `template_integrity` | function | `utils/integrity.py:77` | `def template_integrity(key)` |
 | `external_url` | function | `utils/mailer.py:22` | `def external_url(path)` |
 | `mail_is_configured` | function | `utils/mailer.py:38` | `def mail_is_configured()` |
 | `send_transactional_email` | function | `utils/mailer.py:51` | `def send_transactional_email(subject, recipients, body)` |
+| `PaddingConfig` | class | `utils/padding.py:78` | `class PaddingConfig` |
+| `PaddingError` | class | `utils/padding.py:73` | `class PaddingError(ValueError)` |
+| `_cached_bucket_table` | method | `utils/padding.py:128` | `def _cached_bucket_table(fingerprint)` |
+| `_parse_buckets` | method | `utils/padding.py:95` | `def _parse_buckets(raw, fallback)` |
+| `bucket_for` | method | `utils/padding.py:149` | `def bucket_for(plaintext_len, kind, config)` |
+| `buckets_for` | method | `utils/padding.py:84` | `def buckets_for(self, kind)` |
+| `cached_tables` | method | `utils/padding.py:142` | `def cached_tables(config)` |
+| `config_from_env` | method | `utils/padding.py:109` | `def config_from_env()` |
+| `is_allowed_ciphertext_len` | method | `utils/padding.py:214` | `def is_allowed_ciphertext_len(ciphertext_len, kind, config)` |
+| `max_plaintext_bytes` | method | `utils/padding.py:90` | `def max_plaintext_bytes(self, kind)` |
+| `pad` | method | `utils/padding.py:169` | `def pad(plaintext, kind, config)` |
+| `unpad` | method | `utils/padding.py:183` | `def unpad(padded, kind, config)` |
+| `wire_ciphertext_len` | method | `utils/padding.py:209` | `def wire_ciphertext_len(bucket)` |
 | `SubscriptionPlans` | class | `utils/plans.py:3` | `class SubscriptionPlans` |
 | `get_plan` | method | `utils/plans.py:30` | `def get_plan(plan_name)` |
 | `validate_plan_payment` | method | `utils/plans.py:42` | `def validate_plan_payment(plan_name, amount_paid)` |

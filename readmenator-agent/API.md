@@ -16,50 +16,50 @@
 ## app_factory.py
 
 ### _is_production (function) `def _is_production()`
-- Defined: `app_factory.py:70`
+- Defined: `app_factory.py:71`
 - Doc: Return True unless the operator explicitly opts into dev mode.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### _build_csp (function) `def _build_csp()`
-- Defined: `app_factory.py:81`
+- Defined: `app_factory.py:82`
 - Doc: Return the strict Content-Security-Policy used in production.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### _build_talisman_kwargs (function) `def _build_talisman_kwargs()`
-- Defined: `app_factory.py:112`
+- Defined: `app_factory.py:119`
 - Doc: Return kwargs to pass to ``Talisman`` based on the runtime env.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### _configure_secret_key (function) `def _configure_secret_key(app, config)`
-- Defined: `app_factory.py:153`
+- Defined: `app_factory.py:160`
 - Doc: Set ``app.config['SECRET_KEY']`` from env, payload.json, or a random value.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### _configure_session (function) `def _configure_session(app)`
-- Defined: `app_factory.py:196`
+- Defined: `app_factory.py:203`
 - Doc: Apply session lifetime and cookie hardening.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### _configure_logging (function) `def _configure_logging(app)`
-- Defined: `app_factory.py:213`
+- Defined: `app_factory.py:220`
 - Doc: Wire up a structured application logger.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### create_app (function) `def create_app(config_overrides, security_overrides)`
-- Defined: `app_factory.py:230`
+- Defined: `app_factory.py:237`
 - Doc: Build and return a fully-configured Flask application.
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ### load_user (function) `def load_user(user_id)`
-- Defined: `app_factory.py:408`
-- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+- Defined: `app_factory.py:416`
+- Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
 - Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
 
 ## client.go
@@ -400,71 +400,71 @@
 ## controllers/file.py
 
 ### _log_s3_error (function) `def _log_s3_error(operation, error)`
-- Defined: `controllers/file.py:26`
+- Defined: `controllers/file.py:28`
 - Doc: Log a failed S3 operation without raising further.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### safe_filename (function) `def safe_filename(name)`
-- Defined: `controllers/file.py:31`
+- Defined: `controllers/file.py:33`
 - Doc: Return a filename safe to embed in an S3 key.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### __init__ (method) `def __init__(self, users_path, s3_bucket, s3_client)`
-- Defined: `controllers/file.py:52`
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Defined: `controllers/file.py:54`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### _key (method) `def _key(self, username, filename, suffix)`
-- Defined: `controllers/file.py:57`
+- Defined: `controllers/file.py:59`
 - Doc: Build the S3 key for a user's encrypted file or FEK.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### get_storage_usage (method) `def get_storage_usage(self, username)`
-- Defined: `controllers/file.py:69`
+- Defined: `controllers/file.py:71`
 - Doc: Sum the bytes used by ``username``'s encrypted files in S3.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### upload_encrypted_file (method) `def upload_encrypted_file(self, username, file_storage, wrapped_fek)`
-- Defined: `controllers/file.py:83`
+- Defined: `controllers/file.py:85`
 - Doc: Persist an already-encrypted file and its wrapped FEK to S3.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### get_encrypted_file_and_key (method) `def get_encrypted_file_and_key(self, username, filename)`
-- Defined: `controllers/file.py:107`
+- Defined: `controllers/file.py:118`
 - Doc: Fetch a user's encrypted file and its wrapped FEK from S3.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ### list_encrypted_files (method) `def list_encrypted_files(self, username)`
-- Defined: `controllers/file.py:137`
+- Defined: `controllers/file.py:148`
 - Doc: List the encrypted files that belong to ``username``.
-- Depends on: `utils/utils.py`
-- Imported by: `app_factory.py`
+- Depends on: `utils/padding.py`, `utils/utils.py`
+- Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ## controllers/message.py
 
 ### __init__ (method) `def __init__(self, users_path, users_db_path)`
-- Defined: `controllers/message.py:19`
+- Defined: `controllers/message.py:22`
 - Doc: Initialize the controller.
-- Depends on: `models/message.py`, `models/user.py`, `utils/utils.py`
-- Imported by: `views/message.py`
+- Depends on: `models/message.py`, `models/user.py`, `utils/padding.py`, `utils/utils.py`
+- Imported by: `tests/test_padding.py`, `views/message.py`
 
 ### send_encrypted_message (method) `def send_encrypted_message(self, sender, recipient, encrypted_message_b64, cek_for_recipient, cek_for_sender)`
-- Defined: `controllers/message.py:33`
+- Defined: `controllers/message.py:36`
 - Doc: Persist an opaque message envelope for the recipient.
-- Depends on: `models/message.py`, `models/user.py`, `utils/utils.py`
-- Imported by: `views/message.py`
+- Depends on: `models/message.py`, `models/user.py`, `utils/padding.py`, `utils/utils.py`
+- Imported by: `tests/test_padding.py`, `views/message.py`
 
 ### get_messages (method) `def get_messages(self, username, page, per_page)`
-- Defined: `controllers/message.py:75`
+- Defined: `controllers/message.py:90`
 - Doc: Return opaque message envelopes for the user.
-- Depends on: `models/message.py`, `models/user.py`, `utils/utils.py`
-- Imported by: `views/message.py`
+- Depends on: `models/message.py`, `models/user.py`, `utils/padding.py`, `utils/utils.py`
+- Imported by: `tests/test_padding.py`, `views/message.py`
 
 ## controllers/secure_channel.py
 
@@ -1271,220 +1271,220 @@
 ## static/js/qv-crypto.js
 
 ### concatBytes (function)
-- Defined: `static/js/qv-crypto.js:52`
+- Defined: `static/js/qv-crypto.js:58`
 - Doc: -- Encoding helpers ---
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### hexToBytes (function)
-- Defined: `static/js/qv-crypto.js:63`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:69`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### bytesToHex (function)
-- Defined: `static/js/qv-crypto.js:72`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:78`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### bytesToBase64 (function)
-- Defined: `static/js/qv-crypto.js:78`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:84`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### bytesToBase32 (function)
-- Defined: `static/js/qv-crypto.js:89`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:95`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### base64ToBytes (function)
-- Defined: `static/js/qv-crypto.js:107`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:113`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### bytesToBigInt (function)
-- Defined: `static/js/qv-crypto.js:114`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:120`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### i2osp (function)
-- Defined: `static/js/qv-crypto.js:121`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:127`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### mod (function)
-- Defined: `static/js/qv-crypto.js:131`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:137`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### modPow (function)
-- Defined: `static/js/qv-crypto.js:135`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:141`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### randomBytes (function)
-- Defined: `static/js/qv-crypto.js:153`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:159`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### H (function)
-- Defined: `static/js/qv-crypto.js:162`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:168`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### Hint (function)
-- Defined: `static/js/qv-crypto.js:166`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:172`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### deriveKeyFromPassphrase (function)
-- Defined: `static/js/qv-crypto.js:178`
+- Defined: `static/js/qv-crypto.js:184`
 - Doc: Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2 iteration count. This is the single PBKDF2 implementa
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### deriveMasterKey (function)
-- Defined: `static/js/qv-crypto.js:199`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:205`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### aesGcmEncrypt (function)
-- Defined: `static/js/qv-crypto.js:203`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:209`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### aesGcmDecrypt (function)
-- Defined: `static/js/qv-crypto.js:214`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:220`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### computeK (function)
-- Defined: `static/js/qv-crypto.js:244`
+- Defined: `static/js/qv-crypto.js:250`
 - Doc: -- SRP-6a (QV-SRP-1), mirrors utils/srp6a.py ---
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### deriveVerifier (function)
-- Defined: `static/js/qv-crypto.js:249`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:255`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### srpLogin (function)
-- Defined: `static/js/qv-crypto.js:257`
+- Defined: `static/js/qv-crypto.js:263`
 - Doc: Run a full SRP-6a login against the server, verifying the server proof M2.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### generateIdentity (function)
-- Defined: `static/js/qv-crypto.js:309`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:315`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### parsePublicKey (function)
-- Defined: `static/js/qv-crypto.js:337`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:343`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### parsePrivateBlob (function)
-- Defined: `static/js/qv-crypto.js:345`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:351`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### deriveWrapKey (function)
-- Defined: `static/js/qv-crypto.js:353`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:359`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### wrapKey (function)
-- Defined: `static/js/qv-crypto.js:365`
+- Defined: `static/js/qv-crypto.js:371`
 - Doc: Seal a file encryption key to a recipient's hybrid public key.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### unwrapKey (function)
-- Defined: `static/js/qv-crypto.js:389`
+- Defined: `static/js/qv-crypto.js:395`
 - Doc: Recover a file encryption key using the recipient's hybrid private blob.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### generateRecoveryCode (function)
-- Defined: `static/js/qv-crypto.js:411`
+- Defined: `static/js/qv-crypto.js:417`
 - Doc: Generate a QV-RECOVERY-1 code: 20 random bytes (160 bits) Base32-encoded (RFC 4648, no padding) and grouped as XXXX-XXXX
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### normalizeRecoveryCode (function)
-- Defined: `static/js/qv-crypto.js:422`
+- Defined: `static/js/qv-crypto.js:428`
 - Doc: Normalize a user-entered recovery code: strip surrounding whitespace, remove group separators, and uppercase, so "abcd-e
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### wrapPrivateKeyForRecovery (function)
-- Defined: `static/js/qv-crypto.js:430`
+- Defined: `static/js/qv-crypto.js:436`
 - Doc: Re-wrap an existing privateBlob under a key derived from a recovery code, using the same PBKDF2-SHA256 + AES-256-GCM sch
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### derivePublicKeyFromPrivateBlob (function)
-- Defined: `static/js/qv-crypto.js:449`
+- Defined: `static/js/qv-crypto.js:455`
 - Doc: Reconstruct the public key (the same {v, mlkem, x} structure produced by generateIdentity) from a decrypted privateBlob.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### postJson (function)
-- Defined: `static/js/qv-crypto.js:467`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:473`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### buildRegistration (function)
-- Defined: `static/js/qv-crypto.js:490`
+- Defined: `static/js/qv-crypto.js:496`
 - Doc: Build the zero-knowledge registration payload entirely in the browser.  Returns `{ payload, recoveryCode }`: `payload` i
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### register (function)
-- Defined: `static/js/qv-crypto.js:524`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:530`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### recoverAccount (function)
-- Defined: `static/js/qv-crypto.js:535`
+- Defined: `static/js/qv-crypto.js:541`
 - Doc: Reset SRP credentials and the password-encrypted private key using a QV-RECOVERY-1 recovery code, without ever exposing 
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### login (function)
-- Defined: `static/js/qv-crypto.js:586`
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:592`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### encryptAndUpload (function)
-- Defined: `static/js/qv-crypto.js:591`
-- Doc: Generate a fresh file key, encrypt the file, wrap the key, and upload.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Defined: `static/js/qv-crypto.js:599`
+- Doc: Generate a fresh file key, encrypt the padded file, wrap the key, and upload. The file plaintext is padded to a fixed fi
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### downloadAndDecrypt (function)
-- Defined: `static/js/qv-crypto.js:620`
+- Defined: `static/js/qv-crypto.js:629`
 - Doc: Download an encrypted file and its key, then decrypt it in the browser.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### fetchPublicKey (function)
-- Defined: `static/js/qv-crypto.js:658`
+- Defined: `static/js/qv-crypto.js:668`
 - Doc: Fetch a user's hybrid public key so the browser can wrap content to them.
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### sendSecureMessage (function)
-- Defined: `static/js/qv-crypto.js:673`
+- Defined: `static/js/qv-crypto.js:683`
 - Doc: Encrypt a message to a recipient (keeping a sender-readable outbox copy) and POST the opaque envelope. The plaintext and
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ### decryptInbox (function)
-- Defined: `static/js/qv-crypto.js:703`
+- Defined: `static/js/qv-crypto.js:714`
 - Doc: Decrypt a batch of inbox envelopes with the user's password. The master key and private blob are derived once and reused
-- Depends on: `static/js/login.js`, `static/js/register.js`
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ## static/js/qv-deniable.js
@@ -1528,6 +1528,33 @@
 - Doc: Open a container with a passphrase. Tries every slot; only the slot whose passphrase matches will authenticate. Returns 
 - Depends on: `static/js/qv-crypto.js`
 - Imported by: `static/js/account.js`
+
+## static/js/qv-padding.js
+
+### tableFor (function)
+- Defined: `static/js/qv-padding.js:15`
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
+
+### bucketFor (function)
+- Defined: `static/js/qv-padding.js:20`
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
+
+### randomPad (function)
+- Defined: `static/js/qv-padding.js:33`
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
+
+### padFramed (function)
+- Defined: `static/js/qv-padding.js:42`
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
+
+### unframeFramed (function)
+- Defined: `static/js/qv-padding.js:54`
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
 
 ## static/js/recover.js
 
@@ -2305,6 +2332,122 @@
 - Defined: `tests/test_facade.py:474`
 - Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
 
+## tests/test_integrity.py
+
+### test_compute_sri_format (function) `def test_compute_sri_format()`
+- Defined: `tests/test_integrity.py:19`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+### test_manifest_exists_and_pins_crypto (function) `def test_manifest_exists_and_pins_crypto()`
+- Defined: `tests/test_integrity.py:25`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+### test_manifest_hashes_match_files (function) `def test_manifest_hashes_match_files()`
+- Defined: `tests/test_integrity.py:37`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+### test_template_integrity_resolves_both_forms (function) `def test_template_integrity_resolves_both_forms()`
+- Defined: `tests/test_integrity.py:44`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+### test_jinja_global_registered (function) `def test_jinja_global_registered(app)`
+- Defined: `tests/test_integrity.py:51`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+### test_verify_build_passes_on_clean_tree (function) `def test_verify_build_passes_on_clean_tree()`
+- Defined: `tests/test_integrity.py:55`
+- Depends on: `tools/verify_build.py`, `utils/integrity.py`
+
+## tests/test_padding.py
+
+### test_pad_roundtrip_message_sizes (function) `def test_pad_roundtrip_message_sizes()`
+- Defined: `tests/test_padding.py:26`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_pad_roundtrip_file_kind (function) `def test_pad_roundtrip_file_kind()`
+- Defined: `tests/test_padding.py:33`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_bucket_boundaries (function) `def test_bucket_boundaries()`
+- Defined: `tests/test_padding.py:38`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_pad_output_length_is_bucketed (function) `def test_pad_output_length_is_bucketed()`
+- Defined: `tests/test_padding.py:44`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_pad_uses_fresh_randomness (function) `def test_pad_uses_fresh_randomness()`
+- Defined: `tests/test_padding.py:49`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_pad_rejects_oversize (function) `def test_pad_rejects_oversize()`
+- Defined: `tests/test_padding.py:56`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_unpad_rejects_non_bucket_length (function) `def test_unpad_rejects_non_bucket_length()`
+- Defined: `tests/test_padding.py:61`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_unpad_rejects_corrupt_prefix (function) `def test_unpad_rejects_corrupt_prefix()`
+- Defined: `tests/test_padding.py:66`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_unpad_rejects_wrong_kind (function) `def test_unpad_rejects_wrong_kind()`
+- Defined: `tests/test_padding.py:74`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_wire_lengths (function) `def test_wire_lengths()`
+- Defined: `tests/test_padding.py:80`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_config_from_env_override (function) `def test_config_from_env_override(monkeypatch)`
+- Defined: `tests/test_padding.py:87`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_config_from_env_falls_back_on_garbage (function) `def test_config_from_env_falls_back_on_garbage(monkeypatch)`
+- Defined: `tests/test_padding.py:94`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_cache_holds_tables_not_pad_bytes (function) `def test_cache_holds_tables_not_pad_bytes()`
+- Defined: `tests/test_padding.py:99`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_message_controller_rejects_unpadded_envelope (function) `def test_message_controller_rejects_unpadded_envelope(app, tmp_path, monkeypatch)`
+- Defined: `tests/test_padding.py:105`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_message_controller_rejects_malformed_base64 (function) `def test_message_controller_rejects_malformed_base64(app, tmp_path, monkeypatch)`
+- Defined: `tests/test_padding.py:113`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_message_controller_accepts_bucketed_envelope (function) `def test_message_controller_accepts_bucketed_envelope(app, tmp_path, monkeypatch)`
+- Defined: `tests/test_padding.py:120`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_file_controller_rejects_unpadded_upload (method) `def test_file_controller_rejects_unpadded_upload(app)`
+- Defined: `tests/test_padding.py:146`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### test_file_controller_accepts_bucketed_upload (method) `def test_file_controller_accepts_bucketed_upload(app)`
+- Defined: `tests/test_padding.py:152`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### __init__ (method) `def __init__(self)`
+- Defined: `tests/test_padding.py:129`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### put_object (method) `def put_object(self, Bucket, Key, Body)`
+- Defined: `tests/test_padding.py:132`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### __init__ (method) `def __init__(self, body)`
+- Defined: `tests/test_padding.py:139`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
+### read (method) `def read(self)`
+- Defined: `tests/test_padding.py:142`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+
 ## tests/test_secure_channel.py
 
 ### test_config_defaults_to_disabled_without_binaries (function) `def test_config_defaults_to_disabled_without_binaries()`
@@ -2696,6 +2839,33 @@
 - Defined: `tests/test_utils.py:18`
 - Depends on: `utils/utils.py`
 
+## tools/generate_sri.py
+
+### collect_local_assets (function) `def collect_local_assets()`
+- Defined: `tools/generate_sri.py:41`
+- Doc: Hash every first-party script and stylesheet under ``static/``.
+- Depends on: `utils/integrity.py`
+
+### fetch_cdn_assets (function) `def fetch_cdn_assets()`
+- Defined: `tools/generate_sri.py:56`
+- Doc: Download every pinned CDN URL and hash its exact bytes.
+- Depends on: `utils/integrity.py`
+
+### build_manifest (function) `def build_manifest(cdn, local)`
+- Defined: `tools/generate_sri.py:66`
+- Doc: Assemble the deterministic manifest document.
+- Depends on: `utils/integrity.py`
+
+### render_manifest (function) `def render_manifest(manifest)`
+- Defined: `tools/generate_sri.py:76`
+- Doc: Render the manifest deterministically with a trailing newline.
+- Depends on: `utils/integrity.py`
+
+### main (function) `def main(argv)`
+- Defined: `tools/generate_sri.py:81`
+- Doc: Generate the manifest, or verify it is current with ``--check``.
+- Depends on: `utils/integrity.py`
+
 ## tools/mutation_test.py
 
 ### _is_equivalent_bool (method) `def _is_equivalent_bool(tokens, index)`
@@ -2725,6 +2895,68 @@
 - Defined: `tools/mutation_test.py:157`
 - Doc: Run the mutation campaign and report killed versus survived mutants.
 
+## tools/verify_build.py
+
+### _normalize_reference (method) `def _normalize_reference(ref)`
+- Defined: `tools/verify_build.py:60`
+- Doc: Resolve a ``url_for('static', ...)`` expression to its served path.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### load_manifest (method) `def load_manifest()`
+- Defined: `tools/verify_build.py:71`
+- Doc: Load and return the SRI manifest document.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### expected_for_reference (method) `def expected_for_reference(manifest, ref)`
+- Defined: `tools/verify_build.py:76`
+- Doc: Resolve the pinned integrity value for one template reference.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### integrity_attribute_ok (method) `def integrity_attribute_ok(integrity, ref, expected)`
+- Defined: `tools/verify_build.py:85`
+- Doc: Accept a literal pin or the ``sri_integrity`` template expression.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### check_local_hashes (method) `def check_local_hashes(manifest, failures)`
+- Defined: `tools/verify_build.py:95`
+- Doc: Recompute every pinned local asset and record mismatches.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### check_template_references (method) `def check_template_references(manifest, failures)`
+- Defined: `tools/verify_build.py:110`
+- Doc: Require manifest-backed integrity on every template reference.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### check_bucket_parity (method) `def check_bucket_parity(failures)`
+- Defined: `tools/verify_build.py:126`
+- Doc: Require identical bucket tables in Python and JavaScript.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### main (method) `def main()`
+- Defined: `tools/verify_build.py:141`
+- Doc: Run every check and report failures.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### __init__ (method) `def __init__(self)`
+- Defined: `tools/verify_build.py:37`
+- Doc: Initialize the reference collector.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
+### handle_starttag (method) `def handle_starttag(self, tag, attrs)`
+- Defined: `tools/verify_build.py:42`
+- Doc: Record one script or link tag with its integrity attribute.
+- Depends on: `utils/integrity.py`, `utils/padding.py`
+- Imported by: `tests/test_integrity.py`
+
 ## utils/cache.py
 
 ### __init__ (method) `def __init__(self)`
@@ -2742,6 +2974,48 @@
 - Defined: `utils/cache.py:20`
 - Doc: Delete a key from the cache.
 
+## utils/integrity.py
+
+### manifest_path (function) `def manifest_path()`
+- Defined: `utils/integrity.py:25`
+- Doc: Return the manifest path resolved from this file, never hardcoded.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### compute_sri (function) `def compute_sri(data, algorithm)`
+- Defined: `utils/integrity.py:30`
+- Doc: Return the SRI string ``<algorithm>-<base64 digest>`` for ``data``.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### compute_file_sri (function) `def compute_file_sri(path, algorithm)`
+- Defined: `utils/integrity.py:36`
+- Doc: Return the SRI string for the bytes stored at ``path``.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### _cached_manifest_text (function) `def _cached_manifest_text()`
+- Defined: `utils/integrity.py:42`
+- Doc: Return the raw manifest text, cached for the process lifetime.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### load_manifest (function) `def load_manifest()`
+- Defined: `utils/integrity.py:47`
+- Doc: Return the parsed SRI manifest, or an empty mapping when absent.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### integrity_for (function) `def integrity_for(key)`
+- Defined: `utils/integrity.py:55`
+- Doc: Return the pinned integrity string for one manifest key.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### clear_manifest_cache (function) `def clear_manifest_cache()`
+- Defined: `utils/integrity.py:72`
+- Doc: Drop the cached manifest text so tests see a regenerated file.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
+### template_integrity (function) `def template_integrity(key)`
+- Defined: `utils/integrity.py:77`
+- Doc: Return the integrity string for a template asset reference.
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
 ## utils/mailer.py
 
 ### external_url (function) `def external_url(path)`
@@ -2758,6 +3032,63 @@
 - Defined: `utils/mailer.py:51`
 - Doc: Send a plain-text transactional email through the configured server.
 - Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py`, `views/auth.py`
+
+## utils/padding.py
+
+### _parse_buckets (method) `def _parse_buckets(raw, fallback)`
+- Defined: `utils/padding.py:95`
+- Doc: Parse a comma-separated bucket list, falling back on any error.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### config_from_env (method) `def config_from_env()`
+- Defined: `utils/padding.py:109`
+- Doc: Build a :class:`PaddingConfig` from the environment.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### _cached_bucket_table (method) `def _cached_bucket_table(fingerprint)`
+- Defined: `utils/padding.py:128`
+- Doc: Return the cached immutable bucket tables for one config version.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### cached_tables (method) `def cached_tables(config)`
+- Defined: `utils/padding.py:142`
+- Doc: Return the process-wide cached bucket tables for ``config``.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### bucket_for (method) `def bucket_for(plaintext_len, kind, config)`
+- Defined: `utils/padding.py:149`
+- Doc: Return the smallest bucket holding ``plaintext_len`` plus prefix.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### pad (method) `def pad(plaintext, kind, config)`
+- Defined: `utils/padding.py:169`
+- Doc: Pad ``plaintext`` to its bucket with fresh CSPRNG bytes.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### unpad (method) `def unpad(padded, kind, config)`
+- Defined: `utils/padding.py:183`
+- Doc: Remove bucket framing and return the original plaintext.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### wire_ciphertext_len (method) `def wire_ciphertext_len(bucket)`
+- Defined: `utils/padding.py:209`
+- Doc: Return the AES-256-GCM ciphertext length for one padded bucket.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### is_allowed_ciphertext_len (method) `def is_allowed_ciphertext_len(ciphertext_len, kind, config)`
+- Defined: `utils/padding.py:214`
+- Doc: Return True when ``ciphertext_len`` matches a bucket plus GCM overhead.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### buckets_for (method) `def buckets_for(self, kind)`
+- Defined: `utils/padding.py:84`
+- Doc: Return the bucket table for ``kind``.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+
+### max_plaintext_bytes (method) `def max_plaintext_bytes(self, kind)`
+- Defined: `utils/padding.py:90`
+- Doc: Return the largest plaintext that fits ``kind``.
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 
 ## utils/plans.py
 
@@ -2914,30 +3245,30 @@
 ### database_path (function) `def database_path()`
 - Defined: `utils/utils.py:12`
 - Doc: Return the SQLite database path from config, with a legacy fallback.
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ### as_bool (function) `def as_bool(value, default)`
 - Defined: `utils/utils.py:29`
 - Doc: Coerce an environment or payload value into a real boolean.
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ### sanitize_path (function) `def sanitize_path(path)`
 - Defined: `utils/utils.py:49`
 - Doc: Sanitiza una ruta de archivo para prevenir LFI y path traversal.
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ### load_payload (method) `def load_payload()`
 - Defined: `utils/utils.py:168`
 - Doc: Load non-secret application configuration from ``payload.json``.
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ### __init__ (method) `def __init__(self, config_dict)`
 - Defined: `utils/utils.py:145`
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ### __getitem__ (method) `def __getitem__(self, key)`
 - Defined: `utils/utils.py:165`
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ## views/about.py
 

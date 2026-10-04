@@ -4,11 +4,11 @@ Log each answered question here so the wiki compounds. Format: question, answer,
 
 ## Suggested
 
-### Q: What does app_factory.py depend on, and what depends on it? (23 connections)
+### Q: What does app_factory.py depend on, and what depends on it? (24 connections)
 
 - Status: unanswered
 
-### Q: What does utils.py depend on, and what depends on it? (15 connections)
+### Q: What does utils.py depend on, and what depends on it? (16 connections)
 
 - Status: unanswered
 
@@ -16,11 +16,11 @@ Log each answered question here so the wiki compounds. Format: question, answer,
 
 - Status: unanswered
 
-### Q: How are the 46 files in 'views' related to each other?
+### Q: How are the 53 files in 'views' related to each other?
 
 - Status: unanswered
 
-### Q: What is the overall architecture of this codebase?
+### Q: Why are contact.py and account.js connected through 9 hops across 2 communities?
 
 - Status: unanswered
 

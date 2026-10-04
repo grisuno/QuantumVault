@@ -403,6 +403,15 @@ test:                           ## Run the pytest suite (SRP roundtrip, security
 	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
 	@cd $(CURDIR) && $(PY) -m pytest -q
 
+.PHONY: sri verify-build
+sri:                            ## Regenerate static/sri_manifest.json (pins first-party + CDN hashes).
+	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
+	@cd $(CURDIR) && $(PY) tools/generate_sri.py
+
+verify-build:                   ## Offline check: SRI pins, template coverage, padding bucket parity.
+	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi
+	@cd $(CURDIR) && $(PY) tools/verify_build.py
+
 .PHONY: mutate
 mutate:                         ## Run mutation testing for the facade and cover contracts.
 	@if [ ! -d "$(VENV)" ]; then echo "ERROR: venv missing. Run 'make deps' first." 1>&2; exit 1; fi

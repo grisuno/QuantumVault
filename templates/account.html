@@ -112,5 +112,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{ url_for('static', filename='js/account.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/account.js') }}" integrity="{{ sri_integrity('/static/js/account.js') }}" crossorigin="anonymous"></script>
 {% endblock %}

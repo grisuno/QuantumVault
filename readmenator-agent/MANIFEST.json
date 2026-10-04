@@ -1,17 +1,17 @@
 {
   "tool": "readmenator",
-  "generated_at": "2026-09-18T04:18:44Z",
+  "generated_at": "2026-10-04T04:09:23Z",
   "project_root": "/home/grisun0/src_note/py/QuantumVault",
-  "files": 81,
-  "symbols": 741,
-  "imports": 4076,
-  "resolved_imports": 108,
+  "files": 88,
+  "symbols": 813,
+  "imports": 4440,
+  "resolved_imports": 122,
   "security_findings": 0,
   "languages": {
-    "py": 64,
+    "py": 70,
     "go": 3,
     "sh": 5,
-    "js": 9
+    "js": 10
   },
   "entrypoints": [],
   "start_here": "INDEX.md",

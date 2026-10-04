@@ -3,11 +3,11 @@
     "god_nodes": [
       [
         "app_factory.py",
-        46.8
+        48.8
       ],
       [
         "utils/utils.py",
-        30.8
+        32.8
       ],
       [
         "models/user.py",
@@ -27,7 +27,7 @@
       ],
       [
         "static/js/qv-crypto.js",
-        16.0
+        18.0
       ],
       [
         "controllers/facade.py",
@@ -38,8 +38,8 @@
         13.4
       ],
       [
-        "tests/test_deniable_vault.py",
-        11.5
+        "controllers/message.py",
+        12.4
       ]
     ],
     "communities": [
@@ -47,80 +47,118 @@
         "id": 0,
         "label": "views",
         "file_ids": [
-          "models/deniable_vault.py",
-          "utils/mailer.py",
-          "utils/scheduler.py",
-          "views/sync.py",
-          "views/about.py",
-          "tests/test_account_facade.py",
-          "controllers/facade.py",
-          "tests/test_srp.py",
-          "utils/security.py",
-          "wsgi.py",
-          "controllers/auth.py",
-          "controllers/secure_channel.py",
-          "tests/test_facade.py",
-          "tests/test_security.py",
-          "app_factory.py",
-          "views/faq.py",
           "views/terms.py",
-          "views/account.py",
-          "models/user.py",
-          "tests/test_deniable_vault.py",
-          "tests/conftest.py",
-          "controllers/file.py",
-          "controllers/contact.py",
-          "views/facade.py",
+          "tests/test_srp.py",
           "controllers/deniable_vault.py",
+          "models/contact.py",
+          "tests/conftest.py",
+          "tests/test_account_facade.py",
+          "tools/verify_build.py",
+          "views/account.py",
+          "models/deniable_vault.py",
+          "views/file.py",
+          "tests/test_integrity.py",
+          "tests/test_utils.py",
+          "controllers/secure_channel.py",
+          "views/facade.py",
+          "views/faq.py",
+          "utils/mailer.py",
+          "tests/test_cover.py",
+          "models/user.py",
+          "controllers/contact.py",
+          "utils/security.py",
+          "controllers/auth.py",
+          "views/message.py",
+          "controllers/facade.py",
+          "tests/test_secure_channel.py",
+          "views/admin.py",
+          "utils/integrity.py",
+          "utils/scheduler.py",
+          "scripts/makeadmin.py",
+          "scripts/test_bloque1.py",
+          "controllers/sync.py",
           "views/views.py",
+          "views/auth.py",
+          "tools/generate_sri.py",
+          "tests/test_security.py",
+          "models/superadmin_audit.py",
+          "wsgi.py",
           "models/message.py",
           "scripts/email_tool.py",
-          "tests/test_utils.py",
-          "models/superadmin_audit.py",
-          "views/privacy.py",
+          "controllers/file.py",
+          "tests/test_deniable_vault.py",
+          "models/plans.py",
+          "tests/test_facade.py",
+          "app_factory.py",
+          "tests/test_padding.py",
           "utils/utils.py",
           "controllers/message.py",
-          "tests/test_secure_channel.py",
-          "views/auth.py",
+          "static/js/qv-padding.js",
           "views/subscription.py",
-          "views/message.py",
-          "scripts/test_bloque1.py",
-          "models/plans.py",
-          "tests/test_cover.py",
-          "models/contact.py",
-          "views/admin.py",
-          "controllers/sync.py",
-          "scripts/makeadmin.py",
-          "views/file.py",
+          "utils/padding.py",
+          "views/privacy.py",
+          "views/sync.py",
+          "views/about.py",
           "app.py"
         ],
-        "cohesion": 1.0,
-        "size": 46
+        "cohesion": 0.9906542056074766,
+        "size": 53
       },
       {
         "id": 1,
         "label": "static/js",
         "file_ids": [
-          "static/js/messages.js",
-          "static/js/qv-deniable.js",
-          "static/js/recover.js",
           "static/js/qv-crypto.js",
-          "static/js/register.js",
+          "static/js/recover.js",
           "static/js/login.js",
+          "static/js/register.js",
           "static/js/upload.js",
-          "static/js/account.js"
+          "static/js/messages.js",
+          "static/js/account.js",
+          "static/js/qv-deniable.js"
         ],
-        "cohesion": 1.0,
+        "cohesion": 0.875,
         "size": 8
       }
     ],
-    "surprising_connections": [],
+    "surprising_connections": [
+      [
+        "models/contact.py",
+        "static/js/account.js",
+        9,
+        "{0, 1}"
+      ],
+      [
+        "controllers/contact.py",
+        "static/js/account.js",
+        8,
+        "{0, 1}"
+      ],
+      [
+        "controllers/deniable_vault.py",
+        "static/js/account.js",
+        8,
+        "{0, 1}"
+      ],
+      [
+        "controllers/facade.py",
+        "static/js/account.js",
+        8,
+        "{0, 1}"
+      ],
+      [
+        "controllers/secure_channel.py",
+        "static/js/account.js",
+        8,
+        "{0, 1}"
+      ]
+    ],
     "suggested_questions": [
-      "What does app_factory.py depend on, and what depends on it? (23 connections)",
-      "What does utils.py depend on, and what depends on it? (15 connections)",
+      "What does app_factory.py depend on, and what depends on it? (24 connections)",
+      "What does utils.py depend on, and what depends on it? (16 connections)",
       "What does user.py depend on, and what depends on it? (14 connections)",
-      "How are the 46 files in 'views' related to each other?",
-      "What is the overall architecture of this codebase?"
+      "How are the 53 files in 'views' related to each other?",
+      "Why are contact.py and account.js connected through 9 hops across 2 communities?"
     ]
   },
   "layers": {
@@ -164,6 +202,7 @@
     "static/js/messages.js": "infrastructure",
     "static/js/qv-crypto.js": "utility",
     "static/js/qv-deniable.js": "utility",
+    "static/js/qv-padding.js": "infrastructure",
     "static/js/recover.js": "utility",
     "static/js/register.js": "utility",
     "static/js/upload.js": "utility",
@@ -177,14 +216,20 @@
     "tests/test_deniable_vault.py": "testing",
     "tests/test_doctor.py": "testing",
     "tests/test_facade.py": "testing",
+    "tests/test_integrity.py": "testing",
+    "tests/test_padding.py": "testing",
     "tests/test_secure_channel.py": "testing",
     "tests/test_security.py": "testing",
     "tests/test_srp.py": "testing",
     "tests/test_utils.py": "testing",
+    "tools/generate_sri.py": "utility",
     "tools/mutation_test.py": "testing",
+    "tools/verify_build.py": "presentation",
     "utils/__init__.py": "utility",
     "utils/cache.py": "infrastructure",
+    "utils/integrity.py": "utility",
     "utils/mailer.py": "presentation",
+    "utils/padding.py": "infrastructure",
     "utils/plans.py": "utility",
     "utils/scheduler.py": "presentation",
     "utils/security.py": "presentation",

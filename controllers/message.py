@@ -9,6 +9,9 @@ from typing import List, Optional, Tuple
 from models.message import MessageModel, MessageDB
 from models.user import UserDB
 from utils.utils import database_path
+from utils.padding import config_from_env, is_allowed_ciphertext_len
+import base64
+import binascii
 import uuid
 from flask import flash
 
@@ -51,10 +54,22 @@ class MessageController:
                 (so the outbox copy is readable).
 
         Returns:
-            True on success, False otherwise.
+            True on success, False otherwise. Envelopes whose decoded
+            ciphertext length is not a configured message bucket plus
+            AES-256-GCM overhead are rejected so unpadded clients cannot
+            leak exact plaintext sizes on the wire.
         """
         if not self.user_db.get_user(recipient):
             flash("Recipient does not exist")
+            return False
+
+        try:
+            raw = base64.b64decode(encrypted_message_b64, validate=True)
+        except (binascii.Error, ValueError):
+            flash("Invalid message envelope.")
+            return False
+        if not is_allowed_ciphertext_len(len(raw), "message", config_from_env()):
+            flash("Invalid message envelope.")
             return False
 
         try:

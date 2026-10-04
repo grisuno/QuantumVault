@@ -1,6 +1,6 @@
 # Audit Report
 
-*Project: QuantumVault | 2026-09-18 | offline, deterministic*
+*Project: QuantumVault | 2026-10-04 | offline, deterministic*
 
 ## Confidence Trail
 
@@ -8,15 +8,15 @@ Every edge is tagged. Extracted means parsed from source; inferred means derived
 
 | Confidence | Count | Meaning |
 |------------|-------|---------|
-| EXTRACTED | 108 | Resolved import edges parsed from source |
-| EXTRACTED | 475 | Raw import statements (may include externals) |
-| INFERRED | 0 | Surprising cross-community bridges |
+| EXTRACTED | 122 | Resolved import edges parsed from source |
+| EXTRACTED | 524 | Raw import statements (may include externals) |
+| INFERRED | 5 | Surprising cross-community bridges |
 | AMBIGUOUS | 0 | No uncertain edges are emitted by the static scanner |
 
 ## Coverage
 
-- Files: 81, communities: 3
-- File doc coverage: 53/81
+- Files: 88, communities: 3
+- File doc coverage: 60/88
 - Orphans (no docs at any level): 14
 - Layers detected: 5
 - Security findings: 0
@@ -31,7 +31,7 @@ Every edge is tagged. Extracted means parsed from source; inferred means derived
 
 ## Token Benchmark
 
-- Wiki index plus community pages estimate: ~29292 tokens (chars/4).
+- Wiki index plus community pages estimate: ~31676 tokens (chars/4).
 - Full re-read of every source file would cost strictly more on any non-trivial project; this wiki is the cheaper entry point.
 - Generation cost: $0, offline, no network calls.
 

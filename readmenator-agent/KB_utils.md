@@ -15,6 +15,21 @@
   - `set` (method, line 16) `def set(self, key, value, ttl)`
   - `delete` (method, line 20) `def delete(self, key)`
 
+## utils/integrity.py
+- Layer: utility
+- Doc: Subresource Integrity manifest helpers (QV-SRI-1).  The manifest at ``static/sri_manifest.json`` pins the exact bytes of
+- Language: py
+- Symbols:
+  - `manifest_path` (function, line 25) `def manifest_path()`
+  - `compute_sri` (function, line 30) `def compute_sri(data, algorithm)`
+  - `compute_file_sri` (function, line 36) `def compute_file_sri(path, algorithm)`
+  - `_cached_manifest_text` (function, line 42) `def _cached_manifest_text()`
+  - `load_manifest` (function, line 47) `def load_manifest()`
+  - `integrity_for` (function, line 55) `def integrity_for(key)`
+  - `clear_manifest_cache` (function, line 72) `def clear_manifest_cache()`
+  - `template_integrity` (function, line 77) `def template_integrity(key)`
+- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+
 ## utils/mailer.py
 - Layer: presentation
 - Doc: Transactional email helpers for QuantumVault.  Centralizes how outbound transactional mail is addressed and delivered so
@@ -24,6 +39,26 @@
   - `mail_is_configured` (function, line 38) `def mail_is_configured()`
   - `send_transactional_email` (function, line 51) `def send_transactional_email(subject, recipients, body)`
 - Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py`, `views/auth.py`
+
+## utils/padding.py
+- Layer: infrastructure
+- Doc: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).  An observer who cannot read ciphertext can still read it
+- Language: py
+- Symbols:
+  - `PaddingError` (class, line 73) `class PaddingError(ValueError)`
+  - `PaddingConfig` (class, line 78) `class PaddingConfig`
+  - `_parse_buckets` (method, line 95) `def _parse_buckets(raw, fallback)`
+  - `config_from_env` (method, line 109) `def config_from_env()`
+  - `_cached_bucket_table` (method, line 128) `def _cached_bucket_table(fingerprint)`
+  - `cached_tables` (method, line 142) `def cached_tables(config)`
+  - `bucket_for` (method, line 149) `def bucket_for(plaintext_len, kind, config)`
+  - `pad` (method, line 169) `def pad(plaintext, kind, config)`
+  - `unpad` (method, line 183) `def unpad(padded, kind, config)`
+  - `wire_ciphertext_len` (method, line 209) `def wire_ciphertext_len(bucket)`
+  - `is_allowed_ciphertext_len` (method, line 214) `def is_allowed_ciphertext_len(ciphertext_len, kind, config)`
+  - `buckets_for` (method, line 84) `def buckets_for(self, kind)`
+  - `max_plaintext_bytes` (method, line 90) `def max_plaintext_bytes(self, kind)`
+- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 
 ## utils/plans.py
 - Layer: utility
@@ -96,4 +131,4 @@
   - `load_payload` (method, line 168) `def load_payload()`
   - `__init__` (method, line 145) `def __init__(self, config_dict)`
   - `__getitem__` (method, line 165) `def __getitem__(self, key)`
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`

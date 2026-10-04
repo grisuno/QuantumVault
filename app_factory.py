@@ -52,6 +52,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from controllers.file import FileController
 from controllers.sync import SyncController
 from models.user import UserDB, UserModel
+from utils.integrity import template_integrity
 from utils.utils import Config, load_payload
 
 
@@ -85,8 +86,10 @@ def _build_csp() -> dict:
 
     - ``'self'`` for everything by default
     - the JSDelivr CDN pinned to the specific packages the SPA needs
-      (Bootstrap CSS, EasyMDE CSS/JS, marked). These are loaded with
-      SRI from the templates.
+      (Bootstrap CSS, EasyMDE CSS/JS, marked) and the cdnjs CDN pinned to
+      the legacy pages that need it (crypto-js, jsencrypt). Every remote
+      asset is loaded with SRI from the manifest, so a compromised CDN
+      cannot execute swapped bytes.
     - ``'unsafe-inline'`` for styles is required because EasyMDE injects
       inline styles; for scripts it is forbidden.
     - WebAssembly is allowed (``'wasm-unsafe-eval'``) so the client can
@@ -104,7 +107,11 @@ def _build_csp() -> dict:
         "img-src": "'self' data:",
         "font-src": "'self' data:",
         "style-src": "'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-        "script-src": "'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net",
+        "script-src": (
+            "'self' 'wasm-unsafe-eval'"
+            " https://cdn.jsdelivr.net"
+            " https://cdnjs.cloudflare.com"
+        ),
         "connect-src": "'self' https://cdn.jsdelivr.net",
     }
 
@@ -282,6 +289,7 @@ def create_app(
         os.environ.get("QV_ENABLE_SUBSCRIPTIONS", "1") == "1"
     )
     app.jinja_env.globals["ENABLE_SUBSCRIPTIONS"] = app.config["ENABLE_SUBSCRIPTIONS"]
+    app.jinja_env.globals["sri_integrity"] = template_integrity
 
     # ProxyFix must run only when behind a trusted reverse proxy. The
     # operator toggles QV_TRUSTED_PROXY=1 to opt in. Without it the

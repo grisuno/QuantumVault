@@ -53,47 +53,47 @@
 - Doc: QuantumVault zero-knowledge browser crypto.  Single source of truth for all client-side cryptography. The password and e
 - Language: js
 - Symbols:
-  - `concatBytes` (function, line 52)
-  - `hexToBytes` (function, line 63)
-  - `bytesToHex` (function, line 72)
-  - `bytesToBase64` (function, line 78)
-  - `bytesToBase32` (function, line 89)
-  - `base64ToBytes` (function, line 107)
-  - `bytesToBigInt` (function, line 114)
-  - `i2osp` (function, line 121)
-  - `mod` (function, line 131)
-  - `modPow` (function, line 135)
-  - `randomBytes` (function, line 153)
-  - `H` (function, line 162)
-  - `Hint` (function, line 166)
-  - `deriveKeyFromPassphrase` (function, line 178)
-  - `deriveMasterKey` (function, line 199)
-  - `aesGcmEncrypt` (function, line 203)
-  - `aesGcmDecrypt` (function, line 214)
-  - `computeK` (function, line 244)
-  - `deriveVerifier` (function, line 249)
-  - `srpLogin` (function, line 257)
-  - `generateIdentity` (function, line 309)
-  - `parsePublicKey` (function, line 337)
-  - `parsePrivateBlob` (function, line 345)
-  - `deriveWrapKey` (function, line 353)
-  - `wrapKey` (function, line 365)
-  - `unwrapKey` (function, line 389)
-  - `generateRecoveryCode` (function, line 411)
-  - `normalizeRecoveryCode` (function, line 422)
-  - `wrapPrivateKeyForRecovery` (function, line 430)
-  - `derivePublicKeyFromPrivateBlob` (function, line 449)
-  - `postJson` (function, line 467)
-  - `buildRegistration` (function, line 490)
-  - `register` (function, line 524)
-  - `recoverAccount` (function, line 535)
-  - `login` (function, line 586)
-  - `encryptAndUpload` (function, line 591)
-  - `downloadAndDecrypt` (function, line 620)
-  - `fetchPublicKey` (function, line 658)
-  - `sendSecureMessage` (function, line 673)
-  - `decryptInbox` (function, line 703)
-- Depends on: `static/js/login.js`, `static/js/register.js`
+  - `concatBytes` (function, line 58)
+  - `hexToBytes` (function, line 69)
+  - `bytesToHex` (function, line 78)
+  - `bytesToBase64` (function, line 84)
+  - `bytesToBase32` (function, line 95)
+  - `base64ToBytes` (function, line 113)
+  - `bytesToBigInt` (function, line 120)
+  - `i2osp` (function, line 127)
+  - `mod` (function, line 137)
+  - `modPow` (function, line 141)
+  - `randomBytes` (function, line 159)
+  - `H` (function, line 168)
+  - `Hint` (function, line 172)
+  - `deriveKeyFromPassphrase` (function, line 184)
+  - `deriveMasterKey` (function, line 205)
+  - `aesGcmEncrypt` (function, line 209)
+  - `aesGcmDecrypt` (function, line 220)
+  - `computeK` (function, line 250)
+  - `deriveVerifier` (function, line 255)
+  - `srpLogin` (function, line 263)
+  - `generateIdentity` (function, line 315)
+  - `parsePublicKey` (function, line 343)
+  - `parsePrivateBlob` (function, line 351)
+  - `deriveWrapKey` (function, line 359)
+  - `wrapKey` (function, line 371)
+  - `unwrapKey` (function, line 395)
+  - `generateRecoveryCode` (function, line 417)
+  - `normalizeRecoveryCode` (function, line 428)
+  - `wrapPrivateKeyForRecovery` (function, line 436)
+  - `derivePublicKeyFromPrivateBlob` (function, line 455)
+  - `postJson` (function, line 473)
+  - `buildRegistration` (function, line 496)
+  - `register` (function, line 530)
+  - `recoverAccount` (function, line 541)
+  - `login` (function, line 592)
+  - `encryptAndUpload` (function, line 599)
+  - `downloadAndDecrypt` (function, line 629)
+  - `fetchPublicKey` (function, line 668)
+  - `sendSecureMessage` (function, line 683)
+  - `decryptInbox` (function, line 714)
+- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ## static/js/qv-deniable.js
@@ -110,6 +110,19 @@
   - `openDeniableVault` (function, line 170)
 - Depends on: `static/js/qv-crypto.js`
 - Imported by: `static/js/account.js`
+
+## static/js/qv-padding.js
+- Layer: infrastructure
+- Doc: QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py.  Every plaintext is framed as [len(4 B
+- Language: js
+- Symbols:
+  - `tableFor` (function, line 15)
+  - `bucketFor` (function, line 20)
+  - `randomPad` (function, line 33)
+  - `padFramed` (function, line 42)
+  - `unframeFramed` (function, line 54)
+- Depends on: `utils/padding.py`
+- Imported by: `static/js/qv-crypto.js`
 
 ## static/js/recover.js
 - Layer: utility
