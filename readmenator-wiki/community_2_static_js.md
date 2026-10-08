@@ -1,10 +1,10 @@
 # static/js
 
-*Community 1 | 8 files | cohesion 0.88*
+*Community 2 | 9 files | cohesion 0.89*
 
 ## Definition
 
-This community groups 8 file(s) rooted at `static/js` with dominant language js (cohesion 0.88). Central symbols: `H`, `Hint`, `aesGcmDecrypt`, `aesGcmEncrypt`, `apiRequest`, `base64ToBytes`, `buildDeniableVault`, `buildRegistration`. Core file: `static/js/qv-crypto.js` (40 symbols). Documented purpose: Account settings controller: secure notes (QV-DENIABLE-1).  Loaded as an external ES module to comply with the strict Content-Security-Policy (script-src 'self'.
+This community groups 9 file(s) rooted at `static/js` with dominant language js (cohesion 0.89). Central symbols: `H`, `Hint`, `aesGcmDecrypt`, `aesGcmEncrypt`, `apiRequest`, `base64ToBytes`, `bucketFor`, `buildDeniableVault`. Core file: `static/js/qv-crypto.js` (40 symbols). Documented purpose: Account settings controller: secure notes (QV-DENIABLE-1).  Loaded as an external ES module to comply with the strict Content-Security-Policy (script-src 'self'.
 
 ## Files
 
@@ -15,6 +15,7 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 | `static/js/messages.js` | js | infrastructure | 6 | yes |
 | `static/js/qv-crypto.js` | js | utility | 40 | yes |
 | `static/js/qv-deniable.js` | js | utility | 7 | yes |
+| `static/js/qv-padding.js` | js | utility | 5 | yes |
 | `static/js/recover.js` | js | utility | 3 | yes |
 | `static/js/register.js` | js | utility | 3 | yes |
 | `static/js/upload.js` | js | utility | 6 | yes |
@@ -54,18 +55,14 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 
 ## Internal vs External Edges
 
-- Internal resolved imports (EXTRACTED): 9
+- Internal resolved imports (EXTRACTED): 10
 - Cross-boundary resolved imports (EXTRACTED): 1
 
 ## Connections
 
-- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: static/js/qv-crypto.js imports static/js/qv-padding.js.
-- [INFERRED] shares_context community 1 <-> 2 (strength 0.5): Inferred shared context (layer utility) with no import path between community 1 (static/js) and community 2 (orphans).
-- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: models/contact.py reaches static/js/account.js in 9 hops.
-- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/contact.py reaches static/js/account.js in 8 hops.
-- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/deniable_vault.py reaches static/js/account.js in 8 hops.
-- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/facade.py reaches static/js/account.js in 8 hops.
-- [INFERRED] bridges community 0 <-> 1 (strength 0.4): Inferred cross-community bridge: controllers/secure_channel.py reaches static/js/account.js in 8 hops.
+- [EXTRACTED] depends_on community 2 <-> 5 (strength 0.9): Extracted import edge crosses communities: static/js/qv-padding.js imports utils/padding.py.
+- [INFERRED] shares_context community 2 <-> 6 (strength 0.5): Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 6 (tools).
+- [INFERRED] shares_context community 2 <-> 7 (strength 0.5): Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 7 (orphans).
 
 ## Risks
 
@@ -76,7 +73,7 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 
 - Can the cycle `static/js/qv-crypto.js` -> `static/js/register.js` be broken with an interface?
 - What would break if the most connected file in static/js changed?
-- Should static/js be split, given cohesion 0.88?
+- Should static/js be split, given cohesion 0.89?
 
 ## Sources
 
@@ -85,6 +82,7 @@ This community groups 8 file(s) rooted at `static/js` with dominant language js 
 - `static/js/messages.js`
 - `static/js/qv-crypto.js`
 - `static/js/qv-deniable.js`
+- `static/js/qv-padding.js`
 - `static/js/recover.js`
 - `static/js/register.js`
 - `static/js/upload.js`
