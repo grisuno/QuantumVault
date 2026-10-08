@@ -1,8 +1,8 @@
 # Subsystem: scripts
 
 ## scripts/doctor.py
+- Doc: Doctor: verify and repair the QuantumVault operator environment.
 - Layer: utility
-- Doc: Doctor: verify and repair the QuantumVault operator environment.  Used by ``make doctor`` (check only) and ``make doctor
 - Language: py
 - Symbols:
   - `CheckResult` (class, line 98) `class CheckResult`
@@ -35,8 +35,8 @@
   - `exit_code` (method, line 123) `def exit_code(self)`
 
 ## scripts/email_tool.py
+- Doc: Operator email tooling for QuantumVault.
 - Layer: presentation
-- Doc: Operator email tooling for QuantumVault.  Three subcommands, all runnable from any Linux host or AWS VPS that has the pr
 - Language: py
 - Symbols:
   - `_build_mail_app` (function, line 40) `def _build_mail_app(config)`
@@ -48,15 +48,15 @@
 - Depends on: `models/user.py`, `utils/mailer.py`, `utils/utils.py`
 
 ## scripts/garage-init.sh
+- Doc: Bootstrap a fresh Garage deployment for QuantumVault.
 - Layer: utility
-- Doc: Bootstrap a fresh Garage deployment for QuantumVault.  What this does: 1. Waits for the admin API to respond. 2. Connect
 - Language: sh
 - Symbols:
   - `upsert_env` (function, line 35)
 
 ## scripts/garage-native.sh
+- Doc: Run Garage (S3-compatible object storage) natively, without Docker.
 - Layer: utility
-- Doc: Run Garage (S3-compatible object storage) natively, without Docker.  Idempotent: if the S3 API is already reachable on :
 - Language: sh
 - Symbols:
   - `upsert_env` (function, line 46)
@@ -64,8 +64,8 @@
   - `gcmd` (function, line 141)
 
 ## scripts/makeadmin.py
+- Doc: Operator tooling to promote QuantumVault users to a privileged role.
 - Layer: utility
-- Doc: Operator tooling to promote QuantumVault users to a privileged role.  Two subcommands, runnable from any Linux host that
 - Language: py
 - Symbols:
   - `_resolve_db_path` (function, line 51) `def _resolve_db_path()`
@@ -76,8 +76,8 @@
 - Depends on: `models/user.py`
 
 ## scripts/test_bloque1.py
+- Doc: Bloque 1 test: superadmin_edit_user endpoint.
 - Layer: testing
-- Doc: Bloque 1 test: superadmin_edit_user endpoint.  Renders the user-edit form via Flask's test client, then verifies GET (20
 - Language: py
 - Symbols:
   - `_FakeUser` (class, line 48) `class _FakeUser`

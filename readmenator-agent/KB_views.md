@@ -5,6 +5,7 @@
 - Language: py
 
 ## views/about.py
+- Doc: about: Render the About page.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -12,8 +13,8 @@
 - Imported by: `app_factory.py`
 
 ## views/account.py
+- Doc: Account settings page and the deniable vault JSON API (QV-DENIABLE-1).
 - Layer: presentation
-- Doc: Account settings page and the deniable vault JSON API (QV-DENIABLE-1).  The settings page is a normal, universal part of
 - Language: py
 - Symbols:
   - `get_deniable_vault_controller` (function, line 51) `def get_deniable_vault_controller()`
@@ -25,6 +26,7 @@
 - Imported by: `app_factory.py`
 
 ## views/admin.py
+- Doc: UserEditForm: Form for editing user details.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -48,11 +50,11 @@
   - `superadmin_channel_rotate` (method, line 682) `def superadmin_channel_rotate()`
   - `admin_contacts` (method, line 705) `def admin_contacts()`
 - Depends on: `controllers/contact.py`, `controllers/secure_channel.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
-- Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`, `tests/test_secure_channel.py`, `tests/test_secure_channel.py`, `tests/test_secure_channel.py`, `tests/test_secure_channel.py`
+- Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
 
 ## views/auth.py
+- Doc: Authentication and account-management views.
 - Layer: presentation
-- Doc: Authentication and account-management views.  Routes:  - ``GET  /register``            : render the registration form - 
 - Language: py
 - Symbols:
   - `role_required` (function, line 71) `def role_required()`
@@ -88,8 +90,8 @@
 - Imported by: `app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
 
 ## views/facade.py
+- Doc: Cover facade HTTP integration: before-request cover and the gate endpoint.
 - Layer: presentation
-- Doc: Cover facade HTTP integration: before-request cover and the gate endpoint.  When the facade is configured, anonymous vis
 - Language: py
 - Symbols:
   - `register_facade` (function, line 33) `def register_facade(app)`
@@ -102,6 +104,7 @@
 - Imported by: `app_factory.py`
 
 ## views/faq.py
+- Doc: faq: Render the About page.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -111,6 +114,7 @@
 - Imported by: `app_factory.py`
 
 ## views/file.py
+- Doc: UploadForm: Formulario para la subida de archivos cifrados.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -121,6 +125,7 @@
 - Imported by: `app_factory.py`
 
 ## views/message.py
+- Doc: MessageForm: Form for sending messages.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -131,6 +136,7 @@
 - Imported by: `app_factory.py`
 
 ## views/privacy.py
+- Doc: privacy: Render the About page.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -138,6 +144,7 @@
 - Imported by: `app_factory.py`
 
 ## views/subscription.py
+- Doc: SubscriptionForm: Formulario para seleccionar un plan de suscripción.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -149,8 +156,8 @@
 - Imported by: `app_factory.py`
 
 ## views/sync.py
+- Doc: End-to-end encrypted file synchronization views.
 - Layer: presentation
-- Doc: End-to-end encrypted file synchronization views.  ``POST /secure_sync`` accepts an opaque encrypted payload from the SPA
 - Language: py
 - Symbols:
   - `secure_sync` (function, line 29) `def secure_sync()`
@@ -159,6 +166,7 @@
 - Imported by: `app_factory.py`
 
 ## views/terms.py
+- Doc: terms: Render the About page.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -166,8 +174,8 @@
 - Imported by: `app_factory.py`
 
 ## views/views.py
-- Layer: presentation
 - Doc: Top-level non-API views: home page, account preferences, etc.
+- Layer: presentation
 - Language: py
 - Symbols:
   - `MFAEnableForm` (class, line 15) `class MFAEnableForm(FlaskForm)`

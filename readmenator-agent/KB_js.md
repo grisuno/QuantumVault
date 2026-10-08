@@ -1,8 +1,8 @@
 # Subsystem: js
 
 ## static/js/account.js
+- Doc: Account settings controller: secure notes (QV-DENIABLE-1).
 - Layer: utility
-- Doc: Account settings controller: secure notes (QV-DENIABLE-1).  Loaded as an external ES module to comply with the strict Co
 - Language: js
 - Symbols:
   - `setStatus` (function, line 19)
@@ -17,8 +17,8 @@
 - Depends on: `static/js/qv-deniable.js`
 
 ## static/js/coded-text.js
+- Doc: Decipher animation for elements tagged with the "codedText" class.
 - Layer: utility
-- Doc: Decipher animation for elements tagged with the "codedText" class.  Extracted from an inline <script> so it complies wit
 - Language: js
 - Symbols:
   - `randomChar` (function, line 12)
@@ -26,8 +26,8 @@
   - `init` (function, line 49)
 
 ## static/js/login.js
+- Doc: Login page controller (zero-knowledge SRP-6a flow).
 - Layer: utility
-- Doc: Login page controller (zero-knowledge SRP-6a flow).  Loaded as an external ES module so it complies with the strict Cont
 - Language: js
 - Symbols:
   - `handleLogin` (function, line 11)
@@ -36,8 +36,8 @@
 - Imported by: `static/js/qv-crypto.js`
 
 ## static/js/messages.js
+- Doc: Messages page controller (zero-knowledge end-to-end messaging).
 - Layer: infrastructure
-- Doc: Messages page controller (zero-knowledge end-to-end messaging).  Loaded as an external ES module so it complies with the
 - Language: js
 - Symbols:
   - `getCsrfToken` (function, line 11)
@@ -49,8 +49,8 @@
 - Depends on: `static/js/qv-crypto.js`
 
 ## static/js/qv-crypto.js
+- Doc: QuantumVault zero-knowledge browser crypto.
 - Layer: utility
-- Doc: QuantumVault zero-knowledge browser crypto.  Single source of truth for all client-side cryptography. The password and e
 - Language: js
 - Symbols:
   - `concatBytes` (function, line 58)
@@ -97,8 +97,8 @@
 - Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
 
 ## static/js/qv-deniable.js
+- Doc: QuantumVault deniable vault (QV-DENIABLE-1) browser crypto.
 - Layer: utility
-- Doc: QuantumVault deniable vault (QV-DENIABLE-1) browser crypto.  A deniable vault is an opaque container with a fixed number
 - Language: js
 - Symbols:
   - `toBytes` (function, line 47)
@@ -112,8 +112,8 @@
 - Imported by: `static/js/account.js`
 
 ## static/js/qv-padding.js
-- Layer: infrastructure
-- Doc: QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py.  Every plaintext is framed as [len(4 B
+- Doc: QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py.
+- Layer: utility
 - Language: js
 - Symbols:
   - `tableFor` (function, line 15)
@@ -125,8 +125,8 @@
 - Imported by: `static/js/qv-crypto.js`
 
 ## static/js/recover.js
+- Doc: Account recovery page controller (QV-RECOVERY-1 flow).
 - Layer: utility
-- Doc: Account recovery page controller (QV-RECOVERY-1 flow).  Loaded as an external ES module so it complies with the strict C
 - Language: js
 - Symbols:
   - `setStatus` (function, line 14)
@@ -135,8 +135,8 @@
 - Depends on: `static/js/qv-crypto.js`
 
 ## static/js/register.js
+- Doc: Registration page controller (zero-knowledge flow).
 - Layer: utility
-- Doc: Registration page controller (zero-knowledge flow).  This module is loaded as an external ES module so it complies with 
 - Language: js
 - Symbols:
   - `showRecoveryCode` (function, line 16)
@@ -146,8 +146,8 @@
 - Imported by: `static/js/qv-crypto.js`
 
 ## static/js/upload.js
+- Doc: Upload page controller (zero-knowledge file storage).
 - Layer: utility
-- Doc: Upload page controller (zero-knowledge file storage).  Loaded as an external ES module so it complies with the strict Co
 - Language: js
 - Symbols:
   - `getCsrfToken` (function, line 11)

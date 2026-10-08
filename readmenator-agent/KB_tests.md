@@ -5,8 +5,8 @@
 - Language: py
 
 ## tests/conftest.py
+- Doc: Shared pytest fixtures for the QuantumVault test suite.
 - Layer: testing
-- Doc: Shared pytest fixtures for the QuantumVault test suite.  Builds the Flask app via :func:`app_factory.create_app` in a mo
 - Language: py
 - Symbols:
   - `_hermetic_env` (function, line 26) `def _hermetic_env(monkeypatch)`
@@ -20,8 +20,8 @@
 - Depends on: `app_factory.py`, `utils/security.py`
 
 ## tests/test_account_facade.py
+- Doc: Behaviour contract: the decoy site requires a deniable passphrase.
 - Layer: testing
-- Doc: Behaviour contract: the decoy site requires a deniable passphrase.  When the cover facade is enabled, the account page m
 - Language: py
 - Symbols:
   - `fast_hasher` (function, line 23) `def fast_hasher()`
@@ -33,8 +33,8 @@
 - Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
 
 ## tests/test_auth_phone.py
+- Doc: Regression tests for the phone-verification page and resend route.
 - Layer: testing
-- Doc: Regression tests for the phone-verification page and resend route.  The verify-phone template links its "Resend Verifica
 - Language: py
 - Symbols:
   - `test_verify_phone_page_renders` (function, line 18) `def test_verify_phone_page_renders(client)`
@@ -42,8 +42,8 @@
   - `test_resend_route_accepts_only_post` (function, line 31) `def test_resend_route_accepts_only_post(app)`
 
 ## tests/test_cover.py
+- Doc: Specification tests for the QV-FACADE-2 configurable cover templates.
 - Layer: testing
-- Doc: Specification tests for the QV-FACADE-2 configurable cover templates.  Behaviour is specified per collaborator (catalog,
 - Language: py
 - Symbols:
   - `fast_hasher` (function, line 42) `def fast_hasher()`
@@ -101,8 +101,8 @@
 - Depends on: `app_factory.py`, `controllers/facade.py`
 
 ## tests/test_deniable_vault.py
+- Doc: Specification tests for the QV-DENIABLE-1 deniable vault feature.
 - Layer: testing
-- Doc: Specification tests for the QV-DENIABLE-1 deniable vault feature.  The feature is split across layers, each tested in is
 - Language: py
 - Symbols:
   - `config` (function, line 50) `def config()`
@@ -163,8 +163,8 @@
 - Depends on: `controllers/deniable_vault.py`, `models/deniable_vault.py`, `models/user.py`
 
 ## tests/test_doctor.py
+- Doc: Behaviour contracts for scripts/doctor.py.
 - Layer: testing
-- Doc: Behaviour contracts for scripts/doctor.py.  Covers binary and module checks, host/port parsing, release URL builders, ap
 - Language: py
 - Symbols:
   - `test_check_binary_finds_present_binary` (function, line 23) `def test_check_binary_finds_present_binary()`
@@ -181,8 +181,8 @@
   - `test_upsert_env_replaces_and_appends` (function, line 140) `def test_upsert_env_replaces_and_appends(tmp_path)`
 
 ## tests/test_facade.py
+- Doc: Specification tests for the QV-FACADE-1 cover facade and two-step gate.
 - Layer: testing
-- Doc: Specification tests for the QV-FACADE-1 cover facade and two-step gate.  The feature is specified behaviorally (given/wh
 - Language: py
 - Symbols:
   - `fast_hasher` (function, line 54) `def fast_hasher()`
@@ -240,8 +240,8 @@
 - Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
 
 ## tests/test_integrity.py
-- Layer: testing
 - Doc: Contract tests for SRI pins and reproducible builds (QV-SRI-1).
+- Layer: testing
 - Language: py
 - Symbols:
   - `test_compute_sri_format` (function, line 19) `def test_compute_sri_format()`
@@ -253,8 +253,8 @@
 - Depends on: `tools/verify_build.py`, `utils/integrity.py`
 
 ## tests/test_padding.py
-- Layer: testing
 - Doc: Contract tests for fixed-bucket padding (QV-PAD-1) and its enforcement.
+- Layer: testing
 - Language: py
 - Symbols:
   - `test_pad_roundtrip_message_sizes` (function, line 26) `def test_pad_roundtrip_message_sizes()`
@@ -281,11 +281,11 @@
   - `put_object` (method, line 132) `def put_object(self, Bucket, Key, Body)`
   - `__init__` (method, line 139) `def __init__(self, body)`
   - `read` (method, line 142) `def read(self)`
-- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/padding.py`, `utils/utils.py`
+- Depends on: `controllers/file.py`, `controllers/message.py`, `utils/__init__.py`, `utils/padding.py`
 
 ## tests/test_secure_channel.py
+- Doc: Behaviour contracts for QV-TUNNEL disposable secure channels.
 - Layer: testing
-- Doc: Behaviour contracts for QV-TUNNEL disposable secure channels.  Covers SecureChannelConfig resolution, URL validation, ma
 - Language: py
 - Symbols:
   - `test_config_defaults_to_disabled_without_binaries` (function, line 30) `def test_config_defaults_to_disabled_without_binaries()`
@@ -358,8 +358,8 @@
 - Depends on: `controllers/secure_channel.py`, `views/admin.py`
 
 ## tests/test_security.py
-- Layer: testing
 - Doc: Tests for utils/security.py: audit log redaction and JSON CSRF protection.
+- Layer: testing
 - Language: py
 - Symbols:
   - `test_audit_event_includes_ip_and_ua_by_default` (function, line 12) `def test_audit_event_includes_ip_and_ua_by_default(app, audit_records, monkeypatch)`
@@ -373,8 +373,8 @@
 - Depends on: `utils/security.py`
 
 ## tests/test_srp.py
+- Doc: Pure-Python SRP-6a (QV-SRP-1) roundtrip test.
 - Layer: testing
-- Doc: Pure-Python SRP-6a (QV-SRP-1) roundtrip test.  Mirrors the client-side math in ``static/js/qv-crypto.js`` (``deriveVerif
 - Language: py
 - Symbols:
   - `_h` (function, line 16) `def _h()`
@@ -383,11 +383,11 @@
   - `_client_compute_proof` (function, line 34) `def _client_compute_proof(username, password, salt_hex, server_a_secret, server_a, server_b)`
   - `test_srp6a_full_roundtrip_matches_server_proofs` (function, line 74) `def test_srp6a_full_roundtrip_matches_server_proofs()`
   - `test_srp6a_wrong_password_produces_mismatched_proof` (function, line 104) `def test_srp6a_wrong_password_produces_mismatched_proof()`
-- Depends on: `utils/utils.py`
+- Depends on: `utils/__init__.py`
 
 ## tests/test_utils.py
-- Layer: testing
 - Doc: Contract tests for shared utility helpers.
+- Layer: testing
 - Language: py
 - Symbols:
   - `test_database_path_prefers_the_configured_path` (function, line 8) `def test_database_path_prefers_the_configured_path(app)`

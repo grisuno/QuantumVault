@@ -5,14 +5,14 @@
 - Language: py
 
 ## controllers/auth.py
+- Doc: Zero-knowledge authentication controller for QuantumVault.
 - Layer: presentation
-- Doc: Zero-knowledge authentication controller for QuantumVault.  Registration accepts cryptographic material that the browser
 - Language: py
 - Symbols:
   - `_now_utc` (function, line 49) `def _now_utc()`
   - `AuthController` (class, line 58) `class AuthController`
   - `__init__` (method, line 61) `def __init__(self, db_path, mail, storage_uri)`
-  - `register` (method, line 76) `def register(self, username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, recovery_salt, encrypted_private_key_recovery)`
+  - `register` (method, line 76) `def register(self, username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone...`
   - `send_confirmation_email` (method, line 156) `def send_confirmation_email(self, email, username, token)`
   - `srp_hello` (method, line 202) `def srp_hello(self, username, client_a_hex)`
   - `srp_verify` (method, line 221) `def srp_verify(self, username, client_m1_hex)`
@@ -23,10 +23,11 @@
   - `verify_mfa_code` (method, line 369) `def verify_mfa_code(self, username, code)`
   - `send_mfa_code` (method, line 393) `def send_mfa_code(self, username)`
   - `toggle_mfa` (method, line 416) `def toggle_mfa(self, username, enable)`
-- Depends on: `models/plans.py`, `models/user.py`, `utils/mailer.py`, `utils/security.py`, `utils/utils.py`
+- Depends on: `models/plans.py`, `models/user.py`, `utils/__init__.py`, `utils/mailer.py`, `utils/security.py`, `utils/utils.py`
 - Imported by: `views/auth.py`
 
 ## controllers/contact.py
+- Doc: ContactController: Handles logic related to contact messages.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -38,8 +39,8 @@
 - Imported by: `views/admin.py`, `views/auth.py`
 
 ## controllers/deniable_vault.py
+- Doc: QV-DENIABLE-1 deniable vault: configuration, validation, orchestration.
 - Layer: presentation
-- Doc: QV-DENIABLE-1 deniable vault: configuration, validation, orchestration.  This module is the server-side core of the deni
 - Language: py
 - Symbols:
   - `_base64_length` (function, line 81) `def _base64_length(byte_length)`
@@ -68,8 +69,8 @@
 - Imported by: `tests/test_deniable_vault.py`, `views/account.py`
 
 ## controllers/facade.py
+- Doc: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
 - Layer: presentation
-- Doc: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.  The facade hides QuantumVault behind an i
 - Language: py
 - Symbols:
   - `GateOutcome` (class, line 63) `class GateOutcome(Enum)`
@@ -102,8 +103,8 @@
 - Imported by: `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `views/account.py`, `views/facade.py`
 
 ## controllers/file.py
+- Doc: Encrypted file persistence layer.
 - Layer: presentation
-- Doc: Encrypted file persistence layer.  The server is intentionally blind to plaintext: it only ever stores opaque ciphertext
 - Language: py
 - Symbols:
   - `_log_s3_error` (function, line 28) `def _log_s3_error(operation, error)`
@@ -119,8 +120,8 @@
 - Imported by: `app_factory.py`, `tests/test_padding.py`
 
 ## controllers/message.py
+- Doc: Server-side controller for end-to-end encrypted messages.
 - Layer: presentation
-- Doc: Server-side controller for end-to-end encrypted messages.  The browser generates the CEK, encrypts the message with AES-
 - Language: py
 - Symbols:
   - `MessageController` (class, line 19) `class MessageController`
@@ -131,8 +132,8 @@
 - Imported by: `tests/test_padding.py`, `views/message.py`
 
 ## controllers/secure_channel.py
+- Doc: QV-TUNNEL disposable secure channels over Cloudflare and Tor.
 - Layer: presentation
-- Doc: QV-TUNNEL disposable secure channels over Cloudflare and Tor.  Inspiration comes from LazyOwn operator practice: a dispo
 - Language: py
 - Symbols:
   - `ChannelMode` (class, line 65) `class ChannelMode(Enum)`
@@ -153,7 +154,7 @@
   - `configured` (method, line 129) `def configured(self)`
   - `from_mapping` (method, line 134) `def from_mapping(cls, mapping, env)`
   - `active` (method, line 184) `def active(self)`
-  - `__init__` (method, line 223) `def __init__(self, state_dir, local_port, local_scheme, cloudflared_bin, tor_bin, start_timeout_seconds, launcher, killer)`
+  - `__init__` (method, line 223) `def __init__(self, state_dir, local_port, local_scheme, cloudflared_bin, tor_bin, start_timeout_seconds, launcher...`
   - `origin_url` (method, line 247) `def origin_url(self)`
   - `from_config` (method, line 252) `def from_config(cls, config, launcher, killer)`
   - `status` (method, line 270) `def status(self)`
@@ -175,8 +176,8 @@
 - Imported by: `tests/test_secure_channel.py`, `views/admin.py`
 
 ## controllers/sync.py
-- Layer: presentation
 - Doc: controllers/sync.py
+- Layer: presentation
 - Language: py
 - Symbols:
   - `SyncController` (class, line 7) `class SyncController`

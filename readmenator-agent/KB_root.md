@@ -5,8 +5,8 @@
 - Language: py
 
 ## app.py
+- Doc: Local development entry point.
 - Layer: utility
-- Doc: Local development entry point.  This script exists for the ``make run`` workflow: the Werkzeug dev server with SSL on th
 - Language: py
 - Symbols:
   - `main` (function, line 21) `def main()`
@@ -15,8 +15,8 @@
 - Imported by: `scripts/test_bloque1.py`
 
 ## app_factory.py
+- Doc: Application factory for QuantumVault.
 - Layer: presentation
-- Doc: Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or W
 - Language: py
 - Symbols:
   - `_is_production` (function, line 71) `def _is_production()`
@@ -50,8 +50,8 @@
   - `main` (function, line 69) `func main(`
 
 ## enc_dec.py
+- Doc: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).
 - Layer: utility
-- Doc: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING -------- This script is **not** part of t
 - Language: py
 - Symbols:
   - `derive_aes_key` (function, line 36) `def derive_aes_key(shared_secret)`
@@ -61,8 +61,8 @@
   - `main` (function, line 103) `def main()`
 
 ## install.sh
+- Doc: Script para instalar prerrequisitos y compilar el proyecto postcuantum Fecha: 26 de junio de...
 - Layer: utility
-- Doc: install.sh: Script para instalar prerrequisitos y compilar el proyecto postcuantum Fecha: 26 de junio de 2025 Autor: Gro
 - Language: sh
 
 ## make.sh
@@ -89,7 +89,7 @@
 - Language: sh
 
 ## wsgi.py
+- Doc: WSGI entry point for production deployments.
 - Layer: utility
-- Doc: WSGI entry point for production deployments.  Run with gunicorn (or any WSGI server) behind a TLS-terminating reverse pr
 - Language: py
 - Depends on: `app_factory.py`

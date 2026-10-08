@@ -1,25 +1,175 @@
 {
   "tool": "readmenator",
-  "generated_at": "2026-10-04T04:09:23Z",
-  "project_root": "/home/grisun0/src_note/py/QuantumVault",
+  "schema_version": 2,
+  "generated_at": "2026-10-08T00:39:37Z",
+  "project_root": ".",
+  "project_name": "push_QuantumVault_20261007_212737",
+  "git_commit": "0f613cab0f4e9e96ccbde6eada8f38e5d5dffe24",
+  "git_branch": "security-export",
+  "source_fingerprint": "17ed88cb5a07a256104b9c3d479489e45cf2510c51797fb1b5ac758eba304d97",
+  "freshness_check": "readmenator . fresh  # exit 0 = docs match sources, exit 1 = run: readmenator . --rebuild",
   "files": 88,
   "symbols": 813,
-  "imports": 4440,
+  "imports": 524,
+  "calls": 3894,
+  "inherits": 22,
   "resolved_imports": 122,
   "security_findings": 0,
   "languages": {
-    "py": 70,
     "go": 3,
-    "sh": 5,
-    "js": 10
+    "js": 10,
+    "py": 70,
+    "sh": 5
   },
-  "entrypoints": [],
+  "subsystems": {
+    "controllers": 9,
+    "js": 10,
+    "misc": 1,
+    "models": 7,
+    "root": 14,
+    "scripts": 6,
+    "tests": 14,
+    "tools": 3,
+    "utils": 10,
+    "views": 14
+  },
+  "entrypoints": [
+    "app.py"
+  ],
   "start_here": "INDEX.md",
+  "read_order": [
+    "readmenator-wiki/index.md  # big picture, communities, god nodes",
+    "readmenator-agent/INDEX.md  # file -> purpose -> used-by count",
+    "readmenator-agent/GOTCHAS.md  # blast radius before editing",
+    "readmenator-agent/KB_<subsystem>.md  # only the subsystem you touch"
+  ],
   "workflow": [
     "ls *.md readmenator-*/  # orient: docs first, ignore build noise",
-    "grep -n '<keyword>' INDEX.md",
+    "grep -n '<keyword>' INDEX*.md SYMBOLS*.md",
     "cat KB_<subsystem>.md",
-    "grep -n '<file>' ARCHITECTURE.md SYMBOLS.md"
+    "grep -n '<file>' ARCHITECTURE*.md API*.md"
+  ],
+  "documents": [
+    {
+      "path": "API.md",
+      "lines": 488,
+      "approx_tokens": 12125
+    },
+    {
+      "path": "API_p2.md",
+      "lines": 80,
+      "approx_tokens": 1357
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "lines": 192,
+      "approx_tokens": 2840
+    },
+    {
+      "path": "CONCEPTS.md",
+      "lines": 120,
+      "approx_tokens": 4551
+    },
+    {
+      "path": "GOTCHAS.md",
+      "lines": 70,
+      "approx_tokens": 1038
+    },
+    {
+      "path": "INDEX.md",
+      "lines": 92,
+      "approx_tokens": 2020
+    },
+    {
+      "path": "KB_controllers.md",
+      "lines": 186,
+      "approx_tokens": 2726
+    },
+    {
+      "path": "KB_js.md",
+      "lines": 159,
+      "approx_tokens": 1337
+    },
+    {
+      "path": "KB_misc.md",
+      "lines": 8,
+      "approx_tokens": 42
+    },
+    {
+      "path": "KB_models.md",
+      "lines": 110,
+      "approx_tokens": 1646
+    },
+    {
+      "path": "KB_root.md",
+      "lines": 95,
+      "approx_tokens": 794
+    },
+    {
+      "path": "KB_scripts.md",
+      "lines": 91,
+      "approx_tokens": 1029
+    },
+    {
+      "path": "KB_tests.md",
+      "lines": 396,
+      "approx_tokens": 8730
+    },
+    {
+      "path": "KB_tools.md",
+      "lines": 46,
+      "approx_tokens": 579
+    },
+    {
+      "path": "KB_utils.md",
+      "lines": 136,
+      "approx_tokens": 1774
+    },
+    {
+      "path": "KB_views.md",
+      "lines": 184,
+      "approx_tokens": 2004
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 3,
+      "approx_tokens": 10
+    },
+    {
+      "path": "SYMBOLS.md",
+      "lines": 500,
+      "approx_tokens": 12284
+    },
+    {
+      "path": "SYMBOLS_p2.md",
+      "lines": 326,
+      "approx_tokens": 8697
+    },
+    {
+      "path": "recipes/add-function.md",
+      "lines": 9,
+      "approx_tokens": 99
+    },
+    {
+      "path": "recipes/change-impact.md",
+      "lines": 9,
+      "approx_tokens": 106
+    },
+    {
+      "path": "recipes/fix-cycle.md",
+      "lines": 7,
+      "approx_tokens": 111
+    },
+    {
+      "path": "recipes/fix-security.md",
+      "lines": 6,
+      "approx_tokens": 69
+    },
+    {
+      "path": "recipes/reduce-complexity.md",
+      "lines": 9,
+      "approx_tokens": 78
+    }
   ],
   "regenerate": "readmenator . --rebuild"
 }

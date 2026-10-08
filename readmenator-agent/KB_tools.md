@@ -1,8 +1,8 @@
 # Subsystem: tools
 
 ## tools/generate_sri.py
+- Doc: Generate the SRI manifest for first-party assets and pinned CDN URLs.
 - Layer: utility
-- Doc: Generate the SRI manifest for first-party assets and pinned CDN URLs.  Regenerating the manifest is the audited step tha
 - Language: py
 - Symbols:
   - `collect_local_assets` (function, line 41) `def collect_local_assets()`
@@ -13,8 +13,8 @@
 - Depends on: `utils/integrity.py`
 
 ## tools/mutation_test.py
+- Doc: Mutation testing harness for the QuantumVault facade and cover contracts.
 - Layer: testing
-- Doc: Mutation testing harness for the QuantumVault facade and cover contracts.  Each discovered token mutation is applied in 
 - Language: py
 - Symbols:
   - `Mutation` (class, line 56) `class Mutation`
@@ -27,8 +27,8 @@
   - `main` (method, line 157) `def main(argv)`
 
 ## tools/verify_build.py
-- Layer: presentation
-- Doc: Verify reproducible builds and the fixed code contracts (QV-SRI-1).  Checks performed, all offline:  1. Every first-part
+- Doc: Verify reproducible builds and the fixed code contracts (QV-SRI-1).
+- Layer: utility
 - Language: py
 - Symbols:
   - `AssetReference` (class, line 34) `class AssetReference(HTMLParser)`

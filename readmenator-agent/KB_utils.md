@@ -3,10 +3,11 @@
 ## utils/__init__.py
 - Layer: utility
 - Language: py
+- Imported by: `controllers/auth.py`, `tests/test_padding.py`, `tests/test_srp.py`
 
 ## utils/cache.py
-- Layer: infrastructure
 - Doc: /home/grisun0/src/postcuantum/v1/utils/cache.py
+- Layer: infrastructure
 - Language: py
 - Symbols:
   - `Cache` (class, line 6) `class Cache`
@@ -16,8 +17,8 @@
   - `delete` (method, line 20) `def delete(self, key)`
 
 ## utils/integrity.py
+- Doc: Subresource Integrity manifest helpers (QV-SRI-1).
 - Layer: utility
-- Doc: Subresource Integrity manifest helpers (QV-SRI-1).  The manifest at ``static/sri_manifest.json`` pins the exact bytes of
 - Language: py
 - Symbols:
   - `manifest_path` (function, line 25) `def manifest_path()`
@@ -31,8 +32,8 @@
 - Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
 
 ## utils/mailer.py
+- Doc: Transactional email helpers for QuantumVault.
 - Layer: presentation
-- Doc: Transactional email helpers for QuantumVault.  Centralizes how outbound transactional mail is addressed and delivered so
 - Language: py
 - Symbols:
   - `external_url` (function, line 22) `def external_url(path)`
@@ -41,8 +42,8 @@
 - Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py`, `views/auth.py`
 
 ## utils/padding.py
-- Layer: infrastructure
-- Doc: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).  An observer who cannot read ciphertext can still read it
+- Doc: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).
+- Layer: utility
 - Language: py
 - Symbols:
   - `PaddingError` (class, line 73) `class PaddingError(ValueError)`
@@ -61,6 +62,7 @@
 - Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 
 ## utils/plans.py
+- Doc: SubscriptionPlans: Define los planes de suscripción disponibles.
 - Layer: utility
 - Language: py
 - Symbols:
@@ -69,8 +71,8 @@
   - `validate_plan_payment` (method, line 42) `def validate_plan_payment(plan_name, amount_paid)`
 
 ## utils/scheduler.py
+- Doc: Background scheduler for trial expiration and inbox cleanup.
 - Layer: presentation
-- Doc: Background scheduler for trial expiration and inbox cleanup.  Runs two recurring jobs:  - ``check_trial_expiration`` (ev
 - Language: py
 - Symbols:
   - `_now_utc` (function, line 32) `def _now_utc()`
@@ -81,8 +83,8 @@
 - Depends on: `models/message.py`, `models/user.py`, `utils/mailer.py`
 
 ## utils/security.py
+- Doc: Centralized security primitives for QuantumVault.
 - Layer: presentation
-- Doc: Centralized security primitives for QuantumVault.  Single source of truth for:  - The structured audit log used by every
 - Language: py
 - Symbols:
   - `_get_audit_logger` (function, line 46) `def _get_audit_logger()`
@@ -99,8 +101,8 @@
 - Imported by: `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `tests/conftest.py`, `tests/test_security.py`, `views/account.py`, `views/auth.py`, `views/sync.py`
 
 ## utils/srp6a.py
+- Doc: Zero-knowledge SRP-6a authentication primitives for QuantumVault.
 - Layer: utility
-- Doc: Zero-knowledge SRP-6a authentication primitives for QuantumVault.  This module implements the server side of a Secure Re
 - Language: py
 - Symbols:
   - `i2osp` (function, line 47) `def i2osp(value)`
@@ -119,8 +121,8 @@
   - `load` (method, line 202) `def load(self, username)`
 
 ## utils/utils.py
-- Layer: presentation
 - Doc: utils/utils.py
+- Layer: presentation
 - Language: py
 - Symbols:
   - `database_path` (function, line 12) `def database_path()`
@@ -131,4 +133,4 @@
   - `load_payload` (method, line 168) `def load_payload()`
   - `__init__` (method, line 145) `def __init__(self, config_dict)`
   - `__getitem__` (method, line 165) `def __getitem__(self, key)`
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_padding.py`, `tests/test_srp.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`

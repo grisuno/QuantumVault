@@ -5,6 +5,7 @@
 - Language: py
 
 ## models/contact.py
+- Doc: ContactModel: Pydantic model for a contact message.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -20,8 +21,8 @@
 - Imported by: `controllers/contact.py`
 
 ## models/deniable_vault.py
+- Doc: Opaque storage for QV-DENIABLE-1 deniable vault containers.
 - Layer: business_logic
-- Doc: Opaque storage for QV-DENIABLE-1 deniable vault containers.  The server is zero-knowledge: it stores one opaque, client-
 - Language: py
 - Symbols:
   - `DeniableVaultDB` (class, line 30) `class DeniableVaultDB`
@@ -33,8 +34,8 @@
 - Imported by: `controllers/deniable_vault.py`, `tests/test_deniable_vault.py`, `views/account.py`
 
 ## models/message.py
+- Doc: Persistence layer for end-to-end encrypted messages.
 - Layer: presentation
-- Doc: Persistence layer for end-to-end encrypted messages.  The browser performs all cryptography: it generates a random 32-by
 - Language: py
 - Symbols:
   - `MessageModel` (class, line 27) `class MessageModel(BaseModel)`
@@ -46,6 +47,7 @@
 - Imported by: `controllers/message.py`, `utils/scheduler.py`
 
 ## models/plans.py
+- Doc: PlanDB: Database operations for subscription plans.
 - Layer: business_logic
 - Language: py
 - Symbols:
@@ -62,8 +64,8 @@
 - Imported by: `controllers/auth.py`, `views/admin.py`, `views/faq.py`, `views/subscription.py`
 
 ## models/superadmin_audit.py
+- Doc: Append-only audit log for superadmin actions.
 - Layer: business_logic
-- Doc: Append-only audit log for superadmin actions.  Why a separate table: every privileged action (MFA reset, confirmation to
 - Language: py
 - Symbols:
   - `SuperadminAuditDB` (class, line 32) `class SuperadminAuditDB`
@@ -74,6 +76,7 @@
 - Imported by: `views/admin.py`
 
 ## models/user.py
+- Doc: UserModel: Pydantic model for a user with Flask-Login support.
 - Layer: presentation
 - Language: py
 - Symbols:
@@ -86,7 +89,7 @@
   - `_has_phone_unique_constraint` (method, line 193) `def _has_phone_unique_constraint(self)`
   - `_drop_phone_unique_if_present` (method, line 214) `def _drop_phone_unique_if_present(self)`
   - `_migrate_from_v7` (method, line 271) `def _migrate_from_v7(self, legacy_columns)`
-  - `create_user` (method, line 325) `def create_user(self, username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone, first_name, last_name, role, storage_quota, trial_start, trial_end, subscription_status, email_verified, confirmation_token, phone_verified, phone_verification_code_hash, phone_code_expires, mfa_enabled, recovery_salt, encrypted_private_key_recovery)`
+  - `create_user` (method, line 325) `def create_user(self, username, srp_salt, srp_verifier, public_key, encrypted_private_key, kdf_salt, email, phone...`
   - `update_user_phone_status` (method, line 362) `def update_user_phone_status(self, username, phone_verified, phone_verification_code_hash, phone_code_expires)`
   - `update_user_mfa_status` (method, line 396) `def update_user_mfa_status(self, username, mfa_code_hash, mfa_code_expires, mfa_enabled)`
   - `update_user` (method, line 430) `def update_user(self, username, email_verified, confirmation_token)`
