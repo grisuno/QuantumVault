@@ -1,10 +1,10 @@
 # orphans
 
-*Community 2 | 27 files | cohesion 0.00*
+*Community 7 | 26 files | cohesion 0.00*
 
 ## Definition
 
-This community groups 27 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
+This community groups 26 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
 
 ## Files
 
@@ -16,15 +16,7 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 | `client.go` | go | infrastructure | 1 | no |
 | `client.py` | py | infrastructure | 0 | no |
 | `enc_dec.go` | go | utility | 4 | no |
-
-### `utils` (4 files)
-
-| File | Language | Layer | Symbols | Doc |
-|------|----------|-------|---------|-----|
-| `utils/__init__.py` | py | utility | 0 | no |
-| `utils/cache.py` | py | infrastructure | 5 | yes |
-| `utils/plans.py` | py | utility | 3 | no |
-| `utils/srp6a.py` | py | utility | 14 | yes |
+| `enc_dec.py` | py | utility | 5 | yes |
 
 ### `scripts` (3 files)
 
@@ -41,6 +33,14 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 | `tests/__init__.py` | py | testing | 0 | no |
 | `tests/test_auth_phone.py` | py | testing | 3 | yes |
 | `tests/test_doctor.py` | py | testing | 12 | yes |
+
+### `utils` (3 files)
+
+| File | Language | Layer | Symbols | Doc |
+|------|----------|-------|---------|-----|
+| `utils/cache.py` | py | infrastructure | 5 | yes |
+| `utils/plans.py` | py | utility | 3 | no |
+| `utils/srp6a.py` | py | utility | 14 | yes |
 
 ### `controllers` (1 files)
 
@@ -78,7 +78,7 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 |------|----------|-------|---------|-----|
 | `views/__init__.py` | py | presentation | 0 | no |
 
-*... and 7 more files in this community.*
+*... and 6 more files in this community.*
 
 
 ## Key Symbols
@@ -121,8 +121,10 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 
 ## Connections
 
-- [INFERRED] shares_context community 0 <-> 2 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views) and community 2 (orphans).
-- [INFERRED] shares_context community 1 <-> 2 (strength 0.5): Inferred shared context (layer utility) with no import path between community 1 (static/js) and community 2 (orphans).
+- [INFERRED] shares_context community 0 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views: auth) and community 7 (orphans).
+- [INFERRED] shares_context community 1 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 1 (views: facade) and community 7 (orphans).
+- [INFERRED] shares_context community 2 <-> 7 (strength 0.5): Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 7 (orphans).
+- [INFERRED] shares_context community 3 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 3 (controllers) and community 7 (orphans).
 
 ## Risks
 
@@ -132,7 +134,7 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 
 ## Open Questions
 
-- Why do 16 file(s) lack file-level docs (e.g. `__init__.py`)? What purpose do they serve?
+- Why do 15 file(s) lack file-level docs (e.g. `__init__.py`)? What purpose do they serve?
 - Is the dangerous import `subprocess` in `scripts/doctor.py` still required, or can it be isolated?
 - What would break if the most connected file in orphans changed?
 - Should orphans be split, given cohesion 0.00?
@@ -159,4 +161,4 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 - `test.sh`
 - `tests/__init__.py`
 - `tests/test_auth_phone.py`
-- *... and 7 more*
+- *... and 6 more*

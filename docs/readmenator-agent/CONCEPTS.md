@@ -1,0 +1,120 @@
+# Concepts
+
+Nouns map atomically to file sets (EXTRACTED); verbs aggregate structural edges (INFERRED).
+
+- `never` | files=38 | mentions=79 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`, `models/superadmin_audit.py`
+- `server` | files=37 | mentions=99 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`
+- `only` | files=37 | mentions=76 | `app.py`, `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`
+- `user` | files=33 | mentions=195 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`
+- `when` | files=31 | mentions=55 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`, `models/superadmin_audit.py`
+- `key` | files=30 | mentions=157 | `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/doctor.py`
+- `return` | files=30 | mentions=112 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/deniable_vault.py`
+- `path` | files=30 | mentions=77 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/contact.py`
+- `not` | files=29 | mentions=82 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/plans.py`, `models/superadmin_audit.py`
+- `every` | files=28 | mentions=75 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/doctor.py`, `static/js/qv-crypto.js`, `static/js/qv-deniable.js`, `static/js/qv-padding.js`, `tests/conftest.py`
+- `its` | files=28 | mentions=40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/superadmin_audit.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/garage-native.sh`
+- `file` | files=27 | mentions=81 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.go`, `enc_dec.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`, `models/plans.py`
+- `page` | files=26 | mentions=50 | `controllers/facade.py`, `controllers/message.py`, `models/contact.py`, `models/message.py`, `models/user.py`, `static/js/login.js`, `static/js/messages.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
+- `returns` | files=25 | mentions=70 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`
+- `get` | files=25 | mentions=64 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/message.py`, `controllers/sync.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`, `models/plans.py`, `models/superadmin_audit.py`
+- `one` | files=25 | mentions=62 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/doctor.py`, `static/js/qv-crypto.js`
+- `which` | files=24 | mentions=33 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/message.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/garage-native.sh`, `static/js/account.js`
+- `client` | files=23 | mentions=58 | `app_factory.py`, `client.go`, `client.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`, `models/user.py`
+- `browser` | files=23 | mentions=44 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/message.py`, `static/js/account.js`, `static/js/login.js`
+- `build` | files=23 | mentions=41 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `static/js/qv-crypto.js`
+- `without` | files=23 | mentions=37 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `models/user.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/garage-init.sh`, `scripts/garage-native.sh`
+- `value` | files=22 | mentions=47 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/message.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/doctor.py`, `scripts/garage-init.sh`
+- `any` | files=22 | mentions=34 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/message.py`, `models/user.py`
+- `code` | files=21 | mentions=86 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `static/js/qv-crypto.js`, `static/js/recover.js`
+- `vault` | files=21 | mentions=81 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/deniable_vault.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/garage-init.sh`
+- `json` | files=21 | mentions=43 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/message.py`, `scripts/email_tool.py`, `static/js/qv-crypto.js`, `tests/conftest.py`, `tests/test_deniable_vault.py`
+- `static` | files=21 | mentions=28 | `models/deniable_vault.py`, `models/message.py`, `static/js/account.js`, `static/js/coded-text.js`, `static/js/login.js`, `static/js/messages.js`, `static/js/qv-crypto.js`, `static/js/qv-deniable.js`, `static/js/qv-padding.js`, `static/js/recover.js`
+- `zero` | files=20 | mentions=32 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/user.py`, `static/js/login.js`, `static/js/messages.js`
+- `args` | files=19 | mentions=72 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `enc_dec.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`, `models/plans.py`
+- `account` | files=19 | mentions=65 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/email_tool.py`, `static/js/account.js`, `static/js/qv-crypto.js`
+- `script` | files=19 | mentions=30 | `app.py`, `app_factory.py`, `enc_dec.py`, `install.sh`, `models/superadmin_audit.py`, `scripts/garage-init.sh`, `scripts/garage-native.sh`, `scripts/makeadmin.py`, `static/js/account.js`, `static/js/coded-text.js`
+- `configured` | files=19 | mentions=29 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py`, `models/user.py`, `scripts/email_tool.py`, `tests/conftest.py`
+- `storage` | files=19 | mentions=28 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/sync.py`, `enc_dec.py`, `models/deniable_vault.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/email_tool.py`
+- `public` | files=18 | mentions=64 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/message.py`, `models/user.py`, `static/js/login.js`, `static/js/messages.js`, `static/js/qv-crypto.js`
+- `same` | files=18 | mentions=38 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `static/js/qv-crypto.js`, `static/js/qv-deniable.js`
+- `controller` | files=18 | mentions=35 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `controllers/sync.py`, `models/user.py`, `static/js/account.js`, `static/js/login.js`, `static/js/messages.js`
+- `module` | files=18 | mentions=24 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `scripts/doctor.py`, `static/js/account.js`, `static/js/login.js`, `static/js/messages.js`, `static/js/recover.js`, `static/js/register.js`
+- `cannot` | files=18 | mentions=23 | `app_factory.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `models/user.py`, `scripts/doctor.py`, `scripts/test_bloque1.py`, `static/js/messages.js`, `static/js/qv-crypto.js`, `tests/conftest.py`
+- `used` | files=18 | mentions=23 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/user.py`, `scripts/doctor.py`, `static/js/qv-crypto.js`
+- `side` | files=18 | mentions=21 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/superadmin_audit.py`, `scripts/makeadmin.py`, `static/js/qv-crypto.js`
+- `accepts` | files=18 | mentions=20 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/user.py`, `scripts/doctor.py`, `static/js/account.js`, `static/js/qv-crypto.js`, `tests/test_auth_phone.py`, `tests/test_deniable_vault.py`, `tests/test_doctor.py`, `tests/test_facade.py`
+- `bytes` | files=17 | mentions=53 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py`, `models/user.py`, `static/js/qv-crypto.js`, `static/js/qv-deniable.js`, `static/js/qv-padding.js`, `tests/test_cover.py`
+- `login` | files=17 | mentions=41 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `models/user.py`, `scripts/makeadmin.py`, `static/js/login.js`, `static/js/qv-crypto.js`, `tests/conftest.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`
+- `opaque` | files=17 | mentions=40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/deniable_vault.py`, `models/message.py`, `models/user.py`, `static/js/account.js`, `static/js/messages.js`, `static/js/qv-crypto.js`
+- `database` | files=17 | mentions=36 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/message.py`, `models/contact.py`, `models/deniable_vault.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/email_tool.py`
+- `can` | files=17 | mentions=31 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/secure_channel.py`, `models/message.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/email_tool.py`, `scripts/garage-init.sh`, `scripts/makeadmin.py`
+- `first` | files=17 | mentions=24 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/contact.py`, `models/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `static/js/qv-crypto.js`, `tests/conftest.py`
+- `through` | files=17 | mentions=21 | `app_factory.py`, `controllers/file.py`, `controllers/secure_channel.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `tests/conftest.py`, `tests/test_cover.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`
+- `quantum` | files=17 | mentions=19 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py`, `scripts/doctor.py`, `scripts/email_tool.py`, `scripts/garage-init.sh`, `scripts/makeadmin.py`, `static/js/qv-crypto.js`
+- `username` | files=16 | mentions=68 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/contact.py`, `models/deniable_vault.py`, `models/message.py`, `models/superadmin_audit.py`, `models/user.py`, `scripts/email_tool.py`
+
+## Verb Edges
+
+- `user` --depends_on--> `never` (strength 1.00)
+- `user` --depends_on--> `one` (strength 0.92)
+- `user` --depends_on--> `only` (strength 0.92)
+- `user` --depends_on--> `return` (strength 0.92)
+- `server` --depends_on--> `never` (strength 0.91)
+- `not` --depends_on--> `never` (strength 0.88)
+- `user` --depends_on--> `when` (strength 0.88)
+- `server` --depends_on--> `one` (strength 0.86)
+- `user` --depends_on--> `path` (strength 0.86)
+- `not` --depends_on--> `return` (strength 0.85)
+- `only` --depends_on--> `never` (strength 0.85)
+- `server` --depends_on--> `only` (strength 0.85)
+- `user` --depends_on--> `server` (strength 0.85)
+- `never` --depends_on--> `one` (strength 0.82)
+- `not` --depends_on--> `only` (strength 0.82)
+- `only` --depends_on--> `one` (strength 0.82)
+- `server` --depends_on--> `return` (strength 0.82)
+- `user` --depends_on--> `used` (strength 0.82)
+- `not` --depends_on--> `one` (strength 0.80)
+- `only` --depends_on--> `return` (strength 0.80)
+- `server` --depends_on--> `when` (strength 0.80)
+- `user` --depends_on--> `returns` (strength 0.80)
+- `not` --depends_on--> `when` (strength 0.78)
+- `user` --depends_on--> `args` (strength 0.78)
+- `every` --depends_on--> `never` (strength 0.77)
+- `return` --depends_on--> `never` (strength 0.77)
+- `user` --depends_on--> `code` (strength 0.77)
+- `user` --depends_on--> `every` (strength 0.77)
+- `user` --depends_on--> `value` (strength 0.77)
+- `user` --depends_on--> `which` (strength 0.77)
+- `only` --depends_on--> `when` (strength 0.75)
+- `user` --depends_on--> `first` (strength 0.75)
+- `not` --depends_on--> `path` (strength 0.74)
+- `return` --depends_on--> `one` (strength 0.74)
+- `server` --depends_on--> `every` (strength 0.74)
+- `server` --depends_on--> `path` (strength 0.74)
+- `server` --depends_on--> `returns` (strength 0.74)
+- `server` --depends_on--> `used` (strength 0.74)
+- `when` --depends_on--> `never` (strength 0.74)
+- `every` --depends_on--> `one` (strength 0.72)
+- `every` --depends_on--> `return` (strength 0.72)
+- `never` --depends_on--> `only` (strength 0.72)
+- `never` --depends_on--> `when` (strength 0.72)
+- `not` --depends_on--> `which` (strength 0.72)
+- `only` --depends_on--> `path` (strength 0.72)
+- `only` --depends_on--> `server` (strength 0.72)
+- `return` --depends_on--> `when` (strength 0.72)
+- `user` --depends_on--> `file` (strength 0.72)
+- `key` --depends_on--> `never` (strength 0.71)
+- `not` --depends_on--> `server` (strength 0.71)
+
+## Dialectic
+
+- Thesis: `accepts` centralizes 18 files; Antithesis: `code` pulls 21 files with 10 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `every` pulls 28 files with 11 shared (Jaccard 0.31); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `its` pulls 28 files with 12 shared (Jaccard 0.35); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `one` pulls 25 files with 11 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `when` pulls 31 files with 13 shared (Jaccard 0.36); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `without` pulls 23 files with 11 shared (Jaccard 0.37); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `account` centralizes 19 files; Antithesis: `can` pulls 17 files with 10 shared (Jaccard 0.38); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `account` centralizes 19 files; Antithesis: `code` pulls 21 files with 12 shared (Jaccard 0.43); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `account` centralizes 19 files; Antithesis: `controller` pulls 18 files with 9 shared (Jaccard 0.32); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `account` centralizes 19 files; Antithesis: `database` pulls 17 files with 9 shared (Jaccard 0.33); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
