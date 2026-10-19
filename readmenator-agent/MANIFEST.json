@@ -1,24 +1,24 @@
 {
   "tool": "readmenator",
   "schema_version": 2,
-  "generated_at": "2026-10-19T19:28:20Z",
+  "generated_at": "2026-10-19T20:18:03Z",
   "project_root": ".",
   "project_name": "QuantumVault",
-  "git_commit": "b4747bdfd69d0fc1b2f1ba42c4b122c1689988fa",
+  "git_commit": "21f1ca12dc81c56a37512ecfa5a2fc075f7383c4",
   "git_branch": "main",
-  "source_fingerprint": "c5a99d4a6d99c2a5a36eb8d33a3adf21b010bf8db1850da78e37fc03cdfbb598",
+  "source_fingerprint": "faaf5caa97c53d52811659337bd342078411cc0054ef32cd5459af08f44d7f4f",
   "freshness_check": "readmenator . fresh  # exit 0 = docs match sources, exit 1 = run: readmenator . --rebuild",
-  "files": 89,
-  "symbols": 813,
-  "imports": 524,
-  "calls": 3892,
+  "files": 90,
+  "symbols": 814,
+  "imports": 528,
+  "calls": 3901,
   "inherits": 22,
-  "resolved_imports": 122,
+  "resolved_imports": 123,
   "security_findings": 0,
   "languages": {
     "go": 3,
     "js": 10,
-    "py": 71,
+    "py": 72,
     "sh": 5
   },
   "subsystems": {
@@ -26,7 +26,8 @@
     "js": 10,
     "misc": 1,
     "models": 7,
-    "root": 14,
+    "quantumvault": 3,
+    "root": 12,
     "scripts": 6,
     "tests": 14,
     "tools": 3,
@@ -54,58 +55,63 @@
   "documents": [
     {
       "path": "API.md",
-      "lines": 488,
-      "approx_tokens": 12023
+      "lines": 492,
+      "approx_tokens": 12489
     },
     {
       "path": "API_p2.md",
       "lines": 80,
-      "approx_tokens": 1300
+      "approx_tokens": 1332
     },
     {
       "path": "ARCHITECTURE.md",
-      "lines": 192,
-      "approx_tokens": 2840
+      "lines": 193,
+      "approx_tokens": 3023
     },
     {
       "path": "CONCEPTS.md",
       "lines": 120,
-      "approx_tokens": 4552
+      "approx_tokens": 4938
     },
     {
       "path": "GOTCHAS.md",
       "lines": 70,
-      "approx_tokens": 1038
+      "approx_tokens": 1083
     },
     {
       "path": "INDEX.md",
-      "lines": 93,
-      "approx_tokens": 2038
+      "lines": 94,
+      "approx_tokens": 2106
     },
     {
       "path": "KB_controllers.md",
       "lines": 186,
-      "approx_tokens": 2736
+      "approx_tokens": 2743
     },
     {
       "path": "KB_js.md",
       "lines": 159,
-      "approx_tokens": 1337
+      "approx_tokens": 1435
     },
     {
       "path": "KB_misc.md",
       "lines": 8,
-      "approx_tokens": 42
+      "approx_tokens": 46
     },
     {
       "path": "KB_models.md",
       "lines": 110,
-      "approx_tokens": 1646
+      "approx_tokens": 1649
+    },
+    {
+      "path": "KB_quantumvault.md",
+      "lines": 31,
+      "approx_tokens": 400
     },
     {
       "path": "KB_root.md",
-      "lines": 95,
-      "approx_tokens": 794
+      "lines": 73,
+      "approx_tokens": 465
     },
     {
       "path": "KB_scripts.md",
@@ -115,7 +121,7 @@
     {
       "path": "KB_tests.md",
       "lines": 396,
-      "approx_tokens": 8739
+      "approx_tokens": 8752
     },
     {
       "path": "KB_tools.md",
@@ -124,18 +130,18 @@
     },
     {
       "path": "KB_utils.md",
-      "lines": 141,
-      "approx_tokens": 1803
+      "lines": 142,
+      "approx_tokens": 1823
     },
     {
       "path": "KB_views.md",
       "lines": 184,
-      "approx_tokens": 2025
+      "approx_tokens": 2067
     },
     {
       "path": "MEMORY.md",
-      "lines": 116,
-      "approx_tokens": 1950
+      "lines": 117,
+      "approx_tokens": 2007
     },
     {
       "path": "SECURITY.md",
@@ -145,12 +151,12 @@
     {
       "path": "SYMBOLS.md",
       "lines": 500,
-      "approx_tokens": 12307
+      "approx_tokens": 12585
     },
     {
       "path": "SYMBOLS_p2.md",
-      "lines": 326,
-      "approx_tokens": 8740
+      "lines": 327,
+      "approx_tokens": 8781
     },
     {
       "path": "recipes/add-function.md",
@@ -165,7 +171,7 @@
     {
       "path": "recipes/fix-cycle.md",
       "lines": 7,
-      "approx_tokens": 111
+      "approx_tokens": 127
     },
     {
       "path": "recipes/fix-security.md",
@@ -175,7 +181,7 @@
     {
       "path": "recipes/reduce-complexity.md",
       "lines": 9,
-      "approx_tokens": 78
+      "approx_tokens": 85
     }
   ],
   "regenerate": "readmenator . --rebuild"

@@ -184,7 +184,7 @@ def __init__(self, config_dict: Payload)
 
 *Calls:* [`as_bool`](#as_bool)
 
-*Called by:* [`main`](app.py.md#main), [`create_app`](app_factory.py.md#create_app), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_test_smtp`](scripts.email_tool.py.md#cmd_test_smtp)
+*Called by:* [`main`](app.py.md#main), [`create_app`](quantumvault.app_factory.py.md#create_app), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_test_smtp`](scripts.email_tool.py.md#cmd_test_smtp)
 
 ---
 
@@ -282,6 +282,6 @@ so environment-based secrets are populated before [`Config`](#config) reads them
 
 **Returns:** `Payload` - The parsed configuration dictionary.
 
-*Called by:* [`main`](app.py.md#main), [`create_app`](app_factory.py.md#create_app), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_test_smtp`](scripts.email_tool.py.md#cmd_test_smtp)
+*Called by:* [`main`](app.py.md#main), [`create_app`](quantumvault.app_factory.py.md#create_app), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_test_smtp`](scripts.email_tool.py.md#cmd_test_smtp)
 
 ---

@@ -21,15 +21,15 @@
 - Layer: utility
 - Language: py
 - Symbols:
-  - `manifest_path` (function, line 25) `def manifest_path()`
-  - `compute_sri` (function, line 30) `def compute_sri(data, algorithm)`
-  - `compute_file_sri` (function, line 36) `def compute_file_sri(path, algorithm)`
-  - `_cached_manifest_text` (function, line 42) `def _cached_manifest_text()`
-  - `load_manifest` (function, line 47) `def load_manifest()`
-  - `integrity_for` (function, line 55) `def integrity_for(key)`
-  - `clear_manifest_cache` (function, line 72) `def clear_manifest_cache()`
-  - `template_integrity` (function, line 77) `def template_integrity(key)`
-- Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+  - `manifest_path` (function, line 26) `def manifest_path()`
+  - `compute_sri` (function, line 40) `def compute_sri(data, algorithm)`
+  - `compute_file_sri` (function, line 46) `def compute_file_sri(path, algorithm)`
+  - `_cached_manifest_text` (function, line 52) `def _cached_manifest_text()`
+  - `load_manifest` (function, line 57) `def load_manifest()`
+  - `integrity_for` (function, line 65) `def integrity_for(key)`
+  - `clear_manifest_cache` (function, line 82) `def clear_manifest_cache()`
+  - `template_integrity` (function, line 87) `def template_integrity(key)`
+- Imported by: `quantumvault/app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
 
 ## utils/mailer.py
 - Doc: Transactional email helpers for QuantumVault.
@@ -59,7 +59,7 @@
   - `is_allowed_ciphertext_len` (function, line 214) `def is_allowed_ciphertext_len(ciphertext_len, kind, config)`
   - `buckets_for` (method, line 84) `def buckets_for(self, kind)`
   - `max_plaintext_bytes` (method, line 90) `def max_plaintext_bytes(self, kind)`
-- Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+- Imported by: `controllers/file.py`, `controllers/message.py`, `quantumvault/static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 
 ## utils/plans.py
 - Doc: SubscriptionPlans: Define los planes de suscripción disponibles.
@@ -133,9 +133,10 @@
   - `load_payload` (function, line 168) `def load_payload()`
   - `__init__` (method, line 145) `def __init__(self, config_dict)`
   - `__getitem__` (method, line 165) `def __getitem__(self, key)`
-- Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+- Imported by: `app.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `quantumvault/app_factory.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 
 ## utils/version.py
 - Doc: QuantumVault package version.
 - Layer: utility
 - Language: py
+- Imported by: `quantumvault/__init__.py`

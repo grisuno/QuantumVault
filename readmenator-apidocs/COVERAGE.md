@@ -1,6 +1,6 @@
 # Documentation Coverage
 
-Overall: **76.3%** (358 of 469 public modules, types, and callables). Data members are excluded from the ratio.
+Overall: **76.4%** (360 of 471 public modules, types, and callables). Data members are excluded from the ratio.
 
 [Back to index](index.md)
 
@@ -13,9 +13,9 @@ Overall: **76.3%** (358 of 469 public modules, types, and callables). Data membe
 | constructor | 17 | 22 | 77.3% |
 | enum | 2 | 2 | 100.0% |
 | exception | 2 | 2 | 100.0% |
-| function | 156 | 229 | 68.1% |
+| function | 157 | 230 | 68.3% |
 | method | 81 | 81 | 100.0% |
-| module | 46 | 72 | 63.9% |
+| module | 47 | 73 | 64.4% |
 | property | 7 | 7 | 100.0% |
 | staticmethod | 2 | 2 | 100.0% |
 
@@ -35,20 +35,20 @@ Overall: **76.3%** (358 of 469 public modules, types, and callables). Data membe
 | [`server`](modules/server.py.md) | 0 | 1 | 0.0% |
 | [`utils`](modules/utils.__init__.py.md) | 0 | 1 | 0.0% |
 | [`views`](modules/views.__init__.py.md) | 0 | 1 | 0.0% |
-| [`static/js/account.js`](modules/static.js.account.js.md) | 1 | 10 | 10.0% |
-| [`static/js/messages.js`](modules/static.js.messages.js.md) | 1 | 7 | 14.3% |
-| [`static/js/upload.js`](modules/static.js.upload.js.md) | 1 | 7 | 14.3% |
-| [`static/js/qv-padding.js`](modules/static.js.qv-padding.js.md) | 1 | 6 | 16.7% |
-| [`static/js/coded-text.js`](modules/static.js.coded-text.js.md) | 1 | 4 | 25.0% |
-| [`static/js/recover.js`](modules/static.js.recover.js.md) | 1 | 4 | 25.0% |
-| [`static/js/login.js`](modules/static.js.login.js.md) | 1 | 3 | 33.3% |
+| [`quantumvault/static/js/account.js`](modules/quantumvault.static.js.account.js.md) | 1 | 10 | 10.0% |
+| [`quantumvault/static/js/messages.js`](modules/quantumvault.static.js.messages.js.md) | 1 | 7 | 14.3% |
+| [`quantumvault/static/js/upload.js`](modules/quantumvault.static.js.upload.js.md) | 1 | 7 | 14.3% |
+| [`quantumvault/static/js/qv-padding.js`](modules/quantumvault.static.js.qv-padding.js.md) | 1 | 6 | 16.7% |
+| [`quantumvault/static/js/coded-text.js`](modules/quantumvault.static.js.coded-text.js.md) | 1 | 4 | 25.0% |
+| [`quantumvault/static/js/recover.js`](modules/quantumvault.static.js.recover.js.md) | 1 | 4 | 25.0% |
+| [`quantumvault/static/js/login.js`](modules/quantumvault.static.js.login.js.md) | 1 | 3 | 33.3% |
 | [`views.auth`](modules/views.auth.py.md) | 12 | 26 | 46.2% |
-| [`static/js/qv-crypto.js`](modules/static.js.qv-crypto.js.md) | 19 | 41 | 46.3% |
+| [`quantumvault/static/js/qv-crypto.js`](modules/quantumvault.static.js.qv-crypto.js.md) | 19 | 41 | 46.3% |
 | [`app`](modules/app.py.md) | 1 | 2 | 50.0% |
 | [`controllers.sync`](modules/controllers.sync.py.md) | 2 | 4 | 50.0% |
+| [`quantumvault/static/js/register.js`](modules/quantumvault.static.js.register.js.md) | 2 | 4 | 50.0% |
+| [`quantumvault.templates.terms`](modules/quantumvault.templates.terms.py.md) | 1 | 2 | 50.0% |
 | [`scripts/garage-native.sh`](modules/scripts.garage-native.sh.md) | 2 | 4 | 50.0% |
-| [`static/js/register.js`](modules/static.js.register.js.md) | 2 | 4 | 50.0% |
-| [`templates.terms`](modules/templates.terms.py.md) | 1 | 2 | 50.0% |
 | [`views.about`](modules/views.about.py.md) | 1 | 2 | 50.0% |
 | [`views.privacy`](modules/views.privacy.py.md) | 1 | 2 | 50.0% |
 | [`views.terms`](modules/views.terms.py.md) | 1 | 2 | 50.0% |
@@ -64,11 +64,10 @@ Overall: **76.3%** (358 of 469 public modules, types, and callables). Data membe
 | [`models.contact`](modules/models.contact.py.md) | 6 | 7 | 85.7% |
 | [`views.admin`](modules/views.admin.py.md) | 13 | 15 | 86.7% |
 | [`controllers.file`](modules/controllers.file.py.md) | 7 | 8 | 87.5% |
-| [`static/js/qv-deniable.js`](modules/static.js.qv-deniable.js.md) | 7 | 8 | 87.5% |
+| [`quantumvault/static/js/qv-deniable.js`](modules/quantumvault.static.js.qv-deniable.js.md) | 7 | 8 | 87.5% |
 | [`utils.utils`](modules/utils.utils.py.md) | 7 | 8 | 87.5% |
 | [`models.plans`](modules/models.plans.py.md) | 8 | 9 | 88.9% |
 | [`models.user`](modules/models.user.py.md) | 20 | 21 | 95.2% |
-| [`app_factory`](modules/app_factory.py.md) | 2 | 2 | 100.0% |
 | [`controllers.auth`](modules/controllers.auth.py.md) | 13 | 13 | 100.0% |
 | [`controllers.deniable_vault`](modules/controllers.deniable_vault.py.md) | 17 | 17 | 100.0% |
 | [`controllers.facade`](modules/controllers.facade.py.md) | 21 | 21 | 100.0% |
@@ -79,6 +78,9 @@ Overall: **76.3%** (358 of 469 public modules, types, and callables). Data membe
 | [`models.deniable_vault`](modules/models.deniable_vault.py.md) | 6 | 6 | 100.0% |
 | [`models.message`](modules/models.message.py.md) | 7 | 7 | 100.0% |
 | [`models.superadmin_audit`](modules/models.superadmin_audit.py.md) | 5 | 5 | 100.0% |
+| [`quantumvault`](modules/quantumvault.__init__.py.md) | 1 | 1 | 100.0% |
+| [`quantumvault.app_factory`](modules/quantumvault.app_factory.py.md) | 2 | 2 | 100.0% |
+| [`quantumvault.wsgi`](modules/quantumvault.wsgi.py.md) | 2 | 2 | 100.0% |
 | [`scripts.doctor`](modules/scripts.doctor.py.md) | 29 | 29 | 100.0% |
 | [`scripts.email_tool`](modules/scripts.email_tool.py.md) | 6 | 6 | 100.0% |
 | [`scripts/garage-init.sh`](modules/scripts.garage-init.sh.md) | 2 | 2 | 100.0% |
@@ -94,7 +96,6 @@ Overall: **76.3%** (358 of 469 public modules, types, and callables). Data membe
 | [`utils.version`](modules/utils.version.py.md) | 1 | 1 | 100.0% |
 | [`views.account`](modules/views.account.py.md) | 6 | 6 | 100.0% |
 | [`views.facade`](modules/views.facade.py.md) | 2 | 2 | 100.0% |
-| [`wsgi`](modules/wsgi.py.md) | 1 | 1 | 100.0% |
 
 ## Warnings
 
@@ -120,70 +121,70 @@ DOC001: 107, DOC004: 3, DOC005: 3
 - DOC005 `models/plans.py:113` PlanDB.delete_plan raises Exception but does not document it
 - DOC001 `models/user.py:1` module models/user.py is not documented
 - DOC001 `pq_decrypt_password.py:1` module pq_decrypt_password.py is not documented
+- DOC001 `quantumvault/static/js/account.js:20` function setStatus is not documented
+- DOC001 `quantumvault/static/js/account.js:31` function csrfToken is not documented
+- DOC001 `quantumvault/static/js/account.js:36` function apiRequest is not documented
+- DOC001 `quantumvault/static/js/account.js:54` function loadState is not documented
+- DOC001 `quantumvault/static/js/account.js:60` function collectSlots is not documented
+- DOC001 `quantumvault/static/js/account.js:73` function handleConfigure is not documented
+- DOC001 `quantumvault/static/js/account.js:103` function handleOpen is not documented
+- DOC001 `quantumvault/static/js/account.js:125` function handleReset is not documented
+- DOC001 `quantumvault/static/js/account.js:138` function init is not documented
+- DOC001 `quantumvault/static/js/coded-text.js:13` function randomChar is not documented
+- DOC001 `quantumvault/static/js/coded-text.js:19` function animateElement is not documented
+- DOC001 `quantumvault/static/js/coded-text.js:50` function init is not documented
+- DOC001 `quantumvault/static/js/login.js:11` function handleLogin is not documented
+- DOC001 `quantumvault/static/js/login.js:44` function init is not documented
+- DOC001 `quantumvault/static/js/messages.js:12` function getCsrfToken is not documented
+- DOC001 `quantumvault/static/js/messages.js:17` function handleSend is not documented
+- DOC001 `quantumvault/static/js/messages.js:44` function collectEnvelopes is not documented
+- DOC001 `quantumvault/static/js/messages.js:60` function handleDecryptInbox is not documented
+- DOC001 `quantumvault/static/js/messages.js:88` function initEditor is not documented
+- DOC001 `quantumvault/static/js/messages.js:109` function init is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:59` function concatBytes is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:70` function hexToBytes is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:79` function bytesToHex is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:85` function bytesToBase64 is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:96` function bytesToBase32 is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:114` function base64ToBytes is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:121` function bytesToBigInt is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:138` function mod is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:142` function modPow is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:160` function randomBytes is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:169` function H is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:173` function Hint is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:205` function deriveMasterKey is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:209` function aesGcmEncrypt is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:220` function aesGcmDecrypt is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:251` function computeK is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:344` function parsePublicKey is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:352` function parsePrivateBlob is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:360` function deriveWrapKey is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:473` function postJson is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:530` function register is not documented
+- DOC001 `quantumvault/static/js/qv-crypto.js:592` function login is not documented
+- DOC001 `quantumvault/static/js/qv-deniable.js:48` function toBytes is not documented
+- DOC001 `quantumvault/static/js/qv-padding.js:16` function tableFor is not documented
+- DOC001 `quantumvault/static/js/qv-padding.js:20` function bucketFor is not documented
+- DOC001 `quantumvault/static/js/qv-padding.js:34` function randomPad is not documented
+- DOC001 `quantumvault/static/js/qv-padding.js:42` function padFramed is not documented
+- DOC001 `quantumvault/static/js/qv-padding.js:54` function unframeFramed is not documented
+- DOC001 `quantumvault/static/js/recover.js:15` function setStatus is not documented
+- DOC001 `quantumvault/static/js/recover.js:22` function handleRecover is not documented
+- DOC001 `quantumvault/static/js/recover.js:80` function init is not documented
+- DOC001 `quantumvault/static/js/register.js:42` function handleRegister is not documented
+- DOC001 `quantumvault/static/js/register.js:110` function init is not documented
+- DOC001 `quantumvault/static/js/upload.js:12` function getCsrfToken is not documented
+- DOC001 `quantumvault/static/js/upload.js:17` function getUsername is not documented
+- DOC001 `quantumvault/static/js/upload.js:23` function getPublicKey is not documented
+- DOC001 `quantumvault/static/js/upload.js:40` function handleUpload is not documented
+- DOC001 `quantumvault/static/js/upload.js:74` function handleDownload is not documented
+- DOC001 `quantumvault/static/js/upload.js:97` function init is not documented
+- DOC001 `quantumvault/templates/terms.py:1` module quantumvault/templates/terms.py is not documented
 - DOC001 `scripts/garage-native.sh:56` function s3_reachable is not documented
 - DOC001 `scripts/garage-native.sh:141` function gcmd is not documented
 - DOC001 `server.go:1` module server.go is not documented
 - DOC001 `server.py:1` module server.py is not documented
-- DOC001 `static/js/account.js:20` function setStatus is not documented
-- DOC001 `static/js/account.js:31` function csrfToken is not documented
-- DOC001 `static/js/account.js:36` function apiRequest is not documented
-- DOC001 `static/js/account.js:54` function loadState is not documented
-- DOC001 `static/js/account.js:60` function collectSlots is not documented
-- DOC001 `static/js/account.js:73` function handleConfigure is not documented
-- DOC001 `static/js/account.js:103` function handleOpen is not documented
-- DOC001 `static/js/account.js:125` function handleReset is not documented
-- DOC001 `static/js/account.js:138` function init is not documented
-- DOC001 `static/js/coded-text.js:13` function randomChar is not documented
-- DOC001 `static/js/coded-text.js:19` function animateElement is not documented
-- DOC001 `static/js/coded-text.js:50` function init is not documented
-- DOC001 `static/js/login.js:11` function handleLogin is not documented
-- DOC001 `static/js/login.js:44` function init is not documented
-- DOC001 `static/js/messages.js:12` function getCsrfToken is not documented
-- DOC001 `static/js/messages.js:17` function handleSend is not documented
-- DOC001 `static/js/messages.js:44` function collectEnvelopes is not documented
-- DOC001 `static/js/messages.js:60` function handleDecryptInbox is not documented
-- DOC001 `static/js/messages.js:88` function initEditor is not documented
-- DOC001 `static/js/messages.js:109` function init is not documented
-- DOC001 `static/js/qv-crypto.js:59` function concatBytes is not documented
-- DOC001 `static/js/qv-crypto.js:70` function hexToBytes is not documented
-- DOC001 `static/js/qv-crypto.js:79` function bytesToHex is not documented
-- DOC001 `static/js/qv-crypto.js:85` function bytesToBase64 is not documented
-- DOC001 `static/js/qv-crypto.js:96` function bytesToBase32 is not documented
-- DOC001 `static/js/qv-crypto.js:114` function base64ToBytes is not documented
-- DOC001 `static/js/qv-crypto.js:121` function bytesToBigInt is not documented
-- DOC001 `static/js/qv-crypto.js:138` function mod is not documented
-- DOC001 `static/js/qv-crypto.js:142` function modPow is not documented
-- DOC001 `static/js/qv-crypto.js:160` function randomBytes is not documented
-- DOC001 `static/js/qv-crypto.js:169` function H is not documented
-- DOC001 `static/js/qv-crypto.js:173` function Hint is not documented
-- DOC001 `static/js/qv-crypto.js:205` function deriveMasterKey is not documented
-- DOC001 `static/js/qv-crypto.js:209` function aesGcmEncrypt is not documented
-- DOC001 `static/js/qv-crypto.js:220` function aesGcmDecrypt is not documented
-- DOC001 `static/js/qv-crypto.js:251` function computeK is not documented
-- DOC001 `static/js/qv-crypto.js:344` function parsePublicKey is not documented
-- DOC001 `static/js/qv-crypto.js:352` function parsePrivateBlob is not documented
-- DOC001 `static/js/qv-crypto.js:360` function deriveWrapKey is not documented
-- DOC001 `static/js/qv-crypto.js:473` function postJson is not documented
-- DOC001 `static/js/qv-crypto.js:530` function register is not documented
-- DOC001 `static/js/qv-crypto.js:592` function login is not documented
-- DOC001 `static/js/qv-deniable.js:48` function toBytes is not documented
-- DOC001 `static/js/qv-padding.js:16` function tableFor is not documented
-- DOC001 `static/js/qv-padding.js:20` function bucketFor is not documented
-- DOC001 `static/js/qv-padding.js:34` function randomPad is not documented
-- DOC001 `static/js/qv-padding.js:42` function padFramed is not documented
-- DOC001 `static/js/qv-padding.js:54` function unframeFramed is not documented
-- DOC001 `static/js/recover.js:15` function setStatus is not documented
-- DOC001 `static/js/recover.js:22` function handleRecover is not documented
-- DOC001 `static/js/recover.js:80` function init is not documented
-- DOC001 `static/js/register.js:42` function handleRegister is not documented
-- DOC001 `static/js/register.js:110` function init is not documented
-- DOC001 `static/js/upload.js:12` function getCsrfToken is not documented
-- DOC001 `static/js/upload.js:17` function getUsername is not documented
-- DOC001 `static/js/upload.js:23` function getPublicKey is not documented
-- DOC001 `static/js/upload.js:40` function handleUpload is not documented
-- DOC001 `static/js/upload.js:74` function handleDownload is not documented
-- DOC001 `static/js/upload.js:97` function init is not documented
-- DOC001 `templates/terms.py:1` module templates/terms.py is not documented
 - DOC001 `utils/__init__.py:1` module utils/__init__.py is not documented
 - DOC004 `utils/padding.py:149` return value of bucket_for is not documented
 - DOC004 `utils/padding.py:169` return value of pad is not documented

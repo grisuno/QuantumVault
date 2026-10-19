@@ -4,7 +4,6 @@
 |------|---------|-----------|---------|---------|
 | `__init__.py` | - | root | 0 | 0 |
 | `app.py` | Local development entry point. | root | 2 | 1 |
-| `app_factory.py` | Application factory for QuantumVault. | root | 8 | 6 |
 | `client.go` | - | root | 1 | 0 |
 | `client.py` | - | root | 0 | 0 |
 | `controllers/__init__.py` | - | controllers | 0 | 0 |
@@ -28,6 +27,20 @@
 | `models/superadmin_audit.py` | Append-only audit log for superadmin actions. | models | 5 | 1 |
 | `models/user.py` | UserModel: Pydantic model for a user with Flask-Login support. | models | 27 | 14 |
 | `pq_decrypt_password.py` | - | root | 0 | 0 |
+| `quantumvault/__init__.py` | QuantumVault application package. | quantumvault | 0 | 0 |
+| `quantumvault/app_factory.py` | Application factory for QuantumVault. | quantumvault | 8 | 6 |
+| `quantumvault/static/js/account.js` | Account settings controller: secure notes (QV-DENIABLE-1). | js | 9 | 0 |
+| `quantumvault/static/js/coded-text.js` | Decipher animation for elements tagged with the "codedText" class. | js | 3 | 0 |
+| `quantumvault/static/js/login.js` | Login page controller (zero-knowledge SRP-6a flow). | js | 2 | 1 |
+| `quantumvault/static/js/messages.js` | Messages page controller (zero-knowledge end-to-end messaging). | js | 6 | 0 |
+| `quantumvault/static/js/qv-crypto.js` | QuantumVault zero-knowledge browser crypto. | js | 40 | 6 |
+| `quantumvault/static/js/qv-deniable.js` | QuantumVault deniable vault (QV-DENIABLE-1) browser crypto. | js | 7 | 1 |
+| `quantumvault/static/js/qv-padding.js` | QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py. | js | 5 | 1 |
+| `quantumvault/static/js/recover.js` | Account recovery page controller (QV-RECOVERY-1 flow). | js | 3 | 0 |
+| `quantumvault/static/js/register.js` | Registration page controller (zero-knowledge flow). | js | 3 | 1 |
+| `quantumvault/static/js/upload.js` | Upload page controller (zero-knowledge file storage). | js | 6 | 0 |
+| `quantumvault/templates/terms.py` | terms: Render the About page. | misc | 1 | 0 |
+| `quantumvault/wsgi.py` | WSGI entry point for production deployments. | quantumvault | 1 | 0 |
 | `scripts/doctor.py` | Doctor: verify and repair the QuantumVault operator environment. | scripts | 28 | 0 |
 | `scripts/email_tool.py` | Operator email tooling for QuantumVault. | scripts | 6 | 0 |
 | `scripts/garage-init.sh` | Bootstrap a fresh Garage deployment for QuantumVault. | scripts | 1 | 0 |
@@ -36,17 +49,6 @@
 | `scripts/test_bloque1.py` | Bloque 1 test: superadmin_edit_user endpoint. | scripts | 8 | 0 |
 | `server.go` | - | root | 2 | 0 |
 | `server.py` | - | root | 0 | 0 |
-| `static/js/account.js` | Account settings controller: secure notes (QV-DENIABLE-1). | js | 9 | 0 |
-| `static/js/coded-text.js` | Decipher animation for elements tagged with the "codedText" class. | js | 3 | 0 |
-| `static/js/login.js` | Login page controller (zero-knowledge SRP-6a flow). | js | 2 | 1 |
-| `static/js/messages.js` | Messages page controller (zero-knowledge end-to-end messaging). | js | 6 | 0 |
-| `static/js/qv-crypto.js` | QuantumVault zero-knowledge browser crypto. | js | 40 | 6 |
-| `static/js/qv-deniable.js` | QuantumVault deniable vault (QV-DENIABLE-1) browser crypto. | js | 7 | 1 |
-| `static/js/qv-padding.js` | QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py. | js | 5 | 1 |
-| `static/js/recover.js` | Account recovery page controller (QV-RECOVERY-1 flow). | js | 3 | 0 |
-| `static/js/register.js` | Registration page controller (zero-knowledge flow). | js | 3 | 1 |
-| `static/js/upload.js` | Upload page controller (zero-knowledge file storage). | js | 6 | 0 |
-| `templates/terms.py` | terms: Render the About page. | misc | 1 | 0 |
 | `test.sh` | - | root | 0 | 0 |
 | `tests/__init__.py` | - | tests | 0 | 0 |
 | `tests/conftest.py` | Shared pytest fixtures for the QuantumVault test suite. | tests | 8 | 0 |
@@ -75,7 +77,7 @@
 | `utils/security.py` | Centralized security primitives for QuantumVault. | utils | 10 | 8 |
 | `utils/srp6a.py` | Zero-knowledge SRP-6a authentication primitives for QuantumVault. | utils | 14 | 0 |
 | `utils/utils.py` | utils/utils.py | utils | 8 | 14 |
-| `utils/version.py` | QuantumVault package version. | utils | 0 | 0 |
+| `utils/version.py` | QuantumVault package version. | utils | 0 | 1 |
 | `views/__init__.py` | - | views | 0 | 0 |
 | `views/about.py` | about: Render the About page. | views | 1 | 1 |
 | `views/account.py` | Account settings page and the deniable vault JSON API (QV-DENIABLE-1). | views | 5 | 1 |
@@ -90,4 +92,3 @@
 | `views/sync.py` | End-to-end encrypted file synchronization views. | views | 2 | 1 |
 | `views/terms.py` | terms: Render the About page. | views | 1 | 1 |
 | `views/views.py` | Top-level non-API views: home page, account preferences, etc. | views | 2 | 1 |
-| `wsgi.py` | WSGI entry point for production deployments. | root | 0 | 0 |

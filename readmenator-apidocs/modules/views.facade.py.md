@@ -53,7 +53,7 @@ Install the facade on `[`app`](app.py.md)` when it is enabled and configured.
 
 *Calls:* [`FacadeConfig.from_mapping`](controllers.facade.py.md#facadeconfig-from_mapping), [`FacadeGate.build`](controllers.facade.py.md#facadegate-build)
 
-*Called by:* [`create_app`](app_factory.py.md#create_app)
+*Called by:* [`create_app`](quantumvault.app_factory.py.md#create_app)
 
 ---
 

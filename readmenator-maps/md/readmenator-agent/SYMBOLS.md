@@ -5,14 +5,6 @@ Pages: [SYMBOLS.md](SYMBOLS.md), [SYMBOLS_p2.md](SYMBOLS_p2.md)
 |--------|------|-----------|-----------|
 | `_is_production_like` | function | `app.py:58` | `def _is_production_like()` |
 | `main` | function | `app.py:21` | `def main()` |
-| `_build_csp` | function | `app_factory.py:82` | `def _build_csp()` |
-| `_build_talisman_kwargs` | function | `app_factory.py:119` | `def _build_talisman_kwargs()` |
-| `_configure_logging` | function | `app_factory.py:220` | `def _configure_logging(app)` |
-| `_configure_secret_key` | function | `app_factory.py:160` | `def _configure_secret_key(app, config)` |
-| `_configure_session` | function | `app_factory.py:203` | `def _configure_session(app)` |
-| `_is_production` | function | `app_factory.py:71` | `def _is_production()` |
-| `create_app` | function | `app_factory.py:237` | `def create_app(config_overrides, security_overrides)` |
-| `load_user` | function | `app_factory.py:416` | `def load_user(user_id)` |
 | `main` | function | `client.go:13` | `func main(` |
 | `AuthController` | class | `controllers/auth.py:58` | `class AuthController` |
 | `__init__` | method | `controllers/auth.py:61` | `def __init__(self, db_path, mail, storage_uri)` |
@@ -205,6 +197,100 @@ Pages: [SYMBOLS.md](SYMBOLS.md), [SYMBOLS_p2.md](SYMBOLS_p2.md)
 | `update_user_mfa_status` | method | `models/user.py:396` | `def update_user_mfa_status(self, username, mfa_code_hash, mfa_code_expires, mfa_enabled)` |
 | `update_user_phone_status` | method | `models/user.py:362` | `def update_user_phone_status(self, username, phone_verified, phone_verification_code_hash, phone_code_expires)` |
 | `value` | function | `models/user.py:655` | `def value(name, default)` |
+| `_build_csp` | function | `quantumvault/app_factory.py:82` | `def _build_csp()` |
+| `_build_talisman_kwargs` | function | `quantumvault/app_factory.py:119` | `def _build_talisman_kwargs()` |
+| `_configure_logging` | function | `quantumvault/app_factory.py:220` | `def _configure_logging(app)` |
+| `_configure_secret_key` | function | `quantumvault/app_factory.py:160` | `def _configure_secret_key(app, config)` |
+| `_configure_session` | function | `quantumvault/app_factory.py:203` | `def _configure_session(app)` |
+| `_is_production` | function | `quantumvault/app_factory.py:71` | `def _is_production()` |
+| `create_app` | function | `quantumvault/app_factory.py:237` | `def create_app(config_overrides, security_overrides)` |
+| `load_user` | function | `quantumvault/app_factory.py:416` | `def load_user(user_id)` |
+| `apiRequest` | function | `quantumvault/static/js/account.js:36` | `` |
+| `collectSlots` | function | `quantumvault/static/js/account.js:60` | `` |
+| `csrfToken` | function | `quantumvault/static/js/account.js:31` | `` |
+| `handleConfigure` | function | `quantumvault/static/js/account.js:73` | `` |
+| `handleOpen` | function | `quantumvault/static/js/account.js:103` | `` |
+| `handleReset` | function | `quantumvault/static/js/account.js:125` | `` |
+| `init` | function | `quantumvault/static/js/account.js:138` | `` |
+| `loadState` | function | `quantumvault/static/js/account.js:54` | `` |
+| `setStatus` | function | `quantumvault/static/js/account.js:20` | `` |
+| `animateElement` | function | `quantumvault/static/js/coded-text.js:19` | `` |
+| `init` | function | `quantumvault/static/js/coded-text.js:50` | `` |
+| `randomChar` | function | `quantumvault/static/js/coded-text.js:13` | `` |
+| `handleLogin` | function | `quantumvault/static/js/login.js:11` | `` |
+| `init` | function | `quantumvault/static/js/login.js:44` | `` |
+| `collectEnvelopes` | function | `quantumvault/static/js/messages.js:44` | `` |
+| `getCsrfToken` | function | `quantumvault/static/js/messages.js:12` | `` |
+| `handleDecryptInbox` | function | `quantumvault/static/js/messages.js:60` | `` |
+| `handleSend` | function | `quantumvault/static/js/messages.js:17` | `` |
+| `init` | function | `quantumvault/static/js/messages.js:109` | `` |
+| `initEditor` | function | `quantumvault/static/js/messages.js:88` | `` |
+| `H` | function | `quantumvault/static/js/qv-crypto.js:169` | `` |
+| `Hint` | function | `quantumvault/static/js/qv-crypto.js:173` | `` |
+| `aesGcmDecrypt` | function | `quantumvault/static/js/qv-crypto.js:220` | `` |
+| `aesGcmEncrypt` | function | `quantumvault/static/js/qv-crypto.js:209` | `` |
+| `base64ToBytes` | function | `quantumvault/static/js/qv-crypto.js:114` | `` |
+| `buildRegistration` | function | `quantumvault/static/js/qv-crypto.js:496` | `` |
+| `bytesToBase32` | function | `quantumvault/static/js/qv-crypto.js:96` | `` |
+| `bytesToBase64` | function | `quantumvault/static/js/qv-crypto.js:85` | `` |
+| `bytesToBigInt` | function | `quantumvault/static/js/qv-crypto.js:121` | `` |
+| `bytesToHex` | function | `quantumvault/static/js/qv-crypto.js:79` | `` |
+| `computeK` | function | `quantumvault/static/js/qv-crypto.js:251` | `` |
+| `concatBytes` | function | `quantumvault/static/js/qv-crypto.js:59` | `` |
+| `decryptInbox` | function | `quantumvault/static/js/qv-crypto.js:714` | `` |
+| `deriveKeyFromPassphrase` | function | `quantumvault/static/js/qv-crypto.js:184` | `` |
+| `deriveMasterKey` | function | `quantumvault/static/js/qv-crypto.js:205` | `` |
+| `derivePublicKeyFromPrivateBlob` | function | `quantumvault/static/js/qv-crypto.js:455` | `` |
+| `deriveVerifier` | function | `quantumvault/static/js/qv-crypto.js:256` | `` |
+| `deriveWrapKey` | function | `quantumvault/static/js/qv-crypto.js:360` | `` |
+| `downloadAndDecrypt` | function | `quantumvault/static/js/qv-crypto.js:629` | `` |
+| `encryptAndUpload` | function | `quantumvault/static/js/qv-crypto.js:599` | `` |
+| `fetchPublicKey` | function | `quantumvault/static/js/qv-crypto.js:668` | `` |
+| `generateIdentity` | function | `quantumvault/static/js/qv-crypto.js:316` | `` |
+| `generateRecoveryCode` | function | `quantumvault/static/js/qv-crypto.js:417` | `` |
+| `hexToBytes` | function | `quantumvault/static/js/qv-crypto.js:70` | `` |
+| `i2osp` | function | `quantumvault/static/js/qv-crypto.js:128` | `` |
+| `login` | function | `quantumvault/static/js/qv-crypto.js:592` | `` |
+| `mod` | function | `quantumvault/static/js/qv-crypto.js:138` | `` |
+| `modPow` | function | `quantumvault/static/js/qv-crypto.js:142` | `` |
+| `normalizeRecoveryCode` | function | `quantumvault/static/js/qv-crypto.js:429` | `` |
+| `parsePrivateBlob` | function | `quantumvault/static/js/qv-crypto.js:352` | `` |
+| `parsePublicKey` | function | `quantumvault/static/js/qv-crypto.js:344` | `` |
+| `postJson` | function | `quantumvault/static/js/qv-crypto.js:473` | `` |
+| `randomBytes` | function | `quantumvault/static/js/qv-crypto.js:160` | `` |
+| `recoverAccount` | function | `quantumvault/static/js/qv-crypto.js:541` | `` |
+| `register` | function | `quantumvault/static/js/qv-crypto.js:530` | `` |
+| `sendSecureMessage` | function | `quantumvault/static/js/qv-crypto.js:683` | `` |
+| `srpLogin` | function | `quantumvault/static/js/qv-crypto.js:263` | `` |
+| `unwrapKey` | function | `quantumvault/static/js/qv-crypto.js:395` | `` |
+| `wrapKey` | function | `quantumvault/static/js/qv-crypto.js:371` | `` |
+| `wrapPrivateKeyForRecovery` | function | `quantumvault/static/js/qv-crypto.js:436` | `` |
+| `buildDeniableVault` | function | `quantumvault/static/js/qv-deniable.js:125` | `` |
+| `frame` | function | `quantumvault/static/js/qv-deniable.js:56` | `` |
+| `openDeniableVault` | function | `quantumvault/static/js/qv-deniable.js:170` | `` |
+| `openSlot` | function | `quantumvault/static/js/qv-deniable.js:102` | `` |
+| `sealSlot` | function | `quantumvault/static/js/qv-deniable.js:82` | `` |
+| `toBytes` | function | `quantumvault/static/js/qv-deniable.js:48` | `` |
+| `unframe` | function | `quantumvault/static/js/qv-deniable.js:65` | `` |
+| `bucketFor` | function | `quantumvault/static/js/qv-padding.js:20` | `` |
+| `padFramed` | function | `quantumvault/static/js/qv-padding.js:42` | `` |
+| `randomPad` | function | `quantumvault/static/js/qv-padding.js:34` | `` |
+| `tableFor` | function | `quantumvault/static/js/qv-padding.js:16` | `` |
+| `unframeFramed` | function | `quantumvault/static/js/qv-padding.js:54` | `` |
+| `handleRecover` | function | `quantumvault/static/js/recover.js:22` | `` |
+| `init` | function | `quantumvault/static/js/recover.js:80` | `` |
+| `setStatus` | function | `quantumvault/static/js/recover.js:15` | `` |
+| `handleRegister` | function | `quantumvault/static/js/register.js:42` | `` |
+| `init` | function | `quantumvault/static/js/register.js:110` | `` |
+| `showRecoveryCode` | function | `quantumvault/static/js/register.js:17` | `` |
+| `getCsrfToken` | function | `quantumvault/static/js/upload.js:12` | `` |
+| `getPublicKey` | function | `quantumvault/static/js/upload.js:23` | `` |
+| `getUsername` | function | `quantumvault/static/js/upload.js:17` | `` |
+| `handleDownload` | function | `quantumvault/static/js/upload.js:74` | `` |
+| `handleUpload` | function | `quantumvault/static/js/upload.js:40` | `` |
+| `init` | function | `quantumvault/static/js/upload.js:97` | `` |
+| `terms` | function | `quantumvault/templates/terms.py:6` | `def terms()` |
+| `main` | function | `quantumvault/wsgi.py:27` | `def main()` |
 | `CheckResult` | class | `scripts/doctor.py:98` | `class CheckResult` |
 | `DoctorReport` | class | `scripts/doctor.py:108` | `class DoctorReport` |
 | `add` | method | `scripts/doctor.py:113` | `def add(self, result)` |
@@ -258,91 +344,6 @@ Pages: [SYMBOLS.md](SYMBOLS.md), [SYMBOLS_p2.md](SYMBOLS_p2.md)
 | `is_authenticated` | method | `scripts/test_bloque1.py:54` | `def is_authenticated(self)` |
 | `handleConnection` | function | `server.go:40` | `func handleConnection(` |
 | `main` | function | `server.go:11` | `func main(` |
-| `apiRequest` | function | `static/js/account.js:36` | `` |
-| `collectSlots` | function | `static/js/account.js:60` | `` |
-| `csrfToken` | function | `static/js/account.js:31` | `` |
-| `handleConfigure` | function | `static/js/account.js:73` | `` |
-| `handleOpen` | function | `static/js/account.js:103` | `` |
-| `handleReset` | function | `static/js/account.js:125` | `` |
-| `init` | function | `static/js/account.js:138` | `` |
-| `loadState` | function | `static/js/account.js:54` | `` |
-| `setStatus` | function | `static/js/account.js:20` | `` |
-| `animateElement` | function | `static/js/coded-text.js:19` | `` |
-| `init` | function | `static/js/coded-text.js:50` | `` |
-| `randomChar` | function | `static/js/coded-text.js:13` | `` |
-| `handleLogin` | function | `static/js/login.js:11` | `` |
-| `init` | function | `static/js/login.js:44` | `` |
-| `collectEnvelopes` | function | `static/js/messages.js:44` | `` |
-| `getCsrfToken` | function | `static/js/messages.js:12` | `` |
-| `handleDecryptInbox` | function | `static/js/messages.js:60` | `` |
-| `handleSend` | function | `static/js/messages.js:17` | `` |
-| `init` | function | `static/js/messages.js:109` | `` |
-| `initEditor` | function | `static/js/messages.js:88` | `` |
-| `H` | function | `static/js/qv-crypto.js:169` | `` |
-| `Hint` | function | `static/js/qv-crypto.js:173` | `` |
-| `aesGcmDecrypt` | function | `static/js/qv-crypto.js:220` | `` |
-| `aesGcmEncrypt` | function | `static/js/qv-crypto.js:209` | `` |
-| `base64ToBytes` | function | `static/js/qv-crypto.js:114` | `` |
-| `buildRegistration` | function | `static/js/qv-crypto.js:496` | `` |
-| `bytesToBase32` | function | `static/js/qv-crypto.js:96` | `` |
-| `bytesToBase64` | function | `static/js/qv-crypto.js:85` | `` |
-| `bytesToBigInt` | function | `static/js/qv-crypto.js:121` | `` |
-| `bytesToHex` | function | `static/js/qv-crypto.js:79` | `` |
-| `computeK` | function | `static/js/qv-crypto.js:251` | `` |
-| `concatBytes` | function | `static/js/qv-crypto.js:59` | `` |
-| `decryptInbox` | function | `static/js/qv-crypto.js:714` | `` |
-| `deriveKeyFromPassphrase` | function | `static/js/qv-crypto.js:184` | `` |
-| `deriveMasterKey` | function | `static/js/qv-crypto.js:205` | `` |
-| `derivePublicKeyFromPrivateBlob` | function | `static/js/qv-crypto.js:455` | `` |
-| `deriveVerifier` | function | `static/js/qv-crypto.js:256` | `` |
-| `deriveWrapKey` | function | `static/js/qv-crypto.js:360` | `` |
-| `downloadAndDecrypt` | function | `static/js/qv-crypto.js:629` | `` |
-| `encryptAndUpload` | function | `static/js/qv-crypto.js:599` | `` |
-| `fetchPublicKey` | function | `static/js/qv-crypto.js:668` | `` |
-| `generateIdentity` | function | `static/js/qv-crypto.js:316` | `` |
-| `generateRecoveryCode` | function | `static/js/qv-crypto.js:417` | `` |
-| `hexToBytes` | function | `static/js/qv-crypto.js:70` | `` |
-| `i2osp` | function | `static/js/qv-crypto.js:128` | `` |
-| `login` | function | `static/js/qv-crypto.js:592` | `` |
-| `mod` | function | `static/js/qv-crypto.js:138` | `` |
-| `modPow` | function | `static/js/qv-crypto.js:142` | `` |
-| `normalizeRecoveryCode` | function | `static/js/qv-crypto.js:429` | `` |
-| `parsePrivateBlob` | function | `static/js/qv-crypto.js:352` | `` |
-| `parsePublicKey` | function | `static/js/qv-crypto.js:344` | `` |
-| `postJson` | function | `static/js/qv-crypto.js:473` | `` |
-| `randomBytes` | function | `static/js/qv-crypto.js:160` | `` |
-| `recoverAccount` | function | `static/js/qv-crypto.js:541` | `` |
-| `register` | function | `static/js/qv-crypto.js:530` | `` |
-| `sendSecureMessage` | function | `static/js/qv-crypto.js:683` | `` |
-| `srpLogin` | function | `static/js/qv-crypto.js:263` | `` |
-| `unwrapKey` | function | `static/js/qv-crypto.js:395` | `` |
-| `wrapKey` | function | `static/js/qv-crypto.js:371` | `` |
-| `wrapPrivateKeyForRecovery` | function | `static/js/qv-crypto.js:436` | `` |
-| `buildDeniableVault` | function | `static/js/qv-deniable.js:125` | `` |
-| `frame` | function | `static/js/qv-deniable.js:56` | `` |
-| `openDeniableVault` | function | `static/js/qv-deniable.js:170` | `` |
-| `openSlot` | function | `static/js/qv-deniable.js:102` | `` |
-| `sealSlot` | function | `static/js/qv-deniable.js:82` | `` |
-| `toBytes` | function | `static/js/qv-deniable.js:48` | `` |
-| `unframe` | function | `static/js/qv-deniable.js:65` | `` |
-| `bucketFor` | function | `static/js/qv-padding.js:20` | `` |
-| `padFramed` | function | `static/js/qv-padding.js:42` | `` |
-| `randomPad` | function | `static/js/qv-padding.js:34` | `` |
-| `tableFor` | function | `static/js/qv-padding.js:16` | `` |
-| `unframeFramed` | function | `static/js/qv-padding.js:54` | `` |
-| `handleRecover` | function | `static/js/recover.js:22` | `` |
-| `init` | function | `static/js/recover.js:80` | `` |
-| `setStatus` | function | `static/js/recover.js:15` | `` |
-| `handleRegister` | function | `static/js/register.js:42` | `` |
-| `init` | function | `static/js/register.js:110` | `` |
-| `showRecoveryCode` | function | `static/js/register.js:17` | `` |
-| `getCsrfToken` | function | `static/js/upload.js:12` | `` |
-| `getPublicKey` | function | `static/js/upload.js:23` | `` |
-| `getUsername` | function | `static/js/upload.js:17` | `` |
-| `handleDownload` | function | `static/js/upload.js:74` | `` |
-| `handleUpload` | function | `static/js/upload.js:40` | `` |
-| `init` | function | `static/js/upload.js:97` | `` |
-| `terms` | function | `templates/terms.py:6` | `def terms()` |
 | `_ListLogHandler` | class | `tests/conftest.py:106` | `class _ListLogHandler(Handler)` |
 | `__init__` | method | `tests/conftest.py:109` | `def __init__(self)` |
 | `_hermetic_env` | function | `tests/conftest.py:26` | `def _hermetic_env(monkeypatch)` |
@@ -495,6 +496,5 @@ Pages: [SYMBOLS.md](SYMBOLS.md), [SYMBOLS_p2.md](SYMBOLS_p2.md)
 | `test_anonymous_root_is_replaced_by_the_cover` | method | `tests/test_facade.py:403` | `def test_anonymous_root_is_replaced_by_the_cover(self, facade_client)` |
 | `test_audit_is_generic_and_never_contains_the_phrase` | method | `tests/test_facade.py:361` | `def test_audit_is_generic_and_never_contains_the_phrase(self, app, gate_config, audit_records)` |
 | `test_authenticated_user_bypasses_the_cover` | method | `tests/test_facade.py:441` | `def test_authenticated_user_bypasses_the_cover(self, tmp_path, fast_hasher)` |
-| `test_cover_context_is_cosmetic_and_json_serializable` | method | `tests/test_facade.py:194` | `def test_cover_context_is_cosmetic_and_json_serializable(self)` |
 
 Next: [SYMBOLS_p2.md](SYMBOLS_p2.md)

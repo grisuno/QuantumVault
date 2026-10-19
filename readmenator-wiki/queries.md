@@ -16,7 +16,7 @@ Log each answered question here so the wiki compounds. Format: question, answer,
 
 - Status: unanswered
 
-### Q: How are the 14 files in 'views: auth' related to each other?
+### Q: How are the 16 files in 'views: auth' related to each other?
 
 - Status: unanswered
 

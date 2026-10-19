@@ -39,13 +39,18 @@ flowchart LR
 
 ### `manifest_path`
 
-`function` | [utils/integrity.py:25](../../utils/integrity.py#L25)
+`function` | [utils/integrity.py:26](../../utils/integrity.py#L26)
 
 ```python
 def manifest_path() -> Path
 ```
 
 Return the manifest path resolved from this file, never hardcoded.
+
+The manifest ships inside the `[`quantumvault`](quantumvault.__init__.py.md)` package (installed
+wheels keep it next to the templates), so the lookup walks to the
+sibling package. Operators can override the location with
+``QV_SRI_MANIFEST`` for unusual multi-instance deployments.
 
 **Returns:** `Path`
 
@@ -55,7 +60,7 @@ Return the manifest path resolved from this file, never hardcoded.
 
 ### `compute_sri`
 
-`function` | [utils/integrity.py:30](../../utils/integrity.py#L30)
+`function` | [utils/integrity.py:40](../../utils/integrity.py#L40)
 
 ```python
 def compute_sri(data: bytes, algorithm: str = SRI_ALGORITHM) -> str
@@ -80,7 +85,7 @@ Return the SRI string ``<algorithm>-<base64 digest>`` for ``data``.
 
 ### `compute_file_sri`
 
-`function` | [utils/integrity.py:36](../../utils/integrity.py#L36)
+`function` | [utils/integrity.py:46](../../utils/integrity.py#L46)
 
 ```python
 def compute_file_sri(path: Path, algorithm: str = SRI_ALGORITHM) -> str
@@ -107,7 +112,7 @@ Return the SRI string for the bytes stored at ``path``.
 
 ### `load_manifest`
 
-`function` | [utils/integrity.py:47](../../utils/integrity.py#L47)
+`function` | [utils/integrity.py:57](../../utils/integrity.py#L57)
 
 ```python
 def load_manifest() -> dict
@@ -125,7 +130,7 @@ Return the parsed SRI manifest, or an empty mapping when absent.
 
 ### `integrity_for`
 
-`function` | [utils/integrity.py:55](../../utils/integrity.py#L55)
+`function` | [utils/integrity.py:65](../../utils/integrity.py#L65)
 
 ```python
 def integrity_for(key: str) -> Optional[str]
@@ -151,7 +156,7 @@ Return the pinned integrity string for one manifest key.
 
 ### `clear_manifest_cache`
 
-`function` | [utils/integrity.py:72](../../utils/integrity.py#L72)
+`function` | [utils/integrity.py:82](../../utils/integrity.py#L82)
 
 ```python
 def clear_manifest_cache() -> None
@@ -165,7 +170,7 @@ Drop the cached manifest text so tests see a regenerated file.
 
 ### `template_integrity`
 
-`function` | [utils/integrity.py:77](../../utils/integrity.py#L77)
+`function` | [utils/integrity.py:87](../../utils/integrity.py#L87)
 
 ```python
 def template_integrity(key: str) -> str
@@ -196,7 +201,7 @@ entry fails closed in ``verify_build`` instead of rendering ``None``.
 
 ### `SRI_ALGORITHM`
 
-`constant` | [utils/integrity.py:21](../../utils/integrity.py#L21)
+`constant` | [utils/integrity.py:22](../../utils/integrity.py#L22)
 
 ```python
 SRI_ALGORITHM: str = 'sha384'
@@ -208,7 +213,7 @@ SRI_ALGORITHM: str = 'sha384'
 
 ### `MANIFEST_RELATIVE_PATH`
 
-`constant` | [utils/integrity.py:22](../../utils/integrity.py#L22)
+`constant` | [utils/integrity.py:23](../../utils/integrity.py#L23)
 
 ```python
 MANIFEST_RELATIVE_PATH: str = 'static/sri_manifest.json'

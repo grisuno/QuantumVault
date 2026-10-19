@@ -15,7 +15,7 @@ module ``static/js/qv-crypto.js`` so both ends agree byte-for-byte:
 
     - Every group element hashed (N, g, A, B, S) is encoded as a big-endian
       integer left-padded to the byte length of N (256 bytes) via [`i2osp`](#i2osp).
-    - `[`H`](static.js.qv-crypto.js.md#h)` is SHA-256 over the concatenation of byte strings.
+    - `[`H`](quantumvault.static.js.qv-crypto.js.md#h)` is SHA-256 over the concatenation of byte strings.
     - ``salt`` travels as a hex string; its raw bytes are used inside hashes.
 
 Public functions perform the SRP math; [`SRPSessionStore`](#srpsessionstore) persists the

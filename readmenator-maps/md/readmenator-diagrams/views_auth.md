@@ -1,6 +1,6 @@
 # views: auth
 
-views: auth groups 14 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Zero-knowledge authentication controller for QuantumVault.
+views: auth groups 16 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Zero-knowledge authentication controller for QuantumVault.
 
 ```mermaid
 graph LR
@@ -15,6 +15,7 @@ graph LR
     scripts -- "calls into" --> models
     scripts -- "calls into" --> utils
     tests -- "calls into" --> utils
+    utils -- "calls into" --> models
     views -- "calls into" --> controllers
     views -- "calls into" --> models
     views -- "calls into" --> utils
@@ -26,7 +27,7 @@ controllers groups 1 files (py) around _now_utc, AuthController, __init__, regis
 
 ## models (1.2)
 
-models groups 2 files (py) around UserModel, get_id, is_active, UserDB, __init__. PlanDB: Database operations for subscription plans.
+models groups 3 files (py) around UserModel, get_id, is_active, UserDB, __init__. Persistence layer for end-to-end encrypted messages.
 
 ## scripts (1.3)
 
@@ -38,7 +39,7 @@ tests groups 1 files (py) around test_database_path_prefers_the_configured_path,
 
 ## utils (1.5)
 
-utils groups 2 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Transactional email helpers for QuantumVault.
+utils groups 3 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Transactional email helpers for QuantumVault.
 
 ## views (1.6)
 
@@ -47,12 +48,14 @@ views groups 6 files (py) around role_required, decorator, decorated_function, P
 **Files**:
 
 - controllers/auth.py
+- models/message.py
 - models/plans.py
 - models/user.py
 - scripts/email_tool.py
 - scripts/makeadmin.py
 - tests/test_utils.py
 - utils/mailer.py
+- utils/scheduler.py
 - utils/utils.py
 - views/auth.py
 - views/faq.py

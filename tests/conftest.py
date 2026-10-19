@@ -51,7 +51,7 @@ os.environ.setdefault("FLASK_SECRET_KEY", "test-only-secret-key-do-not-use-in-pr
 # endpoint. Nothing connects to it.
 os.environ.setdefault("S3_ENDPOINT_URL", "http://localhost:3900")
 
-from app_factory import create_app  # noqa: E402
+from quantumvault.app_factory import create_app  # noqa: E402
 
 
 @pytest.fixture(autouse=True)

@@ -25,10 +25,10 @@ Solid arrows stay in this module, dashed arrows leave it.
 ```mermaid
 flowchart LR
     n_app_py__main(["main"])
-    n_app_factory_py__create_app["app_factory.create_app"]
+    n_quantumvault_app_factory_py__create_app["app_factory.create_app"]
     n_utils_utils_py__Config___init__["utils.Config.__init__"]
     n_utils_utils_py__load_payload["utils.load_payload"]
-    n_app_py__main -.-> n_app_factory_py__create_app
+    n_app_py__main -.-> n_quantumvault_app_factory_py__create_app
     n_app_py__main -.-> n_utils_utils_py__Config___init__
     n_app_py__main -.-> n_utils_utils_py__load_payload
 ```
@@ -45,6 +45,6 @@ flowchart LR
 def main() -> None
 ```
 
-*Calls:* [`create_app`](app_factory.py.md#create_app), [`Config.__init__`](utils.utils.py.md#config-__init__), [`load_payload`](utils.utils.py.md#load_payload)
+*Calls:* [`create_app`](quantumvault.app_factory.py.md#create_app), [`Config.__init__`](utils.utils.py.md#config-__init__), [`load_payload`](utils.utils.py.md#load_payload)
 
 ---

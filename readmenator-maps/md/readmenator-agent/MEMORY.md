@@ -2,25 +2,26 @@
 
 > Cross-session context for agents. Sections 1-6 are regenerated from the source tree with zero LLM tokens: declared rules are quoted verbatim with `file:line`, measured baselines come from the scan. Section 7 is written by agents and humans and is preserved across rebuilds.
 
-Generated from 89 files at commit `b4747bdfd69d`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
+Generated from 90 files at commit `21f1ca12dc81`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
 
 ## 1. Purpose and domain
 
 - What it is: From the creators of LazyOwn Redteam Framework comes a free and open-source **Zero-knowledge, zero-trust, end-to-end encrypted messaging and file vault, secured with hybrid post-quantum cryptography.** (`README.md:12`)
-- Domain vocabulary (term, files): `server` (37), `user` (33), `key` (30), `path` (30), `not` (29), `file` (28), `its` (28), `page` (26), `get` (25), `one` (25), `which` (24), `client` (23), `browser` (23), `build` (23), `without` (23)
-- Subsystem `views: auth`: 14 files, core `views/auth.py`: Authentication and account-management views.
+- Domain vocabulary (term, files): `server` (37), `user` (33), `key` (30), `not` (30), `path` (30), `file` (28), `its` (28), `page` (26), `get` (25), `one` (25), `which` (24), `vault` (23), `client` (23), `browser` (23), `build` (23)
+- Subsystem `views: auth`: 16 files, core `views/auth.py`: Authentication and account-management views.
 - Subsystem `views: facade`: 11 files, core `controllers/facade.py`: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
-- Subsystem `static/js`: 9 files, core `static/js/qv-crypto.js`: QuantumVault zero-knowledge browser crypto.
+- Subsystem `utils`: 10 files, core `utils/padding.py`: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).
+- Subsystem `quantumvault/static/js`: 9 files, core `quantumvault/static/js/qv-crypto.js`: QuantumVault zero-knowledge browser crypto.
 - Subsystem `controllers`: 8 files, core `controllers/secure_channel.py`: QV-TUNNEL disposable secure channels over Cloudflare and Tor.
 - Subsystem `views: deniable_vault`: 8 files, core `controllers/deniable_vault.py`: QV-DENIABLE-1 deniable vault: configuration, validation, orchestration.
-- Subsystem `utils`: 8 files, core `utils/padding.py`: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).
-- Subsystem `tools`: 4 files, core `tools/verify_build.py`: Verify reproducible builds and the fixed code contracts (QV-SRI-1).
+- Subsystem `quantumvault`: 2 files, core `quantumvault/__init__.py`: QuantumVault application package.
 - Business rules that the code cannot show live in section 7: record them there.
 
 ## 2. Workflow
 
 Detected commands:
 - `python -m pytest -q` (pyproject.toml)
+- `quantumvault --help` (pyproject.toml [project.scripts])
 - `make help` (Makefile)
 - `make setup` (Makefile)
 - `make venv` (Makefile)
@@ -31,7 +32,6 @@ Detected commands:
 - `make garage-init` (Makefile)
 - `make garage-status` (Makefile)
 - `make garage-up` (Makefile)
-- `make garage-down` (Makefile)
 
 Session protocol:
 1. Start: read this file, then `readmenator . fresh` (exit 1 means run `readmenator . --rebuild`).
@@ -74,7 +74,7 @@ Declared:
 - none declared in instruction files (add them to AGENTS.md or record them in section 7)
 
 Measured baseline:
-- py: 71 files, 718 symbols; docstrings on 63% of symbols; functions snake_case (100%); types PascalCase (100%); median file 121 lines, max 786.
+- py: 72 files, 719 symbols; docstrings on 63% of symbols; functions snake_case (100%); types PascalCase (100%); median file 121 lines, max 786.
 - js: 10 files, 84 symbols; docstrings on 30% of symbols; functions camelCase (82%); median file 121 lines, max 749.
 - sh: 5 files, 4 symbols; docstrings on 50% of symbols; functions snake_case (100%); median file 127 lines, max 289.
 - go: 3 files, 7 symbols; docstrings on 0% of symbols; functions camelCase (57%); median file 102 lines, max 335.
@@ -102,10 +102,10 @@ Measured baseline:
 
 ## 6. Risks to respect
 
-- God nodes (changes ripple widely): `app_factory.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`, `views/admin.py`
-- Hotspots (complex and central): `static/js/qv-crypto.js`, `tests/test_secure_channel.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `tests/test_cover.py`
-- Cycle: `static/js/qv-crypto.js` -> `static/js/register.js` -> `static/js/qv-crypto.js`
-- Cycle: `static/js/qv-crypto.js` -> `static/js/login.js` -> `static/js/qv-crypto.js`
+- God nodes (changes ripple widely): `quantumvault/app_factory.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`, `views/admin.py`
+- Hotspots (complex and central): `quantumvault/static/js/qv-crypto.js`, `tests/test_secure_channel.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `tests/test_cover.py`
+- Cycle: `quantumvault/static/js/qv-crypto.js` -> `quantumvault/static/js/register.js` -> `quantumvault/static/js/qv-crypto.js`
+- Cycle: `quantumvault/static/js/qv-crypto.js` -> `quantumvault/static/js/login.js` -> `quantumvault/static/js/qv-crypto.js`
 - Full blast radius: `readmenator-agent/GOTCHAS.md`; findings: `readmenator-agent/SECURITY.md`.
 
 ## 7. Session log (preserved across rebuilds)
@@ -113,4 +113,5 @@ Measured baseline:
 Append with `readmenator . remember "<note>" --kind <kind>` (kinds: business, decision, rule, workflow, style, deliverable, gotcha, todo, note) or the MCP tool `readmenator.remember`. Record business rules, decisions and their reasons, workflow changes, and anything the next session must not rediscover.
 
 <!-- readmenator:memory:notes:begin -->
+- 2026-10-19 [decision] quantumvault-core wheel ships templates, static assets and a quantumvault console script (gunicorn entry point); app_factory moved into the quantumvault package; version single-sourced in utils/version.py
 <!-- readmenator:memory:notes:end -->

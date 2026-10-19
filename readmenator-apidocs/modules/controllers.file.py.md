@@ -76,7 +76,7 @@ def __init__(self, users_path: str, s3_bucket: str, s3_client) -> None
 | `s3_bucket` | `str` |  |  |
 | `s3_client` |  |  |  |
 
-*Called by:* [`create_app`](app_factory.py.md#create_app)
+*Called by:* [`create_app`](quantumvault.app_factory.py.md#create_app)
 
 <a id="filecontroller-get_storage_usage"></a>
 

@@ -15,6 +15,7 @@ import base64
 import functools
 import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Optional
 
@@ -23,8 +24,17 @@ MANIFEST_RELATIVE_PATH: str = "static/sri_manifest.json"
 
 
 def manifest_path() -> Path:
-    """Return the manifest path resolved from this file, never hardcoded."""
-    return Path(__file__).resolve().parent.parent / MANIFEST_RELATIVE_PATH
+    """Return the manifest path resolved from this file, never hardcoded.
+
+    The manifest ships inside the ``quantumvault`` package (installed
+    wheels keep it next to the templates), so the lookup walks to the
+    sibling package. Operators can override the location with
+    ``QV_SRI_MANIFEST`` for unusual multi-instance deployments.
+    """
+    override = os.environ.get("QV_SRI_MANIFEST")
+    if override:
+        return Path(override)
+    return Path(__file__).resolve().parent.parent / "quantumvault" / MANIFEST_RELATIVE_PATH
 
 
 def compute_sri(data: bytes, algorithm: str = SRI_ALGORITHM) -> str:

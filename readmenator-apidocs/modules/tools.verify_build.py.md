@@ -301,7 +301,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 `constant` | [tools/verify_build.py:29](../../tools/verify_build.py#L29)
 
 ```python
-STATIC_DIR = PROJECT_ROOT / 'static'
+STATIC_DIR = PROJECT_ROOT / 'quantumvault' / 'static'
 ```
 
 ---
@@ -313,7 +313,7 @@ STATIC_DIR = PROJECT_ROOT / 'static'
 `constant` | [tools/verify_build.py:30](../../tools/verify_build.py#L30)
 
 ```python
-TEMPLATES_DIR = PROJECT_ROOT / 'templates'
+TEMPLATES_DIR = PROJECT_ROOT / 'quantumvault' / 'templates'
 ```
 
 ---

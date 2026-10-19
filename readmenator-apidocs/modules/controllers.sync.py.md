@@ -46,7 +46,7 @@ def __init__(self, users_path: str, s3_bucket: str, s3_client, file_controller)
 | `s3_client` |  |  |  |
 | `file_controller` |  |  |  |
 
-*Called by:* [`create_app`](app_factory.py.md#create_app)
+*Called by:* [`create_app`](quantumvault.app_factory.py.md#create_app)
 
 <a id="synccontroller-get_storage_usage"></a>
 

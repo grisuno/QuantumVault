@@ -598,7 +598,7 @@ Reset SRP credentials and the password-wrapped private key via QV-RECOVERY-1.
 The browser has already decrypted ``encrypted_private_key_recovery``
 using a key derived from the recovery code and reconstructed the
 account's public key from the recovered private key blob (see
-`[`derivePublicKeyFromPrivateBlob`](static.js.qv-crypto.js.md#derivepublickeyfromprivateblob)` in ``static/js/qv-crypto.js``).
+`[`derivePublicKeyFromPrivateBlob`](quantumvault.static.js.qv-crypto.js.md#derivepublickeyfromprivateblob)` in ``static/js/qv-crypto.js``).
 That reconstruction is supplied as ``public_key_proof``: AES-GCM
 authentication means a wrong recovery code fails to decrypt at all,
 so only a caller who supplied the correct code can produce a

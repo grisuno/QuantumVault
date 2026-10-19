@@ -107,4 +107,4 @@
   - `_convert_row_to_dict` (method, line 638) `def _convert_row_to_dict(self, row)`
   - `fetch_one` (method, line 694) `def fetch_one(self, query, params)`
   - `value` (function, line 655) `def value(name, default)`
-- Imported by: `app_factory.py`, `controllers/auth.py`, `controllers/message.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `scripts/test_bloque1.py`, `tests/test_account_facade.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `utils/scheduler.py`, `views/admin.py`, `views/auth.py`, `views/subscription.py`, `views/views.py`
+- Imported by: `controllers/auth.py`, `controllers/message.py`, `quantumvault/app_factory.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `scripts/test_bloque1.py`, `tests/test_account_facade.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `utils/scheduler.py`, `views/admin.py`, `views/auth.py`, `views/subscription.py`, `views/views.py`

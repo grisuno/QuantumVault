@@ -1,14 +1,14 @@
 [
   {
-    "community_a": 3,
+    "community_a": 4,
     "community_b": 1,
     "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: app.py imports app_factory.py.",
+    "explanation": "Extracted import edge crosses communities: app.py imports quantumvault/app_factory.py.",
     "strength": 0.9,
     "confidence": "EXTRACTED"
   },
   {
-    "community_a": 3,
+    "community_a": 4,
     "community_b": 0,
     "connection_type": "depends_on",
     "explanation": "Extracted import edge crosses communities: app.py imports utils/utils.py.",
@@ -16,40 +16,8 @@
     "confidence": "EXTRACTED"
   },
   {
-    "community_a": 1,
-    "community_b": 5,
-    "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: app_factory.py imports controllers/file.py.",
-    "strength": 0.9,
-    "confidence": "EXTRACTED"
-  },
-  {
-    "community_a": 1,
-    "community_b": 0,
-    "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: app_factory.py imports models/user.py.",
-    "strength": 0.9,
-    "confidence": "EXTRACTED"
-  },
-  {
-    "community_a": 1,
-    "community_b": 6,
-    "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: app_factory.py imports utils/integrity.py.",
-    "strength": 0.9,
-    "confidence": "EXTRACTED"
-  },
-  {
-    "community_a": 1,
-    "community_b": 4,
-    "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: app_factory.py imports views/account.py.",
-    "strength": 0.9,
-    "confidence": "EXTRACTED"
-  },
-  {
     "community_a": 0,
-    "community_b": 5,
+    "community_b": 2,
     "connection_type": "depends_on",
     "explanation": "Extracted import edge crosses communities: controllers/auth.py imports utils/__init__.py.",
     "strength": 0.9,
@@ -57,25 +25,41 @@
   },
   {
     "community_a": 0,
-    "community_b": 4,
+    "community_b": 5,
     "connection_type": "depends_on",
     "explanation": "Extracted import edge crosses communities: controllers/auth.py imports utils/security.py.",
     "strength": 0.9,
     "confidence": "EXTRACTED"
   },
   {
-    "community_a": 2,
+    "community_a": 1,
     "community_b": 5,
     "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: static/js/qv-padding.js imports utils/padding.py.",
+    "explanation": "Extracted import edge crosses communities: controllers/facade.py imports utils/security.py.",
     "strength": 0.9,
     "confidence": "EXTRACTED"
   },
   {
-    "community_a": 6,
-    "community_b": 5,
+    "community_a": 1,
+    "community_b": 2,
     "connection_type": "depends_on",
-    "explanation": "Extracted import edge crosses communities: tools/verify_build.py imports utils/padding.py.",
+    "explanation": "Extracted import edge crosses communities: quantumvault/app_factory.py imports controllers/file.py.",
+    "strength": 0.9,
+    "confidence": "EXTRACTED"
+  },
+  {
+    "community_a": 1,
+    "community_b": 0,
+    "connection_type": "depends_on",
+    "explanation": "Extracted import edge crosses communities: quantumvault/app_factory.py imports models/user.py.",
+    "strength": 0.9,
+    "confidence": "EXTRACTED"
+  },
+  {
+    "community_a": 3,
+    "community_b": 2,
+    "connection_type": "depends_on",
+    "explanation": "Extracted import edge crosses communities: quantumvault/static/js/qv-padding.js imports utils/padding.py.",
     "strength": 0.9,
     "confidence": "EXTRACTED"
   },
@@ -83,7 +67,7 @@
     "community_a": 0,
     "community_b": 6,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py) with no import path between community 0 (views: auth) and community 6 (tools).",
+    "explanation": "Inferred shared context (language py) with no import path between community 0 (views: auth) and community 6 (quantumvault).",
     "strength": 0.5,
     "confidence": "INFERRED"
   },
@@ -97,6 +81,14 @@
   },
   {
     "community_a": 1,
+    "community_b": 6,
+    "connection_type": "shares_context",
+    "explanation": "Inferred shared context (language py) with no import path between community 1 (views: facade) and community 6 (quantumvault).",
+    "strength": 0.5,
+    "confidence": "INFERRED"
+  },
+  {
+    "community_a": 1,
     "community_b": 7,
     "connection_type": "shares_context",
     "explanation": "Inferred shared context (language py) with no import path between community 1 (views: facade) and community 7 (orphans).",
@@ -105,9 +97,25 @@
   },
   {
     "community_a": 2,
+    "community_b": 4,
+    "connection_type": "shares_context",
+    "explanation": "Inferred shared context (language py) with no import path between community 2 (utils) and community 4 (controllers).",
+    "strength": 0.5,
+    "confidence": "INFERRED"
+  },
+  {
+    "community_a": 2,
+    "community_b": 5,
+    "connection_type": "shares_context",
+    "explanation": "Inferred shared context (language py) with no import path between community 2 (utils) and community 5 (views: deniable_vault).",
+    "strength": 0.5,
+    "confidence": "INFERRED"
+  },
+  {
+    "community_a": 2,
     "community_b": 6,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 6 (tools).",
+    "explanation": "Inferred shared context (language py and layer utility) with no import path between community 2 (utils) and community 6 (quantumvault).",
     "strength": 0.5,
     "confidence": "INFERRED"
   },
@@ -115,23 +123,7 @@
     "community_a": 2,
     "community_b": 7,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 7 (orphans).",
-    "strength": 0.5,
-    "confidence": "INFERRED"
-  },
-  {
-    "community_a": 3,
-    "community_b": 4,
-    "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py and layer presentation) with no import path between community 3 (controllers) and community 4 (views: deniable_vault).",
-    "strength": 0.5,
-    "confidence": "INFERRED"
-  },
-  {
-    "community_a": 3,
-    "community_b": 5,
-    "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py and layer presentation) with no import path between community 3 (controllers) and community 5 (utils).",
+    "explanation": "Inferred shared context (language py and layer utility) with no import path between community 2 (utils) and community 7 (orphans).",
     "strength": 0.5,
     "confidence": "INFERRED"
   },
@@ -139,7 +131,7 @@
     "community_a": 3,
     "community_b": 6,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py) with no import path between community 3 (controllers) and community 6 (tools).",
+    "explanation": "Inferred shared context (layer utility) with no import path between community 3 (quantumvault/static/js) and community 6 (quantumvault).",
     "strength": 0.5,
     "confidence": "INFERRED"
   },
@@ -147,7 +139,7 @@
     "community_a": 3,
     "community_b": 7,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py) with no import path between community 3 (controllers) and community 7 (orphans).",
+    "explanation": "Inferred shared context (layer utility) with no import path between community 3 (quantumvault/static/js) and community 7 (orphans).",
     "strength": 0.5,
     "confidence": "INFERRED"
   },
@@ -155,7 +147,15 @@
     "community_a": 4,
     "community_b": 5,
     "connection_type": "shares_context",
-    "explanation": "Inferred shared context (language py and layer presentation) with no import path between community 4 (views: deniable_vault) and community 5 (utils).",
+    "explanation": "Inferred shared context (language py and layer presentation) with no import path between community 4 (controllers) and community 5 (views: deniable_vault).",
+    "strength": 0.5,
+    "confidence": "INFERRED"
+  },
+  {
+    "community_a": 4,
+    "community_b": 6,
+    "connection_type": "shares_context",
+    "explanation": "Inferred shared context (language py) with no import path between community 4 (controllers) and community 6 (quantumvault).",
     "strength": 0.5,
     "confidence": "INFERRED"
   }

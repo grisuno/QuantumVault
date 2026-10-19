@@ -3,7 +3,7 @@ Previous: [API.md](API.md)
 
 ## views/auth.py
 Depends on: `controllers/auth.py`, `controllers/contact.py`, `models/user.py`, `utils/mailer.py`, `utils/security.py`, `utils/utils.py`
-Imported by: `app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
+Imported by: `quantumvault/app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
 - `role_required` (function) `views/auth.py:71` `def role_required()` -- Restrict a route to authenticated users holding one of the given roles.
 - `decorator` (function) `views/auth.py:85` `def decorator(f)`
 - `decorated_function` (function) `views/auth.py:87` `def decorated_function()`
@@ -29,52 +29,52 @@ Imported by: `app_factory.py`, `views/admin.py`, `views/file.py`, `views/message
 
 ## views/facade.py
 Depends on: `controllers/facade.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `register_facade` (function) `views/facade.py:33` `def register_facade(app)` -- Install the facade on ``app`` when it is enabled and configured.
 - `render_cover` (function) `views/facade.py:41` `def render_cover()`
 - `facade_gate` (function) `views/facade.py:60` `def facade_gate()`
 
 ## views/faq.py
 Depends on: `models/plans.py`, `utils/utils.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `faq` (function) `views/faq.py:7` `def faq()` -- Render the About page.
 - `landing` (function) `views/faq.py:12` `def landing()` -- Render the About page.
 
 ## views/file.py
 Depends on: `views/auth.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `upload` (function) `views/file.py:25` `def upload()` -- Maneja la subida de archivos cifrados desde el cliente.
 - `download` (function) `views/file.py:56` `def download(filename)` -- Provide the encrypted file and its key for client-side decryption.
 
 ## views/message.py
 Depends on: `controllers/message.py`, `views/auth.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `messages` (function) `views/message.py:29` `def messages()` -- Render the messages page; the browser handles all crypto.
 - `api_secure_message` (function) `views/message.py:49` `def api_secure_message()` -- Accept an opaque end-to-end encrypted message envelope.
 
 ## views/privacy.py
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `privacy` (function) `views/privacy.py:6` `def privacy()` -- Render the About page.
 
 ## views/subscription.py
 Depends on: `models/plans.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `SubscriptionForm.__init__` (method) `views/subscription.py:26` `def __init__(self)`
 - `subscribe` (function) `views/subscription.py:37` `def subscribe()` -- Maneja la selección de planes y el proceso de pago.
 - `payment_success` (function) `views/subscription.py:86` `def payment_success()` -- Maneja el éxito del pago y actualiza el plan del usuario.
 
 ## views/sync.py
 Depends on: `utils/security.py`, `utils/utils.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `secure_sync` (function) `views/sync.py:29` `def secure_sync()` -- Receive an already-encrypted file + wrapped FEK and persist them.
 - `sync_page` (function) `views/sync.py:79` `def sync_page()`
 
 ## views/terms.py
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `terms` (function) `views/terms.py:6` `def terms()` -- Render the About page.
 
 ## views/views.py
 Depends on: `models/user.py`, `utils/utils.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `home` (function) `views/views.py:21` `def home()` -- Render the landing/home page.
 

@@ -14,7 +14,7 @@ app under an IDE debugger against this file.
 import os
 import sys
 
-from app_factory import create_app
+from quantumvault.app_factory import create_app
 from utils.utils import Config, load_payload
 
 

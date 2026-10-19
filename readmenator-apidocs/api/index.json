@@ -2,12 +2,12 @@
  "schema_version": 1,
  "format": "jsonl",
  "meta": {
-  "modules": 72,
-  "entities": 689,
+  "modules": 73,
+  "entities": 691,
   "languages": {
    "go": 3,
    "js": 10,
-   "py": 55,
+   "py": 56,
    "sh": 4
   },
   "kinds": {
@@ -18,9 +18,9 @@
    "constructor": 22,
    "enum": 2,
    "exception": 2,
-   "function": 229,
+   "function": 230,
    "method": 81,
-   "module": 72,
+   "module": 73,
    "property": 7,
    "staticmethod": 2
   },
@@ -30,9 +30,9 @@
  },
  "coverage": {
   "overall": {
-   "documented": 358,
-   "total": 469,
-   "percent": 76.3
+   "documented": 360,
+   "total": 471,
+   "percent": 76.4
   },
   "by_kind": {
    "class": {
@@ -61,9 +61,9 @@
     "percent": 100.0
    },
    "function": {
-    "documented": 156,
-    "total": 229,
-    "percent": 68.1
+    "documented": 157,
+    "total": 230,
+    "percent": 68.3
    },
    "method": {
     "documented": 81,
@@ -71,9 +71,9 @@
     "percent": 100.0
    },
    "module": {
-    "documented": 46,
-    "total": 72,
-    "percent": 63.9
+    "documented": 47,
+    "total": 73,
+    "percent": 64.4
    },
    "property": {
     "documented": 7,
@@ -96,11 +96,6 @@
     "documented": 1,
     "total": 2,
     "percent": 50.0
-   },
-   "app_factory.py": {
-    "documented": 2,
-    "total": 2,
-    "percent": 100.0
    },
    "client.go": {
     "documented": 0,
@@ -217,6 +212,76 @@
     "total": 1,
     "percent": 0.0
    },
+   "quantumvault/__init__.py": {
+    "documented": 1,
+    "total": 1,
+    "percent": 100.0
+   },
+   "quantumvault/app_factory.py": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "quantumvault/static/js/account.js": {
+    "documented": 1,
+    "total": 10,
+    "percent": 10.0
+   },
+   "quantumvault/static/js/coded-text.js": {
+    "documented": 1,
+    "total": 4,
+    "percent": 25.0
+   },
+   "quantumvault/static/js/login.js": {
+    "documented": 1,
+    "total": 3,
+    "percent": 33.3
+   },
+   "quantumvault/static/js/messages.js": {
+    "documented": 1,
+    "total": 7,
+    "percent": 14.3
+   },
+   "quantumvault/static/js/qv-crypto.js": {
+    "documented": 19,
+    "total": 41,
+    "percent": 46.3
+   },
+   "quantumvault/static/js/qv-deniable.js": {
+    "documented": 7,
+    "total": 8,
+    "percent": 87.5
+   },
+   "quantumvault/static/js/qv-padding.js": {
+    "documented": 1,
+    "total": 6,
+    "percent": 16.7
+   },
+   "quantumvault/static/js/recover.js": {
+    "documented": 1,
+    "total": 4,
+    "percent": 25.0
+   },
+   "quantumvault/static/js/register.js": {
+    "documented": 2,
+    "total": 4,
+    "percent": 50.0
+   },
+   "quantumvault/static/js/upload.js": {
+    "documented": 1,
+    "total": 7,
+    "percent": 14.3
+   },
+   "quantumvault/templates/terms.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "quantumvault/wsgi.py": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
    "scripts/doctor.py": {
     "documented": 29,
     "total": 29,
@@ -251,61 +316,6 @@
     "documented": 0,
     "total": 1,
     "percent": 0.0
-   },
-   "static/js/account.js": {
-    "documented": 1,
-    "total": 10,
-    "percent": 10.0
-   },
-   "static/js/coded-text.js": {
-    "documented": 1,
-    "total": 4,
-    "percent": 25.0
-   },
-   "static/js/login.js": {
-    "documented": 1,
-    "total": 3,
-    "percent": 33.3
-   },
-   "static/js/messages.js": {
-    "documented": 1,
-    "total": 7,
-    "percent": 14.3
-   },
-   "static/js/qv-crypto.js": {
-    "documented": 19,
-    "total": 41,
-    "percent": 46.3
-   },
-   "static/js/qv-deniable.js": {
-    "documented": 7,
-    "total": 8,
-    "percent": 87.5
-   },
-   "static/js/qv-padding.js": {
-    "documented": 1,
-    "total": 6,
-    "percent": 16.7
-   },
-   "static/js/recover.js": {
-    "documented": 1,
-    "total": 4,
-    "percent": 25.0
-   },
-   "static/js/register.js": {
-    "documented": 2,
-    "total": 4,
-    "percent": 50.0
-   },
-   "static/js/upload.js": {
-    "documented": 1,
-    "total": 7,
-    "percent": 14.3
-   },
-   "templates/terms.py": {
-    "documented": 1,
-    "total": 2,
-    "percent": 50.0
    },
    "tools/generate_sri.py": {
     "documented": 6,
@@ -441,11 +451,6 @@
     "documented": 2,
     "total": 3,
     "percent": 66.7
-   },
-   "wsgi.py": {
-    "documented": 1,
-    "total": 1,
-    "percent": 100.0
    }
   }
  },
@@ -459,11 +464,6 @@
    "uid": "app.py",
    "path": "modules/app.py.jsonl",
    "entities": 2
-  },
-  {
-   "uid": "app_factory.py",
-   "path": "modules/app_factory.py.jsonl",
-   "entities": 3
   },
   {
    "uid": "client.go",
@@ -581,6 +581,76 @@
    "entities": 1
   },
   {
+   "uid": "quantumvault/__init__.py",
+   "path": "modules/quantumvault.__init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "quantumvault/app_factory.py",
+   "path": "modules/quantumvault.app_factory.py.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "quantumvault/static/js/account.js",
+   "path": "modules/quantumvault.static.js.account.js.jsonl",
+   "entities": 10
+  },
+  {
+   "uid": "quantumvault/static/js/coded-text.js",
+   "path": "modules/quantumvault.static.js.coded-text.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "quantumvault/static/js/login.js",
+   "path": "modules/quantumvault.static.js.login.js.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "quantumvault/static/js/messages.js",
+   "path": "modules/quantumvault.static.js.messages.js.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "quantumvault/static/js/qv-crypto.js",
+   "path": "modules/quantumvault.static.js.qv-crypto.js.jsonl",
+   "entities": 41
+  },
+  {
+   "uid": "quantumvault/static/js/qv-deniable.js",
+   "path": "modules/quantumvault.static.js.qv-deniable.js.jsonl",
+   "entities": 8
+  },
+  {
+   "uid": "quantumvault/static/js/qv-padding.js",
+   "path": "modules/quantumvault.static.js.qv-padding.js.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "quantumvault/static/js/recover.js",
+   "path": "modules/quantumvault.static.js.recover.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "quantumvault/static/js/register.js",
+   "path": "modules/quantumvault.static.js.register.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "quantumvault/static/js/upload.js",
+   "path": "modules/quantumvault.static.js.upload.js.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "quantumvault/templates/terms.py",
+   "path": "modules/quantumvault.templates.terms.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "quantumvault/wsgi.py",
+   "path": "modules/quantumvault.wsgi.py.jsonl",
+   "entities": 2
+  },
+  {
    "uid": "scripts/doctor.py",
    "path": "modules/scripts.doctor.py.jsonl",
    "entities": 35
@@ -614,61 +684,6 @@
    "uid": "server.py",
    "path": "modules/server.py.jsonl",
    "entities": 1
-  },
-  {
-   "uid": "static/js/account.js",
-   "path": "modules/static.js.account.js.jsonl",
-   "entities": 10
-  },
-  {
-   "uid": "static/js/coded-text.js",
-   "path": "modules/static.js.coded-text.js.jsonl",
-   "entities": 4
-  },
-  {
-   "uid": "static/js/login.js",
-   "path": "modules/static.js.login.js.jsonl",
-   "entities": 3
-  },
-  {
-   "uid": "static/js/messages.js",
-   "path": "modules/static.js.messages.js.jsonl",
-   "entities": 7
-  },
-  {
-   "uid": "static/js/qv-crypto.js",
-   "path": "modules/static.js.qv-crypto.js.jsonl",
-   "entities": 41
-  },
-  {
-   "uid": "static/js/qv-deniable.js",
-   "path": "modules/static.js.qv-deniable.js.jsonl",
-   "entities": 8
-  },
-  {
-   "uid": "static/js/qv-padding.js",
-   "path": "modules/static.js.qv-padding.js.jsonl",
-   "entities": 6
-  },
-  {
-   "uid": "static/js/recover.js",
-   "path": "modules/static.js.recover.js.jsonl",
-   "entities": 4
-  },
-  {
-   "uid": "static/js/register.js",
-   "path": "modules/static.js.register.js.jsonl",
-   "entities": 4
-  },
-  {
-   "uid": "static/js/upload.js",
-   "path": "modules/static.js.upload.js.jsonl",
-   "entities": 7
-  },
-  {
-   "uid": "templates/terms.py",
-   "path": "modules/templates.terms.py.jsonl",
-   "entities": 2
   },
   {
    "uid": "tools/generate_sri.py",
@@ -804,11 +819,6 @@
    "uid": "views/views.py",
    "path": "modules/views.views.py.jsonl",
    "entities": 5
-  },
-  {
-   "uid": "wsgi.py",
-   "path": "modules/wsgi.py.jsonl",
-   "entities": 1
   }
  ],
  "warnings": {

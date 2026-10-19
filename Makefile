@@ -335,7 +335,7 @@ serve:                         ## Run gunicorn against the production WSGI modul
 	    --workers $${GUNICORN_WORKERS:-4} --threads $${GUNICORN_THREADS:-2} \
 	    --access-logfile - --error-logfile - \
 	    --forwarded-allow-ips="$${QV_TRUSTED_PROXY_IPS:-127.0.0.1}" \
-	    wsgi:application
+	    quantumvault.wsgi:application
 
 .PHONY: stop
 stop:                           ## Stop the dev app, the docker compose stack, and any redis we started.
@@ -442,7 +442,7 @@ pip-audit:                      ## Check for known vulns in the current dependen
 .PHONY: bandit
 bandit:                         ## Static security scan of every Python file we ship.
 	@if [ ! -d "$(VENV)" ]; then echo "[bandit] venv missing; run 'make deps'"; exit 1; fi
-	@$(VENV_BIN)/bandit -q -r views/ controllers/ models/ utils/ app_factory.py wsgi.py app.py -ll
+	@$(VENV_BIN)/bandit -q -r views/ controllers/ models/ utils/ quantumvault/app_factory.py quantumvault/wsgi.py app.py -ll
 
 .PHONY: semgrep
 semgrep:                        ## Local Semgrep rules: crypto anti-patterns in our code.
@@ -450,7 +450,7 @@ semgrep:                        ## Local Semgrep rules: crypto anti-patterns in 
 	  echo "[semgrep] not installed. Install: pip install semgrep==1.143.0"; exit 1; }
 	@semgrep --config=p/python --config=p/owasp-top-ten \
 	    --config=p/flask --config=p/javascript --config=p/secrets \
-	    --error views/ controllers/ models/ utils/ app_factory.py wsgi.py app.py \
+	    --error views/ controllers/ models/ utils/ quantumvault/app_factory.py quantumvault/wsgi.py app.py \
 	    static/js/qv-crypto.js static/js/vendor/
 
 .PHONY: audit

@@ -26,8 +26,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-STATIC_DIR = PROJECT_ROOT / "static"
-TEMPLATES_DIR = PROJECT_ROOT / "templates"
+STATIC_DIR = PROJECT_ROOT / "quantumvault" / "static"
+TEMPLATES_DIR = PROJECT_ROOT / "quantumvault" / "templates"
 MANIFEST_PATH = STATIC_DIR / "sri_manifest.json"
 
 

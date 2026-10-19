@@ -23,8 +23,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from utils.integrity import SRI_ALGORITHM, compute_file_sri, compute_sri
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-STATIC_DIR = PROJECT_ROOT / "static"
-MANIFEST_PATH = PROJECT_ROOT / "static" / "sri_manifest.json"
+STATIC_DIR = PROJECT_ROOT / "quantumvault" / "static"
+MANIFEST_PATH = PROJECT_ROOT / "quantumvault" / "static" / "sri_manifest.json"
 LOCAL_SUFFIXES: tuple[str, ...] = (".js", ".css")
 
 PINNED_CDN_URLS: tuple[str, ...] = (

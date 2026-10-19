@@ -5,4 +5,4 @@ setuptools dynamic version so the PyPI artifact version always matches the
 git tag.
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.5"

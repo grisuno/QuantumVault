@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import pytest
 
-from app_factory import create_app
+from quantumvault.app_factory import create_app
 from controllers.cover import (
     CATALOG_IDS,
     CUSTOM_TEMPLATE_ID,

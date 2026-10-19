@@ -1,6 +1,6 @@
 # Subsystem: misc
 
-## templates/terms.py
+## quantumvault/templates/terms.py
 - Doc: terms: Render the About page.
 - Layer: presentation
 - Language: py

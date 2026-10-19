@@ -17,7 +17,7 @@
   - `audit_records` (function, line 118) `def audit_records()`
   - `__init__` (method, line 109) `def __init__(self)`
   - `emit` (method, line 113) `def emit(self, record)`
-- Depends on: `app_factory.py`, `utils/security.py`
+- Depends on: `quantumvault/app_factory.py`, `utils/security.py`
 
 ## tests/test_account_facade.py
 - Doc: Behaviour contract: the decoy site requires a deniable passphrase.
@@ -30,7 +30,7 @@
   - `_build` (function, line 65) `def _build(tmp_path, fast_hasher)`
   - `test_facade_enabled_requires_a_deniable_passphrase` (function, line 88) `def test_facade_enabled_requires_a_deniable_passphrase(tmp_path, fast_hasher)`
   - `test_facade_disabled_keeps_it_optional` (function, line 99) `def test_facade_disabled_keeps_it_optional(tmp_path, fast_hasher)`
-- Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
+- Depends on: `controllers/facade.py`, `models/user.py`, `quantumvault/app_factory.py`
 
 ## tests/test_auth_phone.py
 - Doc: Regression tests for the phone-verification page and resend route.
@@ -98,7 +98,7 @@
   - `test_default_cover_selects_search_portal` (method, line 281) `def test_default_cover_selects_search_portal(self, tmp_path, fast_hasher)`
   - `test_configured_template_is_served` (method, line 287) `def test_configured_template_is_served(self, tmp_path, fast_hasher)`
   - `test_gate_still_works_with_configured_template` (method, line 298) `def test_gate_still_works_with_configured_template(self, tmp_path, fast_hasher)`
-- Depends on: `app_factory.py`, `controllers/facade.py`
+- Depends on: `controllers/facade.py`, `quantumvault/app_factory.py`
 
 ## tests/test_deniable_vault.py
 - Doc: Specification tests for the QV-DENIABLE-1 deniable vault feature.
@@ -237,7 +237,7 @@
   - `test_gate_endpoint_is_absent_when_facade_disabled` (method, line 465) `def test_gate_endpoint_is_absent_when_facade_disabled(self, client)`
   - `test_disabled_facade_serves_the_real_login` (method, line 469) `def test_disabled_facade_serves_the_real_login(self, client)`
   - `test_enabled_without_a_hash_fails_open_to_the_real_app` (method, line 474) `def test_enabled_without_a_hash_fails_open_to_the_real_app(self, tmp_path)`
-- Depends on: `app_factory.py`, `controllers/facade.py`, `models/user.py`
+- Depends on: `controllers/facade.py`, `models/user.py`, `quantumvault/app_factory.py`
 
 ## tests/test_integrity.py
 - Doc: Contract tests for SRI pins and reproducible builds (QV-SRI-1).

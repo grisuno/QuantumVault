@@ -1,22 +1,24 @@
 # views: auth
 
-*Community 0 | 14 files | cohesion 0.44*
+*Community 0 | 16 files | cohesion 0.48*
 
 ## Definition
 
-This community groups 14 file(s) rooted at `views` with dominant language py (cohesion 0.44). Central symbols: `AuthController`, `Config`, `ContactForm`, `LoginForm`, `MFAEnableForm`, `MFAForm`, `MessageForm`, `Payload`. Core file: `views/auth.py` (29 symbols). Documented purpose: Zero-knowledge authentication controller for QuantumVault.  Registration accepts cryptographic material that the browser generated and stores it verbatim: the S.
+This community groups 16 file(s) rooted at `views` with dominant language py (cohesion 0.48). Central symbols: `AuthController`, `Config`, `ContactForm`, `LoginForm`, `MFAEnableForm`, `MFAForm`, `MessageDB`, `MessageForm`. Core file: `views/auth.py` (29 symbols). Documented purpose: Zero-knowledge authentication controller for QuantumVault.  Registration accepts cryptographic material that the browser generated and stores it verbatim: the S.
 
 ## Files
 
 | File | Language | Layer | Symbols | Doc |
 |------|----------|-------|---------|-----|
 | `controllers/auth.py` | py | presentation | 14 | yes |
+| `models/message.py` | py | presentation | 6 | yes |
 | `models/plans.py` | py | business_logic | 10 | no |
 | `models/user.py` | py | presentation | 27 | no |
 | `scripts/email_tool.py` | py | presentation | 6 | yes |
 | `scripts/makeadmin.py` | py | utility | 5 | yes |
 | `tests/test_utils.py` | py | testing | 3 | yes |
 | `utils/mailer.py` | py | presentation | 3 | yes |
+| `utils/scheduler.py` | py | presentation | 5 | yes |
 | `utils/utils.py` | py | presentation | 8 | yes |
 | `views/auth.py` | py | presentation | 29 | yes |
 | `views/faq.py` | py | presentation | 2 | no |
@@ -41,6 +43,12 @@ This community groups 14 file(s) rooted at `views` with dominant language py (co
 - `verify_mfa_code` (method, `controllers/auth.py:369`) `def verify_mfa_code(self, username, code)` - Verify a multi-factor authentication code for a user.
 - `send_mfa_code` (method, `controllers/auth.py:393`) `def send_mfa_code(self, username)` - Generate, store, and send an MFA code to the user's phone.
 - `toggle_mfa` (method, `controllers/auth.py:416`) `def toggle_mfa(self, username, enable)` - Enable or disable MFA for a user.
+- `MessageModel` (class, `models/message.py:27`) `class MessageModel(BaseModel)` - Pydantic model for a stored message envelope.
+- `MessageDB` (class, `models/message.py:43`) `class MessageDB` - File-based operations for end-to-end encrypted messages.
+- `__init__` (method, `models/message.py:46`) `def __init__(self, base_path)` - Initialize the MessageDB with the base directory for per-user mailboxes.
+- `save_message` (method, `models/message.py:55`) `def save_message(self, recipient, sender, encrypted_message_b64, cek_for_recipie` - Persist an opaque message envelope for the recipient.
+- `get_messages` (method, `models/message.py:87`) `def get_messages(self, recipient, page, per_page)` - Return opaque message envelopes for the recipient.
+- `delete_old_messages` (method, `models/message.py:172`) `def delete_old_messages(self, recipient, days)` - Delete messages older than ``days`` days from the recipient's mailbox.
 - `PlanDB` (class, `models/plans.py:4`) `class PlanDB` - Database operations for subscription plans.
 - `__init__` (method, `models/plans.py:6`) `def __init__(self, db_path)` - Initialize the PlanDB with the database path.
 - `_init_db` (method, `models/plans.py:15`) `def _init_db(self)` - Initialize the plans table with required fields.
@@ -51,33 +59,27 @@ This community groups 14 file(s) rooted at `views` with dominant language py (co
 - `delete_plan` (method, `models/plans.py:113`) `def delete_plan(self, name)` - Delete a plan by name.
 - `_convert_row_to_dict` (method, `models/plans.py:127`) `def _convert_row_to_dict(self, row)` - Convert an SQLite row to a dictionary.
 - `validate_plan_payment` (method, `models/plans.py:139`) `def validate_plan_payment(self, plan_name, amount_paid)` - Validate that the paid amount matches the plan price.
-- `UserModel` (class, `models/user.py:8`) `class UserModel(BaseModel, UserMixin)` - Pydantic model for a user with Flask-Login support.
-- `get_id` (method, `models/user.py:52`) `def get_id(self)` - Return the user ID as a string (required by Flask-Login).
-- `is_active` (method, `models/user.py:70`) `def is_active(self)` - Return True while the user can use the application.
-- `UserDB` (class, `models/user.py:83`) `class UserDB` - Database operations for users.
-- `__init__` (method, `models/user.py:85`) `def __init__(self, db_path)` - Initialize the UserDB with the database path.
-- `_init_db` (method, `models/user.py:105`) `def _init_db(self)` - Initialize the users table with all fields for zero-knowledge auth.
 
 ## Internal vs External Edges
 
-- Internal resolved imports (EXTRACTED): 23
-- Cross-boundary resolved imports (EXTRACTED): 30
+- Internal resolved imports (EXTRACTED): 26
+- Cross-boundary resolved imports (EXTRACTED): 29
 
 ## Connections
 
-- [EXTRACTED] depends_on community 3 <-> 0 (strength 0.9): Extracted import edge crosses communities: app.py imports utils/utils.py.
-- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: app_factory.py imports models/user.py.
-- [EXTRACTED] depends_on community 0 <-> 5 (strength 0.9): Extracted import edge crosses communities: controllers/auth.py imports utils/__init__.py.
-- [EXTRACTED] depends_on community 0 <-> 4 (strength 0.9): Extracted import edge crosses communities: controllers/auth.py imports utils/security.py.
-- [INFERRED] shares_context community 0 <-> 6 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views: auth) and community 6 (tools).
+- [EXTRACTED] depends_on community 4 <-> 0 (strength 0.9): Extracted import edge crosses communities: app.py imports utils/utils.py.
+- [EXTRACTED] depends_on community 0 <-> 2 (strength 0.9): Extracted import edge crosses communities: controllers/auth.py imports utils/__init__.py.
+- [EXTRACTED] depends_on community 0 <-> 5 (strength 0.9): Extracted import edge crosses communities: controllers/auth.py imports utils/security.py.
+- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: quantumvault/app_factory.py imports models/user.py.
+- [INFERRED] shares_context community 0 <-> 6 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views: auth) and community 6 (quantumvault).
 - [INFERRED] shares_context community 0 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views: auth) and community 7 (orphans).
 
 ## Risks
 
-- [taint high] `tests/test_secure_channel.py` -> `models/user.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `views/auth.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `models/plans.py` via `subprocess` (2 hops)
+- [taint high] `tests/test_secure_channel.py` -> `views/auth.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/utils.py` via `subprocess` (2 hops)
+- [taint high] `tests/test_secure_channel.py` -> `models/user.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/mailer.py` via `subprocess` (3 hops)
 - [taint high] `tests/test_secure_channel.py` -> `controllers/auth.py` via `subprocess` (3 hops)
 - [layer strict] `scripts/test_bloque1.py` (testing) -> `models/user.py` (presentation)
@@ -90,17 +92,19 @@ This community groups 14 file(s) rooted at `views` with dominant language py (co
 
 - Why do 6 file(s) lack file-level docs (e.g. `models/plans.py`)? What purpose do they serve?
 - What would break if the most connected file in views: auth changed?
-- Should views: auth be split, given cohesion 0.44?
+- Should views: auth be split, given cohesion 0.48?
 
 ## Sources
 
 - `controllers/auth.py`
+- `models/message.py`
 - `models/plans.py`
 - `models/user.py`
 - `scripts/email_tool.py`
 - `scripts/makeadmin.py`
 - `tests/test_utils.py`
 - `utils/mailer.py`
+- `utils/scheduler.py`
 - `utils/utils.py`
 - `views/auth.py`
 - `views/faq.py`

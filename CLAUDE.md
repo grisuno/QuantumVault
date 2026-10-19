@@ -154,6 +154,10 @@ higher layer. Cross-cutting security primitives live in `utils/security.py`.
   `./.venv/bin/python -B tools/mutation_test.py`
 - List mutants without running:
   `./.venv/bin/python -B tools/mutation_test.py --list`
+- Build the wheel and sdist: `python -m build --outdir dist/`
+- Deploy to git + GitHub + PyPI:
+  `deploynator release --type fix --project . "<message>"`
+  (bumps `utils/version.py`, builds from it, uploads `quantumvault-core`)
 
 <!-- readmenator-agent-kb-link -->
 ## Project Knowledge Base (MUST read before coding)

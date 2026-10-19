@@ -1,10 +1,10 @@
 # QuantumVault API Reference
 
-> Generated offline by readmenator: 72 modules, 689 documented entities, documentation coverage 76.3% (358/469 public items). Deterministic, zero tokens: signatures from source, docs parsed from Google, NumPy, reST, Javadoc/JSDoc/Doxygen, C# XML, and Rustdoc comments.
+> Generated offline by readmenator: 73 modules, 691 documented entities, documentation coverage 76.4% (360/471 public items). Deterministic, zero tokens: signatures from source, docs parsed from Google, NumPy, reST, Javadoc/JSDoc/Doxygen, C# XML, and Rustdoc comments.
 
 Navigate: [Interactive architecture and flows](flows.html) | [Architecture and flows (Mermaid)](architecture.md) | [Class hierarchy](classes.md) | [General index](genindex.md) | [Coverage and warnings](COVERAGE.md) | [`api/index.json`](api/index.json) | [HTML browser](index.html)
 
-Languages: go (3), js (10), py (55), sh (4)
+Languages: go (3), js (10), py (56), sh (4)
 
 ## Modules
 
@@ -14,7 +14,6 @@ Languages: go (3), js (10), py (55), sh (4)
 |---|---|---|---|---|
 | [`__init__`](modules/init__.py.md) |  | 0 | 0 | 0.0% |
 | [`app`](modules/app.py.md) | Local development entry point. | 0 | 1 | 50.0% |
-| [`app_factory`](modules/app_factory.py.md) | Application factory for QuantumVault. | 0 | 1 | 100.0% |
 | [`client.go`](modules/client.go.md) |  | 0 | 0 | 0.0% |
 | [`client`](modules/client.py.md) |  | 0 | 0 | 0.0% |
 | [`enc_dec.go`](modules/enc_dec.go.md) |  | 0 | 0 | 0.0% |
@@ -24,7 +23,6 @@ Languages: go (3), js (10), py (55), sh (4)
 | [`pq_decrypt_password`](modules/pq_decrypt_password.py.md) |  | 0 | 0 | 0.0% |
 | [`server.go`](modules/server.go.md) |  | 0 | 0 | 0.0% |
 | [`server`](modules/server.py.md) |  | 0 | 0 | 0.0% |
-| [`wsgi`](modules/wsgi.py.md) | WSGI entry point for production deployments. | 0 | 0 | 100.0% |
 
 ### `controllers`
 
@@ -52,6 +50,35 @@ Languages: go (3), js (10), py (55), sh (4)
 | [`models.superadmin_audit`](modules/models.superadmin_audit.py.md) | Append-only audit log for superadmin actions. | 1 | 3 | 100.0% |
 | [`models.user`](modules/models.user.py.md) |  | 2 | 18 | 95.2% |
 
+### `quantumvault`
+
+| Module | Summary | Types | Callables | Coverage |
+|---|---|---|---|---|
+| [`quantumvault`](modules/quantumvault.__init__.py.md) | QuantumVault application package. | 0 | 0 | 100.0% |
+| [`quantumvault.app_factory`](modules/quantumvault.app_factory.py.md) | Application factory for QuantumVault. | 0 | 1 | 100.0% |
+| [`quantumvault.wsgi`](modules/quantumvault.wsgi.py.md) | WSGI entry point for production deployments. | 0 | 1 | 100.0% |
+
+### `quantumvault/static/js`
+
+| Module | Summary | Types | Callables | Coverage |
+|---|---|---|---|---|
+| [`quantumvault/static/js/account.js`](modules/quantumvault.static.js.account.js.md) | Account settings controller: secure notes (QV-DENIABLE-1). | 0 | 9 | 10.0% |
+| [`quantumvault/static/js/coded-text.js`](modules/quantumvault.static.js.coded-text.js.md) | Decipher animation for elements tagged with the "codedText" class. | 0 | 3 | 25.0% |
+| [`quantumvault/static/js/login.js`](modules/quantumvault.static.js.login.js.md) | Login page controller (zero-knowledge SRP-6a flow). | 0 | 2 | 33.3% |
+| [`quantumvault/static/js/messages.js`](modules/quantumvault.static.js.messages.js.md) | Messages page controller (zero-knowledge end-to-end messaging). | 0 | 6 | 14.3% |
+| [`quantumvault/static/js/qv-crypto.js`](modules/quantumvault.static.js.qv-crypto.js.md) | QuantumVault zero-knowledge browser crypto. | 0 | 40 | 46.3% |
+| [`quantumvault/static/js/qv-deniable.js`](modules/quantumvault.static.js.qv-deniable.js.md) | QuantumVault deniable vault (QV-DENIABLE-1) browser crypto. | 0 | 7 | 87.5% |
+| [`quantumvault/static/js/qv-padding.js`](modules/quantumvault.static.js.qv-padding.js.md) | QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py. | 0 | 5 | 16.7% |
+| [`quantumvault/static/js/recover.js`](modules/quantumvault.static.js.recover.js.md) | Account recovery page controller (QV-RECOVERY-1 flow). | 0 | 3 | 25.0% |
+| [`quantumvault/static/js/register.js`](modules/quantumvault.static.js.register.js.md) | Registration page controller (zero-knowledge flow). | 0 | 3 | 50.0% |
+| [`quantumvault/static/js/upload.js`](modules/quantumvault.static.js.upload.js.md) | Upload page controller (zero-knowledge file storage). | 0 | 6 | 14.3% |
+
+### `quantumvault/templates`
+
+| Module | Summary | Types | Callables | Coverage |
+|---|---|---|---|---|
+| [`quantumvault.templates.terms`](modules/quantumvault.templates.terms.py.md) |  | 0 | 1 | 50.0% |
+
 ### `scripts`
 
 | Module | Summary | Types | Callables | Coverage |
@@ -61,27 +88,6 @@ Languages: go (3), js (10), py (55), sh (4)
 | [`scripts/garage-init.sh`](modules/scripts.garage-init.sh.md) | Bootstrap a fresh Garage deployment for QuantumVault. | 0 | 1 | 100.0% |
 | [`scripts/garage-native.sh`](modules/scripts.garage-native.sh.md) | Run Garage (S3-compatible object storage) natively, without Docker. | 0 | 3 | 50.0% |
 | [`scripts.makeadmin`](modules/scripts.makeadmin.py.md) | Operator tooling to promote QuantumVault users to a privileged role. | 0 | 3 | 100.0% |
-
-### `static/js`
-
-| Module | Summary | Types | Callables | Coverage |
-|---|---|---|---|---|
-| [`static/js/account.js`](modules/static.js.account.js.md) | Account settings controller: secure notes (QV-DENIABLE-1). | 0 | 9 | 10.0% |
-| [`static/js/coded-text.js`](modules/static.js.coded-text.js.md) | Decipher animation for elements tagged with the "codedText" class. | 0 | 3 | 25.0% |
-| [`static/js/login.js`](modules/static.js.login.js.md) | Login page controller (zero-knowledge SRP-6a flow). | 0 | 2 | 33.3% |
-| [`static/js/messages.js`](modules/static.js.messages.js.md) | Messages page controller (zero-knowledge end-to-end messaging). | 0 | 6 | 14.3% |
-| [`static/js/qv-crypto.js`](modules/static.js.qv-crypto.js.md) | QuantumVault zero-knowledge browser crypto. | 0 | 40 | 46.3% |
-| [`static/js/qv-deniable.js`](modules/static.js.qv-deniable.js.md) | QuantumVault deniable vault (QV-DENIABLE-1) browser crypto. | 0 | 7 | 87.5% |
-| [`static/js/qv-padding.js`](modules/static.js.qv-padding.js.md) | QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py. | 0 | 5 | 16.7% |
-| [`static/js/recover.js`](modules/static.js.recover.js.md) | Account recovery page controller (QV-RECOVERY-1 flow). | 0 | 3 | 25.0% |
-| [`static/js/register.js`](modules/static.js.register.js.md) | Registration page controller (zero-knowledge flow). | 0 | 3 | 50.0% |
-| [`static/js/upload.js`](modules/static.js.upload.js.md) | Upload page controller (zero-knowledge file storage). | 0 | 6 | 14.3% |
-
-### `templates`
-
-| Module | Summary | Types | Callables | Coverage |
-|---|---|---|---|---|
-| [`templates.terms`](modules/templates.terms.py.md) |  | 0 | 1 | 50.0% |
 
 ### `tools`
 

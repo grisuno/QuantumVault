@@ -1,10 +1,10 @@
 # orphans
 
-*Community 7 | 27 files | cohesion 0.00*
+*Community 7 | 26 files | cohesion 0.00*
 
 ## Definition
 
-This community groups 27 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
+This community groups 26 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
 
 ## Files
 
@@ -16,15 +16,7 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 | `client.go` | go | infrastructure | 1 | no |
 | `client.py` | py | infrastructure | 0 | no |
 | `enc_dec.go` | go | utility | 4 | no |
-
-### `utils` (4 files)
-
-| File | Language | Layer | Symbols | Doc |
-|------|----------|-------|---------|-----|
-| `utils/cache.py` | py | infrastructure | 5 | yes |
-| `utils/plans.py` | py | utility | 3 | no |
-| `utils/srp6a.py` | py | utility | 14 | yes |
-| `utils/version.py` | py | utility | 0 | yes |
+| `enc_dec.py` | py | utility | 5 | yes |
 
 ### `scripts` (3 files)
 
@@ -42,6 +34,14 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 | `tests/test_auth_phone.py` | py | testing | 3 | yes |
 | `tests/test_doctor.py` | py | testing | 12 | yes |
 
+### `utils` (3 files)
+
+| File | Language | Layer | Symbols | Doc |
+|------|----------|-------|---------|-----|
+| `utils/cache.py` | py | infrastructure | 5 | yes |
+| `utils/plans.py` | py | utility | 3 | no |
+| `utils/srp6a.py` | py | utility | 14 | yes |
+
 ### `controllers` (1 files)
 
 | File | Language | Layer | Symbols | Doc |
@@ -54,17 +54,17 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 |------|----------|-------|---------|-----|
 | `models/__init__.py` | py | business_logic | 0 | no |
 
-### `static/js` (1 files)
+### `quantumvault/static/js` (1 files)
 
 | File | Language | Layer | Symbols | Doc |
 |------|----------|-------|---------|-----|
-| `static/js/coded-text.js` | js | utility | 3 | yes |
+| `quantumvault/static/js/coded-text.js` | js | utility | 3 | yes |
 
-### `templates` (1 files)
+### `quantumvault/templates` (1 files)
 
 | File | Language | Layer | Symbols | Doc |
 |------|----------|-------|---------|-----|
-| `templates/terms.py` | py | presentation | 1 | no |
+| `quantumvault/templates/terms.py` | py | presentation | 1 | no |
 
 ### `tools` (1 files)
 
@@ -78,7 +78,7 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 |------|----------|-------|---------|-----|
 | `views/__init__.py` | py | presentation | 0 | no |
 
-*... and 7 more files in this community.*
+*... and 6 more files in this community.*
 
 
 ## Key Symbols
@@ -93,6 +93,10 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 - `decrypt_file_in_memory` (function, `enc_dec.py:65`) `def decrypt_file_in_memory(nonce, ciphertext, aes_key)` - Decrypt ``ciphertext`` in memory with AES-256-GCM and return the plaintext.
 - `_build_s3_client` (function, `enc_dec.py:81`) `def _build_s3_client(region)` - Build a boto3 S3 client honoring the zero-trust environment convention.
 - `main` (function, `enc_dec.py:103`) `def main()` - Run the offline admin CLI (encrypt or decrypt a single object).
+- `randomChar` (function, `quantumvault/static/js/coded-text.js:13`)
+- `animateElement` (function, `quantumvault/static/js/coded-text.js:19`)
+- `init` (function, `quantumvault/static/js/coded-text.js:50`)
+- `terms` (function, `quantumvault/templates/terms.py:6`) `def terms()` - Render the About page.
 - `CheckResult` (class, `scripts/doctor.py:98`) `class CheckResult` - Outcome of one environment check with a repair hint.
 - `DoctorReport` (class, `scripts/doctor.py:108`) `class DoctorReport` - Accumulated check results with derived exit status.
 - `add` (method, `scripts/doctor.py:113`) `def add(self, result)` - Append one check result.
@@ -109,10 +113,6 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 - `debian_arch` (function, `scripts/doctor.py:261`) `def debian_arch(deb)` - Map the host CPU to a Cloudflare or Garage release architecture.
 - `cloudflared_deb_url` (function, `scripts/doctor.py:270`) `def cloudflared_deb_url(version, arch)` - Build the official cloudflared .deb URL for a version and arch.
 - `garage_bin_url` (function, `scripts/doctor.py:283`) `def garage_bin_url(version, target)` - Build the official garage binary URL for a version and target.
-- `apt_command` (function, `scripts/doctor.py:288`) `def apt_command(packages)` - Build an apt install command, prefixed with sudo outside root.
-- `run_command` (function, `scripts/doctor.py:298`) `def run_command(cmd)` - Run one shell command and capture its outcome.
-- `download_file` (function, `scripts/doctor.py:319`) `def download_file(url, destination)` - Fetch a URL with curl when present, else urllib.
-- `upsert_env` (function, `scripts/doctor.py:334`) `def upsert_env(key, value, path)` - Set one KEY=value pair in ``.env``, preserving other lines.
 
 ## Internal vs External Edges
 
@@ -123,8 +123,8 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 
 - [INFERRED] shares_context community 0 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 0 (views: auth) and community 7 (orphans).
 - [INFERRED] shares_context community 1 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 1 (views: facade) and community 7 (orphans).
-- [INFERRED] shares_context community 2 <-> 7 (strength 0.5): Inferred shared context (layer utility) with no import path between community 2 (static/js) and community 7 (orphans).
-- [INFERRED] shares_context community 3 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 3 (controllers) and community 7 (orphans).
+- [INFERRED] shares_context community 2 <-> 7 (strength 0.5): Inferred shared context (language py and layer utility) with no import path between community 2 (utils) and community 7 (orphans).
+- [INFERRED] shares_context community 3 <-> 7 (strength 0.5): Inferred shared context (layer utility) with no import path between community 3 (quantumvault/static/js) and community 7 (orphans).
 
 ## Risks
 
@@ -151,14 +151,14 @@ This community groups 27 file(s) rooted at `root` with dominant language py (coh
 - `make.sh`
 - `models/__init__.py`
 - `pq_decrypt_password.py`
+- `quantumvault/static/js/coded-text.js`
+- `quantumvault/templates/terms.py`
 - `scripts/doctor.py`
 - `scripts/garage-init.sh`
 - `scripts/garage-native.sh`
 - `server.go`
 - `server.py`
-- `static/js/coded-text.js`
-- `templates/terms.py`
 - `test.sh`
 - `tests/__init__.py`
 - `tests/test_auth_phone.py`
-- *... and 7 more*
+- *... and 6 more*

@@ -10,7 +10,7 @@
 - Language: py
 - Symbols:
   - `about` (function, line 6) `def about()`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/account.py
 - Doc: Account settings page and the deniable vault JSON API (QV-DENIABLE-1).
@@ -23,7 +23,7 @@
   - `put_vault` (function, line 107) `def put_vault()`
   - `delete_vault` (function, line 130) `def delete_vault()`
 - Depends on: `controllers/deniable_vault.py`, `controllers/facade.py`, `models/deniable_vault.py`, `utils/security.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/admin.py
 - Doc: UserEditForm: Form for editing user details.
@@ -50,7 +50,7 @@
   - `superadmin_channel_rotate` (function, line 682) `def superadmin_channel_rotate()`
   - `admin_contacts` (function, line 705) `def admin_contacts()`
 - Depends on: `controllers/contact.py`, `controllers/secure_channel.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
-- Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
+- Imported by: `quantumvault/app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
 
 ## views/auth.py
 - Doc: Authentication and account-management views.
@@ -87,7 +87,7 @@
   - `decorator` (function, line 85) `def decorator(f)`
   - `decorated_function` (function, line 87) `def decorated_function()`
 - Depends on: `controllers/auth.py`, `controllers/contact.py`, `models/user.py`, `utils/mailer.py`, `utils/security.py`, `utils/utils.py`
-- Imported by: `app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
+- Imported by: `quantumvault/app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
 
 ## views/facade.py
 - Doc: Cover facade HTTP integration: before-request cover and the gate endpoint.
@@ -101,7 +101,7 @@
   - `_facade_cover` (function, line 48) `def _facade_cover()`
   - `facade_gate` (function, line 60) `def facade_gate()`
 - Depends on: `controllers/facade.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/faq.py
 - Doc: faq: Render the About page.
@@ -111,7 +111,7 @@
   - `faq` (function, line 7) `def faq()`
   - `landing` (function, line 12) `def landing()`
 - Depends on: `models/plans.py`, `utils/utils.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/file.py
 - Doc: UploadForm: Formulario para la subida de archivos cifrados.
@@ -122,7 +122,7 @@
   - `upload` (function, line 25) `def upload()`
   - `download` (function, line 56) `def download(filename)`
 - Depends on: `views/auth.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/message.py
 - Doc: MessageForm: Form for sending messages.
@@ -133,7 +133,7 @@
   - `messages` (function, line 29) `def messages()`
   - `api_secure_message` (function, line 49) `def api_secure_message()`
 - Depends on: `controllers/message.py`, `views/auth.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/privacy.py
 - Doc: privacy: Render the About page.
@@ -141,7 +141,7 @@
 - Language: py
 - Symbols:
   - `privacy` (function, line 6) `def privacy()`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/subscription.py
 - Doc: SubscriptionForm: Formulario para seleccionar un plan de suscripción.
@@ -153,7 +153,7 @@
   - `payment_success` (function, line 86) `def payment_success()`
   - `__init__` (method, line 26) `def __init__(self)`
 - Depends on: `models/plans.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/sync.py
 - Doc: End-to-end encrypted file synchronization views.
@@ -163,7 +163,7 @@
   - `secure_sync` (function, line 29) `def secure_sync()`
   - `sync_page` (function, line 79) `def sync_page()`
 - Depends on: `utils/security.py`, `utils/utils.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/terms.py
 - Doc: terms: Render the About page.
@@ -171,7 +171,7 @@
 - Language: py
 - Symbols:
   - `terms` (function, line 6) `def terms()`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`
 
 ## views/views.py
 - Doc: Top-level non-API views: home page, account preferences, etc.
@@ -181,4 +181,4 @@
   - `MFAEnableForm` (class, line 15) `class MFAEnableForm(FlaskForm)`
   - `home` (function, line 21) `def home()`
 - Depends on: `models/user.py`, `utils/utils.py`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`

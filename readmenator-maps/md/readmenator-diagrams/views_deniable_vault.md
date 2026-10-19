@@ -20,23 +20,23 @@ graph LR
     views -- "depends on" --> utils
 ```
 
-## controllers (5.1)
+## controllers (6.1)
 
 controllers groups 1 files (py) around _base64_length, canonical_json, EnvelopeValidationError, _coerce_int, _coerce_kdf. QV-DENIABLE-1 deniable vault: configuration, validation, orchestration.
 
-## models (5.2)
+## models (6.2)
 
 models groups 1 files (py) around DeniableVaultDB, __init__, _init_db, upsert, get. Opaque storage for QV-DENIABLE-1 deniable vault containers.
 
-## tests (5.3)
+## tests (6.3)
 
 tests groups 3 files (py) around _hermetic_env, _push_request_context, app, client, _ListLogHandler. Shared pytest fixtures for the QuantumVault test suite.
 
-## utils (5.4)
+## utils (6.4)
 
 utils groups 1 files (py) around _get_audit_logger, _correlation_id, audit_event, constant_time_compare, hash_secret. Centralized security primitives for QuantumVault.
 
-## views (5.5)
+## views (6.5)
 
 views groups 2 files (py) around get_deniable_vault_controller, settings, get_vault, put_vault, delete_vault. Account settings page and the deniable vault JSON API (QV-DENIABLE-1).
 

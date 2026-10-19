@@ -1,6 +1,6 @@
 # Subsystem: js
 
-## static/js/account.js
+## quantumvault/static/js/account.js
 - Doc: Account settings controller: secure notes (QV-DENIABLE-1).
 - Layer: utility
 - Language: js
@@ -14,9 +14,9 @@
   - `handleOpen` (function, line 103)
   - `handleReset` (function, line 125)
   - `init` (function, line 138)
-- Depends on: `static/js/qv-deniable.js`
+- Depends on: `quantumvault/static/js/qv-deniable.js`
 
-## static/js/coded-text.js
+## quantumvault/static/js/coded-text.js
 - Doc: Decipher animation for elements tagged with the "codedText" class.
 - Layer: utility
 - Language: js
@@ -25,17 +25,17 @@
   - `animateElement` (function, line 19)
   - `init` (function, line 50)
 
-## static/js/login.js
+## quantumvault/static/js/login.js
 - Doc: Login page controller (zero-knowledge SRP-6a flow).
 - Layer: utility
 - Language: js
 - Symbols:
   - `handleLogin` (function, line 11)
   - `init` (function, line 44)
-- Depends on: `static/js/qv-crypto.js`
-- Imported by: `static/js/qv-crypto.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`
+- Imported by: `quantumvault/static/js/qv-crypto.js`
 
-## static/js/messages.js
+## quantumvault/static/js/messages.js
 - Doc: Messages page controller (zero-knowledge end-to-end messaging).
 - Layer: infrastructure
 - Language: js
@@ -46,9 +46,9 @@
   - `handleDecryptInbox` (function, line 60)
   - `initEditor` (function, line 88)
   - `init` (function, line 109)
-- Depends on: `static/js/qv-crypto.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`
 
-## static/js/qv-crypto.js
+## quantumvault/static/js/qv-crypto.js
 - Doc: QuantumVault zero-knowledge browser crypto.
 - Layer: utility
 - Language: js
@@ -93,10 +93,10 @@
   - `fetchPublicKey` (function, line 668)
   - `sendSecureMessage` (function, line 683)
   - `decryptInbox` (function, line 714)
-- Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
-- Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
+- Depends on: `quantumvault/static/js/login.js`, `quantumvault/static/js/qv-padding.js`, `quantumvault/static/js/register.js`
+- Imported by: `quantumvault/static/js/login.js`, `quantumvault/static/js/messages.js`, `quantumvault/static/js/qv-deniable.js`, `quantumvault/static/js/recover.js`, `quantumvault/static/js/register.js`, `quantumvault/static/js/upload.js`
 
-## static/js/qv-deniable.js
+## quantumvault/static/js/qv-deniable.js
 - Doc: QuantumVault deniable vault (QV-DENIABLE-1) browser crypto.
 - Layer: utility
 - Language: js
@@ -108,10 +108,10 @@
   - `openSlot` (function, line 102)
   - `buildDeniableVault` (function, line 125)
   - `openDeniableVault` (function, line 170)
-- Depends on: `static/js/qv-crypto.js`
-- Imported by: `static/js/account.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`
+- Imported by: `quantumvault/static/js/account.js`
 
-## static/js/qv-padding.js
+## quantumvault/static/js/qv-padding.js
 - Doc: QuantumVault fixed-bucket padding (QV-PAD-1), browser mirror of utils/padding.py.
 - Layer: utility
 - Language: js
@@ -122,9 +122,9 @@
   - `padFramed` (function, line 42)
   - `unframeFramed` (function, line 54)
 - Depends on: `utils/padding.py`
-- Imported by: `static/js/qv-crypto.js`
+- Imported by: `quantumvault/static/js/qv-crypto.js`
 
-## static/js/recover.js
+## quantumvault/static/js/recover.js
 - Doc: Account recovery page controller (QV-RECOVERY-1 flow).
 - Layer: utility
 - Language: js
@@ -132,9 +132,9 @@
   - `setStatus` (function, line 15)
   - `handleRecover` (function, line 22)
   - `init` (function, line 80)
-- Depends on: `static/js/qv-crypto.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`
 
-## static/js/register.js
+## quantumvault/static/js/register.js
 - Doc: Registration page controller (zero-knowledge flow).
 - Layer: utility
 - Language: js
@@ -142,10 +142,10 @@
   - `showRecoveryCode` (function, line 17)
   - `handleRegister` (function, line 42)
   - `init` (function, line 110)
-- Depends on: `static/js/qv-crypto.js`
-- Imported by: `static/js/qv-crypto.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`
+- Imported by: `quantumvault/static/js/qv-crypto.js`
 
-## static/js/upload.js
+## quantumvault/static/js/upload.js
 - Doc: Upload page controller (zero-knowledge file storage).
 - Layer: utility
 - Language: js
@@ -156,4 +156,4 @@
   - `handleUpload` (function, line 40)
   - `handleDownload` (function, line 74)
   - `init` (function, line 97)
-- Depends on: `static/js/qv-crypto.js`
+- Depends on: `quantumvault/static/js/qv-crypto.js`

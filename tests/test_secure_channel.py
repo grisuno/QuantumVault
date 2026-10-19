@@ -684,7 +684,7 @@ def test_read_log_tail_returns_trailing_lines(tmp_path) -> None:
 
 def test_superadmin_channel_section_is_readable() -> None:
     """Channel panel avoids low-contrast muted text and shows diagnostics."""
-    text = open("templates/superadmin.html", encoding="utf-8").read()
+    text = open("quantumvault/templates/superadmin.html", encoding="utf-8").read()
     section = text.split("Disposable Secure Channels", 1)[1].split(
         "<h2", 1
     )[0]

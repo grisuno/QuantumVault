@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from app_factory import create_app
+from quantumvault.app_factory import create_app
 from controllers.facade import (
     FacadeConfig,
     FacadeGate,

@@ -19,27 +19,27 @@ graph LR
     views -- "calls into" --> models
 ```
 
-## controllers (4.1)
+## controllers (5.1)
 
 controllers groups 2 files (py) around ContactController, __init__, create_contact, get_user_contacts, ChannelMode. ContactController: Handles logic related to contact messages.
 
-## models (4.2)
+## models (5.2)
 
 models groups 2 files (py) around ContactModel, ContactDB, __init__, _init_db, create_contact. ContactModel: Pydantic model for a contact message.
 
-## root (4.3)
+## root (5.3)
 
 root groups 1 files (py) around main, _is_production_like. Local development entry point.
 
-## scripts (4.4)
+## scripts (5.4)
 
 scripts groups 1 files (py) around _FakeUser, __init__, is_authenticated, is_active, is_anonymous. Bloque 1 test: superadmin_edit_user endpoint.
 
-## tests (4.5)
+## tests (5.5)
 
 tests groups 1 files (py) around test_config_defaults_to_disabled_without_binaries, test_config_reads_mode_and_port_from_env, test_config_rejects_out_of_range_port, test_url_validators_accept_only_expected_shapes, test_manager_starts_hybrid_with_injected_launcher. Behaviour contracts for QV-TUNNEL disposable secure channels.
 
-## views (4.6)
+## views (5.6)
 
 views groups 1 files (py) around _audit_action, _channel_manager, _s3_reachable, _read_log_tail, _channel_diagnostics. UserEditForm: Form for editing user details.
 

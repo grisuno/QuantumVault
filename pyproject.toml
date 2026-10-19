@@ -25,7 +25,7 @@ dependencies = [
     "Flask-Login==0.6.3",
     "Flask-WTF==1.3.0",
     "Flask-Limiter==4.1.1",
-    "Flask-Cors==6.0.4",
+    "Flask-Cors==6.0.5",
     "Flask-Mail==0.10.0",
     "WTForms==3.2.2",
     "pydantic==2.13.4",
@@ -46,13 +46,27 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/grisuno/QuantumVault"
 
+[project.scripts]
+quantumvault = "quantumvault.wsgi:main"
+
 [tool.setuptools]
-packages = ["controllers", "models", "utils", "views"]
+packages = ["controllers", "models", "utils", "views", "quantumvault"]
 
 [tool.setuptools.dynamic]
 version = { attr = "utils.version.__version__" }
+
 [tool.setuptools.package-data]
 controllers = ["*.md"]
 models = ["*.md"]
 utils = ["*.md"]
 views = ["*.md"]
+quantumvault = [
+    "templates/*.html",
+    "static/css/*",
+    "static/js/*",
+    "static/js/vendor/*",
+    "static/*.css",
+    "static/*.png",
+    "static/*.json",
+    "static/README.md",
+]

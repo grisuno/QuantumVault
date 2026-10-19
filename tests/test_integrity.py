@@ -36,7 +36,7 @@ def test_manifest_exists_and_pins_crypto() -> None:
 
 def test_manifest_hashes_match_files() -> None:
     manifest = json.loads(manifest_path().read_text(encoding="utf-8"))
-    root = Path(__file__).resolve().parent.parent / "static"
+    root = Path(__file__).resolve().parent.parent / "quantumvault" / "static"
     for relative in ("js/qv-crypto.js", "js/qv-padding.js", "js/messages.js", "js/upload.js"):
         assert compute_sri((root / relative).read_bytes()) == manifest["assets"][relative]
 

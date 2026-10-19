@@ -2,7 +2,7 @@
   "analysis_v2": {
     "god_nodes": [
       [
-        "app_factory.py",
+        "quantumvault/app_factory.py",
         48.8
       ],
       [
@@ -26,7 +26,7 @@
         19.0
       ],
       [
-        "static/js/qv-crypto.js",
+        "quantumvault/static/js/qv-crypto.js",
         18.0
       ],
       [
@@ -47,165 +47,166 @@
         "id": 0,
         "label": "views: auth",
         "file_ids": [
-          "views/faq.py",
-          "utils/mailer.py",
-          "tests/test_utils.py",
-          "models/user.py",
-          "views/auth.py",
-          "views/subscription.py",
-          "controllers/auth.py",
-          "models/plans.py",
-          "scripts/email_tool.py",
           "views/message.py",
+          "scripts/email_tool.py",
+          "views/subscription.py",
+          "models/plans.py",
+          "utils/mailer.py",
+          "models/message.py",
+          "utils/scheduler.py",
+          "tests/test_utils.py",
+          "views/auth.py",
+          "views/faq.py",
+          "controllers/auth.py",
+          "utils/utils.py",
+          "views/file.py",
           "views/views.py",
           "scripts/makeadmin.py",
-          "views/file.py",
-          "utils/utils.py"
+          "models/user.py"
         ],
-        "cohesion": 0.4423076923076923,
-        "size": 14
+        "cohesion": 0.48148148148148145,
+        "size": 16
       },
       {
         "id": 1,
         "label": "views: facade",
         "file_ids": [
-          "views/privacy.py",
-          "views/facade.py",
-          "tests/test_facade.py",
-          "views/terms.py",
-          "controllers/facade.py",
-          "app_factory.py",
-          "controllers/sync.py",
-          "wsgi.py",
+          "quantumvault/app_factory.py",
           "views/about.py",
+          "controllers/facade.py",
+          "views/privacy.py",
+          "views/terms.py",
+          "tests/test_facade.py",
+          "controllers/sync.py",
+          "quantumvault/wsgi.py",
+          "tests/test_account_facade.py",
           "tests/test_cover.py",
-          "tests/test_account_facade.py"
+          "views/facade.py"
         ],
         "cohesion": 0.40625,
         "size": 11
       },
       {
         "id": 2,
-        "label": "static/js",
+        "label": "utils",
         "file_ids": [
-          "static/js/recover.js",
-          "static/js/qv-deniable.js",
-          "static/js/account.js",
-          "static/js/qv-padding.js",
-          "static/js/login.js",
-          "static/js/messages.js",
-          "static/js/register.js",
-          "static/js/upload.js",
-          "static/js/qv-crypto.js"
+          "tests/test_padding.py",
+          "utils/padding.py",
+          "tests/test_integrity.py",
+          "controllers/file.py",
+          "tools/verify_build.py",
+          "controllers/message.py",
+          "utils/integrity.py",
+          "tests/test_srp.py",
+          "tools/generate_sri.py",
+          "utils/__init__.py"
+        ],
+        "cohesion": 0.5714285714285714,
+        "size": 10
+      },
+      {
+        "id": 3,
+        "label": "quantumvault/static/js",
+        "file_ids": [
+          "quantumvault/static/js/qv-deniable.js",
+          "quantumvault/static/js/login.js",
+          "quantumvault/static/js/qv-padding.js",
+          "quantumvault/static/js/messages.js",
+          "quantumvault/static/js/register.js",
+          "quantumvault/static/js/qv-crypto.js",
+          "quantumvault/static/js/recover.js",
+          "quantumvault/static/js/account.js",
+          "quantumvault/static/js/upload.js"
         ],
         "cohesion": 0.8888888888888888,
         "size": 9
       },
       {
-        "id": 3,
+        "id": 4,
         "label": "controllers",
         "file_ids": [
+          "models/superadmin_audit.py",
+          "views/admin.py",
           "scripts/test_bloque1.py",
           "controllers/secure_channel.py",
-          "views/admin.py",
-          "models/superadmin_audit.py",
-          "controllers/contact.py",
           "tests/test_secure_channel.py",
-          "app.py",
-          "models/contact.py"
+          "controllers/contact.py",
+          "models/contact.py",
+          "app.py"
         ],
         "cohesion": 0.47058823529411764,
         "size": 8
       },
       {
-        "id": 4,
+        "id": 5,
         "label": "views: deniable_vault",
         "file_ids": [
-          "views/account.py",
-          "tests/test_security.py",
           "utils/security.py",
           "views/sync.py",
-          "tests/conftest.py",
-          "tests/test_deniable_vault.py",
+          "views/account.py",
           "controllers/deniable_vault.py",
-          "models/deniable_vault.py"
+          "tests/conftest.py",
+          "tests/test_security.py",
+          "models/deniable_vault.py",
+          "tests/test_deniable_vault.py"
         ],
         "cohesion": 0.5,
         "size": 8
       },
       {
-        "id": 5,
-        "label": "utils",
-        "file_ids": [
-          "utils/__init__.py",
-          "models/message.py",
-          "controllers/message.py",
-          "utils/scheduler.py",
-          "utils/padding.py",
-          "controllers/file.py",
-          "tests/test_srp.py",
-          "tests/test_padding.py"
-        ],
-        "cohesion": 0.47368421052631576,
-        "size": 8
-      },
-      {
         "id": 6,
-        "label": "tools",
+        "label": "quantumvault",
         "file_ids": [
-          "utils/integrity.py",
-          "tests/test_integrity.py",
-          "tools/verify_build.py",
-          "tools/generate_sri.py"
+          "quantumvault/__init__.py",
+          "utils/version.py"
         ],
-        "cohesion": 0.6666666666666666,
-        "size": 4
+        "cohesion": 1.0,
+        "size": 2
       }
     ],
     "surprising_connections": [
       [
         "models/contact.py",
-        "static/js/account.js",
+        "quantumvault/static/js/account.js",
         9,
-        "{1, 2, 3, 5}"
+        "{0, 2, 3, 4}"
       ],
       [
         "controllers/contact.py",
-        "static/js/account.js",
+        "quantumvault/static/js/account.js",
         8,
-        "{1, 2, 3, 5}"
+        "{0, 2, 3, 4}"
       ],
       [
         "controllers/deniable_vault.py",
-        "static/js/account.js",
+        "quantumvault/static/js/account.js",
         8,
-        "{0, 2, 4, 5}"
+        "{0, 2, 3, 5}"
       ],
       [
         "controllers/facade.py",
-        "static/js/account.js",
+        "quantumvault/static/js/account.js",
         8,
-        "{1, 2, 5}"
+        "{0, 1, 2, 3}"
       ],
       [
         "controllers/secure_channel.py",
-        "static/js/account.js",
+        "quantumvault/static/js/account.js",
         8,
-        "{1, 2, 3, 5}"
+        "{0, 2, 3, 4}"
       ]
     ],
     "suggested_questions": [
       "What does app_factory.py depend on, and what depends on it? (24 connections)",
       "What does user.py depend on, and what depends on it? (14 connections)",
       "What does utils.py depend on, and what depends on it? (14 connections)",
-      "How are the 14 files in 'views: auth' related to each other?",
+      "How are the 16 files in 'views: auth' related to each other?",
       "Why are contact.py and account.js connected through 9 hops across 4 communities?"
     ]
   },
   "layers": {
     "__init__.py": "utility",
     "app.py": "utility",
-    "app_factory.py": "presentation",
     "client.go": "infrastructure",
     "client.py": "infrastructure",
     "controllers/__init__.py": "presentation",
@@ -229,6 +230,20 @@
     "models/superadmin_audit.py": "business_logic",
     "models/user.py": "presentation",
     "pq_decrypt_password.py": "utility",
+    "quantumvault/__init__.py": "utility",
+    "quantumvault/app_factory.py": "presentation",
+    "quantumvault/static/js/account.js": "utility",
+    "quantumvault/static/js/coded-text.js": "utility",
+    "quantumvault/static/js/login.js": "utility",
+    "quantumvault/static/js/messages.js": "infrastructure",
+    "quantumvault/static/js/qv-crypto.js": "utility",
+    "quantumvault/static/js/qv-deniable.js": "utility",
+    "quantumvault/static/js/qv-padding.js": "utility",
+    "quantumvault/static/js/recover.js": "utility",
+    "quantumvault/static/js/register.js": "utility",
+    "quantumvault/static/js/upload.js": "utility",
+    "quantumvault/templates/terms.py": "presentation",
+    "quantumvault/wsgi.py": "utility",
     "scripts/doctor.py": "utility",
     "scripts/email_tool.py": "presentation",
     "scripts/garage-init.sh": "utility",
@@ -237,17 +252,6 @@
     "scripts/test_bloque1.py": "testing",
     "server.go": "utility",
     "server.py": "utility",
-    "static/js/account.js": "utility",
-    "static/js/coded-text.js": "utility",
-    "static/js/login.js": "utility",
-    "static/js/messages.js": "infrastructure",
-    "static/js/qv-crypto.js": "utility",
-    "static/js/qv-deniable.js": "utility",
-    "static/js/qv-padding.js": "utility",
-    "static/js/recover.js": "utility",
-    "static/js/register.js": "utility",
-    "static/js/upload.js": "utility",
-    "templates/terms.py": "presentation",
     "test.sh": "testing",
     "tests/__init__.py": "testing",
     "tests/conftest.py": "testing",
@@ -290,8 +294,7 @@
     "views/subscription.py": "presentation",
     "views/sync.py": "presentation",
     "views/terms.py": "presentation",
-    "views/views.py": "presentation",
-    "wsgi.py": "utility"
+    "views/views.py": "presentation"
   },
   "security": {
     "findings": []

@@ -5,55 +5,55 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | Concept | Files | Mentions | Top Files |
 |---------|-------|----------|-----------|
 | `never` | 38 | 80 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `server` | 37 | 100 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `only` | 37 | 77 | `app.py`, `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `user` | 33 | 196 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
-| `return` | 31 | 113 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `when` | 31 | 55 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `key` | 30 | 159 | `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
-| `path` | 30 | 77 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `not` | 29 | 82 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `every` | 29 | 76 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py` |
+| `server` | 37 | 100 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `only` | 37 | 77 | `app.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py` |
+| `user` | 33 | 196 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
+| `return` | 31 | 113 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `when` | 31 | 55 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `enc_dec.py` |
+| `key` | 30 | 159 | `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py`, `models/deniable_vault.py` |
+| `not` | 30 | 83 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `path` | 30 | 77 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `every` | 29 | 76 | `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py`, `quantumvault/app_factory.py` |
 | `file` | 28 | 82 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.go` |
 | `its` | 28 | 40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
 | `page` | 26 | 50 | `controllers/facade.py`, `controllers/message.py`, `models/contact.py`, `models/message.py`, `models/user.py` |
-| `returns` | 25 | 70 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
+| `returns` | 25 | 70 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
 | `get` | 25 | 64 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/message.py`, `controllers/sync.py` |
-| `one` | 25 | 62 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
+| `one` | 25 | 62 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/deniable_vault.py` |
 | `which` | 24 | 33 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `client` | 23 | 58 | `app_factory.py`, `client.go`, `client.py`, `controllers/auth.py`, `controllers/deniable_vault.py` |
-| `browser` | 23 | 44 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
-| `build` | 23 | 41 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
-| `without` | 23 | 37 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
-| `vault` | 22 | 82 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
-| `value` | 22 | 47 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
+| `vault` | 23 | 83 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py` |
+| `client` | 23 | 58 | `client.go`, `client.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
+| `browser` | 23 | 44 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
+| `build` | 23 | 41 | `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.py` |
+| `without` | 23 | 37 | `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py`, `models/user.py` |
+| `value` | 22 | 47 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/message.py` |
 | `any` | 22 | 34 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `code` | 21 | 86 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py` |
-| `json` | 21 | 43 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py` |
-| `static` | 21 | 28 | `models/deniable_vault.py`, `models/message.py`, `static/js/account.js`, `static/js/coded-text.js`, `static/js/login.js` |
+| `static` | 22 | 29 | `models/deniable_vault.py`, `models/message.py`, `quantumvault/__init__.py`, `quantumvault/static/js/account.js`, `quantumvault/static/js/coded-text.js` |
+| `code` | 21 | 86 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py`, `quantumvault/app_factory.py` |
+| `json` | 21 | 43 | `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py`, `models/message.py` |
 | `zero` | 20 | 32 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `args` | 19 | 72 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/message.py` |
+| `script` | 20 | 31 | `app.py`, `enc_dec.py`, `install.sh`, `models/superadmin_audit.py`, `quantumvault/app_factory.py` |
+| `args` | 19 | 72 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `enc_dec.py` |
 | `account` | 19 | 65 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py` |
-| `script` | 19 | 30 | `app.py`, `app_factory.py`, `enc_dec.py`, `install.sh`, `models/superadmin_audit.py` |
-| `configured` | 19 | 29 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py` |
+| `configured` | 19 | 29 | `controllers/auth.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `controllers/secure_channel.py` |
 | `storage` | 19 | 28 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/sync.py`, `enc_dec.py` |
+| `quantum` | 19 | 21 | `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py`, `quantumvault/__init__.py` |
 | `public` | 18 | 64 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `same` | 18 | 39 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
+| `same` | 18 | 39 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/deniable_vault.py` |
 | `controller` | 18 | 35 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
-| `module` | 18 | 24 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `scripts/doctor.py` |
-| `cannot` | 18 | 23 | `app_factory.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `models/user.py` |
-| `used` | 18 | 23 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `side` | 18 | 21 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `accepts` | 18 | 20 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/user.py`, `scripts/doctor.py`, `static/js/account.js` |
-| `quantum` | 18 | 20 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py` |
-| `bytes` | 17 | 54 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py` |
+| `can` | 18 | 32 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/secure_channel.py`, `models/message.py`, `models/superadmin_audit.py` |
+| `module` | 18 | 24 | `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `quantumvault/app_factory.py`, `quantumvault/static/js/account.js` |
+| `cannot` | 18 | 23 | `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `models/user.py`, `quantumvault/app_factory.py` |
+| `used` | 18 | 23 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py` |
+| `quantumvault` | 18 | 22 | `enc_dec.py`, `quantumvault/__init__.py`, `quantumvault/app_factory.py`, `quantumvault/static/js/account.js`, `quantumvault/static/js/coded-text.js` |
+| `side` | 18 | 21 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py` |
+| `accepts` | 18 | 20 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/user.py`, `quantumvault/static/js/account.js`, `quantumvault/static/js/qv-crypto.js` |
+| `bytes` | 17 | 54 | `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py`, `models/user.py` |
 | `plaintext` | 17 | 44 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
-| `login` | 17 | 41 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `models/user.py`, `scripts/makeadmin.py` |
+| `login` | 17 | 41 | `controllers/auth.py`, `controllers/facade.py`, `models/user.py`, `quantumvault/app_factory.py`, `quantumvault/static/js/login.js` |
 | `opaque` | 17 | 40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/deniable_vault.py` |
-| `database` | 17 | 36 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/message.py`, `models/contact.py` |
-| `can` | 17 | 31 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/secure_channel.py`, `models/message.py` |
-| `single` | 17 | 26 | `controllers/auth.py`, `controllers/deniable_vault.py`, `enc_dec.py`, `models/superadmin_audit.py`, `scripts/doctor.py` |
-| `first` | 17 | 24 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/contact.py` |
+| `database` | 17 | 36 | `controllers/auth.py`, `controllers/contact.py`, `controllers/message.py`, `models/contact.py`, `models/deniable_vault.py` |
+| `single` | 17 | 26 | `controllers/auth.py`, `controllers/deniable_vault.py`, `enc_dec.py`, `models/superadmin_audit.py`, `quantumvault/static/js/qv-crypto.js` |
 
 ## Verb Edges
 
@@ -91,7 +91,6 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `user` | `depends_on` | `which` | 0.77 |
 | `only` | `depends_on` | `when` | 0.75 |
 | `return` | `depends_on` | `one` | 0.75 |
-| `user` | `depends_on` | `first` | 0.75 |
 | `not` | `depends_on` | `path` | 0.74 |
 | `return` | `depends_on` | `when` | 0.74 |
 | `server` | `depends_on` | `every` | 0.74 |
@@ -109,6 +108,7 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `user` | `depends_on` | `file` | 0.72 |
 | `key` | `depends_on` | `never` | 0.71 |
 | `never` | `depends_on` | `return` | 0.71 |
+| `not` | `depends_on` | `server` | 0.71 |
 
 ## Dialectic Prompts
 
@@ -118,7 +118,7 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 - Thesis: `accepts` centralizes 18 files; Antithesis: `one` pulls 25 files with 11 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `accepts` centralizes 18 files; Antithesis: `when` pulls 31 files with 13 shared (Jaccard 0.36); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `accepts` centralizes 18 files; Antithesis: `without` pulls 23 files with 11 shared (Jaccard 0.37); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
-- Thesis: `account` centralizes 19 files; Antithesis: `can` pulls 17 files with 10 shared (Jaccard 0.38); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `account` centralizes 19 files; Antithesis: `can` pulls 18 files with 10 shared (Jaccard 0.37); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `account` centralizes 19 files; Antithesis: `code` pulls 21 files with 12 shared (Jaccard 0.43); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `account` centralizes 19 files; Antithesis: `controller` pulls 18 files with 9 shared (Jaccard 0.32); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `account` centralizes 19 files; Antithesis: `database` pulls 17 files with 9 shared (Jaccard 0.33); Synthesis: should they merge, split by layer, or keep `bridges` explicit?

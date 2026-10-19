@@ -202,7 +202,7 @@ Initialize the UserDB with the database path.
 |---|---|---|---|
 | `db_path` | `str` |  | Path to the SQLite database file. |
 
-*Called by:* [`create_app`](app_factory.py.md#create_app), [`AuthController.__init__`](controllers.auth.py.md#authcontroller-__init__), [`MessageController.__init__`](controllers.message.py.md#messagecontroller-__init__), [`cmd_confirm`](scripts.email_tool.py.md#cmd_confirm), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_promote`](scripts.makeadmin.py.md#cmd_promote), [`init_scheduler`](utils.scheduler.py.md#init_scheduler), [`superadmin`](views.admin.py.md#superadmin), [`superadmin_edit_user`](views.admin.py.md#superadmin_edit_user), [`superadmin_resend_confirmation`](views.admin.py.md#superadmin_resend_confirmation), [`superadmin_reset_mfa`](views.admin.py.md#superadmin_reset_mfa), [`superadmin_toggle_suspend`](views.admin.py.md#superadmin_toggle_suspend) and 2 more
+*Called by:* [`AuthController.__init__`](controllers.auth.py.md#authcontroller-__init__), [`MessageController.__init__`](controllers.message.py.md#messagecontroller-__init__), [`create_app`](quantumvault.app_factory.py.md#create_app), [`cmd_confirm`](scripts.email_tool.py.md#cmd_confirm), [`cmd_link`](scripts.email_tool.py.md#cmd_link), [`cmd_promote`](scripts.makeadmin.py.md#cmd_promote), [`init_scheduler`](utils.scheduler.py.md#init_scheduler), [`superadmin`](views.admin.py.md#superadmin), [`superadmin_edit_user`](views.admin.py.md#superadmin_edit_user), [`superadmin_resend_confirmation`](views.admin.py.md#superadmin_resend_confirmation), [`superadmin_reset_mfa`](views.admin.py.md#superadmin_reset_mfa), [`superadmin_toggle_suspend`](views.admin.py.md#superadmin_toggle_suspend) and 2 more
 
 <a id="userdb-create_user"></a>
 
@@ -378,7 +378,7 @@ Retrieve a user by ID.
 
 **Returns:** `Optional[dict]` - User data as a dictionary or None if not found.
 
-*Called by:* [`create_app`](app_factory.py.md#create_app)
+*Called by:* [`create_app`](quantumvault.app_factory.py.md#create_app)
 
 <a id="userdb-get_user_by_email"></a>
 

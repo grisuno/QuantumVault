@@ -2,15 +2,9 @@
 Pages: [API.md](API.md), [API_p2.md](API_p2.md)
 
 ## app.py
-Depends on: `app_factory.py`, `utils/utils.py`
+Depends on: `quantumvault/app_factory.py`, `utils/utils.py`
 Imported by: `scripts/test_bloque1.py`
 - `main` (function) `app.py:21` `def main()`
-
-## app_factory.py
-Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
-Imported by: `app.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `wsgi.py`
-- `create_app` (function) `app_factory.py:237` `def create_app(config_overrides, security_overrides)` -- Build and return a fully-configured Flask application.
-- `load_user` (function) `app_factory.py:416` `def load_user(user_id)`
 
 ## client.go
 - `main` (function) `client.go:13` `func main(`
@@ -75,7 +69,7 @@ Imported by: `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_
 
 ## controllers/file.py
 Depends on: `utils/padding.py`, `utils/utils.py`
-Imported by: `app_factory.py`, `tests/test_padding.py`
+Imported by: `quantumvault/app_factory.py`, `tests/test_padding.py`
 - `safe_filename` (function) `controllers/file.py:33` `def safe_filename(name)` -- Return a filename safe to embed in an S3 key.
 - `FileController.__init__` (method) `controllers/file.py:54` `def __init__(self, users_path, s3_bucket, s3_client)`
 - `FileController.get_storage_usage` (method) `controllers/file.py:71` `def get_storage_usage(self, username)` -- Sum the bytes used by ``username``'s encrypted files in S3.
@@ -109,7 +103,7 @@ Imported by: `tests/test_secure_channel.py`, `views/admin.py`
 - `SecureChannelManager.audit_details` (method) `controllers/secure_channel.py:321` `def audit_details(self, action, mode, cloud_url, onion_url)` -- Return an audit-safe detail string without full addresses.
 
 ## controllers/sync.py
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `SyncController.__init__` (method) `controllers/sync.py:8` `def __init__(self, users_path, s3_bucket, s3_client, file_controller)`
 - `SyncController.get_storage_usage` (method) `controllers/sync.py:14` `def get_storage_usage(self, username)` -- Calcula el uso de almacenamiento del usuario en S3.
 
@@ -163,7 +157,7 @@ Imported by: `views/admin.py`
 - `SuperadminAuditDB.recent` (method) `models/superadmin_audit.py:119` `def recent(self, limit)` -- Return the most recent ``limit`` audit rows, newest first.
 
 ## models/user.py
-Imported by: `app_factory.py`, `controllers/auth.py`, `controllers/message.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `scripts/test_bloque1.py`, `tests/test_account_facade.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `utils/scheduler.py`, `views/admin.py`, `views/auth.py`, `views/subscription.py`, `views/views.py`
+Imported by: `controllers/auth.py`, `controllers/message.py`, `quantumvault/app_factory.py`, `scripts/email_tool.py`, `scripts/makeadmin.py`, `scripts/test_bloque1.py`, `tests/test_account_facade.py`, `tests/test_deniable_vault.py`, `tests/test_facade.py`, `utils/scheduler.py`, `views/admin.py`, `views/auth.py`, `views/subscription.py`, `views/views.py`
 - `UserModel.get_id` (method) `models/user.py:52` `def get_id(self)` -- Return the user ID as a string (required by Flask-Login).
 - `UserModel.is_active` (method) `models/user.py:70` `def is_active(self)` -- Return True while the user can use the application.
 - `UserDB.__init__` (method) `models/user.py:85` `def __init__(self, db_path)` -- Initialize the UserDB with the database path.
@@ -183,6 +177,137 @@ Imported by: `app_factory.py`, `controllers/auth.py`, `controllers/message.py`, 
 - `UserDB.get_all_users` (method) `models/user.py:603` `def get_all_users(self)` -- Retrieve all users.
 - `value` (function) `models/user.py:655` `def value(name, default)`
 - `UserDB.fetch_one` (method) `models/user.py:694` `def fetch_one(self, query, params)` -- Execute a query and return the first result as a dictionary.
+
+## quantumvault/app_factory.py
+Depends on: `controllers/file.py`, `controllers/sync.py`, `models/user.py`, `utils/integrity.py`, `utils/utils.py`, `views/about.py`, `views/account.py`, `views/admin.py`, `views/auth.py`, `views/facade.py`, `views/faq.py`, `views/file.py`, `views/message.py`, `views/privacy.py`, `views/subscription.py`, `views/sync.py`, `views/terms.py`, `views/views.py`
+Imported by: `app.py`, `quantumvault/wsgi.py`, `tests/conftest.py`, `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`
+- `create_app` (function) `quantumvault/app_factory.py:237` `def create_app(config_overrides, security_overrides)` -- Build and return a fully-configured Flask application.
+- `load_user` (function) `quantumvault/app_factory.py:416` `def load_user(user_id)`
+
+## quantumvault/static/js/account.js
+Depends on: `quantumvault/static/js/qv-deniable.js`
+- `setStatus` (function) `quantumvault/static/js/account.js:20`
+- `csrfToken` (function) `quantumvault/static/js/account.js:31`
+- `apiRequest` (function) `quantumvault/static/js/account.js:36`
+- `loadState` (function) `quantumvault/static/js/account.js:54`
+- `collectSlots` (function) `quantumvault/static/js/account.js:60`
+- `handleConfigure` (function) `quantumvault/static/js/account.js:73`
+- `handleOpen` (function) `quantumvault/static/js/account.js:103`
+- `handleReset` (function) `quantumvault/static/js/account.js:125`
+- `init` (function) `quantumvault/static/js/account.js:138`
+
+## quantumvault/static/js/coded-text.js
+- `randomChar` (function) `quantumvault/static/js/coded-text.js:13`
+- `animateElement` (function) `quantumvault/static/js/coded-text.js:19`
+- `init` (function) `quantumvault/static/js/coded-text.js:50`
+
+## quantumvault/static/js/login.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+Imported by: `quantumvault/static/js/qv-crypto.js`
+- `handleLogin` (function) `quantumvault/static/js/login.js:11`
+- `init` (function) `quantumvault/static/js/login.js:44`
+
+## quantumvault/static/js/messages.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+- `getCsrfToken` (function) `quantumvault/static/js/messages.js:12`
+- `handleSend` (function) `quantumvault/static/js/messages.js:17`
+- `collectEnvelopes` (function) `quantumvault/static/js/messages.js:44`
+- `handleDecryptInbox` (function) `quantumvault/static/js/messages.js:60`
+- `initEditor` (function) `quantumvault/static/js/messages.js:88`
+- `init` (function) `quantumvault/static/js/messages.js:109`
+
+## quantumvault/static/js/qv-crypto.js
+Depends on: `quantumvault/static/js/login.js`, `quantumvault/static/js/qv-padding.js`, `quantumvault/static/js/register.js`
+Imported by: `quantumvault/static/js/login.js`, `quantumvault/static/js/messages.js`, `quantumvault/static/js/qv-deniable.js`, `quantumvault/static/js/recover.js`, `quantumvault/static/js/register.js`, `quantumvault/static/js/upload.js`
+- `concatBytes` (function) `quantumvault/static/js/qv-crypto.js:59`
+- `hexToBytes` (function) `quantumvault/static/js/qv-crypto.js:70`
+- `bytesToHex` (function) `quantumvault/static/js/qv-crypto.js:79`
+- `bytesToBase64` (function) `quantumvault/static/js/qv-crypto.js:85`
+- `bytesToBase32` (function) `quantumvault/static/js/qv-crypto.js:96`
+- `base64ToBytes` (function) `quantumvault/static/js/qv-crypto.js:114`
+- `bytesToBigInt` (function) `quantumvault/static/js/qv-crypto.js:121`
+- `i2osp` (function) `quantumvault/static/js/qv-crypto.js:128` -- Encode an integer as a big-endian byte string padded to the length of N.
+- `mod` (function) `quantumvault/static/js/qv-crypto.js:138`
+- `modPow` (function) `quantumvault/static/js/qv-crypto.js:142`
+- `randomBytes` (function) `quantumvault/static/js/qv-crypto.js:160`
+- `H` (function) `quantumvault/static/js/qv-crypto.js:169`
+- `Hint` (function) `quantumvault/static/js/qv-crypto.js:173`
+- `deriveKeyFromPassphrase` (function) `quantumvault/static/js/qv-crypto.js:184` -- Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2 iteration count.
+- `deriveMasterKey` (function) `quantumvault/static/js/qv-crypto.js:205`
+- `aesGcmEncrypt` (function) `quantumvault/static/js/qv-crypto.js:209`
+- `aesGcmDecrypt` (function) `quantumvault/static/js/qv-crypto.js:220`
+- `computeK` (function) `quantumvault/static/js/qv-crypto.js:251`
+- `deriveVerifier` (function) `quantumvault/static/js/qv-crypto.js:256` -- Derive x = H(salt | H(I | ":" | P)) and the verifier v = g^x mod N.
+- `srpLogin` (function) `quantumvault/static/js/qv-crypto.js:263` -- Run a full SRP-6a login against the server, verifying the server proof M2.
+- `generateIdentity` (function) `quantumvault/static/js/qv-crypto.js:316` -- Generate the user's hybrid (ML-KEM-768 + X25519) key pair.
+- `parsePublicKey` (function) `quantumvault/static/js/qv-crypto.js:344`
+- `parsePrivateBlob` (function) `quantumvault/static/js/qv-crypto.js:352`
+- `deriveWrapKey` (function) `quantumvault/static/js/qv-crypto.js:360`
+- `wrapKey` (function) `quantumvault/static/js/qv-crypto.js:371` -- Seal a file encryption key to a recipient's hybrid public key.
+- `unwrapKey` (function) `quantumvault/static/js/qv-crypto.js:395` -- Recover a file encryption key using the recipient's hybrid private blob.
+- `generateRecoveryCode` (function) `quantumvault/static/js/qv-crypto.js:417` -- Generate a QV-RECOVERY-1 code: 20 random bytes (160 bits) Base32-encoded (RFC 4648, no padding) and grouped as...
+- `normalizeRecoveryCode` (function) `quantumvault/static/js/qv-crypto.js:429` -- Normalize a user-entered recovery code: strip surrounding whitespace, remove group separators, and uppercase, so...
+- `wrapPrivateKeyForRecovery` (function) `quantumvault/static/js/qv-crypto.js:436` -- Re-wrap an existing privateBlob under a key derived from a recovery code, using the same PBKDF2-SHA256 + AES-256-GCM...
+- `derivePublicKeyFromPrivateBlob` (function) `quantumvault/static/js/qv-crypto.js:455` -- Reconstruct the public key (the same {v, mlkem, x} structure produced by generateIdentity) from a decrypted privateBlob.
+- `postJson` (function) `quantumvault/static/js/qv-crypto.js:473`
+- `buildRegistration` (function) `quantumvault/static/js/qv-crypto.js:496` -- Build the zero-knowledge registration payload entirely in the browser.
+- `register` (function) `quantumvault/static/js/qv-crypto.js:530`
+- `recoverAccount` (function) `quantumvault/static/js/qv-crypto.js:541` -- Reset SRP credentials and the password-encrypted private key using a QV-RECOVERY-1 recovery code, without ever...
+- `login` (function) `quantumvault/static/js/qv-crypto.js:592`
+- `encryptAndUpload` (function) `quantumvault/static/js/qv-crypto.js:599` -- Generate a fresh file key, encrypt the padded file, wrap the key, and upload.
+- `downloadAndDecrypt` (function) `quantumvault/static/js/qv-crypto.js:629` -- Download an encrypted file and its key, then decrypt it in the browser.
+- `fetchPublicKey` (function) `quantumvault/static/js/qv-crypto.js:668` -- Fetch a user's hybrid public key so the browser can wrap content to them.
+- `sendSecureMessage` (function) `quantumvault/static/js/qv-crypto.js:683` -- Encrypt a message to a recipient (keeping a sender-readable outbox copy) and POST the opaque envelope.
+- `decryptInbox` (function) `quantumvault/static/js/qv-crypto.js:714` -- Decrypt a batch of inbox envelopes with the user's password.
+
+## quantumvault/static/js/qv-deniable.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+Imported by: `quantumvault/static/js/account.js`
+- `toBytes` (function) `quantumvault/static/js/qv-deniable.js:48`
+- `frame` (function) `quantumvault/static/js/qv-deniable.js:56` -- Frame a payload as [len(4) | payload | random padding] of exactly `paddedLength` bytes.
+- `unframe` (function) `quantumvault/static/js/qv-deniable.js:65` -- Reverse frame(): read the length prefix and return the exact payload bytes.
+- `sealSlot` (function) `quantumvault/static/js/qv-deniable.js:82` -- Encrypt one slot's framed plaintext under a passphrase, returning the {salt, nonce, ct} object the envelope stores.
+- `openSlot` (function) `quantumvault/static/js/qv-deniable.js:102` -- Attempt to open one slot with a passphrase.
+- `buildDeniableVault` (function) `quantumvault/static/js/qv-deniable.js:125` -- Build a deniable container from a list of slot specifications.
+- `openDeniableVault` (function) `quantumvault/static/js/qv-deniable.js:170` -- Open a container with a passphrase.
+
+## quantumvault/static/js/qv-padding.js
+Depends on: `utils/padding.py`
+Imported by: `quantumvault/static/js/qv-crypto.js`
+- `tableFor` (function) `quantumvault/static/js/qv-padding.js:16`
+- `bucketFor` (function) `quantumvault/static/js/qv-padding.js:20`
+- `randomPad` (function) `quantumvault/static/js/qv-padding.js:34`
+- `padFramed` (function) `quantumvault/static/js/qv-padding.js:42`
+- `unframeFramed` (function) `quantumvault/static/js/qv-padding.js:54`
+
+## quantumvault/static/js/recover.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+- `setStatus` (function) `quantumvault/static/js/recover.js:15`
+- `handleRecover` (function) `quantumvault/static/js/recover.js:22`
+- `init` (function) `quantumvault/static/js/recover.js:80`
+
+## quantumvault/static/js/register.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+Imported by: `quantumvault/static/js/qv-crypto.js`
+- `showRecoveryCode` (function) `quantumvault/static/js/register.js:17` -- Display the one-time QV-RECOVERY-1 code in a modal and wait for the user to acknowledge they have saved it before...
+- `handleRegister` (function) `quantumvault/static/js/register.js:42`
+- `init` (function) `quantumvault/static/js/register.js:110`
+
+## quantumvault/static/js/upload.js
+Depends on: `quantumvault/static/js/qv-crypto.js`
+- `getCsrfToken` (function) `quantumvault/static/js/upload.js:12`
+- `getUsername` (function) `quantumvault/static/js/upload.js:17`
+- `getPublicKey` (function) `quantumvault/static/js/upload.js:23`
+- `handleUpload` (function) `quantumvault/static/js/upload.js:40`
+- `handleDownload` (function) `quantumvault/static/js/upload.js:74`
+- `init` (function) `quantumvault/static/js/upload.js:97`
+
+## quantumvault/templates/terms.py
+- `terms` (function) `quantumvault/templates/terms.py:6` `def terms()` -- Render the About page.
+
+## quantumvault/wsgi.py
+Depends on: `quantumvault/app_factory.py`
+- `main` (function) `quantumvault/wsgi.py:27` `def main()` -- Run the packaged application under gunicorn.
 
 ## scripts/doctor.py
 - `DoctorReport.add` (method) `scripts/doctor.py:113` `def add(self, result)` -- Append one check result.
@@ -238,127 +363,6 @@ Depends on: `models/user.py`
 - `main` (function) `server.go:11` `func main(`
 - `handleConnection` (function) `server.go:40` `func handleConnection(`
 
-## static/js/account.js
-Depends on: `static/js/qv-deniable.js`
-- `setStatus` (function) `static/js/account.js:20`
-- `csrfToken` (function) `static/js/account.js:31`
-- `apiRequest` (function) `static/js/account.js:36`
-- `loadState` (function) `static/js/account.js:54`
-- `collectSlots` (function) `static/js/account.js:60`
-- `handleConfigure` (function) `static/js/account.js:73`
-- `handleOpen` (function) `static/js/account.js:103`
-- `handleReset` (function) `static/js/account.js:125`
-- `init` (function) `static/js/account.js:138`
-
-## static/js/coded-text.js
-- `randomChar` (function) `static/js/coded-text.js:13`
-- `animateElement` (function) `static/js/coded-text.js:19`
-- `init` (function) `static/js/coded-text.js:50`
-
-## static/js/login.js
-Depends on: `static/js/qv-crypto.js`
-Imported by: `static/js/qv-crypto.js`
-- `handleLogin` (function) `static/js/login.js:11`
-- `init` (function) `static/js/login.js:44`
-
-## static/js/messages.js
-Depends on: `static/js/qv-crypto.js`
-- `getCsrfToken` (function) `static/js/messages.js:12`
-- `handleSend` (function) `static/js/messages.js:17`
-- `collectEnvelopes` (function) `static/js/messages.js:44`
-- `handleDecryptInbox` (function) `static/js/messages.js:60`
-- `initEditor` (function) `static/js/messages.js:88`
-- `init` (function) `static/js/messages.js:109`
-
-## static/js/qv-crypto.js
-Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
-Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
-- `concatBytes` (function) `static/js/qv-crypto.js:59`
-- `hexToBytes` (function) `static/js/qv-crypto.js:70`
-- `bytesToHex` (function) `static/js/qv-crypto.js:79`
-- `bytesToBase64` (function) `static/js/qv-crypto.js:85`
-- `bytesToBase32` (function) `static/js/qv-crypto.js:96`
-- `base64ToBytes` (function) `static/js/qv-crypto.js:114`
-- `bytesToBigInt` (function) `static/js/qv-crypto.js:121`
-- `i2osp` (function) `static/js/qv-crypto.js:128` -- Encode an integer as a big-endian byte string padded to the length of N.
-- `mod` (function) `static/js/qv-crypto.js:138`
-- `modPow` (function) `static/js/qv-crypto.js:142`
-- `randomBytes` (function) `static/js/qv-crypto.js:160`
-- `H` (function) `static/js/qv-crypto.js:169`
-- `Hint` (function) `static/js/qv-crypto.js:173`
-- `deriveKeyFromPassphrase` (function) `static/js/qv-crypto.js:184` -- Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2 iteration count.
-- `deriveMasterKey` (function) `static/js/qv-crypto.js:205`
-- `aesGcmEncrypt` (function) `static/js/qv-crypto.js:209`
-- `aesGcmDecrypt` (function) `static/js/qv-crypto.js:220`
-- `computeK` (function) `static/js/qv-crypto.js:251`
-- `deriveVerifier` (function) `static/js/qv-crypto.js:256` -- Derive x = H(salt | H(I | ":" | P)) and the verifier v = g^x mod N.
-- `srpLogin` (function) `static/js/qv-crypto.js:263` -- Run a full SRP-6a login against the server, verifying the server proof M2.
-- `generateIdentity` (function) `static/js/qv-crypto.js:316` -- Generate the user's hybrid (ML-KEM-768 + X25519) key pair.
-- `parsePublicKey` (function) `static/js/qv-crypto.js:344`
-- `parsePrivateBlob` (function) `static/js/qv-crypto.js:352`
-- `deriveWrapKey` (function) `static/js/qv-crypto.js:360`
-- `wrapKey` (function) `static/js/qv-crypto.js:371` -- Seal a file encryption key to a recipient's hybrid public key.
-- `unwrapKey` (function) `static/js/qv-crypto.js:395` -- Recover a file encryption key using the recipient's hybrid private blob.
-- `generateRecoveryCode` (function) `static/js/qv-crypto.js:417` -- Generate a QV-RECOVERY-1 code: 20 random bytes (160 bits) Base32-encoded (RFC 4648, no padding) and grouped as...
-- `normalizeRecoveryCode` (function) `static/js/qv-crypto.js:429` -- Normalize a user-entered recovery code: strip surrounding whitespace, remove group separators, and uppercase, so...
-- `wrapPrivateKeyForRecovery` (function) `static/js/qv-crypto.js:436` -- Re-wrap an existing privateBlob under a key derived from a recovery code, using the same PBKDF2-SHA256 + AES-256-GCM...
-- `derivePublicKeyFromPrivateBlob` (function) `static/js/qv-crypto.js:455` -- Reconstruct the public key (the same {v, mlkem, x} structure produced by generateIdentity) from a decrypted privateBlob.
-- `postJson` (function) `static/js/qv-crypto.js:473`
-- `buildRegistration` (function) `static/js/qv-crypto.js:496` -- Build the zero-knowledge registration payload entirely in the browser.
-- `register` (function) `static/js/qv-crypto.js:530`
-- `recoverAccount` (function) `static/js/qv-crypto.js:541` -- Reset SRP credentials and the password-encrypted private key using a QV-RECOVERY-1 recovery code, without ever...
-- `login` (function) `static/js/qv-crypto.js:592`
-- `encryptAndUpload` (function) `static/js/qv-crypto.js:599` -- Generate a fresh file key, encrypt the padded file, wrap the key, and upload.
-- `downloadAndDecrypt` (function) `static/js/qv-crypto.js:629` -- Download an encrypted file and its key, then decrypt it in the browser.
-- `fetchPublicKey` (function) `static/js/qv-crypto.js:668` -- Fetch a user's hybrid public key so the browser can wrap content to them.
-- `sendSecureMessage` (function) `static/js/qv-crypto.js:683` -- Encrypt a message to a recipient (keeping a sender-readable outbox copy) and POST the opaque envelope.
-- `decryptInbox` (function) `static/js/qv-crypto.js:714` -- Decrypt a batch of inbox envelopes with the user's password.
-
-## static/js/qv-deniable.js
-Depends on: `static/js/qv-crypto.js`
-Imported by: `static/js/account.js`
-- `toBytes` (function) `static/js/qv-deniable.js:48`
-- `frame` (function) `static/js/qv-deniable.js:56` -- Frame a payload as [len(4) | payload | random padding] of exactly `paddedLength` bytes.
-- `unframe` (function) `static/js/qv-deniable.js:65` -- Reverse frame(): read the length prefix and return the exact payload bytes.
-- `sealSlot` (function) `static/js/qv-deniable.js:82` -- Encrypt one slot's framed plaintext under a passphrase, returning the {salt, nonce, ct} object the envelope stores.
-- `openSlot` (function) `static/js/qv-deniable.js:102` -- Attempt to open one slot with a passphrase.
-- `buildDeniableVault` (function) `static/js/qv-deniable.js:125` -- Build a deniable container from a list of slot specifications.
-- `openDeniableVault` (function) `static/js/qv-deniable.js:170` -- Open a container with a passphrase.
-
-## static/js/qv-padding.js
-Depends on: `utils/padding.py`
-Imported by: `static/js/qv-crypto.js`
-- `tableFor` (function) `static/js/qv-padding.js:16`
-- `bucketFor` (function) `static/js/qv-padding.js:20`
-- `randomPad` (function) `static/js/qv-padding.js:34`
-- `padFramed` (function) `static/js/qv-padding.js:42`
-- `unframeFramed` (function) `static/js/qv-padding.js:54`
-
-## static/js/recover.js
-Depends on: `static/js/qv-crypto.js`
-- `setStatus` (function) `static/js/recover.js:15`
-- `handleRecover` (function) `static/js/recover.js:22`
-- `init` (function) `static/js/recover.js:80`
-
-## static/js/register.js
-Depends on: `static/js/qv-crypto.js`
-Imported by: `static/js/qv-crypto.js`
-- `showRecoveryCode` (function) `static/js/register.js:17` -- Display the one-time QV-RECOVERY-1 code in a modal and wait for the user to acknowledge they have saved it before...
-- `handleRegister` (function) `static/js/register.js:42`
-- `init` (function) `static/js/register.js:110`
-
-## static/js/upload.js
-Depends on: `static/js/qv-crypto.js`
-- `getCsrfToken` (function) `static/js/upload.js:12`
-- `getUsername` (function) `static/js/upload.js:17`
-- `getPublicKey` (function) `static/js/upload.js:23`
-- `handleUpload` (function) `static/js/upload.js:40`
-- `handleDownload` (function) `static/js/upload.js:74`
-- `init` (function) `static/js/upload.js:97`
-
-## templates/terms.py
-- `terms` (function) `templates/terms.py:6` `def terms()` -- Render the About page.
-
 ## tools/generate_sri.py
 Depends on: `utils/integrity.py`
 - `collect_local_assets` (function) `tools/generate_sri.py:41` `def collect_local_assets()` -- Hash every first-party script and stylesheet under ``static/``.
@@ -387,14 +391,14 @@ Imported by: `tests/test_integrity.py`
 - `Cache.delete` (method) `utils/cache.py:20` `def delete(self, key)` -- Delete a key from the cache.
 
 ## utils/integrity.py
-Imported by: `app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
-- `manifest_path` (function) `utils/integrity.py:25` `def manifest_path()` -- Return the manifest path resolved from this file, never hardcoded.
-- `compute_sri` (function) `utils/integrity.py:30` `def compute_sri(data, algorithm)` -- Return the SRI string ``<algorithm>-<base64 digest>`` for ``data``.
-- `compute_file_sri` (function) `utils/integrity.py:36` `def compute_file_sri(path, algorithm)` -- Return the SRI string for the bytes stored at ``path``.
-- `load_manifest` (function) `utils/integrity.py:47` `def load_manifest()` -- Return the parsed SRI manifest, or an empty mapping when absent.
-- `integrity_for` (function) `utils/integrity.py:55` `def integrity_for(key)` -- Return the pinned integrity string for one manifest key.
-- `clear_manifest_cache` (function) `utils/integrity.py:72` `def clear_manifest_cache()` -- Drop the cached manifest text so tests see a regenerated file.
-- `template_integrity` (function) `utils/integrity.py:77` `def template_integrity(key)` -- Return the integrity string for a template asset reference.
+Imported by: `quantumvault/app_factory.py`, `tests/test_integrity.py`, `tools/generate_sri.py`, `tools/verify_build.py`
+- `manifest_path` (function) `utils/integrity.py:26` `def manifest_path()` -- Return the manifest path resolved from this file, never hardcoded.
+- `compute_sri` (function) `utils/integrity.py:40` `def compute_sri(data, algorithm)` -- Return the SRI string ``<algorithm>-<base64 digest>`` for ``data``.
+- `compute_file_sri` (function) `utils/integrity.py:46` `def compute_file_sri(path, algorithm)` -- Return the SRI string for the bytes stored at ``path``.
+- `load_manifest` (function) `utils/integrity.py:57` `def load_manifest()` -- Return the parsed SRI manifest, or an empty mapping when absent.
+- `integrity_for` (function) `utils/integrity.py:65` `def integrity_for(key)` -- Return the pinned integrity string for one manifest key.
+- `clear_manifest_cache` (function) `utils/integrity.py:82` `def clear_manifest_cache()` -- Drop the cached manifest text so tests see a regenerated file.
+- `template_integrity` (function) `utils/integrity.py:87` `def template_integrity(key)` -- Return the integrity string for a template asset reference.
 
 ## utils/mailer.py
 Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py`, `views/auth.py`
@@ -403,7 +407,7 @@ Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py
 - `send_transactional_email` (function) `utils/mailer.py:51` `def send_transactional_email(subject, recipients, body)` -- Send a plain-text transactional email through the configured server.
 
 ## utils/padding.py
-Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
+Imported by: `controllers/file.py`, `controllers/message.py`, `quantumvault/static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 - `PaddingConfig.buckets_for` (method) `utils/padding.py:84` `def buckets_for(self, kind)` -- Return the bucket table for ``kind``.
 - `PaddingConfig.max_plaintext_bytes` (method) `utils/padding.py:90` `def max_plaintext_bytes(self, kind)` -- Return the largest plaintext that fits ``kind``.
 - `config_from_env` (function) `utils/padding.py:109` `def config_from_env()` -- Build a :class:`PaddingConfig` from the environment.
@@ -448,7 +452,7 @@ Imported by: `controllers/auth.py`, `controllers/deniable_vault.py`, `controller
 - `verify` (function) `utils/srp6a.py:260` `def verify(store, username, client_m1_hex)` -- Process the SRP ``verify`` step and return the server proof M2.
 
 ## utils/utils.py
-Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+Imported by: `app.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `quantumvault/app_factory.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
 - `database_path` (function) `utils/utils.py:12` `def database_path()` -- Return the SQLite database path from config, with a legacy fallback.
 - `as_bool` (function) `utils/utils.py:29` `def as_bool(value, default)` -- Coerce an environment or payload value into a real boolean.
 - `sanitize_path` (function) `utils/utils.py:49` `def sanitize_path(path)` -- Sanitiza una ruta de archivo para prevenir LFI y path traversal. - Elimina caracteres peligrosos - Normaliza la ruta...
@@ -456,12 +460,12 @@ Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/fil
 - `load_payload` (function) `utils/utils.py:168` `def load_payload()` -- Load non-secret application configuration from ``payload.json``.
 
 ## views/about.py
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `about` (function) `views/about.py:6` `def about()` -- Render the About page.
 
 ## views/account.py
 Depends on: `controllers/deniable_vault.py`, `controllers/facade.py`, `models/deniable_vault.py`, `utils/security.py`
-Imported by: `app_factory.py`
+Imported by: `quantumvault/app_factory.py`
 - `get_deniable_vault_controller` (function) `views/account.py:51` `def get_deniable_vault_controller()` -- Build a controller bound to the active app's database and config.
 - `settings` (function) `views/account.py:65` `def settings()` -- Render the account settings page.
 - `get_vault` (function) `views/account.py:85` `def get_vault()` -- Return the user's container and the build parameters.
@@ -470,7 +474,7 @@ Imported by: `app_factory.py`
 
 ## views/admin.py
 Depends on: `controllers/contact.py`, `controllers/secure_channel.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
-Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
+Imported by: `quantumvault/app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
 - `admin` (function) `views/admin.py:186` `def admin()` -- Plan catalog read view.
 - `superadmin_edit_user` (function) `views/admin.py:208` `def superadmin_edit_user(username)` -- Full profile edit for a single user.
 - `manage_plans` (function) `views/admin.py:313` `def manage_plans()` -- Handle plan management.

@@ -2,26 +2,8 @@
 
 ## Internal Dependencies
 
-- `app.py` -> `app_factory.py`
+- `app.py` -> `quantumvault/app_factory.py`
 - `app.py` -> `utils/utils.py`
-- `app_factory.py` -> `controllers/file.py`
-- `app_factory.py` -> `controllers/sync.py`
-- `app_factory.py` -> `models/user.py`
-- `app_factory.py` -> `utils/integrity.py`
-- `app_factory.py` -> `utils/utils.py`
-- `app_factory.py` -> `views/about.py`
-- `app_factory.py` -> `views/account.py`
-- `app_factory.py` -> `views/admin.py`
-- `app_factory.py` -> `views/auth.py`
-- `app_factory.py` -> `views/facade.py`
-- `app_factory.py` -> `views/faq.py`
-- `app_factory.py` -> `views/file.py`
-- `app_factory.py` -> `views/message.py`
-- `app_factory.py` -> `views/privacy.py`
-- `app_factory.py` -> `views/subscription.py`
-- `app_factory.py` -> `views/sync.py`
-- `app_factory.py` -> `views/terms.py`
-- `app_factory.py` -> `views/views.py`
 - `controllers/auth.py` -> `models/plans.py`
 - `controllers/auth.py` -> `models/user.py`
 - `controllers/auth.py` -> `utils/__init__.py`
@@ -38,6 +20,37 @@
 - `controllers/message.py` -> `models/user.py`
 - `controllers/message.py` -> `utils/padding.py`
 - `controllers/message.py` -> `utils/utils.py`
+- `quantumvault/__init__.py` -> `utils/version.py`
+- `quantumvault/app_factory.py` -> `controllers/file.py`
+- `quantumvault/app_factory.py` -> `controllers/sync.py`
+- `quantumvault/app_factory.py` -> `models/user.py`
+- `quantumvault/app_factory.py` -> `utils/integrity.py`
+- `quantumvault/app_factory.py` -> `utils/utils.py`
+- `quantumvault/app_factory.py` -> `views/about.py`
+- `quantumvault/app_factory.py` -> `views/account.py`
+- `quantumvault/app_factory.py` -> `views/admin.py`
+- `quantumvault/app_factory.py` -> `views/auth.py`
+- `quantumvault/app_factory.py` -> `views/facade.py`
+- `quantumvault/app_factory.py` -> `views/faq.py`
+- `quantumvault/app_factory.py` -> `views/file.py`
+- `quantumvault/app_factory.py` -> `views/message.py`
+- `quantumvault/app_factory.py` -> `views/privacy.py`
+- `quantumvault/app_factory.py` -> `views/subscription.py`
+- `quantumvault/app_factory.py` -> `views/sync.py`
+- `quantumvault/app_factory.py` -> `views/terms.py`
+- `quantumvault/app_factory.py` -> `views/views.py`
+- `quantumvault/static/js/account.js` -> `quantumvault/static/js/qv-deniable.js`
+- `quantumvault/static/js/login.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/static/js/messages.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/static/js/qv-crypto.js` -> `quantumvault/static/js/login.js`
+- `quantumvault/static/js/qv-crypto.js` -> `quantumvault/static/js/qv-padding.js`
+- `quantumvault/static/js/qv-crypto.js` -> `quantumvault/static/js/register.js`
+- `quantumvault/static/js/qv-deniable.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/static/js/qv-padding.js` -> `utils/padding.py`
+- `quantumvault/static/js/recover.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/static/js/register.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/static/js/upload.js` -> `quantumvault/static/js/qv-crypto.js`
+- `quantumvault/wsgi.py` -> `quantumvault/app_factory.py`
 - `scripts/email_tool.py` -> `models/user.py`
 - `scripts/email_tool.py` -> `utils/mailer.py`
 - `scripts/email_tool.py` -> `utils/utils.py`
@@ -45,30 +58,19 @@
 - `scripts/test_bloque1.py` -> `app.py`
 - `scripts/test_bloque1.py` -> `models/user.py`
 - `scripts/test_bloque1.py` -> `views/admin.py`
-- `static/js/account.js` -> `static/js/qv-deniable.js`
-- `static/js/login.js` -> `static/js/qv-crypto.js`
-- `static/js/messages.js` -> `static/js/qv-crypto.js`
-- `static/js/qv-crypto.js` -> `static/js/login.js`
-- `static/js/qv-crypto.js` -> `static/js/qv-padding.js`
-- `static/js/qv-crypto.js` -> `static/js/register.js`
-- `static/js/qv-deniable.js` -> `static/js/qv-crypto.js`
-- `static/js/qv-padding.js` -> `utils/padding.py`
-- `static/js/recover.js` -> `static/js/qv-crypto.js`
-- `static/js/register.js` -> `static/js/qv-crypto.js`
-- `static/js/upload.js` -> `static/js/qv-crypto.js`
-- `tests/conftest.py` -> `app_factory.py`
+- `tests/conftest.py` -> `quantumvault/app_factory.py`
 - `tests/conftest.py` -> `utils/security.py`
-- `tests/test_account_facade.py` -> `app_factory.py`
 - `tests/test_account_facade.py` -> `controllers/facade.py`
 - `tests/test_account_facade.py` -> `models/user.py`
-- `tests/test_cover.py` -> `app_factory.py`
+- `tests/test_account_facade.py` -> `quantumvault/app_factory.py`
 - `tests/test_cover.py` -> `controllers/facade.py`
+- `tests/test_cover.py` -> `quantumvault/app_factory.py`
 - `tests/test_deniable_vault.py` -> `controllers/deniable_vault.py`
 - `tests/test_deniable_vault.py` -> `models/deniable_vault.py`
 - `tests/test_deniable_vault.py` -> `models/user.py`
-- `tests/test_facade.py` -> `app_factory.py`
 - `tests/test_facade.py` -> `controllers/facade.py`
 - `tests/test_facade.py` -> `models/user.py`
+- `tests/test_facade.py` -> `quantumvault/app_factory.py`
 - `tests/test_integrity.py` -> `tools/verify_build.py`
 - `tests/test_integrity.py` -> `utils/integrity.py`
 - `tests/test_padding.py` -> `controllers/file.py`
@@ -118,12 +120,10 @@
 - `views/sync.py` -> `utils/utils.py`
 - `views/views.py` -> `models/user.py`
 - `views/views.py` -> `utils/utils.py`
-- `wsgi.py` -> `app_factory.py`
 
 ## External Imports
 
 - `app.py` -> os, sys
-- `app_factory.py` -> __future__, boto3, botocore.config, datetime, flask, flask_cors, flask_limiter, flask_limiter.util, flask_login, flask_mail, flask_talisman, flask_wtf.csrf, json, logging, os, secrets, sys, typing, werkzeug.middleware.proxy_fix
 - `client.go` -> crypto/aes, crypto/cipher, crypto/rand, flag, fmt, github.com/open-quantum-safe/liboqs-go/oqs, net
 - `client.py` -> argparse, cryptography.hazmat.primitives, cryptography.hazmat.primitives.ciphers.aead, cryptography.hazmat.primitives.kdf.pbkdf2, oqs, os, socket
 - `controllers/auth.py` -> clicksend_client, clicksend_client.rest, datetime, flask, flask_mail, os, pytz, secrets, typing
@@ -143,14 +143,16 @@
 - `models/superadmin_audit.py` -> datetime, sqlite3, typing
 - `models/user.py` -> datetime, flask, flask_login, pydantic, pytz, sqlite3, typing
 - `pq_decrypt_password.py` -> argparse, utils.crypto
+- `quantumvault/app_factory.py` -> __future__, boto3, botocore.config, datetime, flask, flask_cors, flask_limiter, flask_limiter.util, flask_login, flask_mail, flask_talisman, flask_wtf.csrf, json, logging, os, secrets, sys, typing, werkzeug.middleware.proxy_fix
+- `quantumvault/static/js/qv-crypto.js` -> ./vendor/ed25519.js, ./vendor/hkdf.js, ./vendor/ml_kem.js, ./vendor/sha2.js
+- `quantumvault/templates/terms.py` -> flask
+- `quantumvault/wsgi.py` -> gunicorn.app.wsgiapp, os, sys
 - `scripts/doctor.py` -> __future__, argparse, dataclasses, hashlib, importlib, os, pathlib, platform, shutil, socket, subprocess, sys, urllib.request
 - `scripts/email_tool.py` -> argparse, flask, flask_mail, os, sys
 - `scripts/makeadmin.py` -> argparse, os, sys
 - `scripts/test_bloque1.py` -> os, re, shutil, sys
 - `server.go` -> crypto/aes, crypto/cipher, fmt, github.com/open-quantum-safe/liboqs-go/oqs, net
 - `server.py` -> cryptography.hazmat.primitives, cryptography.hazmat.primitives.ciphers.aead, cryptography.hazmat.primitives.kdf.pbkdf2, oqs, socket
-- `static/js/qv-crypto.js` -> ./vendor/ed25519.js, ./vendor/hkdf.js, ./vendor/ml_kem.js, ./vendor/sha2.js
-- `templates/terms.py` -> flask
 - `tests/conftest.py` -> __future__, dotenv, logging, os, pytest, sys
 - `tests/test_account_facade.py` -> __future__, datetime, pytest
 - `tests/test_auth_phone.py` -> __future__
@@ -168,7 +170,7 @@
 - `tools/mutation_test.py` -> __future__, argparse, dataclasses, io, os, pathlib, subprocess, sys, tokenize
 - `tools/verify_build.py` -> __future__, html.parser, json, pathlib, re, sys
 - `utils/cache.py` -> json, redis, typing
-- `utils/integrity.py` -> __future__, base64, functools, hashlib, json, pathlib, typing
+- `utils/integrity.py` -> __future__, base64, functools, hashlib, json, os, pathlib, typing
 - `utils/mailer.py` -> flask, flask_mail, typing
 - `utils/padding.py` -> __future__, dataclasses, functools, os, secrets, struct, typing
 - `utils/plans.py` -> typing
@@ -189,4 +191,3 @@
 - `views/sync.py` -> flask, flask_limiter, flask_limiter.util, flask_login, os
 - `views/terms.py` -> flask
 - `views/views.py` -> flask, flask_login, flask_wtf, wtforms
-- `wsgi.py` -> os

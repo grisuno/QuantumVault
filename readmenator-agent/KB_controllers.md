@@ -117,7 +117,7 @@
   - `get_encrypted_file_and_key` (method, line 118) `def get_encrypted_file_and_key(self, username, filename)`
   - `list_encrypted_files` (method, line 148) `def list_encrypted_files(self, username)`
 - Depends on: `utils/padding.py`, `utils/utils.py`
-- Imported by: `app_factory.py`, `tests/test_padding.py`
+- Imported by: `quantumvault/app_factory.py`, `tests/test_padding.py`
 
 ## controllers/message.py
 - Doc: Server-side controller for end-to-end encrypted messages.
@@ -183,4 +183,4 @@
   - `SyncController` (class, line 7) `class SyncController`
   - `__init__` (method, line 8) `def __init__(self, users_path, s3_bucket, s3_client, file_controller)`
   - `get_storage_usage` (method, line 14) `def get_storage_usage(self, username)`
-- Imported by: `app_factory.py`
+- Imported by: `quantumvault/app_factory.py`

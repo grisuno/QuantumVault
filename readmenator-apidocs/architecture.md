@@ -4,7 +4,7 @@
 
 ## Architecture Overview
 
-15 components stacked in 5 dependency tiers (weighted Eades-Lin-Smyth ordering: arrows point from dependent to dependency, top to bottom). Labels are import counts, thick arrows the top quartile; 3 transitively implied edges are omitted. Dashed red arrows are upward dependencies: the smallest set of imports that closes every cycle and breaks the layering. Cyan components hold entry points. Interactive version: `readmenator-apidocs/index.html#/flows`.
+14 components stacked in 4 dependency tiers (weighted Eades-Lin-Smyth ordering: arrows point from dependent to dependency, top to bottom). Labels are import counts, thick arrows the top quartile; 2 transitively implied edges are omitted. Dashed red arrows are upward dependencies: the smallest set of imports that closes every cycle and breaks the layering. Cyan components hold entry points. Interactive version: `readmenator-apidocs/index.html#/flows`.
 
 Upward dependencies to fix first: `views: auth` -> `utils` (2 imports); `views: deniable_vault` -> `views: auth` (2 imports); `views: auth` -> `controllers` (1 imports); `controllers` -> `views: facade` (1 imports); `views: deniable_vault` -> `views: facade` (1 imports)
 
@@ -15,51 +15,45 @@ flowchart TB
     classDef entry fill:#0e7490,stroke:#22d3ee,color:#ecfeff,stroke-width:2px;
     subgraph lane_0["Tier 1 - entry / orchestration"]
         direction LR
-        n_c2["static/js<br/>9 files, 81 symbols<br/>Core / utility"]:::default
-        n_c1["views: facade<br/>8 files, 46 symbols<br/>Presentation / entry"]:::entry
+        n_c3["quantumvault/static/js<br/>9 files, 81 symbols<br/>Core / utility"]:::default
+        n_c1["views: facade<br/>8 files, 47 symbols<br/>Presentation / entry"]:::entry
         n_d_views["views<br/>1 files, 0 symbols<br/>Presentation / entry"]:::default
-        n_d_utils["utils<br/>4 files, 22 symbols<br/>Core / utility"]:::default
-        n_d_templates["templates<br/>1 files, 1 symbols<br/>Presentation / entry"]:::default
-        n_d_static["static<br/>1 files, 3 symbols<br/>Core / utility"]:::default
+        n_d_utils["utils<br/>3 files, 22 symbols<br/>Core / utility"]:::default
         n_d_scripts["scripts<br/>3 files, 32 symbols<br/>Core / utility"]:::default
+        n_d_quantumvault["quantumvault<br/>2 files, 4 symbols<br/>Presentation / entry"]:::default
         n_d_models["models<br/>1 files, 0 symbols<br/>Business logic"]:::default
         n_d_controllers["controllers<br/>1 files, 0 symbols<br/>Presentation / entry"]:::default
         n_d__root_["(root)<br/>10 files, 12 symbols<br/>Core / utility"]:::entry
+        n_c6["quantumvault<br/>2 files, 0 symbols<br/>Core / utility"]:::default
     end
     subgraph lane_1["Tier 2"]
         direction LR
-        n_c6["tools<br/>3 files, 24 symbols<br/>Core / utility"]:::cycle
-        n_c3["controllers<br/>6 files, 76 symbols<br/>Presentation / entry"]:::entry
+        n_c4["controllers<br/>6 files, 76 symbols<br/>Presentation / entry"]:::entry
+        n_c2["utils<br/>7 files, 50 symbols<br/>Core / utility"]:::cycle
     end
     subgraph lane_2["Tier 3"]
         direction LR
-        n_c5["utils<br/>6 files, 37 symbols<br/>Presentation / entry"]:::cycle
+        n_c0["views: auth<br/>15 files, 127 symbols<br/>Presentation / entry"]:::cycle
     end
-    subgraph lane_3["Tier 4"]
+    subgraph lane_3["Tier 4 - foundation"]
         direction LR
-        n_c0["views: auth<br/>13 files, 116 symbols<br/>Presentation / entry"]:::cycle
+        n_c5["views: deniable_vault<br/>5 files, 45 symbols<br/>Presentation / entry"]:::cycle
     end
-    subgraph lane_4["Tier 5 - foundation"]
-        direction LR
-        n_c4["views: deniable_vault<br/>5 files, 45 symbols<br/>Presentation / entry"]:::cycle
-    end
-    n_c0 ==>|"2"| n_c4
-    n_c1 -->|"1"| n_c3
-    n_c1 -->|"1"| n_c6
-    n_c2 -->|"1"| n_c5
-    n_c3 ==>|"6"| n_c0
-    n_c5 ==>|"5"| n_c0
-    n_c6 -->|"1"| n_c5
-    n_c3 <-.-|"1 upward"| n_c0
-    n_c5 <-.-|"2 upward"| n_c0
-    n_c1 <-.-|"1 upward"| n_c3
-    n_c0 <-.-|"2 upward"| n_c4
+    n_c0 ==>|"2"| n_c5
+    n_c1 ==>|"2"| n_c2
+    n_c1 -->|"1"| n_c4
+    n_c2 ==>|"4"| n_c0
+    n_c3 -->|"1"| n_c2
+    n_c4 ==>|"6"| n_c0
+    n_c2 <-.-|"2 upward"| n_c0
+    n_c4 <-.-|"1 upward"| n_c0
     n_c1 <-.-|"1 upward"| n_c4
-    linkStyle 7,8,9,10,11 stroke:#f87171,stroke-width:2px;
-    n_c2 ~~~ n_c6
-    n_c6 ~~~ n_c5
-    n_c5 ~~~ n_c0
-    n_c0 ~~~ n_c4
+    n_c0 <-.-|"2 upward"| n_c5
+    n_c1 <-.-|"1 upward"| n_c5
+    linkStyle 6,7,8,9,10 stroke:#f87171,stroke-width:2px;
+    n_c3 ~~~ n_c4
+    n_c4 ~~~ n_c0
+    n_c0 ~~~ n_c5
 ```
 
 ---
@@ -136,13 +130,13 @@ flowchart LR
     n_utils_utils_py__Config["utils.Config<br/>Application configuration sourced from #96;#96;payl...<br/>utils.py:103"]:::external
     n_utils_utils_py__load_payload["utils.load_payload<br/>Load non-secret application configuration fro...<br/>utils.py:168"]:::external
     n_app_py___is_production_like["app._is_production_like<br/>Return True if the runtime looks like a publi...<br/>app.py:58"]:::default
-    n_app_factory_py__create_app["app_factory.create_app<br/>Build and return a fully-configured Flask app...<br/>app_factory.py:237"]:::external
-    n_app_factory_py___configure_secret_key["app_factory._configure_secret_key<br/>Set #96;#96;app.config['SECRET_KEY']#96;#96; from env, pa...<br/>app_factory.py:160"]:::external
-    n_app_factory_py___is_production["app_factory._is_production<br/>Return True unless the operator explicitly op...<br/>app_factory.py:71"]:::external
-    n_app_factory_py___configure_session["app_factory._configure_session<br/>Apply session lifetime and cookie hardening.<br/>app_factory.py:203"]:::external
-    n_app_factory_py___configure_logging["app_factory._configure_logging<br/>Wire up a structured application logger.<br/>app_factory.py:220"]:::external
-    n_app_factory_py___build_talisman_kwargs["app_factory._build_talisman_kwargs<br/>Return kwargs to pass to #96;#96;Talisman#96;#96; based o...<br/>app_factory.py:119"]:::external
-    n_app_factory_py___build_csp["app_factory._build_csp<br/>Return the strict Content-Security-Policy use...<br/>app_factory.py:82"]:::external
+    n_quantumvault_app_factory_py__create_app["app_factory.create_app<br/>Build and return a fully-configured Flask app...<br/>app_factory.py:237"]:::external
+    n_quantumvault_app_factory_py___configure_secret_key["app_factory._configure_secret_key<br/>Set #96;#96;app.config['SECRET_KEY']#96;#96; from env, pa...<br/>app_factory.py:160"]:::external
+    n_quantumvault_app_factory_py___is_production["app_factory._is_production<br/>Return True unless the operator explicitly op...<br/>app_factory.py:71"]:::external
+    n_quantumvault_app_factory_py___configure_session["app_factory._configure_session<br/>Apply session lifetime and cookie hardening.<br/>app_factory.py:203"]:::external
+    n_quantumvault_app_factory_py___configure_logging["app_factory._configure_logging<br/>Wire up a structured application logger.<br/>app_factory.py:220"]:::external
+    n_quantumvault_app_factory_py___build_talisman_kwargs["app_factory._build_talisman_kwargs<br/>Return kwargs to pass to #96;#96;Talisman#96;#96; based o...<br/>app_factory.py:119"]:::external
+    n_quantumvault_app_factory_py___build_csp["app_factory._build_csp<br/>Return the strict Content-Security-Policy use...<br/>app_factory.py:82"]:::external
     n_controllers_file_py__FileController["file.FileController<br/>Persistence for end-to-end encrypted files an...<br/>file.py:51"]:::external
     n_controllers_sync_py__SyncController["sync.SyncController<br/>sync.py:7"]:::external
     n_views_facade_py__register_facade["facade.register_facade<br/>Install the facade on #96;#96;app#96;#96; when it is enab...<br/>facade.py:33"]:::external
@@ -161,21 +155,21 @@ flowchart LR
     n_app_py__main -->|"1"| n_utils_utils_py__Config
     n_app_py__main -->|"2"| n_utils_utils_py__load_payload
     n_app_py__main -->|"3"| n_app_py___is_production_like
-    n_app_py__main -->|"4"| n_app_factory_py__create_app
-    n_app_factory_py__create_app -.-> n_utils_utils_py__Config
-    n_app_factory_py__create_app -.-> n_utils_utils_py__load_payload
-    n_app_factory_py__create_app -->|"1"| n_app_factory_py___configure_secret_key
-    n_app_factory_py___configure_secret_key -->|"1"| n_app_factory_py___is_production
-    n_app_factory_py__create_app -->|"2"| n_app_factory_py___configure_session
-    n_app_factory_py___configure_session -.-> n_app_factory_py___is_production
-    n_app_factory_py__create_app -->|"3"| n_app_factory_py___configure_logging
-    n_app_factory_py___configure_logging -.-> n_app_factory_py___is_production
-    n_app_factory_py__create_app -->|"4"| n_app_factory_py___build_talisman_kwargs
-    n_app_factory_py___build_talisman_kwargs -.-> n_app_factory_py___is_production
-    n_app_factory_py___build_talisman_kwargs -->|"1"| n_app_factory_py___build_csp
-    n_app_factory_py__create_app -->|"5"| n_controllers_file_py__FileController
-    n_app_factory_py__create_app -->|"6"| n_controllers_sync_py__SyncController
-    n_app_factory_py__create_app -->|"7"| n_views_facade_py__register_facade
+    n_app_py__main -->|"4"| n_quantumvault_app_factory_py__create_app
+    n_quantumvault_app_factory_py__create_app -.-> n_utils_utils_py__Config
+    n_quantumvault_app_factory_py__create_app -.-> n_utils_utils_py__load_payload
+    n_quantumvault_app_factory_py__create_app -->|"1"| n_quantumvault_app_factory_py___configure_secret_key
+    n_quantumvault_app_factory_py___configure_secret_key -->|"1"| n_quantumvault_app_factory_py___is_production
+    n_quantumvault_app_factory_py__create_app -->|"2"| n_quantumvault_app_factory_py___configure_session
+    n_quantumvault_app_factory_py___configure_session -.-> n_quantumvault_app_factory_py___is_production
+    n_quantumvault_app_factory_py__create_app -->|"3"| n_quantumvault_app_factory_py___configure_logging
+    n_quantumvault_app_factory_py___configure_logging -.-> n_quantumvault_app_factory_py___is_production
+    n_quantumvault_app_factory_py__create_app -->|"4"| n_quantumvault_app_factory_py___build_talisman_kwargs
+    n_quantumvault_app_factory_py___build_talisman_kwargs -.-> n_quantumvault_app_factory_py___is_production
+    n_quantumvault_app_factory_py___build_talisman_kwargs -->|"1"| n_quantumvault_app_factory_py___build_csp
+    n_quantumvault_app_factory_py__create_app -->|"5"| n_controllers_file_py__FileController
+    n_quantumvault_app_factory_py__create_app -->|"6"| n_controllers_sync_py__SyncController
+    n_quantumvault_app_factory_py__create_app -->|"7"| n_views_facade_py__register_facade
     n_views_facade_py__register_facade -->|"1"| n_controllers_facade_py__from_mapping
     n_controllers_facade_py__from_mapping -->|"1"| n_controllers_facade_py___as_bool
     n_controllers_facade_py__from_mapping -->|"2"| n_controllers_facade_py__read
@@ -197,17 +191,17 @@ sequenceDiagram
     autonumber
     participant p_app_py as app.py
     participant p_utils_utils_py as utils.py
-    participant p_app_factory_py as app_factory.py
+    participant p_quantumvault_app_factory_py as app_factory.py
     participant p_controllers_file_py as file.py
     participant p_controllers_sync_py as sync.py
     participant p_views_facade_py as facade.py
     participant p_controllers_facade_py as facade.py
     p_app_py->>p_utils_utils_py: Config()
     p_app_py->>p_utils_utils_py: load_payload()
-    p_app_py->>p_app_factory_py: create_app()
-    p_app_factory_py->>p_controllers_file_py: FileController()
-    p_app_factory_py->>p_controllers_sync_py: SyncController()
-    p_app_factory_py->>p_views_facade_py: register_facade()
+    p_app_py->>p_quantumvault_app_factory_py: create_app()
+    p_quantumvault_app_factory_py->>p_controllers_file_py: FileController()
+    p_quantumvault_app_factory_py->>p_controllers_sync_py: SyncController()
+    p_quantumvault_app_factory_py->>p_views_facade_py: register_facade()
     p_views_facade_py->>p_controllers_facade_py: FacadeConfig.from_mapping()
     p_views_facade_py->>p_controllers_facade_py: FacadeGate.build()
     p_views_facade_py->>p_controllers_facade_py: FacadeConfig.cover_variables()

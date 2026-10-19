@@ -179,7 +179,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 `constant` | [tools/generate_sri.py:26](../../tools/generate_sri.py#L26)
 
 ```python
-STATIC_DIR = PROJECT_ROOT / 'static'
+STATIC_DIR = PROJECT_ROOT / 'quantumvault' / 'static'
 ```
 
 ---
@@ -191,7 +191,7 @@ STATIC_DIR = PROJECT_ROOT / 'static'
 `constant` | [tools/generate_sri.py:27](../../tools/generate_sri.py#L27)
 
 ```python
-MANIFEST_PATH = PROJECT_ROOT / 'static' / 'sri_manifest.json'
+MANIFEST_PATH = PROJECT_ROOT / 'quantumvault' / 'static' / 'sri_manifest.json'
 ```
 
 ---

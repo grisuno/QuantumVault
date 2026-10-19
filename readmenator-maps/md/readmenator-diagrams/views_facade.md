@@ -1,17 +1,17 @@
 # views: facade
 
-views: facade groups 11 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. Application factory for QuantumVault.
+views: facade groups 11 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
 
 ```mermaid
 graph LR
     controllers["controllers"]
-    root["root"]
+    quantumvault["quantumvault"]
     tests["tests"]
     views["views"]
-    root -- "calls into" --> controllers
-    root -- "depends on" --> views
+    quantumvault -- "calls into" --> controllers
+    quantumvault -- "depends on" --> views
     tests -- "calls into" --> controllers
-    tests -- "calls into" --> root
+    tests -- "calls into" --> quantumvault
     views -- "calls into" --> controllers
 ```
 
@@ -19,9 +19,9 @@ graph LR
 
 controllers groups 2 files (py) around GateOutcome, GateDecision, _as_bool, _as_int, _as_text. QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
 
-## root (2.2)
+## quantumvault (2.2)
 
-root groups 2 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. Application factory for QuantumVault.
+quantumvault groups 2 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. Application factory for QuantumVault.
 
 ## tests (2.3)
 
@@ -33,9 +33,10 @@ views groups 4 files (py) around about, register_facade, render_cover, _facade_c
 
 **Files**:
 
-- app_factory.py
 - controllers/facade.py
 - controllers/sync.py
+- quantumvault/app_factory.py
+- quantumvault/wsgi.py
 - tests/test_account_facade.py
 - tests/test_cover.py
 - tests/test_facade.py
@@ -43,4 +44,3 @@ views groups 4 files (py) around about, register_facade, render_cover, _facade_c
 - views/facade.py
 - views/privacy.py
 - views/terms.py
-- wsgi.py

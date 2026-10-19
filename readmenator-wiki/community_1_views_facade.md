@@ -4,15 +4,16 @@
 
 ## Definition
 
-This community groups 11 file(s) rooted at `views` with dominant language py (cohesion 0.41). Central symbols: `FacadeConfig`, `FacadeGate`, `GateDecision`, `GateOutcome`, `GatePhraseHasher`, `GateTicket`, `SyncController`, `TestCatalog`. Core file: `tests/test_cover.py` (52 symbols). Documented purpose: Application factory for QuantumVault.  The same ``create_app()`` callable powers:  - ``app.py`` (dev: ``flask run`` or Werkzeug's dev server with debug) - ``wsg.
+This community groups 11 file(s) rooted at `views` with dominant language py (cohesion 0.41). Central symbols: `FacadeConfig`, `FacadeGate`, `GateDecision`, `GateOutcome`, `GatePhraseHasher`, `GateTicket`, `SyncController`, `TestCatalog`. Core file: `tests/test_cover.py` (52 symbols). Documented purpose: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.  The facade hides QuantumVault behind an innocuous cover application. A secret phr.
 
 ## Files
 
 | File | Language | Layer | Symbols | Doc |
 |------|----------|-------|---------|-----|
-| `app_factory.py` | py | presentation | 8 | yes |
 | `controllers/facade.py` | py | presentation | 26 | yes |
 | `controllers/sync.py` | py | presentation | 3 | yes |
+| `quantumvault/app_factory.py` | py | presentation | 8 | yes |
+| `quantumvault/wsgi.py` | py | utility | 1 | yes |
 | `tests/test_account_facade.py` | py | testing | 6 | yes |
 | `tests/test_cover.py` | py | testing | 52 | yes |
 | `tests/test_facade.py` | py | testing | 52 | yes |
@@ -20,18 +21,9 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 | `views/facade.py` | py | presentation | 6 | yes |
 | `views/privacy.py` | py | presentation | 1 | no |
 | `views/terms.py` | py | presentation | 1 | no |
-| `wsgi.py` | py | utility | 0 | yes |
 
 ## Key Symbols
 
-- `_is_production` (function, `app_factory.py:71`) `def _is_production()` - Return True unless the operator explicitly opts into dev mode.
-- `_build_csp` (function, `app_factory.py:82`) `def _build_csp()` - Return the strict Content-Security-Policy used in production.
-- `_build_talisman_kwargs` (function, `app_factory.py:119`) `def _build_talisman_kwargs()` - Return kwargs to pass to ``Talisman`` based on the runtime env.
-- `_configure_secret_key` (function, `app_factory.py:160`) `def _configure_secret_key(app, config)` - Set ``app.config['SECRET_KEY']`` from env, payload.json, or a random value.
-- `_configure_session` (function, `app_factory.py:203`) `def _configure_session(app)` - Apply session lifetime and cookie hardening.
-- `_configure_logging` (function, `app_factory.py:220`) `def _configure_logging(app)` - Wire up a structured application logger.
-- `create_app` (function, `app_factory.py:237`) `def create_app(config_overrides, security_overrides)` - Build and return a fully-configured Flask application.
-- `load_user` (function, `app_factory.py:416`) `def load_user(user_id)`
 - `GateOutcome` (class, `controllers/facade.py:63`) `class GateOutcome(Enum)` - Classification of a submitted gate phrase.
 - `GateDecision` (class, `controllers/facade.py:72`) `class GateDecision` - The outcome of evaluating a phrase plus any issued ticket.
 - `_as_bool` (function, `controllers/facade.py:79`) `def _as_bool(value, default)` - Coerce an environment or mapping value to a boolean.
@@ -54,6 +46,14 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 - `__init__` (method, `controllers/facade.py:308`) `def __init__(self, secret_key, ttl_seconds)` - Bind the ticket signer to the app secret and a lifetime.
 - `issue` (method, `controllers/facade.py:316`) `def issue(self, mode)` - Return a signed ticket for ``mode`` or raise for an unknown mode.
 - `verify` (method, `controllers/facade.py:322`) `def verify(self, token)` - Return the ticket mode, or ``None`` if expired, tampered, or absent.
+- `FacadeGate` (class, `controllers/facade.py:336`) `class FacadeGate` - Evaluate gate phrases and issue tickets with constant observable work.
+- `__init__` (method, `controllers/facade.py:339`) `def __init__(self, config, hasher, ticket)` - Bind the gate to its configuration and collaborators.
+- `build` (method, `controllers/facade.py:351`) `def build(cls, config, secret_key)` - Build a gate from configuration and the application secret.
+- `evaluate` (method, `controllers/facade.py:359`) `def evaluate(self, phrase)` - Classify a phrase and emit only a generic audit event.
+- `SyncController` (class, `controllers/sync.py:7`) `class SyncController`
+- `__init__` (method, `controllers/sync.py:8`) `def __init__(self, users_path, s3_bucket, s3_client, file_controller)`
+- `get_storage_usage` (method, `controllers/sync.py:14`) `def get_storage_usage(self, username)` - Calcula el uso de almacenamiento del usuario en S3.
+- `_is_production` (function, `quantumvault/app_factory.py:71`) `def _is_production()` - Return True unless the operator explicitly opts into dev mode.
 
 ## Internal vs External Edges
 
@@ -62,22 +62,22 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 
 ## Connections
 
-- [EXTRACTED] depends_on community 3 <-> 1 (strength 0.9): Extracted import edge crosses communities: app.py imports app_factory.py.
-- [EXTRACTED] depends_on community 1 <-> 5 (strength 0.9): Extracted import edge crosses communities: app_factory.py imports controllers/file.py.
-- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: app_factory.py imports models/user.py.
-- [EXTRACTED] depends_on community 1 <-> 6 (strength 0.9): Extracted import edge crosses communities: app_factory.py imports utils/integrity.py.
-- [EXTRACTED] depends_on community 1 <-> 4 (strength 0.9): Extracted import edge crosses communities: app_factory.py imports views/account.py.
+- [EXTRACTED] depends_on community 4 <-> 1 (strength 0.9): Extracted import edge crosses communities: app.py imports quantumvault/app_factory.py.
+- [EXTRACTED] depends_on community 1 <-> 5 (strength 0.9): Extracted import edge crosses communities: controllers/facade.py imports utils/security.py.
+- [EXTRACTED] depends_on community 1 <-> 2 (strength 0.9): Extracted import edge crosses communities: quantumvault/app_factory.py imports controllers/file.py.
+- [EXTRACTED] depends_on community 1 <-> 0 (strength 0.9): Extracted import edge crosses communities: quantumvault/app_factory.py imports models/user.py.
+- [INFERRED] shares_context community 1 <-> 6 (strength 0.5): Inferred shared context (language py) with no import path between community 1 (views: facade) and community 6 (quantumvault).
 - [INFERRED] shares_context community 1 <-> 7 (strength 0.5): Inferred shared context (language py) with no import path between community 1 (views: facade) and community 7 (orphans).
 
 ## Risks
 
-- [layer strict] `tests/conftest.py` (testing) -> `app_factory.py` (presentation)
-- [layer strict] `tests/test_account_facade.py` (testing) -> `app_factory.py` (presentation)
+- [layer strict] `tests/conftest.py` (testing) -> `quantumvault/app_factory.py` (presentation)
+- [layer strict] `tests/test_account_facade.py` (testing) -> `quantumvault/app_factory.py` (presentation)
 - [layer strict] `tests/test_account_facade.py` (testing) -> `controllers/facade.py` (presentation)
 - [layer strict] `tests/test_account_facade.py` (testing) -> `models/user.py` (presentation)
-- [layer strict] `tests/test_cover.py` (testing) -> `app_factory.py` (presentation)
+- [layer strict] `tests/test_cover.py` (testing) -> `quantumvault/app_factory.py` (presentation)
 - [layer strict] `tests/test_cover.py` (testing) -> `controllers/facade.py` (presentation)
-- [layer strict] `tests/test_facade.py` (testing) -> `app_factory.py` (presentation)
+- [layer strict] `tests/test_facade.py` (testing) -> `quantumvault/app_factory.py` (presentation)
 - [layer strict] `tests/test_facade.py` (testing) -> `controllers/facade.py` (presentation)
 - [layer strict] `tests/test_facade.py` (testing) -> `models/user.py` (presentation)
 
@@ -89,9 +89,10 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 
 ## Sources
 
-- `app_factory.py`
 - `controllers/facade.py`
 - `controllers/sync.py`
+- `quantumvault/app_factory.py`
+- `quantumvault/wsgi.py`
 - `tests/test_account_facade.py`
 - `tests/test_cover.py`
 - `tests/test_facade.py`
@@ -99,4 +100,3 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 - `views/facade.py`
 - `views/privacy.py`
 - `views/terms.py`
-- `wsgi.py`

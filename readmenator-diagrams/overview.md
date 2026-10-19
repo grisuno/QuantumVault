@@ -2,46 +2,43 @@
 graph LR
     views_auth["views: auth"]
     views_facade["views: facade"]
-    static_js["static/js"]
+    utils["utils"]
+    quantumvault_static_js["quantumvault/static/js"]
     controllers["controllers"]
     views_deniable_vault["views: deniable_vault"]
-    utils["utils"]
-    tools["tools"]
+    quantumvault["quantumvault"]
+    views_auth -- "calls into" --> utils
     views_auth -- "calls into" --> controllers
     views_auth -- "calls into" --> views_deniable_vault
-    views_auth -- "calls into" --> utils
     views_facade -- "calls into" --> views_auth
+    views_facade -- "depends on" --> utils
     views_facade -- "depends on" --> controllers
     views_facade -- "calls into" --> views_deniable_vault
-    views_facade -- "calls into" --> utils
-    views_facade -- "depends on" --> tools
-    static_js -- "calls into" --> views_auth
-    static_js -- "calls into" --> controllers
-    static_js -- "calls into" --> views_deniable_vault
-    static_js -- "depends on" --> utils
+    utils -- "calls into" --> views_auth
+    quantumvault_static_js -- "calls into" --> views_auth
+    quantumvault_static_js -- "depends on" --> utils
+    quantumvault_static_js -- "calls into" --> controllers
+    quantumvault_static_js -- "calls into" --> views_deniable_vault
     controllers -- "calls into" --> views_auth
     controllers -- "calls into" --> views_facade
     controllers -- "calls into" --> utils
     views_deniable_vault -- "calls into" --> views_auth
     views_deniable_vault -- "depends on" --> views_facade
     views_deniable_vault -- "calls into" --> utils
-    utils -- "calls into" --> views_auth
-    utils -- "calls into" --> controllers
-    tools -- "depends on" --> utils
     click views_auth href "./views_auth.md" "Details"
     click views_facade href "./views_facade.md" "Details"
+    click utils href "./utils.md" "Details"
     click controllers href "./controllers.md" "Details"
     click views_deniable_vault href "./views_deniable_vault.md" "Details"
-    click utils href "./utils.md" "Details"
 ```
 
 ## Details
 
-Static architecture map of 89 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniable_vault, utils, tools. Structure is extracted statically without LLM calls; component prose may be enriched locally.
+Static architecture map of 90 files (go, js, py, sh) in 7 components: views: auth, views: facade, utils, quantumvault/static/js, controllers, views: deniable_vault, quantumvault. Structure is extracted statically without LLM calls; component prose may be enriched locally.
 
 ### views: auth (1)
 
-views: auth groups 14 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Zero-knowledge authentication controller for QuantumVault.
+views: auth groups 16 files (py) around database_path, as_bool, sanitize_path, Payload, Config. Zero-knowledge authentication controller for QuantumVault.
 
 **Related Classes/Methods**:
 
@@ -56,35 +53,50 @@ views: auth groups 14 files (py) around database_path, as_bool, sanitize_path, P
 
 ### views: facade (2)
 
-views: facade groups 11 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. Application factory for QuantumVault.
+views: facade groups 11 files (py) around _is_production, _build_csp, _build_talisman_kwargs, _configure_secret_key, _configure_session. QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
 
 **Related Classes/Methods**:
 
-- <a href="../app_factory.py#L71-L81">app_factory.py::_is_production</a>
-- <a href="../app_factory.py#L82-L118">app_factory.py::_build_csp</a>
-- <a href="../app_factory.py#L119-L159">app_factory.py::_build_talisman_kwargs</a>
-- <a href="../app_factory.py#L160-L202">app_factory.py::_configure_secret_key</a>
-- <a href="../app_factory.py#L203-L219">app_factory.py::_configure_session</a>
-- <a href="../app_factory.py#L220-L236">app_factory.py::_configure_logging</a>
-- <a href="../app_factory.py#L237-L415">app_factory.py::create_app</a>
-- <a href="../app_factory.py#L416-L444">app_factory.py::load_user</a>
+- <a href="../quantumvault/app_factory.py#L71-L81">quantumvault/app_factory.py::_is_production</a>
+- <a href="../quantumvault/app_factory.py#L82-L118">quantumvault/app_factory.py::_build_csp</a>
+- <a href="../quantumvault/app_factory.py#L119-L159">quantumvault/app_factory.py::_build_talisman_kwargs</a>
+- <a href="../quantumvault/app_factory.py#L160-L202">quantumvault/app_factory.py::_configure_secret_key</a>
+- <a href="../quantumvault/app_factory.py#L203-L219">quantumvault/app_factory.py::_configure_session</a>
+- <a href="../quantumvault/app_factory.py#L220-L236">quantumvault/app_factory.py::_configure_logging</a>
+- <a href="../quantumvault/app_factory.py#L237-L415">quantumvault/app_factory.py::create_app</a>
+- <a href="../quantumvault/app_factory.py#L416-L444">quantumvault/app_factory.py::load_user</a>
 
-### static/js (3)
+### utils (3)
 
-static/js groups 9 files (js) around concatBytes, hexToBytes, bytesToHex, bytesToBase64, bytesToBase32. Account settings controller: secure notes (QV-DENIABLE-1).
+utils groups 10 files (py) around PaddingError, PaddingConfig, buckets_for, max_plaintext_bytes, _parse_buckets. Encrypted file persistence layer.
 
 **Related Classes/Methods**:
 
-- <a href="../static/js/qv-crypto.js#L59-L69">static/js/qv-crypto.js::concatBytes</a>
-- <a href="../static/js/qv-crypto.js#L70-L78">static/js/qv-crypto.js::hexToBytes</a>
-- <a href="../static/js/qv-crypto.js#L79-L84">static/js/qv-crypto.js::bytesToHex</a>
-- <a href="../static/js/qv-crypto.js#L85-L95">static/js/qv-crypto.js::bytesToBase64</a>
-- <a href="../static/js/qv-crypto.js#L96-L113">static/js/qv-crypto.js::bytesToBase32</a>
-- <a href="../static/js/qv-crypto.js#L114-L120">static/js/qv-crypto.js::base64ToBytes</a>
-- <a href="../static/js/qv-crypto.js#L121-L127">static/js/qv-crypto.js::bytesToBigInt</a>
-- <a href="../static/js/qv-crypto.js#L128-L137">static/js/qv-crypto.js::i2osp</a>
+- <a href="../utils/padding.py#L73-L77">utils/padding.py::PaddingError</a>
+- <a href="../utils/padding.py#L78-L83">utils/padding.py::PaddingConfig</a>
+- <a href="../utils/padding.py#L84-L89">utils/padding.py::buckets_for</a>
+- <a href="../utils/padding.py#L90-L94">utils/padding.py::max_plaintext_bytes</a>
+- <a href="../utils/padding.py#L95-L108">utils/padding.py::_parse_buckets</a>
+- <a href="../utils/padding.py#L109-L127">utils/padding.py::config_from_env</a>
+- <a href="../utils/padding.py#L128-L141">utils/padding.py::_cached_bucket_table</a>
+- <a href="../utils/padding.py#L142-L148">utils/padding.py::cached_tables</a>
 
-### controllers (4)
+### quantumvault/static/js (4)
+
+quantumvault/static/js groups 9 files (js) around concatBytes, hexToBytes, bytesToHex, bytesToBase64, bytesToBase32. Account settings controller: secure notes (QV-DENIABLE-1).
+
+**Related Classes/Methods**:
+
+- <a href="../quantumvault/static/js/qv-crypto.js#L59-L69">quantumvault/static/js/qv-crypto.js::concatBytes</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L70-L78">quantumvault/static/js/qv-crypto.js::hexToBytes</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L79-L84">quantumvault/static/js/qv-crypto.js::bytesToHex</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L85-L95">quantumvault/static/js/qv-crypto.js::bytesToBase64</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L96-L113">quantumvault/static/js/qv-crypto.js::bytesToBase32</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L114-L120">quantumvault/static/js/qv-crypto.js::base64ToBytes</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L121-L127">quantumvault/static/js/qv-crypto.js::bytesToBigInt</a>
+- <a href="../quantumvault/static/js/qv-crypto.js#L128-L137">quantumvault/static/js/qv-crypto.js::i2osp</a>
+
+### controllers (5)
 
 controllers groups 8 files (py) around ContactModel, ContactDB, __init__, _init_db, create_contact. Local development entry point.
 
@@ -99,7 +111,7 @@ controllers groups 8 files (py) around ContactModel, ContactDB, __init__, _init_
 - <a href="../models/contact.py#L115-L138">models/contact.py::_convert_row_to_dict</a>
 - <a href="../models/contact.py#L139-L167">models/contact.py::get_all_contacts</a>
 
-### views: deniable_vault (5)
+### views: deniable_vault (6)
 
 views: deniable_vault groups 8 files (py) around _get_audit_logger, _correlation_id, audit_event, constant_time_compare, hash_secret. QV-DENIABLE-1 deniable vault: configuration, validation, orchestration.
 
@@ -114,32 +126,6 @@ views: deniable_vault groups 8 files (py) around _get_audit_logger, _correlation
 - <a href="../utils/security.py#L163-L171">utils/security.py::new_one_time_code</a>
 - <a href="../utils/security.py#L172-L192">utils/security.py::_extract_csrf_token</a>
 
-### utils (6)
+### quantumvault (7)
 
-utils groups 8 files (py) around PaddingError, PaddingConfig, buckets_for, max_plaintext_bytes, _parse_buckets. Encrypted file persistence layer.
-
-**Related Classes/Methods**:
-
-- <a href="../utils/padding.py#L73-L77">utils/padding.py::PaddingError</a>
-- <a href="../utils/padding.py#L78-L83">utils/padding.py::PaddingConfig</a>
-- <a href="../utils/padding.py#L84-L89">utils/padding.py::buckets_for</a>
-- <a href="../utils/padding.py#L90-L94">utils/padding.py::max_plaintext_bytes</a>
-- <a href="../utils/padding.py#L95-L108">utils/padding.py::_parse_buckets</a>
-- <a href="../utils/padding.py#L109-L127">utils/padding.py::config_from_env</a>
-- <a href="../utils/padding.py#L128-L141">utils/padding.py::_cached_bucket_table</a>
-- <a href="../utils/padding.py#L142-L148">utils/padding.py::cached_tables</a>
-
-### tools (7)
-
-tools groups 4 files (py) around manifest_path, compute_sri, compute_file_sri, _cached_manifest_text, load_manifest. Contract tests for SRI pins and reproducible builds (QV-SRI-1).
-
-**Related Classes/Methods**:
-
-- <a href="../utils/integrity.py#L25-L29">utils/integrity.py::manifest_path</a>
-- <a href="../utils/integrity.py#L30-L35">utils/integrity.py::compute_sri</a>
-- <a href="../utils/integrity.py#L36-L41">utils/integrity.py::compute_file_sri</a>
-- <a href="../utils/integrity.py#L42-L46">utils/integrity.py::_cached_manifest_text</a>
-- <a href="../utils/integrity.py#L47-L54">utils/integrity.py::load_manifest</a>
-- <a href="../utils/integrity.py#L55-L71">utils/integrity.py::integrity_for</a>
-- <a href="../utils/integrity.py#L72-L76">utils/integrity.py::clear_manifest_cache</a>
-- <a href="../utils/integrity.py#L77-L91">utils/integrity.py::template_integrity</a>
+quantumvault groups 2 files (py). QuantumVault application package.

@@ -3,6 +3,7 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 
 | Symbol | Kind | File:Line | Signature |
 |--------|------|-----------|-----------|
+| `test_cover_context_is_cosmetic_and_json_serializable` | method | `tests/test_facade.py:194` | `def test_cover_context_is_cosmetic_and_json_serializable(self)` |
 | `test_defaults_are_self_consistent` | method | `tests/test_facade.py:157` | `def test_defaults_are_self_consistent(self)` |
 | `test_defaults_keep_duress_alert_off` | method | `tests/test_facade.py:154` | `def test_defaults_keep_duress_alert_off(self)` |
 | `test_defaults_keep_the_facade_off` | method | `tests/test_facade.py:149` | `def test_defaults_keep_the_facade_off(self)` |
@@ -181,14 +182,14 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `delete` | method | `utils/cache.py:20` | `def delete(self, key)` |
 | `get` | method | `utils/cache.py:11` | `def get(self, key)` |
 | `set` | method | `utils/cache.py:16` | `def set(self, key, value, ttl)` |
-| `_cached_manifest_text` | function | `utils/integrity.py:42` | `def _cached_manifest_text()` |
-| `clear_manifest_cache` | function | `utils/integrity.py:72` | `def clear_manifest_cache()` |
-| `compute_file_sri` | function | `utils/integrity.py:36` | `def compute_file_sri(path, algorithm)` |
-| `compute_sri` | function | `utils/integrity.py:30` | `def compute_sri(data, algorithm)` |
-| `integrity_for` | function | `utils/integrity.py:55` | `def integrity_for(key)` |
-| `load_manifest` | function | `utils/integrity.py:47` | `def load_manifest()` |
-| `manifest_path` | function | `utils/integrity.py:25` | `def manifest_path()` |
-| `template_integrity` | function | `utils/integrity.py:77` | `def template_integrity(key)` |
+| `_cached_manifest_text` | function | `utils/integrity.py:52` | `def _cached_manifest_text()` |
+| `clear_manifest_cache` | function | `utils/integrity.py:82` | `def clear_manifest_cache()` |
+| `compute_file_sri` | function | `utils/integrity.py:46` | `def compute_file_sri(path, algorithm)` |
+| `compute_sri` | function | `utils/integrity.py:40` | `def compute_sri(data, algorithm)` |
+| `integrity_for` | function | `utils/integrity.py:65` | `def integrity_for(key)` |
+| `load_manifest` | function | `utils/integrity.py:57` | `def load_manifest()` |
+| `manifest_path` | function | `utils/integrity.py:26` | `def manifest_path()` |
+| `template_integrity` | function | `utils/integrity.py:87` | `def template_integrity(key)` |
 | `external_url` | function | `utils/mailer.py:22` | `def external_url(path)` |
 | `mail_is_configured` | function | `utils/mailer.py:38` | `def mail_is_configured()` |
 | `send_transactional_email` | function | `utils/mailer.py:51` | `def send_transactional_email(subject, recipients, body)` |
