@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantumvault"
+version = "0.1.0"
+description = "QuantumVault: zero-knowledge encrypted messaging, files, and deniable vault with hybrid post-quantum key exchange"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    { name = "QuantumVault contributors" },
+]
+keywords = ["cryptography", "srp6a", "kyber", "deniable", "vault", "flask"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Flask",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "Flask==3.1.3",
+    "flask-talisman==1.1.0",
+    "Flask-Login==0.6.3",
+    "Flask-WTF==1.3.0",
+    "Flask-Limiter==4.1.1",
+    "Flask-Cors==6.0.4",
+    "Flask-Mail==0.10.0",
+    "WTForms==3.2.2",
+    "pydantic==2.13.4",
+    "cryptography==48.0.0",
+    "argon2-cffi==25.1.0",
+    "boto3==1.43.24",
+    "botocore==1.43.24",
+    "redis==8.0.0",
+    "APScheduler==3.11.2",
+    "paypalrestsdk==1.13.3",
+    "pyoqs-sdk==1.0",
+    "clicksend-client==5.0.91",
+    "python-dotenv==1.2.2",
+    "pytz==2026.2",
+    "gunicorn==23.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/grisuno/QuantumVault"
+
+[tool.setuptools]
+packages = ["controllers", "models", "utils", "views"]
+
+[tool.setuptools.package-data]
+controllers = ["*.md"]
+models = ["*.md"]
+utils = ["*.md"]
+views = ["*.md"]

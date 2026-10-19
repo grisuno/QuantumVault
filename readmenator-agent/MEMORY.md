@@ -2,7 +2,7 @@
 
 > Cross-session context for agents. Sections 1-6 are regenerated from the source tree with zero LLM tokens: declared rules are quoted verbatim with `file:line`, measured baselines come from the scan. Section 7 is written by agents and humans and is preserved across rebuilds.
 
-Generated from 88 files at commit `a556ec57e27f`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
+Generated from 88 files at commit `35383e53cb25`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
 
 ## 1. Purpose and domain
 
@@ -20,7 +20,7 @@ Generated from 88 files at commit `a556ec57e27f`. Read this first, then `readmen
 ## 2. Workflow
 
 Detected commands:
-- `python -m pytest -q` (tests/ layout)
+- `python -m pytest -q` (pyproject.toml)
 - `make help` (Makefile)
 - `make setup` (Makefile)
 - `make venv` (Makefile)
