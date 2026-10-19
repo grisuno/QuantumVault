@@ -1,6 +1,6 @@
 # QuantumVault
 
-> Static analysis knowledge base for QuantumVault: 7 communities, 88 files, 524 imports, 4 languages, 813 symbols.
+> Static analysis knowledge base for QuantumVault: 7 communities, 89 files, 524 imports, 4 languages, 813 symbols.
 
 Generated offline by readmenator (zero LLM tokens). Start with the wiki index for the big picture, then the agent INDEX for file lookup.
 
@@ -15,13 +15,13 @@ Generated offline by readmenator (zero LLM tokens). Start with the wiki index fo
 - [readmenator-wiki/community_4_views_deniable_vault.md](md/readmenator-wiki/community_4_views_deniable_vault.md): Community 4 | 8 files | cohesion 0.50
 - [readmenator-wiki/community_5_utils.md](md/readmenator-wiki/community_5_utils.md): Community 5 | 8 files | cohesion 0.47
 - [readmenator-wiki/community_6_tools.md](md/readmenator-wiki/community_6_tools.md): Community 6 | 4 files | cohesion 0.67
-- [readmenator-wiki/community_7_orphans.md](md/readmenator-wiki/community_7_orphans.md): Community 7 | 26 files | cohesion 0.00
+- [readmenator-wiki/community_7_orphans.md](md/readmenator-wiki/community_7_orphans.md): Community 7 | 27 files | cohesion 0.00
 - [readmenator-wiki/concepts.md](md/readmenator-wiki/concepts.md): Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verbs aggregate structural edges (INFERRED).
 - [readmenator-wiki/queries.md](md/readmenator-wiki/queries.md): Log each answered question here so the wiki compounds. Format: question, answer, cited files.
 
 ## GraphRAG
 
-- [readmenator-graphrag/REPORTS.md](md/readmenator-graphrag/REPORTS.md): Entities: 1039 | Relationships: 3528 | Communities: 8 | Themes: 3 | Text units: 873
+- [readmenator-graphrag/REPORTS.md](md/readmenator-graphrag/REPORTS.md): Entities: 1040 | Relationships: 3532 | Communities: 8 | Themes: 3 | Text units: 874
 
 ## Agent Docs
 
@@ -41,7 +41,7 @@ Generated offline by readmenator (zero LLM tokens). Start with the wiki index fo
 - [readmenator-agent/KB_tools.md](md/readmenator-agent/KB_tools.md): Doc: Generate the SRI manifest for first-party assets and pinned CDN URLs.
 - [readmenator-agent/KB_utils.md](md/readmenator-agent/KB_utils.md): Imported by: controllers/auth.py, tests/testpadding.py, tests/testsrp.py
 - [readmenator-agent/KB_views.md](md/readmenator-agent/KB_views.md): Doc: about: Render the About page.
-- [readmenator-agent/MEMORY.md](md/readmenator-agent/MEMORY.md): Generated from 88 files at commit 3dee8768d8ab. Read this first, then readmenator-wiki/index.md, then readmenator . ask "<question>" for anything specific.
+- [readmenator-agent/MEMORY.md](md/readmenator-agent/MEMORY.md): Generated from 89 files at commit b4747bdfd69d. Read this first, then readmenator-wiki/index.md, then readmenator . ask "<question>" for anything specific.
 - [readmenator-agent/SECURITY.md](md/readmenator-agent/SECURITY.md)
 - [readmenator-agent/SYMBOLS.md](md/readmenator-agent/SYMBOLS.md)
 - [readmenator-agent/SYMBOLS_p2.md](md/readmenator-agent/SYMBOLS_p2.md)
@@ -57,7 +57,7 @@ Generated offline by readmenator (zero LLM tokens). Start with the wiki index fo
 - [README.md](md/README.md): From the creators of LazyOwn Redteam Framework comes a free and open-source Zero-knowledge, zero-trust, end-to-end encrypted messaging and file vault, secured...
 - [SECURITY.md](md/SECURITY.md): Use this section to tell people about which versions of your project are
 - [readmenator-diagrams/controllers.md](md/readmenator-diagrams/controllers.md): controllers groups 8 files (py) around ContactModel, ContactDB, init, initdb, createcontact. Local development entry point.
-- [readmenator-diagrams/overview.md](md/readmenator-diagrams/overview.md): Static architecture map of 88 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniablevault, utils, tools....
+- [readmenator-diagrams/overview.md](md/readmenator-diagrams/overview.md): Static architecture map of 89 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniablevault, utils, tools....
 - [readmenator-diagrams/utils.md](md/readmenator-diagrams/utils.md): utils groups 8 files (py) around PaddingError, PaddingConfig, bucketsfor, maxplaintextbytes, parsebuckets. Encrypted file persistence layer.
 - [readmenator-diagrams/views_auth.md](md/readmenator-diagrams/views_auth.md): views: auth groups 14 files (py) around databasepath, asbool, sanitizepath, Payload, Config. Zero-knowledge authentication controller for QuantumVault.
 - [readmenator-diagrams/views_deniable_vault.md](md/readmenator-diagrams/views_deniable_vault.md): views: deniablevault groups 8 files (py) around getauditlogger, correlationid, auditevent, constanttimecompare, hashsecret. QV-DENIABLE-1 deniable vault...

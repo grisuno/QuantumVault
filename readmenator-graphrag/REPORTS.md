@@ -1,16 +1,16 @@
 # GraphRAG Community Reports
 
-Entities: 1039 | Relationships: 3528 | Communities: 8 | Themes: 3 | Text units: 873
+Entities: 1040 | Relationships: 3532 | Communities: 8 | Themes: 3 | Text units: 874
 
 Query with `readmenator . ask "<question>"` (local: BM25 + Personalized PageRank; global: map-reduce over these reports) or the MCP tool `readmenator.graphrag`.
 
 ## Project overview (`root`, root, rating 7.0)
 
-88 files in 8 communities and 3 themes. Highest-impact communities: views: auth (7.0), static/js (6.4), unassigned files (5.0). God nodes: app_factory.py, models/user.py, utils/utils.py, views/auth.py, views/admin.py.
+89 files in 8 communities and 3 themes. Highest-impact communities: views: auth (7.0), static/js (6.4), unassigned files (5.2). God nodes: app_factory.py, models/user.py, utils/utils.py, views/auth.py, views/admin.py.
 
 - [views: auth] rating 7.0: `utils/utils.py` ranks 1 by PageRank, 15 importers, 8 symbols: utils/utils.py
 - [static/js] rating 6.4: `static/js/qv-crypto.js` ranks 1 by PageRank, 6 importers, 40 symbols: QuantumVault zero-knowledge browser crypto.
-- [unassigned files] rating 5.0: `__init__.py` ranks 1 by PageRank, 0 importers, 0 symbols.
+- [unassigned files] rating 5.2: `__init__.py` ranks 1 by PageRank, 0 importers, 0 symbols.
 - [views: facade] rating 3.3: `app_factory.py` ranks 1 by PageRank, 6 importers, 8 symbols: Application factory for QuantumVault.
 - [utils] rating 3.2: `utils/padding.py` ranks 1 by PageRank, 5 importers, 13 symbols: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).
 - [views: deniable_vault] rating 3.1: `utils/security.py` ranks 1 by PageRank, 8 importers, 10 symbols: Centralized security primitives for QuantumVault.
@@ -50,9 +50,9 @@ Theme of 3 communities and 21 files: static/js (9 files, rating 6.4); utils (8 f
 - Children: c2, c5, c6
 - Theme rating = highest child community rating.
 
-## unassigned files (`t1`, theme, rating 5.0)
+## unassigned files (`t1`, theme, rating 5.2)
 
-Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
+Theme of 1 communities and 27 files: unassigned files (27 files, rating 5.2).
 
 - [unassigned files] `__init__.py` ranks 1 by PageRank, 0 importers, 0 symbols.
 - [unassigned files] `client.go` ranks 2 by PageRank, 0 importers, 1 symbols.
@@ -62,7 +62,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## views: auth (`c0`, community, rating 7.0)
 
-14 files under views (py 14), mostly presentation. Core file utils/utils.py (PageRank 0.0774, imported by 15 files): utils/utils.py Key abstractions: Payload, Config, database_path, as_bool, sanitize_path, load_payload. Depends on views: deniable_vault (2), utils (2), controllers (1). Used by views: facade (10), controllers (7), utils (5).
+14 files under views (py 14), mostly presentation. Core file utils/utils.py (PageRank 0.0770, imported by 15 files): utils/utils.py Key abstractions: Payload, Config, database_path, as_bool, sanitize_path, load_payload. Depends on views: deniable_vault (2), utils (2), controllers (1). Used by views: facade (10), controllers (7), utils (5).
 
 - `utils/utils.py` ranks 1 by PageRank, 15 importers, 8 symbols: utils/utils.py
 - `models/user.py` ranks 2 by PageRank, 14 importers, 27 symbols: UserModel: Pydantic model for a user with Flask-Login support.
@@ -76,7 +76,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## static/js (`c2`, community, rating 6.4)
 
-9 files under static/js (js 9), mostly utility. Core file static/js/qv-crypto.js (PageRank 0.0802, imported by 6 files): QuantumVault zero-knowledge browser crypto. Key abstractions: concatBytes, hexToBytes, bytesToHex, bytesToBase64, bytesToBase32, base64ToBytes. Depends on utils (1).
+9 files under static/js (js 9), mostly utility. Core file static/js/qv-crypto.js (PageRank 0.0797, imported by 6 files): QuantumVault zero-knowledge browser crypto. Key abstractions: concatBytes, hexToBytes, bytesToHex, bytesToBase64, bytesToBase32, base64ToBytes. Depends on utils (1).
 
 - `static/js/qv-crypto.js` ranks 1 by PageRank, 6 importers, 40 symbols: QuantumVault zero-knowledge browser crypto.
 - `static/js/login.js` ranks 2 by PageRank, 1 importers, 2 symbols: Login page controller (zero-knowledge SRP-6a flow).
@@ -88,9 +88,9 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 - Key entities: file:static/js/qv-crypto.js, file:static/js/qv-deniable.js, file:static/js/account.js, file:static/js/messages.js, file:static/js/upload.js, file:static/js/qv-padding.js, file:static/js/register.js, file:static/js/recover.js
 - Rating 6.4/10 = 7 x PageRank share 0.91 + 3 x risk 0.00. Internal imports: 10.
 
-## unassigned files (`c7`, community, rating 5.0)
+## unassigned files (`c7`, community, rating 5.2)
 
-26 files under root (py 17, sh 5, go 3, js 1), mostly utility. Core file __init__.py (PageRank 0.0061, imported by 0 files). Key abstractions: main, deriveAESKey, encryptFile, decryptFile, main, derive_aes_key.
+27 files under root (py 18, sh 5, go 3, js 1), mostly utility. Core file __init__.py (PageRank 0.0061, imported by 0 files). Key abstractions: main, deriveAESKey, encryptFile, decryptFile, main, derive_aes_key.
 
 - `__init__.py` ranks 1 by PageRank, 0 importers, 0 symbols.
 - `client.go` ranks 2 by PageRank, 0 importers, 1 symbols.
@@ -99,11 +99,11 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 - Hotspot `utils/srp6a.py`: 14 symbols, 6 connections (score 0.10).
 - Taint: 3 paths reach this group via subprocess, urllib.request.
 - Key entities: file:scripts/doctor.py, file:enc_dec.go, file:utils/srp6a.py, file:enc_dec.py, file:tests/test_doctor.py, file:tools/mutation_test.py, file:client.go, sym:scripts/doctor.py::collect_report@449
-- Rating 5.0/10 = 7 x PageRank share 0.71 + 3 x risk 0.00. Internal imports: 0.
+- Rating 5.2/10 = 7 x PageRank share 0.74 + 3 x risk 0.00. Internal imports: 0.
 
 ## views: facade (`c1`, community, rating 3.3)
 
-11 files under views (py 11), mostly presentation. Core file app_factory.py (PageRank 0.0232, imported by 6 files): Application factory for QuantumVault. Key abstractions: create_app, load_user, GateOutcome, GateDecision, FacadeConfig, GatePhraseHasher. Depends on views: auth (10), views: deniable_vault (3), controllers (1). Used by views: deniable_vault (2), controllers (1).
+11 files under views (py 11), mostly presentation. Core file app_factory.py (PageRank 0.0231, imported by 6 files): Application factory for QuantumVault. Key abstractions: create_app, load_user, GateOutcome, GateDecision, FacadeConfig, GatePhraseHasher. Depends on views: auth (10), views: deniable_vault (3), controllers (1). Used by views: deniable_vault (2), controllers (1).
 
 - `app_factory.py` ranks 1 by PageRank, 6 importers, 8 symbols: Application factory for QuantumVault.
 - `controllers/facade.py` ranks 2 by PageRank, 5 importers, 26 symbols: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
@@ -117,7 +117,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## utils (`c5`, community, rating 3.2)
 
-8 files under utils (py 8), mostly presentation. Core file utils/padding.py (PageRank 0.0414, imported by 5 files): Fixed-bucket padding for metadata-size concealment (QV-PAD-1). Key abstractions: PaddingError, PaddingConfig, buckets_for, max_plaintext_bytes, config_from_env, cached_tables. Depends on views: auth (5). Used by views: auth (2), views: facade (1), static/js (1).
+8 files under utils (py 8), mostly presentation. Core file utils/padding.py (PageRank 0.0411, imported by 5 files): Fixed-bucket padding for metadata-size concealment (QV-PAD-1). Key abstractions: PaddingError, PaddingConfig, buckets_for, max_plaintext_bytes, config_from_env, cached_tables. Depends on views: auth (5). Used by views: auth (2), views: facade (1), static/js (1).
 
 - `utils/padding.py` ranks 1 by PageRank, 5 importers, 13 symbols: Fixed-bucket padding for metadata-size concealment (QV-PAD-1).
 - `utils/__init__.py` ranks 2 by PageRank, 3 importers, 0 symbols.
@@ -131,7 +131,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## views: deniable_vault (`c4`, community, rating 3.1)
 
-8 files under tests (py 8), mostly presentation. Core file utils/security.py (PageRank 0.0432, imported by 8 files): Centralized security primitives for QuantumVault. Key abstractions: audit_event, constant_time_compare, hash_secret, verify_secret, new_one_time_code, json_csrf_protect. Depends on views: auth (3), views: facade (2). Used by views: facade (3), views: auth (2).
+8 files under tests (py 8), mostly presentation. Core file utils/security.py (PageRank 0.0429, imported by 8 files): Centralized security primitives for QuantumVault. Key abstractions: audit_event, constant_time_compare, hash_secret, verify_secret, new_one_time_code, json_csrf_protect. Depends on views: auth (3), views: facade (2). Used by views: facade (3), views: auth (2).
 
 - `utils/security.py` ranks 1 by PageRank, 8 importers, 10 symbols: Centralized security primitives for QuantumVault.
 - `models/deniable_vault.py` ranks 2 by PageRank, 3 importers, 6 symbols: Opaque storage for QV-DENIABLE-1 deniable vault containers.
@@ -146,7 +146,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## controllers (`c3`, community, rating 2.3)
 
-8 files under controllers (py 8), mostly presentation. Core file models/contact.py (PageRank 0.0148, imported by 1 files): ContactModel: Pydantic model for a contact message. Key abstractions: ContactModel, ContactDB, create_contact, get_user_contacts, get_all_contacts, UserEditForm. Depends on views: auth (7), views: facade (1). Used by views: auth (1), views: facade (1).
+8 files under controllers (py 8), mostly presentation. Core file models/contact.py (PageRank 0.0147, imported by 1 files): ContactModel: Pydantic model for a contact message. Key abstractions: ContactModel, ContactDB, create_contact, get_user_contacts, get_all_contacts, UserEditForm. Depends on views: auth (7), views: facade (1). Used by views: auth (1), views: facade (1).
 
 - `models/contact.py` ranks 1 by PageRank, 1 importers, 9 symbols: ContactModel: Pydantic model for a contact message.
 - `views/admin.py` ranks 2 by PageRank, 7 importers, 19 symbols: UserEditForm: Form for editing user details.
@@ -161,7 +161,7 @@ Theme of 1 communities and 26 files: unassigned files (26 files, rating 5.0).
 
 ## tools (`c6`, community, rating 1.2)
 
-4 files under tools (py 4), mostly utility. Core file utils/integrity.py (PageRank 0.0186, imported by 4 files): Subresource Integrity manifest helpers (QV-SRI-1). Key abstractions: manifest_path, compute_sri, compute_file_sri, load_manifest, integrity_for, clear_manifest_cache. Depends on utils (1). Used by views: facade (1).
+4 files under tools (py 4), mostly utility. Core file utils/integrity.py (PageRank 0.0185, imported by 4 files): Subresource Integrity manifest helpers (QV-SRI-1). Key abstractions: manifest_path, compute_sri, compute_file_sri, load_manifest, integrity_for, clear_manifest_cache. Depends on utils (1). Used by views: facade (1).
 
 - `utils/integrity.py` ranks 1 by PageRank, 4 importers, 8 symbols: Subresource Integrity manifest helpers (QV-SRI-1).
 - `tools/verify_build.py` ranks 2 by PageRank, 1 importers, 11 symbols: Verify reproducible builds and the fixed code contracts (QV-SRI-1).

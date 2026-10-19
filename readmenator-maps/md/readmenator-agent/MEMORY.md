@@ -2,12 +2,12 @@
 
 > Cross-session context for agents. Sections 1-6 are regenerated from the source tree with zero LLM tokens: declared rules are quoted verbatim with `file:line`, measured baselines come from the scan. Section 7 is written by agents and humans and is preserved across rebuilds.
 
-Generated from 88 files at commit `3dee8768d8ab`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
+Generated from 89 files at commit `b4747bdfd69d`. Read this first, then `readmenator-wiki/index.md`, then `readmenator . ask "<question>"` for anything specific.
 
 ## 1. Purpose and domain
 
 - What it is: From the creators of LazyOwn Redteam Framework comes a free and open-source **Zero-knowledge, zero-trust, end-to-end encrypted messaging and file vault, secured with hybrid post-quantum cryptography.** (`README.md:12`)
-- Domain vocabulary (term, files): `server` (37), `user` (33), `key` (30), `path` (30), `not` (29), `its` (28), `file` (27), `page` (26), `get` (25), `one` (25), `which` (24), `client` (23), `browser` (23), `build` (23), `without` (23)
+- Domain vocabulary (term, files): `server` (37), `user` (33), `key` (30), `path` (30), `not` (29), `file` (28), `its` (28), `page` (26), `get` (25), `one` (25), `which` (24), `client` (23), `browser` (23), `build` (23), `without` (23)
 - Subsystem `views: auth`: 14 files, core `views/auth.py`: Authentication and account-management views.
 - Subsystem `views: facade`: 11 files, core `controllers/facade.py`: QV-FACADE-1 cover facade: configuration, gate hashing, tickets, gate control.
 - Subsystem `static/js`: 9 files, core `static/js/qv-crypto.js`: QuantumVault zero-knowledge browser crypto.
@@ -74,7 +74,7 @@ Declared:
 - none declared in instruction files (add them to AGENTS.md or record them in section 7)
 
 Measured baseline:
-- py: 70 files, 718 symbols; docstrings on 63% of symbols; functions snake_case (100%); types PascalCase (100%); median file 130 lines, max 786.
+- py: 71 files, 718 symbols; docstrings on 63% of symbols; functions snake_case (100%); types PascalCase (100%); median file 121 lines, max 786.
 - js: 10 files, 84 symbols; docstrings on 30% of symbols; functions camelCase (82%); median file 121 lines, max 749.
 - sh: 5 files, 4 symbols; docstrings on 50% of symbols; functions snake_case (100%); median file 127 lines, max 289.
 - go: 3 files, 7 symbols; docstrings on 0% of symbols; functions camelCase (57%); median file 102 lines, max 335.

@@ -303,6 +303,7 @@
 {"confidence": "INFERRED", "description": "concept every appears in security.py", "relation": "documents", "source": "concept:every", "target": "file:utils/security.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept every appears in srp6a.py", "relation": "documents", "source": "concept:every", "target": "file:utils/srp6a.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept every appears in utils.py", "relation": "documents", "source": "concept:every", "target": "file:utils/utils.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept every appears in version.py", "relation": "documents", "source": "concept:every", "target": "file:utils/version.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept every appears in account.py", "relation": "documents", "source": "concept:every", "target": "file:views/account.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept every appears in admin.py", "relation": "documents", "source": "concept:every", "target": "file:views/admin.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept every appears in auth.py", "relation": "documents", "source": "concept:every", "target": "file:views/auth.py", "weight": 0.45}
@@ -331,6 +332,7 @@
 {"confidence": "INFERRED", "description": "concept file appears in integrity.py", "relation": "documents", "source": "concept:file", "target": "file:utils/integrity.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept file appears in padding.py", "relation": "documents", "source": "concept:file", "target": "file:utils/padding.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept file appears in utils.py", "relation": "documents", "source": "concept:file", "target": "file:utils/utils.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept file appears in version.py", "relation": "documents", "source": "concept:file", "target": "file:utils/version.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept file appears in admin.py", "relation": "documents", "source": "concept:file", "target": "file:views/admin.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept file appears in file.py", "relation": "documents", "source": "concept:file", "target": "file:views/file.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept file appears in sync.py", "relation": "documents", "source": "concept:file", "target": "file:views/sync.py", "weight": 0.45}
@@ -785,6 +787,7 @@
 {"confidence": "INFERRED", "description": "concept quantum appears in mailer.py", "relation": "documents", "source": "concept:quantum", "target": "file:utils/mailer.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept quantum appears in security.py", "relation": "documents", "source": "concept:quantum", "target": "file:utils/security.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept quantum appears in srp6a.py", "relation": "documents", "source": "concept:quantum", "target": "file:utils/srp6a.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept quantum appears in version.py", "relation": "documents", "source": "concept:quantum", "target": "file:utils/version.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "return depends_on args", "relation": "depends_on", "source": "concept:return", "target": "concept:args", "weight": 0.6}
 {"confidence": "INFERRED", "description": "return depends_on never", "relation": "depends_on", "source": "concept:return", "target": "concept:never", "weight": 0.6}
 {"confidence": "INFERRED", "description": "return depends_on one", "relation": "depends_on", "source": "concept:return", "target": "concept:one", "weight": 0.6}
@@ -958,6 +961,23 @@
 {"confidence": "INFERRED", "description": "concept side appears in admin.py", "relation": "documents", "source": "concept:side", "target": "file:views/admin.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept side appears in auth.py", "relation": "documents", "source": "concept:side", "target": "file:views/auth.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept side appears in file.py", "relation": "documents", "source": "concept:side", "target": "file:views/file.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in auth.py", "relation": "documents", "source": "concept:single", "target": "file:controllers/auth.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in deniable_vault.py", "relation": "documents", "source": "concept:single", "target": "file:controllers/deniable_vault.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in enc_dec.py", "relation": "documents", "source": "concept:single", "target": "file:enc_dec.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in superadmin_audit.py", "relation": "documents", "source": "concept:single", "target": "file:models/superadmin_audit.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in doctor.py", "relation": "documents", "source": "concept:single", "target": "file:scripts/doctor.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in garage-init.sh", "relation": "documents", "source": "concept:single", "target": "file:scripts/garage-init.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in qv-crypto.js", "relation": "documents", "source": "concept:single", "target": "file:static/js/qv-crypto.js", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in test_cover.py", "relation": "documents", "source": "concept:single", "target": "file:tests/test_cover.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in test_facade.py", "relation": "documents", "source": "concept:single", "target": "file:tests/test_facade.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in test_secure_channel.py", "relation": "documents", "source": "concept:single", "target": "file:tests/test_secure_channel.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in generate_sri.py", "relation": "documents", "source": "concept:single", "target": "file:tools/generate_sri.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in mutation_test.py", "relation": "documents", "source": "concept:single", "target": "file:tools/mutation_test.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in mailer.py", "relation": "documents", "source": "concept:single", "target": "file:utils/mailer.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in security.py", "relation": "documents", "source": "concept:single", "target": "file:utils/security.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in srp6a.py", "relation": "documents", "source": "concept:single", "target": "file:utils/srp6a.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in version.py", "relation": "documents", "source": "concept:single", "target": "file:utils/version.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept single appears in admin.py", "relation": "documents", "source": "concept:single", "target": "file:views/admin.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept static appears in deniable_vault.py", "relation": "documents", "source": "concept:static", "target": "file:models/deniable_vault.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept static appears in message.py", "relation": "documents", "source": "concept:static", "target": "file:models/message.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept static appears in account.js", "relation": "documents", "source": "concept:static", "target": "file:static/js/account.js", "weight": 0.45}
@@ -998,23 +1018,6 @@
 {"confidence": "INFERRED", "description": "concept storage appears in srp6a.py", "relation": "documents", "source": "concept:storage", "target": "file:utils/srp6a.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept storage appears in utils.py", "relation": "documents", "source": "concept:storage", "target": "file:utils/utils.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept storage appears in sync.py", "relation": "documents", "source": "concept:storage", "target": "file:views/sync.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in app_factory.py", "relation": "documents", "source": "concept:through", "target": "file:app_factory.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in file.py", "relation": "documents", "source": "concept:through", "target": "file:controllers/file.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in secure_channel.py", "relation": "documents", "source": "concept:through", "target": "file:controllers/secure_channel.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in doctor.py", "relation": "documents", "source": "concept:through", "target": "file:scripts/doctor.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in email_tool.py", "relation": "documents", "source": "concept:through", "target": "file:scripts/email_tool.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in makeadmin.py", "relation": "documents", "source": "concept:through", "target": "file:scripts/makeadmin.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in conftest.py", "relation": "documents", "source": "concept:through", "target": "file:tests/conftest.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in test_cover.py", "relation": "documents", "source": "concept:through", "target": "file:tests/test_cover.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in test_deniable_vault.py", "relation": "documents", "source": "concept:through", "target": "file:tests/test_deniable_vault.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in test_facade.py", "relation": "documents", "source": "concept:through", "target": "file:tests/test_facade.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in test_secure_channel.py", "relation": "documents", "source": "concept:through", "target": "file:tests/test_secure_channel.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in test_security.py", "relation": "documents", "source": "concept:through", "target": "file:tests/test_security.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in integrity.py", "relation": "documents", "source": "concept:through", "target": "file:utils/integrity.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in mailer.py", "relation": "documents", "source": "concept:through", "target": "file:utils/mailer.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in security.py", "relation": "documents", "source": "concept:through", "target": "file:utils/security.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in admin.py", "relation": "documents", "source": "concept:through", "target": "file:views/admin.py", "weight": 0.45}
-{"confidence": "INFERRED", "description": "concept through appears in wsgi.py", "relation": "documents", "source": "concept:through", "target": "file:wsgi.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept used appears in app_factory.py", "relation": "documents", "source": "concept:used", "target": "file:app_factory.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept used appears in auth.py", "relation": "documents", "source": "concept:used", "target": "file:controllers/auth.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept used appears in deniable_vault.py", "relation": "documents", "source": "concept:used", "target": "file:controllers/deniable_vault.py", "weight": 0.45}
@@ -1130,6 +1133,7 @@
 {"confidence": "INFERRED", "description": "concept vault appears in mailer.py", "relation": "documents", "source": "concept:vault", "target": "file:utils/mailer.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept vault appears in security.py", "relation": "documents", "source": "concept:vault", "target": "file:utils/security.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept vault appears in srp6a.py", "relation": "documents", "source": "concept:vault", "target": "file:utils/srp6a.py", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept vault appears in version.py", "relation": "documents", "source": "concept:vault", "target": "file:utils/version.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "concept vault appears in account.py", "relation": "documents", "source": "concept:vault", "target": "file:views/account.py", "weight": 0.45}
 {"confidence": "INFERRED", "description": "when depends_on never", "relation": "depends_on", "source": "concept:when", "target": "concept:never", "weight": 0.6}
 {"confidence": "INFERRED", "description": "when depends_on one", "relation": "depends_on", "source": "concept:when", "target": "concept:one", "weight": 0.6}

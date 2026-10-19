@@ -134,3 +134,8 @@
   - `__init__` (method, line 145) `def __init__(self, config_dict)`
   - `__getitem__` (method, line 165) `def __getitem__(self, key)`
 - Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
+
+## utils/version.py
+- Doc: QuantumVault package version.
+- Layer: utility
+- Language: py

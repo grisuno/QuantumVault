@@ -18,7 +18,7 @@ flowchart TB
         n_c2["static/js<br/>9 files, 81 symbols<br/>Core / utility"]:::default
         n_c1["views: facade<br/>8 files, 46 symbols<br/>Presentation / entry"]:::entry
         n_d_views["views<br/>1 files, 0 symbols<br/>Presentation / entry"]:::default
-        n_d_utils["utils<br/>3 files, 22 symbols<br/>Core / utility"]:::default
+        n_d_utils["utils<br/>4 files, 22 symbols<br/>Core / utility"]:::default
         n_d_templates["templates<br/>1 files, 1 symbols<br/>Presentation / entry"]:::default
         n_d_static["static<br/>1 files, 3 symbols<br/>Core / utility"]:::default
         n_d_scripts["scripts<br/>3 files, 32 symbols<br/>Core / utility"]:::default

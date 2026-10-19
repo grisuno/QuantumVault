@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quantumvault-core"
-version = "0.1.0"
+dynamic = ["version"]
 description = "QuantumVault: zero-knowledge encrypted messaging, files, and deniable vault with hybrid post-quantum key exchange"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -49,6 +49,8 @@ Homepage = "https://github.com/grisuno/QuantumVault"
 [tool.setuptools]
 packages = ["controllers", "models", "utils", "views"]
 
+[tool.setuptools.dynamic]
+version = { attr = "utils.version.__version__" }
 [tool.setuptools.package-data]
 controllers = ["*.md"]
 models = ["*.md"]

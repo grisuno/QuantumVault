@@ -75,6 +75,7 @@
 | `utils/security.py` | Centralized security primitives for QuantumVault. | utils | 10 | 8 |
 | `utils/srp6a.py` | Zero-knowledge SRP-6a authentication primitives for QuantumVault. | utils | 14 | 0 |
 | `utils/utils.py` | utils/utils.py | utils | 8 | 14 |
+| `utils/version.py` | QuantumVault package version. | utils | 0 | 0 |
 | `views/__init__.py` | - | views | 0 | 0 |
 | `views/about.py` | about: Render the About page. | views | 1 | 1 |
 | `views/account.py` | Account settings page and the deniable vault JSON API (QV-DENIABLE-1). | views | 5 | 1 |

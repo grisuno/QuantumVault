@@ -37,7 +37,7 @@ graph LR
 
 ## Details
 
-Static architecture map of 88 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniable_vault, utils, tools. Structure is extracted statically without LLM calls; component prose may be enriched locally.
+Static architecture map of 89 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniable_vault, utils, tools. Structure is extracted statically without LLM calls; component prose may be enriched locally.
 
 ### views: auth (1)
 

@@ -1,10 +1,10 @@
 # orphans
 
-*Community 7 | 26 files | cohesion 0.00*
+*Community 7 | 27 files | cohesion 0.00*
 
 ## Definition
 
-This community groups 26 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
+This community groups 27 file(s) rooted at `root` with dominant language py (cohesion 0.00). Central symbols: `Cache`, `CheckResult`, `DoctorReport`, `Mutation`, `SRPSessionStore`, `SubscriptionPlans`, `__init__`, `_build_s3_client`. Core file: `scripts/doctor.py` (28 symbols). Documented purpose: Offline admin tool for ML-KEM-512 key-wrap encryption (QuantumVault).  WARNING.
 
 ## Files
 
@@ -16,7 +16,15 @@ This community groups 26 file(s) rooted at `root` with dominant language py (coh
 | `client.go` | go | infrastructure | 1 | no |
 | `client.py` | py | infrastructure | 0 | no |
 | `enc_dec.go` | go | utility | 4 | no |
-| `enc_dec.py` | py | utility | 5 | yes |
+
+### `utils` (4 files)
+
+| File | Language | Layer | Symbols | Doc |
+|------|----------|-------|---------|-----|
+| `utils/cache.py` | py | infrastructure | 5 | yes |
+| `utils/plans.py` | py | utility | 3 | no |
+| `utils/srp6a.py` | py | utility | 14 | yes |
+| `utils/version.py` | py | utility | 0 | yes |
 
 ### `scripts` (3 files)
 
@@ -33,14 +41,6 @@ This community groups 26 file(s) rooted at `root` with dominant language py (coh
 | `tests/__init__.py` | py | testing | 0 | no |
 | `tests/test_auth_phone.py` | py | testing | 3 | yes |
 | `tests/test_doctor.py` | py | testing | 12 | yes |
-
-### `utils` (3 files)
-
-| File | Language | Layer | Symbols | Doc |
-|------|----------|-------|---------|-----|
-| `utils/cache.py` | py | infrastructure | 5 | yes |
-| `utils/plans.py` | py | utility | 3 | no |
-| `utils/srp6a.py` | py | utility | 14 | yes |
 
 ### `controllers` (1 files)
 
@@ -78,7 +78,7 @@ This community groups 26 file(s) rooted at `root` with dominant language py (coh
 |------|----------|-------|---------|-----|
 | `views/__init__.py` | py | presentation | 0 | no |
 
-*... and 6 more files in this community.*
+*... and 7 more files in this community.*
 
 
 ## Key Symbols
@@ -161,4 +161,4 @@ This community groups 26 file(s) rooted at `root` with dominant language py (coh
 - `test.sh`
 - `tests/__init__.py`
 - `tests/test_auth_phone.py`
-- *... and 6 more*
+- *... and 7 more*

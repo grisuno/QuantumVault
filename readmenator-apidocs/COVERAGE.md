@@ -1,6 +1,6 @@
 # Documentation Coverage
 
-Overall: **76.3%** (357 of 468 public modules, types, and callables). Data members are excluded from the ratio.
+Overall: **76.3%** (358 of 469 public modules, types, and callables). Data members are excluded from the ratio.
 
 [Back to index](index.md)
 
@@ -15,7 +15,7 @@ Overall: **76.3%** (357 of 468 public modules, types, and callables). Data membe
 | exception | 2 | 2 | 100.0% |
 | function | 156 | 229 | 68.1% |
 | method | 81 | 81 | 100.0% |
-| module | 45 | 71 | 63.4% |
+| module | 46 | 72 | 63.9% |
 | property | 7 | 7 | 100.0% |
 | staticmethod | 2 | 2 | 100.0% |
 
@@ -91,6 +91,7 @@ Overall: **76.3%** (357 of 468 public modules, types, and callables). Data membe
 | [`utils.scheduler`](modules/utils.scheduler.py.md) | 2 | 2 | 100.0% |
 | [`utils.security`](modules/utils.security.py.md) | 7 | 7 | 100.0% |
 | [`utils.srp6a`](modules/utils.srp6a.py.md) | 12 | 12 | 100.0% |
+| [`utils.version`](modules/utils.version.py.md) | 1 | 1 | 100.0% |
 | [`views.account`](modules/views.account.py.md) | 6 | 6 | 100.0% |
 | [`views.facade`](modules/views.facade.py.md) | 2 | 2 | 100.0% |
 | [`wsgi`](modules/wsgi.py.md) | 1 | 1 | 100.0% |

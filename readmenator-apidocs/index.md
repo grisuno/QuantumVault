@@ -1,10 +1,10 @@
 # QuantumVault API Reference
 
-> Generated offline by readmenator: 71 modules, 688 documented entities, documentation coverage 76.3% (357/468 public items). Deterministic, zero tokens: signatures from source, docs parsed from Google, NumPy, reST, Javadoc/JSDoc/Doxygen, C# XML, and Rustdoc comments.
+> Generated offline by readmenator: 72 modules, 689 documented entities, documentation coverage 76.3% (358/469 public items). Deterministic, zero tokens: signatures from source, docs parsed from Google, NumPy, reST, Javadoc/JSDoc/Doxygen, C# XML, and Rustdoc comments.
 
 Navigate: [Interactive architecture and flows](flows.html) | [Architecture and flows (Mermaid)](architecture.md) | [Class hierarchy](classes.md) | [General index](genindex.md) | [Coverage and warnings](COVERAGE.md) | [`api/index.json`](api/index.json) | [HTML browser](index.html)
 
-Languages: go (3), js (10), py (54), sh (4)
+Languages: go (3), js (10), py (55), sh (4)
 
 ## Modules
 
@@ -104,6 +104,7 @@ Languages: go (3), js (10), py (54), sh (4)
 | [`utils.security`](modules/utils.security.py.md) | Centralized security primitives for QuantumVault. | 0 | 6 | 100.0% |
 | [`utils.srp6a`](modules/utils.srp6a.py.md) | Zero-knowledge SRP-6a authentication primitives for QuantumVault. | 1 | 10 | 100.0% |
 | [`utils.utils`](modules/utils.utils.py.md) | utils/utils.py | 2 | 5 | 87.5% |
+| [`utils.version`](modules/utils.version.py.md) | QuantumVault package version. | 0 | 0 | 100.0% |
 
 ### `views`
 

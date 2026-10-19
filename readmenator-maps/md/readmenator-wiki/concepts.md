@@ -13,9 +13,9 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `key` | 30 | 159 | `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
 | `path` | 30 | 77 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
 | `not` | 29 | 82 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `every` | 28 | 75 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py` |
+| `every` | 29 | 76 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py` |
+| `file` | 28 | 82 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.go` |
 | `its` | 28 | 40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
-| `file` | 27 | 81 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/secure_channel.py`, `enc_dec.go` |
 | `page` | 26 | 50 | `controllers/facade.py`, `controllers/message.py`, `models/contact.py`, `models/message.py`, `models/user.py` |
 | `returns` | 25 | 70 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
 | `get` | 25 | 64 | `app.py`, `controllers/contact.py`, `controllers/file.py`, `controllers/message.py`, `controllers/sync.py` |
@@ -25,10 +25,10 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `browser` | 23 | 44 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
 | `build` | 23 | 41 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
 | `without` | 23 | 37 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/secure_channel.py` |
+| `vault` | 22 | 82 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
 | `value` | 22 | 47 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
 | `any` | 22 | 34 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
 | `code` | 21 | 86 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `models/superadmin_audit.py`, `models/user.py` |
-| `vault` | 21 | 81 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
 | `json` | 21 | 43 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py`, `models/deniable_vault.py` |
 | `static` | 21 | 28 | `models/deniable_vault.py`, `models/message.py`, `static/js/account.js`, `static/js/coded-text.js`, `static/js/login.js` |
 | `zero` | 20 | 32 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/message.py`, `controllers/secure_channel.py` |
@@ -45,15 +45,15 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `used` | 18 | 23 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
 | `side` | 18 | 21 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
 | `accepts` | 18 | 20 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/user.py`, `scripts/doctor.py`, `static/js/account.js` |
+| `quantum` | 18 | 20 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py` |
 | `bytes` | 17 | 54 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py` |
 | `plaintext` | 17 | 44 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
 | `login` | 17 | 41 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `models/user.py`, `scripts/makeadmin.py` |
 | `opaque` | 17 | 40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/deniable_vault.py` |
 | `database` | 17 | 36 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/message.py`, `models/contact.py` |
 | `can` | 17 | 31 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/secure_channel.py`, `models/message.py` |
+| `single` | 17 | 26 | `controllers/auth.py`, `controllers/deniable_vault.py`, `enc_dec.py`, `models/superadmin_audit.py`, `scripts/doctor.py` |
 | `first` | 17 | 24 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/contact.py` |
-| `through` | 17 | 21 | `app_factory.py`, `controllers/file.py`, `controllers/secure_channel.py`, `scripts/doctor.py`, `scripts/email_tool.py` |
-| `quantum` | 17 | 19 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py` |
 
 ## Verb Edges
 
@@ -113,7 +113,7 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 ## Dialectic Prompts
 
 - Thesis: `accepts` centralizes 18 files; Antithesis: `code` pulls 21 files with 10 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
-- Thesis: `accepts` centralizes 18 files; Antithesis: `every` pulls 28 files with 11 shared (Jaccard 0.31); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
+- Thesis: `accepts` centralizes 18 files; Antithesis: `every` pulls 29 files with 11 shared (Jaccard 0.31); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `accepts` centralizes 18 files; Antithesis: `its` pulls 28 files with 12 shared (Jaccard 0.35); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `accepts` centralizes 18 files; Antithesis: `one` pulls 25 files with 11 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?
 - Thesis: `accepts` centralizes 18 files; Antithesis: `when` pulls 31 files with 13 shared (Jaccard 0.36); Synthesis: should they merge, split by layer, or keep `bridges` explicit?

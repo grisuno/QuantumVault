@@ -386,12 +386,48 @@
         "utils/security.py",
         "utils/srp6a.py",
         "utils/utils.py",
+        "utils/version.py",
         "views/account.py",
         "views/admin.py",
         "views/auth.py",
         "views/views.py"
       ],
-      "mentions": 75,
+      "mentions": 76,
+      "confidence": "EXTRACTED"
+    },
+    {
+      "name": "file",
+      "files": [
+        "app.py",
+        "controllers/contact.py",
+        "controllers/file.py",
+        "controllers/secure_channel.py",
+        "enc_dec.go",
+        "enc_dec.py",
+        "models/contact.py",
+        "models/deniable_vault.py",
+        "models/message.py",
+        "models/plans.py",
+        "models/superadmin_audit.py",
+        "models/user.py",
+        "scripts/doctor.py",
+        "scripts/garage-init.sh",
+        "static/js/qv-crypto.js",
+        "static/js/upload.js",
+        "tests/conftest.py",
+        "tests/test_doctor.py",
+        "tests/test_padding.py",
+        "tests/test_secure_channel.py",
+        "tools/generate_sri.py",
+        "utils/integrity.py",
+        "utils/padding.py",
+        "utils/utils.py",
+        "utils/version.py",
+        "views/admin.py",
+        "views/file.py",
+        "views/sync.py"
+      ],
+      "mentions": 82,
       "confidence": "EXTRACTED"
     },
     {
@@ -427,40 +463,6 @@
         "views/file.py"
       ],
       "mentions": 40,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "file",
-      "files": [
-        "app.py",
-        "controllers/contact.py",
-        "controllers/file.py",
-        "controllers/secure_channel.py",
-        "enc_dec.go",
-        "enc_dec.py",
-        "models/contact.py",
-        "models/deniable_vault.py",
-        "models/message.py",
-        "models/plans.py",
-        "models/superadmin_audit.py",
-        "models/user.py",
-        "scripts/doctor.py",
-        "scripts/garage-init.sh",
-        "static/js/qv-crypto.js",
-        "static/js/upload.js",
-        "tests/conftest.py",
-        "tests/test_doctor.py",
-        "tests/test_padding.py",
-        "tests/test_secure_channel.py",
-        "tools/generate_sri.py",
-        "utils/integrity.py",
-        "utils/padding.py",
-        "utils/utils.py",
-        "views/admin.py",
-        "views/file.py",
-        "views/sync.py"
-      ],
-      "mentions": 81,
       "confidence": "EXTRACTED"
     },
     {
@@ -744,6 +746,35 @@
       "confidence": "EXTRACTED"
     },
     {
+      "name": "vault",
+      "files": [
+        "app_factory.py",
+        "controllers/auth.py",
+        "controllers/deniable_vault.py",
+        "controllers/facade.py",
+        "controllers/secure_channel.py",
+        "enc_dec.py",
+        "models/deniable_vault.py",
+        "scripts/doctor.py",
+        "scripts/email_tool.py",
+        "scripts/garage-init.sh",
+        "scripts/makeadmin.py",
+        "static/js/qv-crypto.js",
+        "static/js/qv-deniable.js",
+        "static/js/qv-padding.js",
+        "tests/conftest.py",
+        "tests/test_deniable_vault.py",
+        "tools/mutation_test.py",
+        "utils/mailer.py",
+        "utils/security.py",
+        "utils/srp6a.py",
+        "utils/version.py",
+        "views/account.py"
+      ],
+      "mentions": 82,
+      "confidence": "EXTRACTED"
+    },
+    {
       "name": "value",
       "files": [
         "app_factory.py",
@@ -827,34 +858,6 @@
         "views/auth.py"
       ],
       "mentions": 86,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "vault",
-      "files": [
-        "app_factory.py",
-        "controllers/auth.py",
-        "controllers/deniable_vault.py",
-        "controllers/facade.py",
-        "controllers/secure_channel.py",
-        "enc_dec.py",
-        "models/deniable_vault.py",
-        "scripts/doctor.py",
-        "scripts/email_tool.py",
-        "scripts/garage-init.sh",
-        "scripts/makeadmin.py",
-        "static/js/qv-crypto.js",
-        "static/js/qv-deniable.js",
-        "static/js/qv-padding.js",
-        "tests/conftest.py",
-        "tests/test_deniable_vault.py",
-        "tools/mutation_test.py",
-        "utils/mailer.py",
-        "utils/security.py",
-        "utils/srp6a.py",
-        "views/account.py"
-      ],
-      "mentions": 81,
       "confidence": "EXTRACTED"
     },
     {
@@ -1271,6 +1274,31 @@
       "confidence": "EXTRACTED"
     },
     {
+      "name": "quantum",
+      "files": [
+        "app_factory.py",
+        "controllers/auth.py",
+        "controllers/facade.py",
+        "controllers/secure_channel.py",
+        "enc_dec.py",
+        "scripts/doctor.py",
+        "scripts/email_tool.py",
+        "scripts/garage-init.sh",
+        "scripts/makeadmin.py",
+        "static/js/qv-crypto.js",
+        "static/js/qv-deniable.js",
+        "static/js/qv-padding.js",
+        "tests/conftest.py",
+        "tools/mutation_test.py",
+        "utils/mailer.py",
+        "utils/security.py",
+        "utils/srp6a.py",
+        "utils/version.py"
+      ],
+      "mentions": 20,
+      "confidence": "EXTRACTED"
+    },
+    {
       "name": "bytes",
       "files": [
         "app_factory.py",
@@ -1415,6 +1443,30 @@
       "confidence": "EXTRACTED"
     },
     {
+      "name": "single",
+      "files": [
+        "controllers/auth.py",
+        "controllers/deniable_vault.py",
+        "enc_dec.py",
+        "models/superadmin_audit.py",
+        "scripts/doctor.py",
+        "scripts/garage-init.sh",
+        "static/js/qv-crypto.js",
+        "tests/test_cover.py",
+        "tests/test_facade.py",
+        "tests/test_secure_channel.py",
+        "tools/generate_sri.py",
+        "tools/mutation_test.py",
+        "utils/mailer.py",
+        "utils/security.py",
+        "utils/srp6a.py",
+        "utils/version.py",
+        "views/admin.py"
+      ],
+      "mentions": 26,
+      "confidence": "EXTRACTED"
+    },
+    {
       "name": "first",
       "files": [
         "controllers/auth.py",
@@ -1436,54 +1488,6 @@
         "views/auth.py"
       ],
       "mentions": 24,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "through",
-      "files": [
-        "app_factory.py",
-        "controllers/file.py",
-        "controllers/secure_channel.py",
-        "scripts/doctor.py",
-        "scripts/email_tool.py",
-        "scripts/makeadmin.py",
-        "tests/conftest.py",
-        "tests/test_cover.py",
-        "tests/test_deniable_vault.py",
-        "tests/test_facade.py",
-        "tests/test_secure_channel.py",
-        "tests/test_security.py",
-        "utils/integrity.py",
-        "utils/mailer.py",
-        "utils/security.py",
-        "views/admin.py",
-        "wsgi.py"
-      ],
-      "mentions": 21,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "quantum",
-      "files": [
-        "app_factory.py",
-        "controllers/auth.py",
-        "controllers/facade.py",
-        "controllers/secure_channel.py",
-        "enc_dec.py",
-        "scripts/doctor.py",
-        "scripts/email_tool.py",
-        "scripts/garage-init.sh",
-        "scripts/makeadmin.py",
-        "static/js/qv-crypto.js",
-        "static/js/qv-deniable.js",
-        "static/js/qv-padding.js",
-        "tests/conftest.py",
-        "tools/mutation_test.py",
-        "utils/mailer.py",
-        "utils/security.py",
-        "utils/srp6a.py"
-      ],
-      "mentions": 19,
       "confidence": "EXTRACTED"
     }
   ],
@@ -3391,7 +3395,7 @@
   ],
   "dialectic": [
     "Thesis: `accepts` centralizes 18 files; Antithesis: `code` pulls 21 files with 10 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",
-    "Thesis: `accepts` centralizes 18 files; Antithesis: `every` pulls 28 files with 11 shared (Jaccard 0.31); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",
+    "Thesis: `accepts` centralizes 18 files; Antithesis: `every` pulls 29 files with 11 shared (Jaccard 0.31); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",
     "Thesis: `accepts` centralizes 18 files; Antithesis: `its` pulls 28 files with 12 shared (Jaccard 0.35); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",
     "Thesis: `accepts` centralizes 18 files; Antithesis: `one` pulls 25 files with 11 shared (Jaccard 0.34); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",
     "Thesis: `accepts` centralizes 18 files; Antithesis: `when` pulls 31 files with 13 shared (Jaccard 0.36); Synthesis: should they merge, split by layer, or keep `bridges` explicit?",

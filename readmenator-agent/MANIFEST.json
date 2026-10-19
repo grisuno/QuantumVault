@@ -1,14 +1,14 @@
 {
   "tool": "readmenator",
   "schema_version": 2,
-  "generated_at": "2026-10-19T19:25:25Z",
+  "generated_at": "2026-10-19T19:28:20Z",
   "project_root": ".",
   "project_name": "QuantumVault",
-  "git_commit": "3dee8768d8ab57bfee6ed4972ce1cd25b687a9e6",
+  "git_commit": "b4747bdfd69d0fc1b2f1ba42c4b122c1689988fa",
   "git_branch": "main",
-  "source_fingerprint": "17ed88cb5a07a256104b9c3d479489e45cf2510c51797fb1b5ac758eba304d97",
+  "source_fingerprint": "c5a99d4a6d99c2a5a36eb8d33a3adf21b010bf8db1850da78e37fc03cdfbb598",
   "freshness_check": "readmenator . fresh  # exit 0 = docs match sources, exit 1 = run: readmenator . --rebuild",
-  "files": 88,
+  "files": 89,
   "symbols": 813,
   "imports": 524,
   "calls": 3892,
@@ -18,7 +18,7 @@
   "languages": {
     "go": 3,
     "js": 10,
-    "py": 70,
+    "py": 71,
     "sh": 5
   },
   "subsystems": {
@@ -30,7 +30,7 @@
     "scripts": 6,
     "tests": 14,
     "tools": 3,
-    "utils": 10,
+    "utils": 11,
     "views": 14
   },
   "entrypoints": [
@@ -70,7 +70,7 @@
     {
       "path": "CONCEPTS.md",
       "lines": 120,
-      "approx_tokens": 4550
+      "approx_tokens": 4552
     },
     {
       "path": "GOTCHAS.md",
@@ -79,8 +79,8 @@
     },
     {
       "path": "INDEX.md",
-      "lines": 92,
-      "approx_tokens": 2020
+      "lines": 93,
+      "approx_tokens": 2038
     },
     {
       "path": "KB_controllers.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "KB_utils.md",
-      "lines": 136,
-      "approx_tokens": 1780
+      "lines": 141,
+      "approx_tokens": 1803
     },
     {
       "path": "KB_views.md",

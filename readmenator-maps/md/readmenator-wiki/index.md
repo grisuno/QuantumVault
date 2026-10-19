@@ -1,6 +1,6 @@
 # Second Brain
 
-*Last synthesized: 2026-10-19 | 88 files | 8 concept pages | offline, zero tokens*
+*Last synthesized: 2026-10-19 | 89 files | 8 concept pages | offline, zero tokens*
 
 > Raw sources -> readmenator wiki -> links (Karpathy LLM Wiki Pattern, deterministic).
 > Start here, then open one community page. Prefer grep over full reads.
@@ -11,20 +11,20 @@ The codebase centres on `app_factory.py`, `user.py`, `utils.py`. Architecturally
 
 Surprising tissue lives between views: auth, views: facade, static/js: 10 extracted cross-community imports and 10 inferred bridges. Follow `connections.json` sorted by strength before refactoring.
 
-Open work clusters around documentation (68% file coverage), 0 security findings, 20 taint paths, and 5 suggested exploration questions in `queries.md`.
+Open work clusters around documentation (69% file coverage), 0 security findings, 20 taint paths, and 5 suggested exploration questions in `queries.md`.
 
 ## Stats
 
 | Metric | Value |
 |--------|-------|
-| Files | 88 |
+| Files | 89 |
 | Symbols | 813 |
 | Resolved imports | 122 |
 | Languages | go, js, py, sh |
 | Communities | 8 |
-| Doc coverage | 68% (60/88 files) |
+| Doc coverage | 69% (61/89 files) |
 | Security findings | 0 |
-| Estimated read cost | ~32359 tokens (chars/4, offline so $0) |
+| Estimated read cost | ~32419 tokens (chars/4, offline so $0) |
 
 ## Reading Order
 
@@ -46,7 +46,7 @@ readmenator query "<question>" --target QuantumVault
 - [views: deniable_vault (8 files, cohesion 0.50)](./community_4_views_deniable_vault.md)
 - [utils (8 files, cohesion 0.47)](./community_5_utils.md)
 - [tools (4 files, cohesion 0.67)](./community_6_tools.md)
-- [orphans (26 files, cohesion 0.00)](./community_7_orphans.md)
+- [orphans (27 files, cohesion 0.00)](./community_7_orphans.md)
 
 ## God Nodes
 

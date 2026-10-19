@@ -48,19 +48,19 @@
         "label": "views: auth",
         "file_ids": [
           "views/faq.py",
-          "views/message.py",
-          "scripts/email_tool.py",
-          "models/plans.py",
-          "controllers/auth.py",
-          "views/file.py",
-          "scripts/makeadmin.py",
-          "views/views.py",
+          "utils/mailer.py",
           "tests/test_utils.py",
-          "utils/utils.py",
+          "models/user.py",
           "views/auth.py",
           "views/subscription.py",
-          "models/user.py",
-          "utils/mailer.py"
+          "controllers/auth.py",
+          "models/plans.py",
+          "scripts/email_tool.py",
+          "views/message.py",
+          "views/views.py",
+          "scripts/makeadmin.py",
+          "views/file.py",
+          "utils/utils.py"
         ],
         "cohesion": 0.4423076923076923,
         "size": 14
@@ -69,17 +69,17 @@
         "id": 1,
         "label": "views: facade",
         "file_ids": [
-          "app_factory.py",
-          "tests/test_cover.py",
-          "wsgi.py",
+          "views/privacy.py",
+          "views/facade.py",
+          "tests/test_facade.py",
           "views/terms.py",
           "controllers/facade.py",
-          "views/privacy.py",
+          "app_factory.py",
           "controllers/sync.py",
-          "tests/test_account_facade.py",
+          "wsgi.py",
           "views/about.py",
-          "tests/test_facade.py",
-          "views/facade.py"
+          "tests/test_cover.py",
+          "tests/test_account_facade.py"
         ],
         "cohesion": 0.40625,
         "size": 11
@@ -88,15 +88,15 @@
         "id": 2,
         "label": "static/js",
         "file_ids": [
-          "static/js/login.js",
-          "static/js/qv-padding.js",
-          "static/js/messages.js",
-          "static/js/upload.js",
           "static/js/recover.js",
-          "static/js/register.js",
-          "static/js/qv-crypto.js",
           "static/js/qv-deniable.js",
-          "static/js/account.js"
+          "static/js/account.js",
+          "static/js/qv-padding.js",
+          "static/js/login.js",
+          "static/js/messages.js",
+          "static/js/register.js",
+          "static/js/upload.js",
+          "static/js/qv-crypto.js"
         ],
         "cohesion": 0.8888888888888888,
         "size": 9
@@ -106,13 +106,13 @@
         "label": "controllers",
         "file_ids": [
           "scripts/test_bloque1.py",
-          "views/admin.py",
           "controllers/secure_channel.py",
+          "views/admin.py",
           "models/superadmin_audit.py",
-          "app.py",
           "controllers/contact.py",
-          "models/contact.py",
-          "tests/test_secure_channel.py"
+          "tests/test_secure_channel.py",
+          "app.py",
+          "models/contact.py"
         ],
         "cohesion": 0.47058823529411764,
         "size": 8
@@ -121,14 +121,14 @@
         "id": 4,
         "label": "views: deniable_vault",
         "file_ids": [
-          "views/sync.py",
+          "views/account.py",
           "tests/test_security.py",
-          "tests/conftest.py",
-          "models/deniable_vault.py",
-          "controllers/deniable_vault.py",
           "utils/security.py",
+          "views/sync.py",
+          "tests/conftest.py",
           "tests/test_deniable_vault.py",
-          "views/account.py"
+          "controllers/deniable_vault.py",
+          "models/deniable_vault.py"
         ],
         "cohesion": 0.5,
         "size": 8
@@ -137,14 +137,14 @@
         "id": 5,
         "label": "utils",
         "file_ids": [
-          "tests/test_padding.py",
+          "utils/__init__.py",
+          "models/message.py",
+          "controllers/message.py",
           "utils/scheduler.py",
           "utils/padding.py",
-          "models/message.py",
-          "utils/__init__.py",
           "controllers/file.py",
-          "controllers/message.py",
-          "tests/test_srp.py"
+          "tests/test_srp.py",
+          "tests/test_padding.py"
         ],
         "cohesion": 0.47368421052631576,
         "size": 8
@@ -153,10 +153,10 @@
         "id": 6,
         "label": "tools",
         "file_ids": [
-          "tools/generate_sri.py",
+          "utils/integrity.py",
           "tests/test_integrity.py",
           "tools/verify_build.py",
-          "utils/integrity.py"
+          "tools/generate_sri.py"
         ],
         "cohesion": 0.6666666666666666,
         "size": 4
@@ -276,6 +276,7 @@
     "utils/security.py": "presentation",
     "utils/srp6a.py": "utility",
     "utils/utils.py": "presentation",
+    "utils/version.py": "utility",
     "views/__init__.py": "presentation",
     "views/about.py": "presentation",
     "views/account.py": "presentation",

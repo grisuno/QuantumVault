@@ -1,0 +1,10 @@
+[project]
+name = "QuantumVault"
+version_file = "utils/version.py"
+
+[tests]
+commands = ["python -m pytest tests/ -q"]
+
+[pypi]
+enabled = true
+repo = "pypi"

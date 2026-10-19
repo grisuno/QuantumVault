@@ -2,12 +2,12 @@
  "schema_version": 1,
  "format": "jsonl",
  "meta": {
-  "modules": 71,
-  "entities": 688,
+  "modules": 72,
+  "entities": 689,
   "languages": {
    "go": 3,
    "js": 10,
-   "py": 54,
+   "py": 55,
    "sh": 4
   },
   "kinds": {
@@ -20,7 +20,7 @@
    "exception": 2,
    "function": 229,
    "method": 81,
-   "module": 71,
+   "module": 72,
    "property": 7,
    "staticmethod": 2
   },
@@ -30,8 +30,8 @@
  },
  "coverage": {
   "overall": {
-   "documented": 357,
-   "total": 468,
+   "documented": 358,
+   "total": 469,
    "percent": 76.3
   },
   "by_kind": {
@@ -71,9 +71,9 @@
     "percent": 100.0
    },
    "module": {
-    "documented": 45,
-    "total": 71,
-    "percent": 63.4
+    "documented": 46,
+    "total": 72,
+    "percent": 63.9
    },
    "property": {
     "documented": 7,
@@ -366,6 +366,11 @@
     "documented": 7,
     "total": 8,
     "percent": 87.5
+   },
+   "utils/version.py": {
+    "documented": 1,
+    "total": 1,
+    "percent": 100.0
    },
    "views/__init__.py": {
     "documented": 0,
@@ -724,6 +729,11 @@
    "uid": "utils/utils.py",
    "path": "modules/utils.utils.py.jsonl",
    "entities": 50
+  },
+  {
+   "uid": "utils/version.py",
+   "path": "modules/utils.version.py.jsonl",
+   "entities": 1
   },
   {
    "uid": "views/__init__.py",

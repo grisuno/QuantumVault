@@ -1,19 +1,19 @@
 {
  "metadata": {
-  "generated_at": "2026-10-19T19:27:17.716703+00:00",
-  "source_tree_hash": "17ed88cb5a07a256104b9c3d479489e45cf2510c51797fb1b5ac758eba304d97",
+  "generated_at": "2026-10-19T19:30:04.260759+00:00",
+  "source_tree_hash": "c5a99d4a6d99c2a5a36eb8d33a3adf21b010bf8db1850da78e37fc03cdfbb598",
   "repo_name": "QuantumVault",
   "depth_level": 2,
   "depth_cap": 3,
   "file_coverage_summary": {
-   "total_files": 88,
-   "analyzed": 88,
+   "total_files": 89,
+   "analyzed": 89,
    "not_analyzed": 0,
    "not_analyzed_by_reason": {}
   },
   "tree_spec": {}
  },
- "description": "Static architecture map of 88 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniable_vault, utils, tools. Structure is extracted statically without LLM calls; component prose may be enriched locally.",
+ "description": "Static architecture map of 89 files (go, js, py, sh) in 7 components: views: auth, views: facade, static/js, controllers, views: deniable_vault, utils, tools. Structure is extracted statically without LLM calls; component prose may be enriched locally.",
  "files": {
   "__init__.py": {
    "language": "py",
@@ -306,6 +306,10 @@
   "utils/utils.py": {
    "language": "py",
    "symbols": 8
+  },
+  "utils/version.py": {
+   "language": "py",
+   "symbols": 0
   },
   "views/__init__.py": {
    "language": "py",
