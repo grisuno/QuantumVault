@@ -46,8 +46,8 @@
   - `_base64_length` (function, line 81) `def _base64_length(byte_length)`
   - `canonical_json` (function, line 86) `def canonical_json(envelope)`
   - `EnvelopeValidationError` (class, line 104) `class EnvelopeValidationError(ValueError)`
-  - `_coerce_int` (method, line 108) `def _coerce_int(value, default)`
-  - `_coerce_kdf` (method, line 118) `def _coerce_kdf(value, default)`
+  - `_coerce_int` (function, line 108) `def _coerce_int(value, default)`
+  - `_coerce_kdf` (function, line 118) `def _coerce_kdf(value, default)`
   - `DeniableVaultConfig` (class, line 134) `class DeniableVaultConfig`
   - `EnvelopeValidator` (class, line 272) `class EnvelopeValidator`
   - `DeniableVaultController` (class, line 393) `class DeniableVaultController`
@@ -64,7 +64,7 @@
   - `save` (method, line 441) `def save(self, username, envelope)`
   - `reset` (method, line 456) `def reset(self, username)`
   - `exists` (method, line 474) `def exists(self, username)`
-  - `read` (method, line 171) `def read(key)`
+  - `read` (function, line 171) `def read(key)`
 - Depends on: `models/deniable_vault.py`, `utils/security.py`
 - Imported by: `tests/test_deniable_vault.py`, `views/account.py`
 
@@ -75,11 +75,11 @@
 - Symbols:
   - `GateOutcome` (class, line 63) `class GateOutcome(Enum)`
   - `GateDecision` (class, line 72) `class GateDecision`
-  - `_as_bool` (method, line 79) `def _as_bool(value, default)`
-  - `_as_int` (method, line 88) `def _as_int(value, default)`
-  - `_as_text` (method, line 98) `def _as_text(value, default)`
-  - `_as_raw_text` (method, line 106) `def _as_raw_text(value, default)`
-  - `_as_paths` (method, line 111) `def _as_paths(value, default)`
+  - `_as_bool` (function, line 79) `def _as_bool(value, default)`
+  - `_as_int` (function, line 88) `def _as_int(value, default)`
+  - `_as_text` (function, line 98) `def _as_text(value, default)`
+  - `_as_raw_text` (function, line 106) `def _as_raw_text(value, default)`
+  - `_as_paths` (function, line 111) `def _as_paths(value, default)`
   - `FacadeConfig` (class, line 124) `class FacadeConfig`
   - `GatePhraseHasher` (class, line 262) `class GatePhraseHasher`
   - `GateTicket` (class, line 305) `class GateTicket`
@@ -98,7 +98,7 @@
   - `__init__` (method, line 339) `def __init__(self, config, hasher, ticket)`
   - `build` (method, line 351) `def build(cls, config, secret_key)`
   - `evaluate` (method, line 359) `def evaluate(self, phrase)`
-  - `read` (method, line 189) `def read(key)`
+  - `read` (function, line 189) `def read(key)`
 - Depends on: `utils/security.py`
 - Imported by: `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_facade.py`, `views/account.py`, `views/facade.py`
 
@@ -137,19 +137,19 @@
 - Language: py
 - Symbols:
   - `ChannelMode` (class, line 65) `class ChannelMode(Enum)`
-  - `is_cloudflare_url` (method, line 82) `def is_cloudflare_url(value)`
-  - `is_onion_url` (method, line 89) `def is_onion_url(value)`
-  - `_as_port` (method, line 96) `def _as_port(value, default)`
-  - `_as_scheme` (method, line 107) `def _as_scheme(value, default)`
+  - `is_cloudflare_url` (function, line 82) `def is_cloudflare_url(value)`
+  - `is_onion_url` (function, line 89) `def is_onion_url(value)`
+  - `_as_port` (function, line 96) `def _as_port(value, default)`
+  - `_as_scheme` (function, line 107) `def _as_scheme(value, default)`
   - `SecureChannelConfig` (class, line 116) `class SecureChannelConfig`
   - `ChannelStatus` (class, line 174) `class ChannelStatus`
-  - `_default_launcher` (method, line 193) `def _default_launcher(cmd, log_path)`
-  - `_default_killer` (method, line 207) `def _default_killer(pid)`
+  - `_default_launcher` (function, line 193) `def _default_launcher(cmd, log_path)`
+  - `_default_killer` (function, line 207) `def _default_killer(pid)`
   - `SecureChannelManager` (class, line 220) `class SecureChannelManager`
-  - `_fingerprint` (method, line 503) `def _fingerprint(value)`
-  - `_normalize_onion` (method, line 509) `def _normalize_onion(raw)`
-  - `_wait_for_pattern` (method, line 517) `def _wait_for_pattern(path, pattern, timeout_seconds)`
-  - `_wait_for_file` (method, line 535) `def _wait_for_file(path, timeout_seconds)`
+  - `_fingerprint` (function, line 503) `def _fingerprint(value)`
+  - `_normalize_onion` (function, line 509) `def _normalize_onion(raw)`
+  - `_wait_for_pattern` (function, line 517) `def _wait_for_pattern(path, pattern, timeout_seconds)`
+  - `_wait_for_file` (function, line 535) `def _wait_for_file(path, timeout_seconds)`
   - `parse` (method, line 74) `def parse(cls, raw)`
   - `configured` (method, line 129) `def configured(self)`
   - `from_mapping` (method, line 134) `def from_mapping(cls, mapping, env)`
@@ -172,7 +172,7 @@
   - `_start_tor` (method, line 438) `def _start_tor(self)`
   - `_resolve_binary` (method, line 471) `def _resolve_binary(self, binary)`
   - `_pid_live` (method, line 488) `def _pid_live(self, pid)`
-  - `read` (method, line 142) `def read(key)`
+  - `read` (function, line 142) `def read(key)`
 - Imported by: `tests/test_secure_channel.py`, `views/admin.py`
 
 ## controllers/sync.py

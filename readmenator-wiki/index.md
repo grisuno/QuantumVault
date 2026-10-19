@@ -1,6 +1,6 @@
 # Second Brain
 
-*Last synthesized: 2026-10-07 | 88 files | 8 concept pages | offline, zero tokens*
+*Last synthesized: 2026-10-19 | 88 files | 8 concept pages | offline, zero tokens*
 
 > Raw sources -> readmenator wiki -> links (Karpathy LLM Wiki Pattern, deterministic).
 > Start here, then open one community page. Prefer grep over full reads.
@@ -24,7 +24,7 @@ Open work clusters around documentation (68% file coverage), 0 security findings
 | Communities | 8 |
 | Doc coverage | 68% (60/88 files) |
 | Security findings | 0 |
-| Estimated read cost | ~32276 tokens (chars/4, offline so $0) |
+| Estimated read cost | ~32359 tokens (chars/4, offline so $0) |
 
 ## Reading Order
 
@@ -34,7 +34,7 @@ Open work clusters around documentation (68% file coverage), 0 security findings
 
 ```
 grep -rn '<keyword>' index.md community_*.md
-readmenator query "<question>" --target readmenator_QuantumVault_n680m_q4
+readmenator query "<question>" --target QuantumVault
 ```
 
 ## Concept Wiki

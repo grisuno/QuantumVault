@@ -37,18 +37,18 @@
   - `_channel_diagnostics` (function, line 116) `def _channel_diagnostics(manager)`
   - `UserEditForm` (class, line 141) `class UserEditForm(FlaskForm)`
   - `PlanForm` (class, line 174) `class PlanForm(FlaskForm)`
-  - `admin` (method, line 186) `def admin()`
-  - `superadmin_edit_user` (method, line 208) `def superadmin_edit_user(username)`
-  - `manage_plans` (method, line 313) `def manage_plans()`
-  - `edit_plan` (method, line 337) `def edit_plan(plan_name)`
-  - `superadmin` (method, line 373) `def superadmin()`
-  - `superadmin_reset_mfa` (method, line 476) `def superadmin_reset_mfa(username)`
-  - `superadmin_resend_confirmation` (method, line 523) `def superadmin_resend_confirmation(username)`
-  - `superadmin_toggle_suspend` (method, line 570) `def superadmin_toggle_suspend(username)`
-  - `superadmin_channel_start` (method, line 620) `def superadmin_channel_start()`
-  - `superadmin_channel_stop` (method, line 659) `def superadmin_channel_stop()`
-  - `superadmin_channel_rotate` (method, line 682) `def superadmin_channel_rotate()`
-  - `admin_contacts` (method, line 705) `def admin_contacts()`
+  - `admin` (function, line 186) `def admin()`
+  - `superadmin_edit_user` (function, line 208) `def superadmin_edit_user(username)`
+  - `manage_plans` (function, line 313) `def manage_plans()`
+  - `edit_plan` (function, line 337) `def edit_plan(plan_name)`
+  - `superadmin` (function, line 373) `def superadmin()`
+  - `superadmin_reset_mfa` (function, line 476) `def superadmin_reset_mfa(username)`
+  - `superadmin_resend_confirmation` (function, line 523) `def superadmin_resend_confirmation(username)`
+  - `superadmin_toggle_suspend` (function, line 570) `def superadmin_toggle_suspend(username)`
+  - `superadmin_channel_start` (function, line 620) `def superadmin_channel_start()`
+  - `superadmin_channel_stop` (function, line 659) `def superadmin_channel_stop()`
+  - `superadmin_channel_rotate` (function, line 682) `def superadmin_channel_rotate()`
+  - `admin_contacts` (function, line 705) `def admin_contacts()`
 - Depends on: `controllers/contact.py`, `controllers/secure_channel.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
 - Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
 
@@ -63,29 +63,29 @@
   - `ContactForm` (class, line 108) `class ContactForm(FlaskForm)`
   - `RegisterForm` (class, line 114) `class RegisterForm(FlaskForm)`
   - `LoginForm` (class, line 124) `class LoginForm(FlaskForm)`
-  - `get_auth_controller` (method, line 132) `def get_auth_controller()`
-  - `show_register` (method, line 143) `def show_register()`
-  - `handle_register` (method, line 150) `def handle_register()`
-  - `login` (method, line 234) `def login()`
-  - `recover` (method, line 242) `def recover()`
-  - `_srp_key` (method, line 255) `def _srp_key()`
-  - `_recovery_key` (method, line 266) `def _recovery_key()`
-  - `srp_hello` (method, line 278) `def srp_hello()`
-  - `srp_verify` (method, line 299) `def srp_verify()`
-  - `logout` (method, line 337) `def logout()`
-  - `confirm_email` (method, line 344) `def confirm_email(token)`
-  - `verify_phone` (method, line 367) `def verify_phone()`
-  - `resend_phone_verification` (method, line 384) `def resend_phone_verification()`
-  - `verify_mfa` (method, line 407) `def verify_mfa()`
-  - `toggle_mfa` (method, line 429) `def toggle_mfa()`
-  - `contact` (method, line 454) `def contact()`
-  - `get_public_key` (method, line 485) `def get_public_key()`
-  - `get_user_keys` (method, line 503) `def get_user_keys()`
-  - `get_recovery_bundle` (method, line 534) `def get_recovery_bundle()`
-  - `reset_with_recovery` (method, line 559) `def reset_with_recovery()`
-  - `get_csrf_token` (method, line 619) `def get_csrf_token()`
-  - `decorator` (method, line 85) `def decorator(f)`
-  - `decorated_function` (method, line 87) `def decorated_function()`
+  - `get_auth_controller` (function, line 132) `def get_auth_controller()`
+  - `show_register` (function, line 143) `def show_register()`
+  - `handle_register` (function, line 150) `def handle_register()`
+  - `login` (function, line 234) `def login()`
+  - `recover` (function, line 242) `def recover()`
+  - `_srp_key` (function, line 255) `def _srp_key()`
+  - `_recovery_key` (function, line 266) `def _recovery_key()`
+  - `srp_hello` (function, line 278) `def srp_hello()`
+  - `srp_verify` (function, line 299) `def srp_verify()`
+  - `logout` (function, line 337) `def logout()`
+  - `confirm_email` (function, line 344) `def confirm_email(token)`
+  - `verify_phone` (function, line 367) `def verify_phone()`
+  - `resend_phone_verification` (function, line 384) `def resend_phone_verification()`
+  - `verify_mfa` (function, line 407) `def verify_mfa()`
+  - `toggle_mfa` (function, line 429) `def toggle_mfa()`
+  - `contact` (function, line 454) `def contact()`
+  - `get_public_key` (function, line 485) `def get_public_key()`
+  - `get_user_keys` (function, line 503) `def get_user_keys()`
+  - `get_recovery_bundle` (function, line 534) `def get_recovery_bundle()`
+  - `reset_with_recovery` (function, line 559) `def reset_with_recovery()`
+  - `get_csrf_token` (function, line 619) `def get_csrf_token()`
+  - `decorator` (function, line 85) `def decorator(f)`
+  - `decorated_function` (function, line 87) `def decorated_function()`
 - Depends on: `controllers/auth.py`, `controllers/contact.py`, `models/user.py`, `utils/mailer.py`, `utils/security.py`, `utils/utils.py`
 - Imported by: `app_factory.py`, `views/admin.py`, `views/file.py`, `views/message.py`, `views/subscription.py`
 
@@ -119,8 +119,8 @@
 - Language: py
 - Symbols:
   - `UploadForm` (class, line 15) `class UploadForm(FlaskForm)`
-  - `upload` (method, line 25) `def upload()`
-  - `download` (method, line 56) `def download(filename)`
+  - `upload` (function, line 25) `def upload()`
+  - `download` (function, line 56) `def download(filename)`
 - Depends on: `views/auth.py`
 - Imported by: `app_factory.py`
 
@@ -130,8 +130,8 @@
 - Language: py
 - Symbols:
   - `MessageForm` (class, line 19) `class MessageForm(FlaskForm)`
-  - `messages` (method, line 29) `def messages()`
-  - `api_secure_message` (method, line 49) `def api_secure_message()`
+  - `messages` (function, line 29) `def messages()`
+  - `api_secure_message` (function, line 49) `def api_secure_message()`
 - Depends on: `controllers/message.py`, `views/auth.py`
 - Imported by: `app_factory.py`
 
@@ -149,8 +149,8 @@
 - Language: py
 - Symbols:
   - `SubscriptionForm` (class, line 24) `class SubscriptionForm(FlaskForm)`
-  - `subscribe` (method, line 37) `def subscribe()`
-  - `payment_success` (method, line 86) `def payment_success()`
+  - `subscribe` (function, line 37) `def subscribe()`
+  - `payment_success` (function, line 86) `def payment_success()`
   - `__init__` (method, line 26) `def __init__(self)`
 - Depends on: `models/plans.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
 - Imported by: `app_factory.py`
@@ -179,6 +179,6 @@
 - Language: py
 - Symbols:
   - `MFAEnableForm` (class, line 15) `class MFAEnableForm(FlaskForm)`
-  - `home` (method, line 21) `def home()`
+  - `home` (function, line 21) `def home()`
 - Depends on: `models/user.py`, `utils/utils.py`
 - Imported by: `app_factory.py`

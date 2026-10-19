@@ -24,11 +24,11 @@ This community groups 8 file(s) rooted at `tests` with dominant language py (coh
 - `_base64_length` (function, `controllers/deniable_vault.py:81`) `def _base64_length(byte_length)` - Return the length of the standard base64 encoding of ``byte_length`` bytes.
 - `canonical_json` (function, `controllers/deniable_vault.py:86`) `def canonical_json(envelope)` - Serialize an envelope deterministically for storage and sizing.
 - `EnvelopeValidationError` (class, `controllers/deniable_vault.py:104`) `class EnvelopeValidationError(ValueError)` - Raised when an envelope violates a structural invariant.
-- `_coerce_int` (method, `controllers/deniable_vault.py:108`) `def _coerce_int(value, default)` - Return ``value`` coerced to int, falling back to ``default``.
-- `_coerce_kdf` (method, `controllers/deniable_vault.py:118`) `def _coerce_kdf(value, default)` - Return an allow-list of KDF identifiers from a value.
+- `_coerce_int` (function, `controllers/deniable_vault.py:108`) `def _coerce_int(value, default)` - Return ``value`` coerced to int, falling back to ``default``.
+- `_coerce_kdf` (function, `controllers/deniable_vault.py:118`) `def _coerce_kdf(value, default)` - Return an allow-list of KDF identifiers from a value.
 - `DeniableVaultConfig` (class, `controllers/deniable_vault.py:134`) `class DeniableVaultConfig` - Immutable structural limits for a deniable vault container.
 - `from_mapping` (method, `controllers/deniable_vault.py:148`) `def from_mapping(cls, mapping, env)` - Build a config from a mapping, with environment overrides.
-- `read` (method, `controllers/deniable_vault.py:171`) `def read(key)`
+- `read` (function, `controllers/deniable_vault.py:171`) `def read(key)`
 - `expected_ct_b64_length` (method, `controllers/deniable_vault.py:213`) `def expected_ct_b64_length(self)` - Return the exact base64 length every slot ciphertext must have.
 - `random_container` (method, `controllers/deniable_vault.py:222`) `def random_container(self)` - Return a well-formed container filled with random, unopenable data.
 - `public_parameters` (method, `controllers/deniable_vault.py:250`) `def public_parameters(self)` - Return the parameters the browser needs to build a container.

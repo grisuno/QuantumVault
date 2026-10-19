@@ -54,8 +54,8 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `test_cache_holds_tables_not_pad_bytes` | function | `tests/test_padding.py:99` | `def test_cache_holds_tables_not_pad_bytes()` |
 | `test_config_from_env_falls_back_on_garbage` | function | `tests/test_padding.py:94` | `def test_config_from_env_falls_back_on_garbage(monkeypatch)` |
 | `test_config_from_env_override` | function | `tests/test_padding.py:87` | `def test_config_from_env_override(monkeypatch)` |
-| `test_file_controller_accepts_bucketed_upload` | method | `tests/test_padding.py:152` | `def test_file_controller_accepts_bucketed_upload(app)` |
-| `test_file_controller_rejects_unpadded_upload` | method | `tests/test_padding.py:146` | `def test_file_controller_rejects_unpadded_upload(app)` |
+| `test_file_controller_accepts_bucketed_upload` | function | `tests/test_padding.py:152` | `def test_file_controller_accepts_bucketed_upload(app)` |
+| `test_file_controller_rejects_unpadded_upload` | function | `tests/test_padding.py:146` | `def test_file_controller_rejects_unpadded_upload(app)` |
 | `test_message_controller_accepts_bucketed_envelope` | function | `tests/test_padding.py:120` | `def test_message_controller_accepts_bucketed_envelope(app, tmp_path, monkeypatch)` |
 | `test_message_controller_rejects_malformed_base64` | function | `tests/test_padding.py:113` | `def test_message_controller_rejects_malformed_base64(app, tmp_path, monkeypatch)` |
 | `test_message_controller_rejects_unpadded_envelope` | function | `tests/test_padding.py:105` | `def test_message_controller_rejects_unpadded_envelope(app, tmp_path, monkeypatch)` |
@@ -69,23 +69,23 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `test_unpad_rejects_wrong_kind` | function | `tests/test_padding.py:74` | `def test_unpad_rejects_wrong_kind()` |
 | `test_wire_lengths` | function | `tests/test_padding.py:80` | `def test_wire_lengths()` |
 | `_FakeProcess` | class | `tests/test_secure_channel.py:260` | `class _FakeProcess` |
-| `_fake_mono` | method | `tests/test_secure_channel.py:573` | `def _fake_mono()` |
-| `_fake_mono` | method | `tests/test_secure_channel.py:606` | `def _fake_mono()` |
-| `_fake_popen` | method | `tests/test_secure_channel.py:263` | `def _fake_popen(cmd)` |
-| `_fake_sleep` | method | `tests/test_secure_channel.py:576` | `def _fake_sleep(secs)` |
-| `_fake_sleep` | method | `tests/test_secure_channel.py:609` | `def _fake_sleep(secs)` |
-| `_fake_sleep_file` | method | `tests/test_secure_channel.py:627` | `def _fake_sleep_file(secs)` |
-| `_raise` | method | `tests/test_secure_channel.py:471` | `def _raise()` |
-| `_raise_lookup` | method | `tests/test_secure_channel.py:536` | `def _raise_lookup(pid, sig)` |
-| `_raise_os` | method | `tests/test_secure_channel.py:548` | `def _raise_os(pid, sig)` |
-| `_raise_perm` | method | `tests/test_secure_channel.py:542` | `def _raise_perm(pid, sig)` |
-| `_raise_pg` | method | `tests/test_secure_channel.py:290` | `def _raise_pg(pid, sig)` |
-| `_record_kill` | method | `tests/test_secure_channel.py:293` | `def _record_kill(pid, sig)` |
+| `_fake_mono` | function | `tests/test_secure_channel.py:573` | `def _fake_mono()` |
+| `_fake_mono` | function | `tests/test_secure_channel.py:606` | `def _fake_mono()` |
+| `_fake_popen` | function | `tests/test_secure_channel.py:263` | `def _fake_popen(cmd)` |
+| `_fake_sleep` | function | `tests/test_secure_channel.py:576` | `def _fake_sleep(secs)` |
+| `_fake_sleep` | function | `tests/test_secure_channel.py:609` | `def _fake_sleep(secs)` |
+| `_fake_sleep_file` | function | `tests/test_secure_channel.py:627` | `def _fake_sleep_file(secs)` |
+| `_raise` | function | `tests/test_secure_channel.py:471` | `def _raise()` |
+| `_raise_lookup` | function | `tests/test_secure_channel.py:536` | `def _raise_lookup(pid, sig)` |
+| `_raise_os` | function | `tests/test_secure_channel.py:548` | `def _raise_os(pid, sig)` |
+| `_raise_perm` | function | `tests/test_secure_channel.py:542` | `def _raise_perm(pid, sig)` |
+| `_raise_pg` | function | `tests/test_secure_channel.py:290` | `def _raise_pg(pid, sig)` |
+| `_record_kill` | function | `tests/test_secure_channel.py:293` | `def _record_kill(pid, sig)` |
 | `fake_launcher` | function | `tests/test_secure_channel.py:67` | `def fake_launcher(cmd, log_path)` |
 | `fake_launcher` | function | `tests/test_secure_channel.py:105` | `def fake_launcher(cmd, log_path)` |
-| `fake_launcher` | method | `tests/test_secure_channel.py:419` | `def fake_launcher(cmd, log_path)` |
-| `fake_launcher` | method | `tests/test_secure_channel.py:445` | `def fake_launcher(cmd, log_path)` |
-| `fake_launcher` | method | `tests/test_secure_channel.py:737` | `def fake_launcher(cmd, log_path)` |
+| `fake_launcher` | function | `tests/test_secure_channel.py:419` | `def fake_launcher(cmd, log_path)` |
+| `fake_launcher` | function | `tests/test_secure_channel.py:445` | `def fake_launcher(cmd, log_path)` |
+| `fake_launcher` | function | `tests/test_secure_channel.py:737` | `def fake_launcher(cmd, log_path)` |
 | `test_audit_details_default_verb_and_empty_urls` | function | `tests/test_secure_channel.py:334` | `def test_audit_details_default_verb_and_empty_urls()` |
 | `test_audit_details_never_carry_urls` | function | `tests/test_secure_channel.py:122` | `def test_audit_details_never_carry_urls()` |
 | `test_channel_diagnostics_missing_absolute_path` | function | `tests/test_secure_channel.py:656` | `def test_channel_diagnostics_missing_absolute_path(tmp_path)` |
@@ -158,24 +158,24 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `main` | function | `tools/generate_sri.py:81` | `def main(argv)` |
 | `render_manifest` | function | `tools/generate_sri.py:76` | `def render_manifest(manifest)` |
 | `Mutation` | class | `tools/mutation_test.py:56` | `class Mutation` |
-| `_is_equivalent_bool` | method | `tools/mutation_test.py:67` | `def _is_equivalent_bool(tokens, index)` |
-| `apply_mutation` | method | `tools/mutation_test.py:109` | `def apply_mutation(source, mutation)` |
-| `collect` | method | `tools/mutation_test.py:121` | `def collect(targets, limit)` |
-| `discover_mutations` | method | `tools/mutation_test.py:79` | `def discover_mutations(path, source)` |
-| `main` | method | `tools/mutation_test.py:157` | `def main(argv)` |
-| `purge_bytecode` | method | `tools/mutation_test.py:133` | `def purge_bytecode()` |
-| `run_suite` | method | `tools/mutation_test.py:142` | `def run_suite(python, tests)` |
+| `_is_equivalent_bool` | function | `tools/mutation_test.py:67` | `def _is_equivalent_bool(tokens, index)` |
+| `apply_mutation` | function | `tools/mutation_test.py:109` | `def apply_mutation(source, mutation)` |
+| `collect` | function | `tools/mutation_test.py:121` | `def collect(targets, limit)` |
+| `discover_mutations` | function | `tools/mutation_test.py:79` | `def discover_mutations(path, source)` |
+| `main` | function | `tools/mutation_test.py:157` | `def main(argv)` |
+| `purge_bytecode` | function | `tools/mutation_test.py:133` | `def purge_bytecode()` |
+| `run_suite` | function | `tools/mutation_test.py:142` | `def run_suite(python, tests)` |
 | `AssetReference` | class | `tools/verify_build.py:34` | `class AssetReference(HTMLParser)` |
 | `__init__` | method | `tools/verify_build.py:37` | `def __init__(self)` |
-| `_normalize_reference` | method | `tools/verify_build.py:60` | `def _normalize_reference(ref)` |
-| `check_bucket_parity` | method | `tools/verify_build.py:126` | `def check_bucket_parity(failures)` |
-| `check_local_hashes` | method | `tools/verify_build.py:95` | `def check_local_hashes(manifest, failures)` |
-| `check_template_references` | method | `tools/verify_build.py:110` | `def check_template_references(manifest, failures)` |
-| `expected_for_reference` | method | `tools/verify_build.py:76` | `def expected_for_reference(manifest, ref)` |
+| `_normalize_reference` | function | `tools/verify_build.py:60` | `def _normalize_reference(ref)` |
+| `check_bucket_parity` | function | `tools/verify_build.py:126` | `def check_bucket_parity(failures)` |
+| `check_local_hashes` | function | `tools/verify_build.py:95` | `def check_local_hashes(manifest, failures)` |
+| `check_template_references` | function | `tools/verify_build.py:110` | `def check_template_references(manifest, failures)` |
+| `expected_for_reference` | function | `tools/verify_build.py:76` | `def expected_for_reference(manifest, ref)` |
 | `handle_starttag` | method | `tools/verify_build.py:42` | `def handle_starttag(self, tag, attrs)` |
-| `integrity_attribute_ok` | method | `tools/verify_build.py:85` | `def integrity_attribute_ok(integrity, ref, expected)` |
-| `load_manifest` | method | `tools/verify_build.py:71` | `def load_manifest()` |
-| `main` | method | `tools/verify_build.py:141` | `def main()` |
+| `integrity_attribute_ok` | function | `tools/verify_build.py:85` | `def integrity_attribute_ok(integrity, ref, expected)` |
+| `load_manifest` | function | `tools/verify_build.py:71` | `def load_manifest()` |
+| `main` | function | `tools/verify_build.py:141` | `def main()` |
 | `Cache` | class | `utils/cache.py:6` | `class Cache` |
 | `__init__` | method | `utils/cache.py:8` | `def __init__(self)` |
 | `delete` | method | `utils/cache.py:20` | `def delete(self, key)` |
@@ -194,17 +194,17 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `send_transactional_email` | function | `utils/mailer.py:51` | `def send_transactional_email(subject, recipients, body)` |
 | `PaddingConfig` | class | `utils/padding.py:78` | `class PaddingConfig` |
 | `PaddingError` | class | `utils/padding.py:73` | `class PaddingError(ValueError)` |
-| `_cached_bucket_table` | method | `utils/padding.py:128` | `def _cached_bucket_table(fingerprint)` |
-| `_parse_buckets` | method | `utils/padding.py:95` | `def _parse_buckets(raw, fallback)` |
-| `bucket_for` | method | `utils/padding.py:149` | `def bucket_for(plaintext_len, kind, config)` |
+| `_cached_bucket_table` | function | `utils/padding.py:128` | `def _cached_bucket_table(fingerprint)` |
+| `_parse_buckets` | function | `utils/padding.py:95` | `def _parse_buckets(raw, fallback)` |
+| `bucket_for` | function | `utils/padding.py:149` | `def bucket_for(plaintext_len, kind, config)` |
 | `buckets_for` | method | `utils/padding.py:84` | `def buckets_for(self, kind)` |
-| `cached_tables` | method | `utils/padding.py:142` | `def cached_tables(config)` |
-| `config_from_env` | method | `utils/padding.py:109` | `def config_from_env()` |
-| `is_allowed_ciphertext_len` | method | `utils/padding.py:214` | `def is_allowed_ciphertext_len(ciphertext_len, kind, config)` |
+| `cached_tables` | function | `utils/padding.py:142` | `def cached_tables(config)` |
+| `config_from_env` | function | `utils/padding.py:109` | `def config_from_env()` |
+| `is_allowed_ciphertext_len` | function | `utils/padding.py:214` | `def is_allowed_ciphertext_len(ciphertext_len, kind, config)` |
 | `max_plaintext_bytes` | method | `utils/padding.py:90` | `def max_plaintext_bytes(self, kind)` |
-| `pad` | method | `utils/padding.py:169` | `def pad(plaintext, kind, config)` |
-| `unpad` | method | `utils/padding.py:183` | `def unpad(padded, kind, config)` |
-| `wire_ciphertext_len` | method | `utils/padding.py:209` | `def wire_ciphertext_len(bucket)` |
+| `pad` | function | `utils/padding.py:169` | `def pad(plaintext, kind, config)` |
+| `unpad` | function | `utils/padding.py:183` | `def unpad(padded, kind, config)` |
+| `wire_ciphertext_len` | function | `utils/padding.py:209` | `def wire_ciphertext_len(bucket)` |
 | `SubscriptionPlans` | class | `utils/plans.py:3` | `class SubscriptionPlans` |
 | `get_plan` | method | `utils/plans.py:30` | `def get_plan(plan_name)` |
 | `validate_plan_payment` | method | `utils/plans.py:42` | `def validate_plan_payment(plan_name, amount_paid)` |
@@ -232,18 +232,18 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `compute_proofs` | function | `utils/srp6a.py:107` | `def compute_proofs(username, salt_hex, verifier, server_a, server_b, server_b_secret)` |
 | `compute_u` | function | `utils/srp6a.py:78` | `def compute_u(server_a, server_b)` |
 | `generate_server_challenge` | function | `utils/srp6a.py:91` | `def generate_server_challenge(verifier)` |
-| `hello` | method | `utils/srp6a.py:224` | `def hello(store, username, client_a_hex, salt_hex, verifier_hex)` |
+| `hello` | function | `utils/srp6a.py:224` | `def hello(store, username, client_a_hex, salt_hex, verifier_hex)` |
 | `i2osp` | function | `utils/srp6a.py:47` | `def i2osp(value)` |
 | `load` | method | `utils/srp6a.py:202` | `def load(self, username)` |
 | `save` | method | `utils/srp6a.py:172` | `def save(self, username, salt_hex, verifier_hex, server_a_hex, server_b_hex, server_b_secret_hex)` |
-| `verify` | method | `utils/srp6a.py:260` | `def verify(store, username, client_m1_hex)` |
+| `verify` | function | `utils/srp6a.py:260` | `def verify(store, username, client_m1_hex)` |
 | `Config` | class | `utils/utils.py:103` | `class Config` |
 | `Payload` | class | `utils/utils.py:80` | `class Payload(TypedDict)` |
 | `__getitem__` | method | `utils/utils.py:165` | `def __getitem__(self, key)` |
 | `__init__` | method | `utils/utils.py:145` | `def __init__(self, config_dict)` |
 | `as_bool` | function | `utils/utils.py:29` | `def as_bool(value, default)` |
 | `database_path` | function | `utils/utils.py:12` | `def database_path()` |
-| `load_payload` | method | `utils/utils.py:168` | `def load_payload()` |
+| `load_payload` | function | `utils/utils.py:168` | `def load_payload()` |
 | `sanitize_path` | function | `utils/utils.py:49` | `def sanitize_path(path)` |
 | `about` | function | `views/about.py:6` | `def about()` |
 | `delete_vault` | function | `views/account.py:130` | `def delete_vault()` |
@@ -258,47 +258,47 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `_channel_manager` | function | `views/admin.py:48` | `def _channel_manager()` |
 | `_read_log_tail` | function | `views/admin.py:84` | `def _read_log_tail(state_dir, limit)` |
 | `_s3_reachable` | function | `views/admin.py:54` | `def _s3_reachable(timeout)` |
-| `admin` | method | `views/admin.py:186` | `def admin()` |
-| `admin_contacts` | method | `views/admin.py:705` | `def admin_contacts()` |
-| `edit_plan` | method | `views/admin.py:337` | `def edit_plan(plan_name)` |
-| `manage_plans` | method | `views/admin.py:313` | `def manage_plans()` |
-| `superadmin` | method | `views/admin.py:373` | `def superadmin()` |
-| `superadmin_channel_rotate` | method | `views/admin.py:682` | `def superadmin_channel_rotate()` |
-| `superadmin_channel_start` | method | `views/admin.py:620` | `def superadmin_channel_start()` |
-| `superadmin_channel_stop` | method | `views/admin.py:659` | `def superadmin_channel_stop()` |
-| `superadmin_edit_user` | method | `views/admin.py:208` | `def superadmin_edit_user(username)` |
-| `superadmin_resend_confirmation` | method | `views/admin.py:523` | `def superadmin_resend_confirmation(username)` |
-| `superadmin_reset_mfa` | method | `views/admin.py:476` | `def superadmin_reset_mfa(username)` |
-| `superadmin_toggle_suspend` | method | `views/admin.py:570` | `def superadmin_toggle_suspend(username)` |
+| `admin` | function | `views/admin.py:186` | `def admin()` |
+| `admin_contacts` | function | `views/admin.py:705` | `def admin_contacts()` |
+| `edit_plan` | function | `views/admin.py:337` | `def edit_plan(plan_name)` |
+| `manage_plans` | function | `views/admin.py:313` | `def manage_plans()` |
+| `superadmin` | function | `views/admin.py:373` | `def superadmin()` |
+| `superadmin_channel_rotate` | function | `views/admin.py:682` | `def superadmin_channel_rotate()` |
+| `superadmin_channel_start` | function | `views/admin.py:620` | `def superadmin_channel_start()` |
+| `superadmin_channel_stop` | function | `views/admin.py:659` | `def superadmin_channel_stop()` |
+| `superadmin_edit_user` | function | `views/admin.py:208` | `def superadmin_edit_user(username)` |
+| `superadmin_resend_confirmation` | function | `views/admin.py:523` | `def superadmin_resend_confirmation(username)` |
+| `superadmin_reset_mfa` | function | `views/admin.py:476` | `def superadmin_reset_mfa(username)` |
+| `superadmin_toggle_suspend` | function | `views/admin.py:570` | `def superadmin_toggle_suspend(username)` |
 | `ContactForm` | class | `views/auth.py:108` | `class ContactForm(FlaskForm)` |
 | `LoginForm` | class | `views/auth.py:124` | `class LoginForm(FlaskForm)` |
 | `MFAForm` | class | `views/auth.py:103` | `class MFAForm(FlaskForm)` |
 | `PhoneVerificationForm` | class | `views/auth.py:98` | `class PhoneVerificationForm(FlaskForm)` |
 | `RegisterForm` | class | `views/auth.py:114` | `class RegisterForm(FlaskForm)` |
-| `_recovery_key` | method | `views/auth.py:266` | `def _recovery_key()` |
-| `_srp_key` | method | `views/auth.py:255` | `def _srp_key()` |
-| `confirm_email` | method | `views/auth.py:344` | `def confirm_email(token)` |
-| `contact` | method | `views/auth.py:454` | `def contact()` |
-| `decorated_function` | method | `views/auth.py:87` | `def decorated_function()` |
-| `decorator` | method | `views/auth.py:85` | `def decorator(f)` |
-| `get_auth_controller` | method | `views/auth.py:132` | `def get_auth_controller()` |
-| `get_csrf_token` | method | `views/auth.py:619` | `def get_csrf_token()` |
-| `get_public_key` | method | `views/auth.py:485` | `def get_public_key()` |
-| `get_recovery_bundle` | method | `views/auth.py:534` | `def get_recovery_bundle()` |
-| `get_user_keys` | method | `views/auth.py:503` | `def get_user_keys()` |
-| `handle_register` | method | `views/auth.py:150` | `def handle_register()` |
-| `login` | method | `views/auth.py:234` | `def login()` |
-| `logout` | method | `views/auth.py:337` | `def logout()` |
-| `recover` | method | `views/auth.py:242` | `def recover()` |
-| `resend_phone_verification` | method | `views/auth.py:384` | `def resend_phone_verification()` |
-| `reset_with_recovery` | method | `views/auth.py:559` | `def reset_with_recovery()` |
+| `_recovery_key` | function | `views/auth.py:266` | `def _recovery_key()` |
+| `_srp_key` | function | `views/auth.py:255` | `def _srp_key()` |
+| `confirm_email` | function | `views/auth.py:344` | `def confirm_email(token)` |
+| `contact` | function | `views/auth.py:454` | `def contact()` |
+| `decorated_function` | function | `views/auth.py:87` | `def decorated_function()` |
+| `decorator` | function | `views/auth.py:85` | `def decorator(f)` |
+| `get_auth_controller` | function | `views/auth.py:132` | `def get_auth_controller()` |
+| `get_csrf_token` | function | `views/auth.py:619` | `def get_csrf_token()` |
+| `get_public_key` | function | `views/auth.py:485` | `def get_public_key()` |
+| `get_recovery_bundle` | function | `views/auth.py:534` | `def get_recovery_bundle()` |
+| `get_user_keys` | function | `views/auth.py:503` | `def get_user_keys()` |
+| `handle_register` | function | `views/auth.py:150` | `def handle_register()` |
+| `login` | function | `views/auth.py:234` | `def login()` |
+| `logout` | function | `views/auth.py:337` | `def logout()` |
+| `recover` | function | `views/auth.py:242` | `def recover()` |
+| `resend_phone_verification` | function | `views/auth.py:384` | `def resend_phone_verification()` |
+| `reset_with_recovery` | function | `views/auth.py:559` | `def reset_with_recovery()` |
 | `role_required` | function | `views/auth.py:71` | `def role_required()` |
-| `show_register` | method | `views/auth.py:143` | `def show_register()` |
-| `srp_hello` | method | `views/auth.py:278` | `def srp_hello()` |
-| `srp_verify` | method | `views/auth.py:299` | `def srp_verify()` |
-| `toggle_mfa` | method | `views/auth.py:429` | `def toggle_mfa()` |
-| `verify_mfa` | method | `views/auth.py:407` | `def verify_mfa()` |
-| `verify_phone` | method | `views/auth.py:367` | `def verify_phone()` |
+| `show_register` | function | `views/auth.py:143` | `def show_register()` |
+| `srp_hello` | function | `views/auth.py:278` | `def srp_hello()` |
+| `srp_verify` | function | `views/auth.py:299` | `def srp_verify()` |
+| `toggle_mfa` | function | `views/auth.py:429` | `def toggle_mfa()` |
+| `verify_mfa` | function | `views/auth.py:407` | `def verify_mfa()` |
+| `verify_phone` | function | `views/auth.py:367` | `def verify_phone()` |
 | `_build_cover_service` | function | `views/facade.py:71` | `def _build_cover_service(config)` |
 | `_facade_cover` | function | `views/facade.py:48` | `def _facade_cover()` |
 | `_ticket_mode` | function | `views/facade.py:86` | `def _ticket_mode(gate)` |
@@ -308,19 +308,19 @@ Previous: [SYMBOLS.md](SYMBOLS.md)
 | `faq` | function | `views/faq.py:7` | `def faq()` |
 | `landing` | function | `views/faq.py:12` | `def landing()` |
 | `UploadForm` | class | `views/file.py:15` | `class UploadForm(FlaskForm)` |
-| `download` | method | `views/file.py:56` | `def download(filename)` |
-| `upload` | method | `views/file.py:25` | `def upload()` |
+| `download` | function | `views/file.py:56` | `def download(filename)` |
+| `upload` | function | `views/file.py:25` | `def upload()` |
 | `MessageForm` | class | `views/message.py:19` | `class MessageForm(FlaskForm)` |
-| `api_secure_message` | method | `views/message.py:49` | `def api_secure_message()` |
-| `messages` | method | `views/message.py:29` | `def messages()` |
+| `api_secure_message` | function | `views/message.py:49` | `def api_secure_message()` |
+| `messages` | function | `views/message.py:29` | `def messages()` |
 | `privacy` | function | `views/privacy.py:6` | `def privacy()` |
 | `SubscriptionForm` | class | `views/subscription.py:24` | `class SubscriptionForm(FlaskForm)` |
 | `__init__` | method | `views/subscription.py:26` | `def __init__(self)` |
-| `payment_success` | method | `views/subscription.py:86` | `def payment_success()` |
-| `subscribe` | method | `views/subscription.py:37` | `def subscribe()` |
+| `payment_success` | function | `views/subscription.py:86` | `def payment_success()` |
+| `subscribe` | function | `views/subscription.py:37` | `def subscribe()` |
 | `secure_sync` | function | `views/sync.py:29` | `def secure_sync()` |
 | `sync_page` | function | `views/sync.py:79` | `def sync_page()` |
 | `terms` | function | `views/terms.py:6` | `def terms()` |
 | `MFAEnableForm` | class | `views/views.py:15` | `class MFAEnableForm(FlaskForm)` |
-| `home` | method | `views/views.py:21` | `def home()` |
+| `home` | function | `views/views.py:21` | `def home()` |
 

@@ -1,0 +1,814 @@
+{
+ "schema_version": 1,
+ "format": "jsonl",
+ "meta": {
+  "modules": 71,
+  "entities": 688,
+  "languages": {
+   "go": 3,
+   "js": 10,
+   "py": 54,
+   "sh": 4
+  },
+  "kinds": {
+   "attribute": 180,
+   "class": 45,
+   "classmethod": 7,
+   "constant": 40,
+   "constructor": 22,
+   "enum": 2,
+   "exception": 2,
+   "function": 229,
+   "method": 81,
+   "module": 71,
+   "property": 7,
+   "staticmethod": 2
+  },
+  "truncated": false,
+  "skipped_files": 17,
+  "privacy_mode": false
+ },
+ "coverage": {
+  "overall": {
+   "documented": 357,
+   "total": 468,
+   "percent": 76.3
+  },
+  "by_kind": {
+   "class": {
+    "documented": 38,
+    "total": 45,
+    "percent": 84.4
+   },
+   "classmethod": {
+    "documented": 7,
+    "total": 7,
+    "percent": 100.0
+   },
+   "constructor": {
+    "documented": 17,
+    "total": 22,
+    "percent": 77.3
+   },
+   "enum": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "exception": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "function": {
+    "documented": 156,
+    "total": 229,
+    "percent": 68.1
+   },
+   "method": {
+    "documented": 81,
+    "total": 81,
+    "percent": 100.0
+   },
+   "module": {
+    "documented": 45,
+    "total": 71,
+    "percent": 63.4
+   },
+   "property": {
+    "documented": 7,
+    "total": 7,
+    "percent": 100.0
+   },
+   "staticmethod": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   }
+  },
+  "by_module": {
+   "__init__.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "app.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "app_factory.py": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "client.go": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "client.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "controllers/__init__.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "controllers/auth.py": {
+    "documented": 13,
+    "total": 13,
+    "percent": 100.0
+   },
+   "controllers/contact.py": {
+    "documented": 4,
+    "total": 5,
+    "percent": 80.0
+   },
+   "controllers/deniable_vault.py": {
+    "documented": 17,
+    "total": 17,
+    "percent": 100.0
+   },
+   "controllers/facade.py": {
+    "documented": 21,
+    "total": 21,
+    "percent": 100.0
+   },
+   "controllers/file.py": {
+    "documented": 7,
+    "total": 8,
+    "percent": 87.5
+   },
+   "controllers/message.py": {
+    "documented": 5,
+    "total": 5,
+    "percent": 100.0
+   },
+   "controllers/secure_channel.py": {
+    "documented": 19,
+    "total": 19,
+    "percent": 100.0
+   },
+   "controllers/sync.py": {
+    "documented": 2,
+    "total": 4,
+    "percent": 50.0
+   },
+   "enc_dec.go": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "enc_dec.py": {
+    "documented": 5,
+    "total": 5,
+    "percent": 100.0
+   },
+   "install.sh": {
+    "documented": 1,
+    "total": 1,
+    "percent": 100.0
+   },
+   "make.sh": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "models/__init__.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "models/contact.py": {
+    "documented": 6,
+    "total": 7,
+    "percent": 85.7
+   },
+   "models/deniable_vault.py": {
+    "documented": 6,
+    "total": 6,
+    "percent": 100.0
+   },
+   "models/message.py": {
+    "documented": 7,
+    "total": 7,
+    "percent": 100.0
+   },
+   "models/plans.py": {
+    "documented": 8,
+    "total": 9,
+    "percent": 88.9
+   },
+   "models/superadmin_audit.py": {
+    "documented": 5,
+    "total": 5,
+    "percent": 100.0
+   },
+   "models/user.py": {
+    "documented": 20,
+    "total": 21,
+    "percent": 95.2
+   },
+   "pq_decrypt_password.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "scripts/doctor.py": {
+    "documented": 29,
+    "total": 29,
+    "percent": 100.0
+   },
+   "scripts/email_tool.py": {
+    "documented": 6,
+    "total": 6,
+    "percent": 100.0
+   },
+   "scripts/garage-init.sh": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "scripts/garage-native.sh": {
+    "documented": 2,
+    "total": 4,
+    "percent": 50.0
+   },
+   "scripts/makeadmin.py": {
+    "documented": 4,
+    "total": 4,
+    "percent": 100.0
+   },
+   "server.go": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "server.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "static/js/account.js": {
+    "documented": 1,
+    "total": 10,
+    "percent": 10.0
+   },
+   "static/js/coded-text.js": {
+    "documented": 1,
+    "total": 4,
+    "percent": 25.0
+   },
+   "static/js/login.js": {
+    "documented": 1,
+    "total": 3,
+    "percent": 33.3
+   },
+   "static/js/messages.js": {
+    "documented": 1,
+    "total": 7,
+    "percent": 14.3
+   },
+   "static/js/qv-crypto.js": {
+    "documented": 19,
+    "total": 41,
+    "percent": 46.3
+   },
+   "static/js/qv-deniable.js": {
+    "documented": 7,
+    "total": 8,
+    "percent": 87.5
+   },
+   "static/js/qv-padding.js": {
+    "documented": 1,
+    "total": 6,
+    "percent": 16.7
+   },
+   "static/js/recover.js": {
+    "documented": 1,
+    "total": 4,
+    "percent": 25.0
+   },
+   "static/js/register.js": {
+    "documented": 2,
+    "total": 4,
+    "percent": 50.0
+   },
+   "static/js/upload.js": {
+    "documented": 1,
+    "total": 7,
+    "percent": 14.3
+   },
+   "templates/terms.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "tools/generate_sri.py": {
+    "documented": 6,
+    "total": 6,
+    "percent": 100.0
+   },
+   "tools/verify_build.py": {
+    "documented": 11,
+    "total": 11,
+    "percent": 100.0
+   },
+   "utils/__init__.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "utils/cache.py": {
+    "documented": 5,
+    "total": 6,
+    "percent": 83.3
+   },
+   "utils/integrity.py": {
+    "documented": 8,
+    "total": 8,
+    "percent": 100.0
+   },
+   "utils/mailer.py": {
+    "documented": 4,
+    "total": 4,
+    "percent": 100.0
+   },
+   "utils/padding.py": {
+    "documented": 12,
+    "total": 12,
+    "percent": 100.0
+   },
+   "utils/plans.py": {
+    "documented": 3,
+    "total": 4,
+    "percent": 75.0
+   },
+   "utils/scheduler.py": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "utils/security.py": {
+    "documented": 7,
+    "total": 7,
+    "percent": 100.0
+   },
+   "utils/srp6a.py": {
+    "documented": 12,
+    "total": 12,
+    "percent": 100.0
+   },
+   "utils/utils.py": {
+    "documented": 7,
+    "total": 8,
+    "percent": 87.5
+   },
+   "views/__init__.py": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "views/about.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "views/account.py": {
+    "documented": 6,
+    "total": 6,
+    "percent": 100.0
+   },
+   "views/admin.py": {
+    "documented": 13,
+    "total": 15,
+    "percent": 86.7
+   },
+   "views/auth.py": {
+    "documented": 12,
+    "total": 26,
+    "percent": 46.2
+   },
+   "views/facade.py": {
+    "documented": 2,
+    "total": 2,
+    "percent": 100.0
+   },
+   "views/faq.py": {
+    "documented": 2,
+    "total": 3,
+    "percent": 66.7
+   },
+   "views/file.py": {
+    "documented": 3,
+    "total": 4,
+    "percent": 75.0
+   },
+   "views/message.py": {
+    "documented": 3,
+    "total": 4,
+    "percent": 75.0
+   },
+   "views/privacy.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "views/subscription.py": {
+    "documented": 3,
+    "total": 5,
+    "percent": 60.0
+   },
+   "views/sync.py": {
+    "documented": 2,
+    "total": 3,
+    "percent": 66.7
+   },
+   "views/terms.py": {
+    "documented": 1,
+    "total": 2,
+    "percent": 50.0
+   },
+   "views/views.py": {
+    "documented": 2,
+    "total": 3,
+    "percent": 66.7
+   },
+   "wsgi.py": {
+    "documented": 1,
+    "total": 1,
+    "percent": 100.0
+   }
+  }
+ },
+ "modules": [
+  {
+   "uid": "__init__.py",
+   "path": "modules/init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "app.py",
+   "path": "modules/app.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "app_factory.py",
+   "path": "modules/app_factory.py.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "client.go",
+   "path": "modules/client.go.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "client.py",
+   "path": "modules/client.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "controllers/__init__.py",
+   "path": "modules/controllers.__init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "controllers/auth.py",
+   "path": "modules/controllers.auth.py.jsonl",
+   "entities": 14
+  },
+  {
+   "uid": "controllers/contact.py",
+   "path": "modules/controllers.contact.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "controllers/deniable_vault.py",
+   "path": "modules/controllers.deniable_vault.py.jsonl",
+   "entities": 26
+  },
+  {
+   "uid": "controllers/facade.py",
+   "path": "modules/controllers.facade.py.jsonl",
+   "entities": 51
+  },
+  {
+   "uid": "controllers/file.py",
+   "path": "modules/controllers.file.py.jsonl",
+   "entities": 9
+  },
+  {
+   "uid": "controllers/message.py",
+   "path": "modules/controllers.message.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "controllers/secure_channel.py",
+   "path": "modules/controllers.secure_channel.py.jsonl",
+   "entities": 36
+  },
+  {
+   "uid": "controllers/sync.py",
+   "path": "modules/controllers.sync.py.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "enc_dec.go",
+   "path": "modules/enc_dec.go.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "enc_dec.py",
+   "path": "modules/enc_dec.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "install.sh",
+   "path": "modules/install.sh.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "make.sh",
+   "path": "modules/make.sh.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "models/__init__.py",
+   "path": "modules/models.__init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "models/contact.py",
+   "path": "modules/models.contact.py.jsonl",
+   "entities": 13
+  },
+  {
+   "uid": "models/deniable_vault.py",
+   "path": "modules/models.deniable_vault.py.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "models/message.py",
+   "path": "modules/models.message.py.jsonl",
+   "entities": 11
+  },
+  {
+   "uid": "models/plans.py",
+   "path": "modules/models.plans.py.jsonl",
+   "entities": 9
+  },
+  {
+   "uid": "models/superadmin_audit.py",
+   "path": "modules/models.superadmin_audit.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "models/user.py",
+   "path": "modules/models.user.py.jsonl",
+   "entities": 40
+  },
+  {
+   "uid": "pq_decrypt_password.py",
+   "path": "modules/pq_decrypt_password.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "scripts/doctor.py",
+   "path": "modules/scripts.doctor.py.jsonl",
+   "entities": 35
+  },
+  {
+   "uid": "scripts/email_tool.py",
+   "path": "modules/scripts.email_tool.py.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "scripts/garage-init.sh",
+   "path": "modules/scripts.garage-init.sh.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "scripts/garage-native.sh",
+   "path": "modules/scripts.garage-native.sh.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "scripts/makeadmin.py",
+   "path": "modules/scripts.makeadmin.py.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "server.go",
+   "path": "modules/server.go.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "server.py",
+   "path": "modules/server.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "static/js/account.js",
+   "path": "modules/static.js.account.js.jsonl",
+   "entities": 10
+  },
+  {
+   "uid": "static/js/coded-text.js",
+   "path": "modules/static.js.coded-text.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "static/js/login.js",
+   "path": "modules/static.js.login.js.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "static/js/messages.js",
+   "path": "modules/static.js.messages.js.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "static/js/qv-crypto.js",
+   "path": "modules/static.js.qv-crypto.js.jsonl",
+   "entities": 41
+  },
+  {
+   "uid": "static/js/qv-deniable.js",
+   "path": "modules/static.js.qv-deniable.js.jsonl",
+   "entities": 8
+  },
+  {
+   "uid": "static/js/qv-padding.js",
+   "path": "modules/static.js.qv-padding.js.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "static/js/recover.js",
+   "path": "modules/static.js.recover.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "static/js/register.js",
+   "path": "modules/static.js.register.js.jsonl",
+   "entities": 4
+  },
+  {
+   "uid": "static/js/upload.js",
+   "path": "modules/static.js.upload.js.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "templates/terms.py",
+   "path": "modules/templates.terms.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "tools/generate_sri.py",
+   "path": "modules/tools.generate_sri.py.jsonl",
+   "entities": 11
+  },
+  {
+   "uid": "tools/verify_build.py",
+   "path": "modules/tools.verify_build.py.jsonl",
+   "entities": 15
+  },
+  {
+   "uid": "utils/__init__.py",
+   "path": "modules/utils.__init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "utils/cache.py",
+   "path": "modules/utils.cache.py.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "utils/integrity.py",
+   "path": "modules/utils.integrity.py.jsonl",
+   "entities": 10
+  },
+  {
+   "uid": "utils/mailer.py",
+   "path": "modules/utils.mailer.py.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "utils/padding.py",
+   "path": "modules/utils.padding.py.jsonl",
+   "entities": 22
+  },
+  {
+   "uid": "utils/plans.py",
+   "path": "modules/utils.plans.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "utils/scheduler.py",
+   "path": "modules/utils.scheduler.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "utils/security.py",
+   "path": "modules/utils.security.py.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "utils/srp6a.py",
+   "path": "modules/utils.srp6a.py.jsonl",
+   "entities": 17
+  },
+  {
+   "uid": "utils/utils.py",
+   "path": "modules/utils.utils.py.jsonl",
+   "entities": 50
+  },
+  {
+   "uid": "views/__init__.py",
+   "path": "modules/views.__init__.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "views/about.py",
+   "path": "modules/views.about.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "views/account.py",
+   "path": "modules/views.account.py.jsonl",
+   "entities": 6
+  },
+  {
+   "uid": "views/admin.py",
+   "path": "modules/views.admin.py.jsonl",
+   "entities": 33
+  },
+  {
+   "uid": "views/auth.py",
+   "path": "modules/views.auth.py.jsonl",
+   "entities": 45
+  },
+  {
+   "uid": "views/facade.py",
+   "path": "modules/views.facade.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "views/faq.py",
+   "path": "modules/views.faq.py.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "views/file.py",
+   "path": "modules/views.file.py.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "views/message.py",
+   "path": "modules/views.message.py.jsonl",
+   "entities": 8
+  },
+  {
+   "uid": "views/privacy.py",
+   "path": "modules/views.privacy.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "views/subscription.py",
+   "path": "modules/views.subscription.py.jsonl",
+   "entities": 7
+  },
+  {
+   "uid": "views/sync.py",
+   "path": "modules/views.sync.py.jsonl",
+   "entities": 3
+  },
+  {
+   "uid": "views/terms.py",
+   "path": "modules/views.terms.py.jsonl",
+   "entities": 2
+  },
+  {
+   "uid": "views/views.py",
+   "path": "modules/views.views.py.jsonl",
+   "entities": 5
+  },
+  {
+   "uid": "wsgi.py",
+   "path": "modules/wsgi.py.jsonl",
+   "entities": 1
+  }
+ ],
+ "warnings": {
+  "path": "warnings.jsonl",
+  "total": 113
+ },
+ "usage": [
+  "grep -h '\"name\":\"<Name>\"' readmenator-apidocs/api/modules/*.jsonl",
+  "grep -h '\"qualname\":\"<Owner.method>\"' readmenator-apidocs/api/modules/*.jsonl",
+  "cat readmenator-apidocs/api/modules/<module-slug>.jsonl",
+  "grep -h '\"code\":\"DOC001\"' readmenator-apidocs/api/warnings.jsonl"
+ ]
+}

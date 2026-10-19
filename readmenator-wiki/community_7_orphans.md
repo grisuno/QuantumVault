@@ -98,21 +98,21 @@ This community groups 26 file(s) rooted at `root` with dominant language py (coh
 - `add` (method, `scripts/doctor.py:113`) `def add(self, result)` - Append one check result.
 - `failures` (method, `scripts/doctor.py:118`) `def failures(self)` - Return every failing check.
 - `exit_code` (method, `scripts/doctor.py:123`) `def exit_code(self)` - Return 0 when every check passes, 1 otherwise.
-- `load_env_file` (method, `scripts/doctor.py:128`) `def load_env_file(path)` - Parse a dotenv file into a dict without third-party imports.
-- `effective_env` (method, `scripts/doctor.py:147`) `def effective_env()` - Return process env overlaid with ``.env`` file values.
-- `check_python` (method, `scripts/doctor.py:154`) `def check_python(minimum)` - Verify the interpreter meets the minimum supported version.
-- `check_module` (method, `scripts/doctor.py:170`) `def check_module(name)` - Verify one Python module imports cleanly.
-- `check_binary` (method, `scripts/doctor.py:186`) `def check_binary(name, env_override)` - Verify one system binary resolves via PATH or an override path.
-- `check_env_file` (method, `scripts/doctor.py:210`) `def check_env_file()` - Verify the operator ``.env`` file exists.
-- `parse_host_port` (method, `scripts/doctor.py:223`) `def parse_host_port(uri, default_port)` - Extract a TCP host and port from a Redis or HTTP(S) URL.
-- `check_tcp` (method, `scripts/doctor.py:242`) `def check_tcp(name, host, port, timeout)` - Verify a TCP endpoint accepts connections.
-- `debian_arch` (method, `scripts/doctor.py:261`) `def debian_arch(deb)` - Map the host CPU to a Cloudflare or Garage release architecture.
-- `cloudflared_deb_url` (method, `scripts/doctor.py:270`) `def cloudflared_deb_url(version, arch)` - Build the official cloudflared .deb URL for a version and arch.
-- `garage_bin_url` (method, `scripts/doctor.py:283`) `def garage_bin_url(version, target)` - Build the official garage binary URL for a version and target.
-- `apt_command` (method, `scripts/doctor.py:288`) `def apt_command(packages)` - Build an apt install command, prefixed with sudo outside root.
-- `run_command` (method, `scripts/doctor.py:298`) `def run_command(cmd)` - Run one shell command and capture its outcome.
-- `download_file` (method, `scripts/doctor.py:319`) `def download_file(url, destination)` - Fetch a URL with curl when present, else urllib.
-- `upsert_env` (method, `scripts/doctor.py:334`) `def upsert_env(key, value, path)` - Set one KEY=value pair in ``.env``, preserving other lines.
+- `load_env_file` (function, `scripts/doctor.py:128`) `def load_env_file(path)` - Parse a dotenv file into a dict without third-party imports.
+- `effective_env` (function, `scripts/doctor.py:147`) `def effective_env()` - Return process env overlaid with ``.env`` file values.
+- `check_python` (function, `scripts/doctor.py:154`) `def check_python(minimum)` - Verify the interpreter meets the minimum supported version.
+- `check_module` (function, `scripts/doctor.py:170`) `def check_module(name)` - Verify one Python module imports cleanly.
+- `check_binary` (function, `scripts/doctor.py:186`) `def check_binary(name, env_override)` - Verify one system binary resolves via PATH or an override path.
+- `check_env_file` (function, `scripts/doctor.py:210`) `def check_env_file()` - Verify the operator ``.env`` file exists.
+- `parse_host_port` (function, `scripts/doctor.py:223`) `def parse_host_port(uri, default_port)` - Extract a TCP host and port from a Redis or HTTP(S) URL.
+- `check_tcp` (function, `scripts/doctor.py:242`) `def check_tcp(name, host, port, timeout)` - Verify a TCP endpoint accepts connections.
+- `debian_arch` (function, `scripts/doctor.py:261`) `def debian_arch(deb)` - Map the host CPU to a Cloudflare or Garage release architecture.
+- `cloudflared_deb_url` (function, `scripts/doctor.py:270`) `def cloudflared_deb_url(version, arch)` - Build the official cloudflared .deb URL for a version and arch.
+- `garage_bin_url` (function, `scripts/doctor.py:283`) `def garage_bin_url(version, target)` - Build the official garage binary URL for a version and target.
+- `apt_command` (function, `scripts/doctor.py:288`) `def apt_command(packages)` - Build an apt install command, prefixed with sudo outside root.
+- `run_command` (function, `scripts/doctor.py:298`) `def run_command(cmd)` - Run one shell command and capture its outcome.
+- `download_file` (function, `scripts/doctor.py:319`) `def download_file(url, destination)` - Fetch a URL with curl when present, else urllib.
+- `upsert_env` (function, `scripts/doctor.py:334`) `def upsert_env(key, value, path)` - Set one KEY=value pair in ``.env``, preserving other lines.
 
 ## Internal vs External Edges
 

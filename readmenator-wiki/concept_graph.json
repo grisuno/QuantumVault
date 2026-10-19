@@ -42,7 +42,7 @@
         "views/sync.py",
         "wsgi.py"
       ],
-      "mentions": 79,
+      "mentions": 80,
       "confidence": "EXTRACTED"
     },
     {
@@ -86,7 +86,7 @@
         "views/sync.py",
         "wsgi.py"
       ],
-      "mentions": 99,
+      "mentions": 100,
       "confidence": "EXTRACTED"
     },
     {
@@ -130,7 +130,7 @@
         "views/sync.py",
         "wsgi.py"
       ],
-      "mentions": 76,
+      "mentions": 77,
       "confidence": "EXTRACTED"
     },
     {
@@ -170,7 +170,45 @@
         "views/sync.py",
         "views/views.py"
       ],
-      "mentions": 195,
+      "mentions": 196,
+      "confidence": "EXTRACTED"
+    },
+    {
+      "name": "return",
+      "files": [
+        "app.py",
+        "app_factory.py",
+        "controllers/auth.py",
+        "controllers/deniable_vault.py",
+        "controllers/facade.py",
+        "controllers/file.py",
+        "controllers/message.py",
+        "controllers/secure_channel.py",
+        "enc_dec.py",
+        "models/deniable_vault.py",
+        "models/message.py",
+        "models/superadmin_audit.py",
+        "models/user.py",
+        "scripts/doctor.py",
+        "scripts/makeadmin.py",
+        "static/js/qv-deniable.js",
+        "tests/conftest.py",
+        "tests/test_deniable_vault.py",
+        "tests/test_facade.py",
+        "tools/mutation_test.py",
+        "tools/verify_build.py",
+        "utils/integrity.py",
+        "utils/mailer.py",
+        "utils/padding.py",
+        "utils/scheduler.py",
+        "utils/security.py",
+        "utils/srp6a.py",
+        "utils/utils.py",
+        "views/account.py",
+        "views/admin.py",
+        "views/auth.py"
+      ],
+      "mentions": 113,
       "confidence": "EXTRACTED"
     },
     {
@@ -245,44 +283,7 @@
         "views/file.py",
         "views/sync.py"
       ],
-      "mentions": 157,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "return",
-      "files": [
-        "app.py",
-        "app_factory.py",
-        "controllers/auth.py",
-        "controllers/deniable_vault.py",
-        "controllers/facade.py",
-        "controllers/file.py",
-        "controllers/message.py",
-        "controllers/secure_channel.py",
-        "enc_dec.py",
-        "models/deniable_vault.py",
-        "models/message.py",
-        "models/superadmin_audit.py",
-        "models/user.py",
-        "scripts/doctor.py",
-        "scripts/makeadmin.py",
-        "tests/conftest.py",
-        "tests/test_deniable_vault.py",
-        "tests/test_facade.py",
-        "tools/mutation_test.py",
-        "tools/verify_build.py",
-        "utils/integrity.py",
-        "utils/mailer.py",
-        "utils/padding.py",
-        "utils/scheduler.py",
-        "utils/security.py",
-        "utils/srp6a.py",
-        "utils/utils.py",
-        "views/account.py",
-        "views/admin.py",
-        "views/auth.py"
-      ],
-      "mentions": 112,
+      "mentions": 159,
       "confidence": "EXTRACTED"
     },
     {
@@ -1116,7 +1117,7 @@
         "views/account.py",
         "views/admin.py"
       ],
-      "mentions": 38,
+      "mentions": 39,
       "confidence": "EXTRACTED"
     },
     {
@@ -1290,7 +1291,31 @@
         "utils/padding.py",
         "utils/srp6a.py"
       ],
-      "mentions": 53,
+      "mentions": 54,
+      "confidence": "EXTRACTED"
+    },
+    {
+      "name": "plaintext",
+      "files": [
+        "controllers/auth.py",
+        "controllers/deniable_vault.py",
+        "controllers/file.py",
+        "controllers/message.py",
+        "enc_dec.py",
+        "models/deniable_vault.py",
+        "models/message.py",
+        "models/user.py",
+        "static/js/qv-crypto.js",
+        "static/js/qv-deniable.js",
+        "static/js/qv-padding.js",
+        "static/js/register.js",
+        "static/js/upload.js",
+        "tests/test_deniable_vault.py",
+        "utils/padding.py",
+        "utils/security.py",
+        "views/sync.py"
+      ],
+      "mentions": 44,
       "confidence": "EXTRACTED"
     },
     {
@@ -1459,29 +1484,6 @@
         "utils/srp6a.py"
       ],
       "mentions": 19,
-      "confidence": "EXTRACTED"
-    },
-    {
-      "name": "username",
-      "files": [
-        "controllers/auth.py",
-        "controllers/deniable_vault.py",
-        "controllers/file.py",
-        "controllers/message.py",
-        "models/contact.py",
-        "models/deniable_vault.py",
-        "models/message.py",
-        "models/superadmin_audit.py",
-        "models/user.py",
-        "scripts/email_tool.py",
-        "scripts/makeadmin.py",
-        "static/js/upload.js",
-        "utils/mailer.py",
-        "utils/srp6a.py",
-        "views/admin.py",
-        "views/auth.py"
-      ],
-      "mentions": 68,
       "confidence": "EXTRACTED"
     }
   ],
@@ -1734,6 +1736,25 @@
       ]
     },
     {
+      "source": "server",
+      "target": "return",
+      "verb": "depends_on",
+      "strength": 0.83,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "app_factory.py->controllers/file.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/integrity.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/account.py",
+        "app_factory.py->views/admin.py",
+        "app_factory.py->views/auth.py",
+        "controllers/auth.py->models/user.py"
+      ]
+    },
+    {
       "source": "never",
       "target": "one",
       "verb": "depends_on",
@@ -1788,25 +1809,6 @@
         "app_factory.py->views/auth.py",
         "controllers/deniable_vault.py->models/deniable_vault.py",
         "controllers/deniable_vault.py->utils/security.py"
-      ]
-    },
-    {
-      "source": "server",
-      "target": "return",
-      "verb": "depends_on",
-      "strength": 0.82,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->app_factory.py",
-        "app.py->utils/utils.py",
-        "app_factory.py->controllers/file.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->utils/integrity.py",
-        "app_factory.py->utils/utils.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "app_factory.py->views/auth.py",
-        "controllers/auth.py->models/user.py"
       ]
     },
     {
@@ -1924,6 +1926,25 @@
       ]
     },
     {
+      "source": "return",
+      "target": "never",
+      "verb": "depends_on",
+      "strength": 0.78,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->utils/utils.py",
+        "app_factory.py->controllers/file.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/integrity.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/account.py",
+        "app_factory.py->views/admin.py",
+        "app_factory.py->views/auth.py",
+        "app_factory.py->views/file.py",
+        "app_factory.py->views/sync.py"
+      ]
+    },
+    {
       "source": "user",
       "target": "args",
       "verb": "depends_on",
@@ -1959,25 +1980,6 @@
         "app_factory.py->views/file.py",
         "app_factory.py->views/sync.py",
         "controllers/deniable_vault.py->models/deniable_vault.py"
-      ]
-    },
-    {
-      "source": "return",
-      "target": "never",
-      "verb": "depends_on",
-      "strength": 0.77,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->utils/utils.py",
-        "app_factory.py->controllers/file.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->utils/integrity.py",
-        "app_factory.py->utils/utils.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "app_factory.py->views/auth.py",
-        "app_factory.py->views/file.py",
-        "app_factory.py->views/sync.py"
       ]
     },
     {
@@ -2076,6 +2078,25 @@
       ]
     },
     {
+      "source": "return",
+      "target": "one",
+      "verb": "depends_on",
+      "strength": 0.75,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/integrity.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/account.py",
+        "app_factory.py->views/admin.py",
+        "app_factory.py->views/auth.py",
+        "controllers/auth.py->models/user.py",
+        "controllers/auth.py->utils/mailer.py"
+      ]
+    },
+    {
       "source": "user",
       "target": "first",
       "verb": "depends_on",
@@ -2115,7 +2136,7 @@
     },
     {
       "source": "return",
-      "target": "one",
+      "target": "when",
       "verb": "depends_on",
       "strength": 0.74,
       "confidence": "INFERRED",
@@ -2127,7 +2148,7 @@
         "app_factory.py->utils/utils.py",
         "app_factory.py->views/account.py",
         "app_factory.py->views/admin.py",
-        "app_factory.py->views/auth.py",
+        "app_factory.py->views/facade.py",
         "controllers/auth.py->models/user.py",
         "controllers/auth.py->utils/mailer.py"
       ]
@@ -2361,25 +2382,6 @@
       ]
     },
     {
-      "source": "return",
-      "target": "when",
-      "verb": "depends_on",
-      "strength": 0.72,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->app_factory.py",
-        "app.py->utils/utils.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->utils/integrity.py",
-        "app_factory.py->utils/utils.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "app_factory.py->views/facade.py",
-        "controllers/auth.py->models/user.py",
-        "controllers/auth.py->utils/mailer.py"
-      ]
-    },
-    {
       "source": "user",
       "target": "file",
       "verb": "depends_on",
@@ -2415,6 +2417,25 @@
         "app_factory.py->views/file.py",
         "app_factory.py->views/sync.py",
         "controllers/auth.py->models/user.py"
+      ]
+    },
+    {
+      "source": "never",
+      "target": "return",
+      "verb": "depends_on",
+      "strength": 0.71,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "controllers/auth.py->models/user.py",
+        "controllers/auth.py->utils/mailer.py",
+        "controllers/auth.py->utils/security.py",
+        "controllers/auth.py->utils/utils.py",
+        "controllers/deniable_vault.py->models/deniable_vault.py",
+        "controllers/deniable_vault.py->utils/security.py",
+        "controllers/facade.py->utils/security.py",
+        "controllers/file.py->utils/padding.py"
       ]
     },
     {
@@ -2494,25 +2515,6 @@
       ]
     },
     {
-      "source": "never",
-      "target": "return",
-      "verb": "depends_on",
-      "strength": 0.69,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->app_factory.py",
-        "app.py->utils/utils.py",
-        "controllers/auth.py->models/user.py",
-        "controllers/auth.py->utils/mailer.py",
-        "controllers/auth.py->utils/security.py",
-        "controllers/auth.py->utils/utils.py",
-        "controllers/deniable_vault.py->models/deniable_vault.py",
-        "controllers/deniable_vault.py->utils/security.py",
-        "controllers/facade.py->utils/security.py",
-        "controllers/file.py->utils/padding.py"
-      ]
-    },
-    {
       "source": "not",
       "target": "used",
       "verb": "depends_on",
@@ -2567,6 +2569,44 @@
         "app_factory.py->views/file.py",
         "app_factory.py->views/sync.py",
         "controllers/deniable_vault.py->utils/security.py"
+      ]
+    },
+    {
+      "source": "return",
+      "target": "only",
+      "verb": "depends_on",
+      "strength": 0.69,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "app_factory.py->controllers/file.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/account.py",
+        "app_factory.py->views/admin.py",
+        "app_factory.py->views/auth.py",
+        "app_factory.py->views/message.py",
+        "app_factory.py->views/sync.py"
+      ]
+    },
+    {
+      "source": "return",
+      "target": "path",
+      "verb": "depends_on",
+      "strength": 0.69,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "app_factory.py->controllers/file.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/integrity.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/account.py",
+        "app_factory.py->views/admin.py",
+        "controllers/auth.py->models/plans.py",
+        "controllers/auth.py->models/user.py"
       ]
     },
     {
@@ -2795,44 +2835,6 @@
         "controllers/auth.py->utils/mailer.py",
         "controllers/auth.py->utils/security.py",
         "controllers/auth.py->utils/utils.py"
-      ]
-    },
-    {
-      "source": "return",
-      "target": "only",
-      "verb": "depends_on",
-      "strength": 0.68,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->app_factory.py",
-        "app.py->utils/utils.py",
-        "app_factory.py->controllers/file.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->utils/utils.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "app_factory.py->views/auth.py",
-        "app_factory.py->views/message.py",
-        "app_factory.py->views/sync.py"
-      ]
-    },
-    {
-      "source": "return",
-      "target": "path",
-      "verb": "depends_on",
-      "strength": 0.68,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app.py->app_factory.py",
-        "app.py->utils/utils.py",
-        "app_factory.py->controllers/file.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->utils/integrity.py",
-        "app_factory.py->utils/utils.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "controllers/auth.py->models/plans.py",
-        "controllers/auth.py->models/user.py"
       ]
     },
     {
@@ -3311,6 +3313,25 @@
       ]
     },
     {
+      "source": "return",
+      "target": "returns",
+      "verb": "depends_on",
+      "strength": 0.65,
+      "confidence": "INFERRED",
+      "evidence": [
+        "app.py->app_factory.py",
+        "app.py->utils/utils.py",
+        "app_factory.py->controllers/file.py",
+        "app_factory.py->models/user.py",
+        "app_factory.py->utils/integrity.py",
+        "app_factory.py->utils/utils.py",
+        "app_factory.py->views/auth.py",
+        "controllers/auth.py->models/plans.py",
+        "controllers/auth.py->models/user.py",
+        "controllers/auth.py->utils/mailer.py"
+      ]
+    },
+    {
       "source": "server",
       "target": "key",
       "verb": "depends_on",
@@ -3365,25 +3386,6 @@
         "controllers/auth.py->models/user.py",
         "controllers/auth.py->utils/mailer.py",
         "controllers/auth.py->utils/utils.py"
-      ]
-    },
-    {
-      "source": "when",
-      "target": "server",
-      "verb": "depends_on",
-      "strength": 0.65,
-      "confidence": "INFERRED",
-      "evidence": [
-        "app_factory.py->controllers/file.py",
-        "app_factory.py->models/user.py",
-        "app_factory.py->views/account.py",
-        "app_factory.py->views/admin.py",
-        "app_factory.py->views/auth.py",
-        "app_factory.py->views/file.py",
-        "app_factory.py->views/message.py",
-        "app_factory.py->views/sync.py",
-        "controllers/auth.py->models/user.py",
-        "controllers/auth.py->utils/mailer.py"
       ]
     }
   ],

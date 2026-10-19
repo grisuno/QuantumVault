@@ -4,13 +4,13 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 
 | Concept | Files | Mentions | Top Files |
 |---------|-------|----------|-----------|
-| `never` | 38 | 79 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `server` | 37 | 99 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
-| `only` | 37 | 76 | `app.py`, `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
-| `user` | 33 | 195 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
+| `never` | 38 | 80 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `server` | 37 | 100 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
+| `only` | 37 | 77 | `app.py`, `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
+| `user` | 33 | 196 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py` |
+| `return` | 31 | 113 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
 | `when` | 31 | 55 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `key` | 30 | 157 | `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
-| `return` | 30 | 112 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
+| `key` | 30 | 159 | `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
 | `path` | 30 | 77 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
 | `not` | 29 | 82 | `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py` |
 | `every` | 28 | 75 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `models/superadmin_audit.py`, `models/user.py` |
@@ -38,14 +38,15 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `configured` | 19 | 29 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py` |
 | `storage` | 19 | 28 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/sync.py`, `enc_dec.py` |
 | `public` | 18 | 64 | `app.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/message.py`, `controllers/secure_channel.py` |
-| `same` | 18 | 38 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
+| `same` | 18 | 39 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py` |
 | `controller` | 18 | 35 | `controllers/auth.py`, `controllers/contact.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py` |
 | `module` | 18 | 24 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `scripts/doctor.py` |
 | `cannot` | 18 | 23 | `app_factory.py`, `controllers/facade.py`, `controllers/file.py`, `controllers/message.py`, `models/user.py` |
 | `used` | 18 | 23 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
 | `side` | 18 | 21 | `app_factory.py`, `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/file.py` |
 | `accepts` | 18 | 20 | `controllers/auth.py`, `controllers/deniable_vault.py`, `models/user.py`, `scripts/doctor.py`, `static/js/account.js` |
-| `bytes` | 17 | 53 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py` |
+| `bytes` | 17 | 54 | `app_factory.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `enc_dec.py`, `models/plans.py` |
+| `plaintext` | 17 | 44 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `enc_dec.py` |
 | `login` | 17 | 41 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `models/user.py`, `scripts/makeadmin.py` |
 | `opaque` | 17 | 40 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/deniable_vault.py` |
 | `database` | 17 | 36 | `app_factory.py`, `controllers/auth.py`, `controllers/contact.py`, `controllers/message.py`, `models/contact.py` |
@@ -53,7 +54,6 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `first` | 17 | 24 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `models/contact.py` |
 | `through` | 17 | 21 | `app_factory.py`, `controllers/file.py`, `controllers/secure_channel.py`, `scripts/doctor.py`, `scripts/email_tool.py` |
 | `quantum` | 17 | 19 | `app_factory.py`, `controllers/auth.py`, `controllers/facade.py`, `controllers/secure_channel.py`, `enc_dec.py` |
-| `username` | 16 | 68 | `controllers/auth.py`, `controllers/deniable_vault.py`, `controllers/file.py`, `controllers/message.py`, `models/contact.py` |
 
 ## Verb Edges
 
@@ -72,27 +72,28 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `only` | `depends_on` | `never` | 0.85 |
 | `server` | `depends_on` | `only` | 0.85 |
 | `user` | `depends_on` | `server` | 0.85 |
+| `server` | `depends_on` | `return` | 0.83 |
 | `never` | `depends_on` | `one` | 0.82 |
 | `not` | `depends_on` | `only` | 0.82 |
 | `only` | `depends_on` | `one` | 0.82 |
-| `server` | `depends_on` | `return` | 0.82 |
 | `user` | `depends_on` | `used` | 0.82 |
 | `not` | `depends_on` | `one` | 0.80 |
 | `only` | `depends_on` | `return` | 0.80 |
 | `server` | `depends_on` | `when` | 0.80 |
 | `user` | `depends_on` | `returns` | 0.80 |
 | `not` | `depends_on` | `when` | 0.78 |
+| `return` | `depends_on` | `never` | 0.78 |
 | `user` | `depends_on` | `args` | 0.78 |
 | `every` | `depends_on` | `never` | 0.77 |
-| `return` | `depends_on` | `never` | 0.77 |
 | `user` | `depends_on` | `code` | 0.77 |
 | `user` | `depends_on` | `every` | 0.77 |
 | `user` | `depends_on` | `value` | 0.77 |
 | `user` | `depends_on` | `which` | 0.77 |
 | `only` | `depends_on` | `when` | 0.75 |
+| `return` | `depends_on` | `one` | 0.75 |
 | `user` | `depends_on` | `first` | 0.75 |
 | `not` | `depends_on` | `path` | 0.74 |
-| `return` | `depends_on` | `one` | 0.74 |
+| `return` | `depends_on` | `when` | 0.74 |
 | `server` | `depends_on` | `every` | 0.74 |
 | `server` | `depends_on` | `path` | 0.74 |
 | `server` | `depends_on` | `returns` | 0.74 |
@@ -105,10 +106,9 @@ Second-brain semantic layer: nouns map atomically to file sets (EXTRACTED); verb
 | `not` | `depends_on` | `which` | 0.72 |
 | `only` | `depends_on` | `path` | 0.72 |
 | `only` | `depends_on` | `server` | 0.72 |
-| `return` | `depends_on` | `when` | 0.72 |
 | `user` | `depends_on` | `file` | 0.72 |
 | `key` | `depends_on` | `never` | 0.71 |
-| `not` | `depends_on` | `server` | 0.71 |
+| `never` | `depends_on` | `return` | 0.71 |
 
 ## Dialectic Prompts
 

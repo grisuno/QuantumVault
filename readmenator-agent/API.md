@@ -42,7 +42,7 @@ Depends on: `models/deniable_vault.py`, `utils/security.py`
 Imported by: `tests/test_deniable_vault.py`, `views/account.py`
 - `canonical_json` (function) `controllers/deniable_vault.py:86` `def canonical_json(envelope)` -- Serialize an envelope deterministically for storage and sizing.
 - `DeniableVaultConfig.from_mapping` (method) `controllers/deniable_vault.py:148` `def from_mapping(cls, mapping, env)` -- Build a config from a mapping, with environment overrides.
-- `DeniableVaultConfig.read` (method) `controllers/deniable_vault.py:171` `def read(key)`
+- `read` (function) `controllers/deniable_vault.py:171` `def read(key)`
 - `DeniableVaultConfig.expected_ct_b64_length` (method) `controllers/deniable_vault.py:213` `def expected_ct_b64_length(self)` -- Return the exact base64 length every slot ciphertext must have.
 - `DeniableVaultConfig.random_container` (method) `controllers/deniable_vault.py:222` `def random_container(self)` -- Return a well-formed container filled with random, unopenable data.
 - `DeniableVaultConfig.public_parameters` (method) `controllers/deniable_vault.py:250` `def public_parameters(self)` -- Return the parameters the browser needs to build a container.
@@ -61,7 +61,7 @@ Imported by: `tests/test_account_facade.py`, `tests/test_cover.py`, `tests/test_
 - `FacadeConfig.cover_context` (method) `controllers/facade.py:158` `def cover_context(self)` -- Return the cosmetic cover context, never carrying a gate hash.
 - `FacadeConfig.cover_variables` (method) `controllers/facade.py:166` `def cover_variables(self)` -- Return the sanitizable cover variable payload.
 - `FacadeConfig.from_mapping` (method) `controllers/facade.py:181` `def from_mapping(cls, mapping, env)` -- Resolve configuration with environment, mapping, then default order.
-- `FacadeConfig.read` (method) `controllers/facade.py:189` `def read(key)`
+- `read` (function) `controllers/facade.py:189` `def read(key)`
 - `GatePhraseHasher.__init__` (method) `controllers/facade.py:265` `def __init__(self, time_cost, memory_cost, parallelism, hash_len, salt_len)` -- Bind the hasher to explicit Argon2id cost parameters.
 - `GatePhraseHasher.hash` (method) `controllers/facade.py:282` `def hash(self, phrase)` -- Return a salted Argon2id digest of ``phrase``.
 - `GatePhraseHasher.verify` (method) `controllers/facade.py:286` `def verify(self, phrase, encoded)` -- Return whether ``phrase`` matches ``encoded`` without raising.
@@ -93,11 +93,11 @@ Imported by: `tests/test_padding.py`, `views/message.py`
 ## controllers/secure_channel.py
 Imported by: `tests/test_secure_channel.py`, `views/admin.py`
 - `ChannelMode.parse` (method) `controllers/secure_channel.py:74` `def parse(cls, raw)` -- Parse free-form input into a mode, defaulting to disabled.
-- `ChannelMode.is_cloudflare_url` (method) `controllers/secure_channel.py:82` `def is_cloudflare_url(value)` -- Return whether value is a quick-tunnel HTTPS URL.
-- `ChannelMode.is_onion_url` (method) `controllers/secure_channel.py:89` `def is_onion_url(value)` -- Return whether value is a v3 onion HTTP address.
+- `is_cloudflare_url` (function) `controllers/secure_channel.py:82` `def is_cloudflare_url(value)` -- Return whether value is a quick-tunnel HTTPS URL.
+- `is_onion_url` (function) `controllers/secure_channel.py:89` `def is_onion_url(value)` -- Return whether value is a v3 onion HTTP address.
 - `SecureChannelConfig.configured` (method) `controllers/secure_channel.py:129` `def configured(self)` -- Return whether a disposible channel mode is selected.
 - `SecureChannelConfig.from_mapping` (method) `controllers/secure_channel.py:134` `def from_mapping(cls, mapping, env)` -- Resolve configuration with environment, mapping, then default order.
-- `SecureChannelConfig.read` (method) `controllers/secure_channel.py:142` `def read(key)`
+- `read` (function) `controllers/secure_channel.py:142` `def read(key)`
 - `ChannelStatus.active` (method) `controllers/secure_channel.py:184` `def active(self)` -- Return whether any backend address is currently published.
 - `SecureChannelManager.__init__` (method) `controllers/secure_channel.py:223` `def __init__(self, state_dir, local_port, local_scheme, cloudflared_bin, tor_bin, start_timeout_seconds, launcher...` -- Bind the manager to a state directory and backend binaries.
 - `SecureChannelManager.origin_url` (method) `controllers/secure_channel.py:247` `def origin_url(self)` -- Return the loopback origin URL both backends forward to.
@@ -181,36 +181,36 @@ Imported by: `app_factory.py`, `controllers/auth.py`, `controllers/message.py`, 
 - `UserDB.update_role` (method) `models/user.py:579` `def update_role(self, username, role, storage_quota, subscription_status)` -- Update a user's role, storage quota, and subscription status.
 - `UserDB.count_users` (method) `models/user.py:592` `def count_users(self)` -- Return the total number of users.
 - `UserDB.get_all_users` (method) `models/user.py:603` `def get_all_users(self)` -- Retrieve all users.
-- `UserDB.value` (method) `models/user.py:655` `def value(name, default)`
+- `value` (function) `models/user.py:655` `def value(name, default)`
 - `UserDB.fetch_one` (method) `models/user.py:694` `def fetch_one(self, query, params)` -- Execute a query and return the first result as a dictionary.
 
 ## scripts/doctor.py
 - `DoctorReport.add` (method) `scripts/doctor.py:113` `def add(self, result)` -- Append one check result.
 - `DoctorReport.failures` (method) `scripts/doctor.py:118` `def failures(self)` -- Return every failing check.
 - `DoctorReport.exit_code` (method) `scripts/doctor.py:123` `def exit_code(self)` -- Return 0 when every check passes, 1 otherwise.
-- `DoctorReport.load_env_file` (method) `scripts/doctor.py:128` `def load_env_file(path)` -- Parse a dotenv file into a dict without third-party imports.
-- `DoctorReport.effective_env` (method) `scripts/doctor.py:147` `def effective_env()` -- Return process env overlaid with ``.env`` file values.
-- `DoctorReport.check_python` (method) `scripts/doctor.py:154` `def check_python(minimum)` -- Verify the interpreter meets the minimum supported version.
-- `DoctorReport.check_module` (method) `scripts/doctor.py:170` `def check_module(name)` -- Verify one Python module imports cleanly.
-- `DoctorReport.check_binary` (method) `scripts/doctor.py:186` `def check_binary(name, env_override)` -- Verify one system binary resolves via PATH or an override path.
-- `DoctorReport.check_env_file` (method) `scripts/doctor.py:210` `def check_env_file()` -- Verify the operator ``.env`` file exists.
-- `DoctorReport.parse_host_port` (method) `scripts/doctor.py:223` `def parse_host_port(uri, default_port)` -- Extract a TCP host and port from a Redis or HTTP(S) URL.
-- `DoctorReport.check_tcp` (method) `scripts/doctor.py:242` `def check_tcp(name, host, port, timeout)` -- Verify a TCP endpoint accepts connections.
-- `DoctorReport.debian_arch` (method) `scripts/doctor.py:261` `def debian_arch(deb)` -- Map the host CPU to a Cloudflare or Garage release architecture.
-- `DoctorReport.cloudflared_deb_url` (method) `scripts/doctor.py:270` `def cloudflared_deb_url(version, arch)` -- Build the official cloudflared .deb URL for a version and arch.
-- `DoctorReport.garage_bin_url` (method) `scripts/doctor.py:283` `def garage_bin_url(version, target)` -- Build the official garage binary URL for a version and target.
-- `DoctorReport.apt_command` (method) `scripts/doctor.py:288` `def apt_command(packages)` -- Build an apt install command, prefixed with sudo outside root.
-- `DoctorReport.run_command` (method) `scripts/doctor.py:298` `def run_command(cmd)` -- Run one shell command and capture its outcome.
-- `DoctorReport.download_file` (method) `scripts/doctor.py:319` `def download_file(url, destination)` -- Fetch a URL with curl when present, else urllib.
-- `DoctorReport.upsert_env` (method) `scripts/doctor.py:334` `def upsert_env(key, value, path)` -- Set one KEY=value pair in ``.env``, preserving other lines.
-- `DoctorReport.fix_python_deps` (method) `scripts/doctor.py:352` `def fix_python_deps()` -- Install project requirements with the running interpreter.
-- `DoctorReport.fix_apt` (method) `scripts/doctor.py:360` `def fix_apt(packages)` -- Install Debian system packages, using sudo outside root.
-- `DoctorReport.fix_cloudflared` (method) `scripts/doctor.py:373` `def fix_cloudflared(version, bin_dir)` -- Install the cloudflared binary into a user-writable bin directory.
-- `DoctorReport.fix_garage` (method) `scripts/doctor.py:417` `def fix_garage(version, destination)` -- Download the garage binary and verify it against its checksum.
-- `DoctorReport.collect_report` (method) `scripts/doctor.py:449` `def collect_report()` -- Run every check and return the aggregated report.
-- `DoctorReport.print_report` (method) `scripts/doctor.py:476` `def print_report(report)` -- Render the report in plain English for operators.
-- `DoctorReport.apply_fixes` (method) `scripts/doctor.py:493` `def apply_fixes(report)` -- Install every missing piece that has an unattended installer.
-- `DoctorReport.main` (method) `scripts/doctor.py:530` `def main(argv)` -- Entry point for ``make doctor`` and ``make doctor-fix``.
+- `load_env_file` (function) `scripts/doctor.py:128` `def load_env_file(path)` -- Parse a dotenv file into a dict without third-party imports.
+- `effective_env` (function) `scripts/doctor.py:147` `def effective_env()` -- Return process env overlaid with ``.env`` file values.
+- `check_python` (function) `scripts/doctor.py:154` `def check_python(minimum)` -- Verify the interpreter meets the minimum supported version.
+- `check_module` (function) `scripts/doctor.py:170` `def check_module(name)` -- Verify one Python module imports cleanly.
+- `check_binary` (function) `scripts/doctor.py:186` `def check_binary(name, env_override)` -- Verify one system binary resolves via PATH or an override path.
+- `check_env_file` (function) `scripts/doctor.py:210` `def check_env_file()` -- Verify the operator ``.env`` file exists.
+- `parse_host_port` (function) `scripts/doctor.py:223` `def parse_host_port(uri, default_port)` -- Extract a TCP host and port from a Redis or HTTP(S) URL.
+- `check_tcp` (function) `scripts/doctor.py:242` `def check_tcp(name, host, port, timeout)` -- Verify a TCP endpoint accepts connections.
+- `debian_arch` (function) `scripts/doctor.py:261` `def debian_arch(deb)` -- Map the host CPU to a Cloudflare or Garage release architecture.
+- `cloudflared_deb_url` (function) `scripts/doctor.py:270` `def cloudflared_deb_url(version, arch)` -- Build the official cloudflared .deb URL for a version and arch.
+- `garage_bin_url` (function) `scripts/doctor.py:283` `def garage_bin_url(version, target)` -- Build the official garage binary URL for a version and target.
+- `apt_command` (function) `scripts/doctor.py:288` `def apt_command(packages)` -- Build an apt install command, prefixed with sudo outside root.
+- `run_command` (function) `scripts/doctor.py:298` `def run_command(cmd)` -- Run one shell command and capture its outcome.
+- `download_file` (function) `scripts/doctor.py:319` `def download_file(url, destination)` -- Fetch a URL with curl when present, else urllib.
+- `upsert_env` (function) `scripts/doctor.py:334` `def upsert_env(key, value, path)` -- Set one KEY=value pair in ``.env``, preserving other lines.
+- `fix_python_deps` (function) `scripts/doctor.py:352` `def fix_python_deps()` -- Install project requirements with the running interpreter.
+- `fix_apt` (function) `scripts/doctor.py:360` `def fix_apt(packages)` -- Install Debian system packages, using sudo outside root.
+- `fix_cloudflared` (function) `scripts/doctor.py:373` `def fix_cloudflared(version, bin_dir)` -- Install the cloudflared binary into a user-writable bin directory.
+- `fix_garage` (function) `scripts/doctor.py:417` `def fix_garage(version, destination)` -- Download the garage binary and verify it against its checksum.
+- `collect_report` (function) `scripts/doctor.py:449` `def collect_report()` -- Run every check and return the aggregated report.
+- `print_report` (function) `scripts/doctor.py:476` `def print_report(report)` -- Render the report in plain English for operators.
+- `apply_fixes` (function) `scripts/doctor.py:493` `def apply_fixes(report)` -- Install every missing piece that has an unattended installer.
+- `main` (function) `scripts/doctor.py:530` `def main(argv)` -- Entry point for ``make doctor`` and ``make doctor-fix``.
 
 ## scripts/email_tool.py
 Depends on: `models/user.py`, `utils/mailer.py`, `utils/utils.py`
@@ -240,67 +240,67 @@ Depends on: `models/user.py`
 
 ## static/js/account.js
 Depends on: `static/js/qv-deniable.js`
-- `setStatus` (function) `static/js/account.js:19`
-- `csrfToken` (function) `static/js/account.js:30`
+- `setStatus` (function) `static/js/account.js:20`
+- `csrfToken` (function) `static/js/account.js:31`
 - `apiRequest` (function) `static/js/account.js:36`
 - `loadState` (function) `static/js/account.js:54`
-- `collectSlots` (function) `static/js/account.js:59`
+- `collectSlots` (function) `static/js/account.js:60`
 - `handleConfigure` (function) `static/js/account.js:73`
 - `handleOpen` (function) `static/js/account.js:103`
 - `handleReset` (function) `static/js/account.js:125`
 - `init` (function) `static/js/account.js:138`
 
 ## static/js/coded-text.js
-- `randomChar` (function) `static/js/coded-text.js:12`
-- `animateElement` (function) `static/js/coded-text.js:18`
-- `init` (function) `static/js/coded-text.js:49`
+- `randomChar` (function) `static/js/coded-text.js:13`
+- `animateElement` (function) `static/js/coded-text.js:19`
+- `init` (function) `static/js/coded-text.js:50`
 
 ## static/js/login.js
 Depends on: `static/js/qv-crypto.js`
 Imported by: `static/js/qv-crypto.js`
 - `handleLogin` (function) `static/js/login.js:11`
-- `init` (function) `static/js/login.js:43`
+- `init` (function) `static/js/login.js:44`
 
 ## static/js/messages.js
 Depends on: `static/js/qv-crypto.js`
-- `getCsrfToken` (function) `static/js/messages.js:11`
+- `getCsrfToken` (function) `static/js/messages.js:12`
 - `handleSend` (function) `static/js/messages.js:17`
-- `collectEnvelopes` (function) `static/js/messages.js:43`
+- `collectEnvelopes` (function) `static/js/messages.js:44`
 - `handleDecryptInbox` (function) `static/js/messages.js:60`
-- `initEditor` (function) `static/js/messages.js:87`
-- `init` (function) `static/js/messages.js:108`
+- `initEditor` (function) `static/js/messages.js:88`
+- `init` (function) `static/js/messages.js:109`
 
 ## static/js/qv-crypto.js
 Depends on: `static/js/login.js`, `static/js/qv-padding.js`, `static/js/register.js`
 Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniable.js`, `static/js/recover.js`, `static/js/register.js`, `static/js/upload.js`
-- `concatBytes` (function) `static/js/qv-crypto.js:58` -- -- Encoding helpers ---
-- `hexToBytes` (function) `static/js/qv-crypto.js:69`
-- `bytesToHex` (function) `static/js/qv-crypto.js:78`
-- `bytesToBase64` (function) `static/js/qv-crypto.js:84`
-- `bytesToBase32` (function) `static/js/qv-crypto.js:95`
-- `base64ToBytes` (function) `static/js/qv-crypto.js:113`
-- `bytesToBigInt` (function) `static/js/qv-crypto.js:120`
-- `i2osp` (function) `static/js/qv-crypto.js:127`
-- `mod` (function) `static/js/qv-crypto.js:137`
-- `modPow` (function) `static/js/qv-crypto.js:141`
-- `randomBytes` (function) `static/js/qv-crypto.js:159`
-- `H` (function) `static/js/qv-crypto.js:168`
-- `Hint` (function) `static/js/qv-crypto.js:172`
+- `concatBytes` (function) `static/js/qv-crypto.js:59`
+- `hexToBytes` (function) `static/js/qv-crypto.js:70`
+- `bytesToHex` (function) `static/js/qv-crypto.js:79`
+- `bytesToBase64` (function) `static/js/qv-crypto.js:85`
+- `bytesToBase32` (function) `static/js/qv-crypto.js:96`
+- `base64ToBytes` (function) `static/js/qv-crypto.js:114`
+- `bytesToBigInt` (function) `static/js/qv-crypto.js:121`
+- `i2osp` (function) `static/js/qv-crypto.js:128` -- Encode an integer as a big-endian byte string padded to the length of N.
+- `mod` (function) `static/js/qv-crypto.js:138`
+- `modPow` (function) `static/js/qv-crypto.js:142`
+- `randomBytes` (function) `static/js/qv-crypto.js:160`
+- `H` (function) `static/js/qv-crypto.js:169`
+- `Hint` (function) `static/js/qv-crypto.js:173`
 - `deriveKeyFromPassphrase` (function) `static/js/qv-crypto.js:184` -- Derive a 256-bit key from a passphrase with a caller-chosen PBKDF2 iteration count.
 - `deriveMasterKey` (function) `static/js/qv-crypto.js:205`
 - `aesGcmEncrypt` (function) `static/js/qv-crypto.js:209`
 - `aesGcmDecrypt` (function) `static/js/qv-crypto.js:220`
-- `computeK` (function) `static/js/qv-crypto.js:250` -- -- SRP-6a (QV-SRP-1), mirrors utils/srp6a.py ---
-- `deriveVerifier` (function) `static/js/qv-crypto.js:255`
+- `computeK` (function) `static/js/qv-crypto.js:251`
+- `deriveVerifier` (function) `static/js/qv-crypto.js:256` -- Derive x = H(salt | H(I | ":" | P)) and the verifier v = g^x mod N.
 - `srpLogin` (function) `static/js/qv-crypto.js:263` -- Run a full SRP-6a login against the server, verifying the server proof M2.
-- `generateIdentity` (function) `static/js/qv-crypto.js:315`
-- `parsePublicKey` (function) `static/js/qv-crypto.js:343`
-- `parsePrivateBlob` (function) `static/js/qv-crypto.js:351`
-- `deriveWrapKey` (function) `static/js/qv-crypto.js:359`
+- `generateIdentity` (function) `static/js/qv-crypto.js:316` -- Generate the user's hybrid (ML-KEM-768 + X25519) key pair.
+- `parsePublicKey` (function) `static/js/qv-crypto.js:344`
+- `parsePrivateBlob` (function) `static/js/qv-crypto.js:352`
+- `deriveWrapKey` (function) `static/js/qv-crypto.js:360`
 - `wrapKey` (function) `static/js/qv-crypto.js:371` -- Seal a file encryption key to a recipient's hybrid public key.
 - `unwrapKey` (function) `static/js/qv-crypto.js:395` -- Recover a file encryption key using the recipient's hybrid private blob.
 - `generateRecoveryCode` (function) `static/js/qv-crypto.js:417` -- Generate a QV-RECOVERY-1 code: 20 random bytes (160 bits) Base32-encoded (RFC 4648, no padding) and grouped as...
-- `normalizeRecoveryCode` (function) `static/js/qv-crypto.js:428` -- Normalize a user-entered recovery code: strip surrounding whitespace, remove group separators, and uppercase, so...
+- `normalizeRecoveryCode` (function) `static/js/qv-crypto.js:429` -- Normalize a user-entered recovery code: strip surrounding whitespace, remove group separators, and uppercase, so...
 - `wrapPrivateKeyForRecovery` (function) `static/js/qv-crypto.js:436` -- Re-wrap an existing privateBlob under a key derived from a recovery code, using the same PBKDF2-SHA256 + AES-256-GCM...
 - `derivePublicKeyFromPrivateBlob` (function) `static/js/qv-crypto.js:455` -- Reconstruct the public key (the same {v, mlkem, x} structure produced by generateIdentity) from a decrypted privateBlob.
 - `postJson` (function) `static/js/qv-crypto.js:473`
@@ -317,9 +317,9 @@ Imported by: `static/js/login.js`, `static/js/messages.js`, `static/js/qv-deniab
 ## static/js/qv-deniable.js
 Depends on: `static/js/qv-crypto.js`
 Imported by: `static/js/account.js`
-- `toBytes` (function) `static/js/qv-deniable.js:47`
-- `frame` (function) `static/js/qv-deniable.js:55` -- Frame a payload as [len(4) | payload | random padding] of exactly `paddedLength` bytes.
-- `unframe` (function) `static/js/qv-deniable.js:64`
+- `toBytes` (function) `static/js/qv-deniable.js:48`
+- `frame` (function) `static/js/qv-deniable.js:56` -- Frame a payload as [len(4) | payload | random padding] of exactly `paddedLength` bytes.
+- `unframe` (function) `static/js/qv-deniable.js:65` -- Reverse frame(): read the length prefix and return the exact payload bytes.
 - `sealSlot` (function) `static/js/qv-deniable.js:82` -- Encrypt one slot's framed plaintext under a passphrase, returning the {salt, nonce, ct} object the envelope stores.
 - `openSlot` (function) `static/js/qv-deniable.js:102` -- Attempt to open one slot with a passphrase.
 - `buildDeniableVault` (function) `static/js/qv-deniable.js:125` -- Build a deniable container from a list of slot specifications.
@@ -328,33 +328,33 @@ Imported by: `static/js/account.js`
 ## static/js/qv-padding.js
 Depends on: `utils/padding.py`
 Imported by: `static/js/qv-crypto.js`
-- `tableFor` (function) `static/js/qv-padding.js:15`
+- `tableFor` (function) `static/js/qv-padding.js:16`
 - `bucketFor` (function) `static/js/qv-padding.js:20`
-- `randomPad` (function) `static/js/qv-padding.js:33`
+- `randomPad` (function) `static/js/qv-padding.js:34`
 - `padFramed` (function) `static/js/qv-padding.js:42`
 - `unframeFramed` (function) `static/js/qv-padding.js:54`
 
 ## static/js/recover.js
 Depends on: `static/js/qv-crypto.js`
-- `setStatus` (function) `static/js/recover.js:14`
+- `setStatus` (function) `static/js/recover.js:15`
 - `handleRecover` (function) `static/js/recover.js:22`
-- `init` (function) `static/js/recover.js:79`
+- `init` (function) `static/js/recover.js:80`
 
 ## static/js/register.js
 Depends on: `static/js/qv-crypto.js`
 Imported by: `static/js/qv-crypto.js`
-- `showRecoveryCode` (function) `static/js/register.js:16` -- Display the one-time QV-RECOVERY-1 code in a modal and wait for the user to acknowledge they have saved it before...
+- `showRecoveryCode` (function) `static/js/register.js:17` -- Display the one-time QV-RECOVERY-1 code in a modal and wait for the user to acknowledge they have saved it before...
 - `handleRegister` (function) `static/js/register.js:42`
-- `init` (function) `static/js/register.js:109`
+- `init` (function) `static/js/register.js:110`
 
 ## static/js/upload.js
 Depends on: `static/js/qv-crypto.js`
-- `getCsrfToken` (function) `static/js/upload.js:11`
-- `getUsername` (function) `static/js/upload.js:16`
+- `getCsrfToken` (function) `static/js/upload.js:12`
+- `getUsername` (function) `static/js/upload.js:17`
 - `getPublicKey` (function) `static/js/upload.js:23`
 - `handleUpload` (function) `static/js/upload.js:40`
 - `handleDownload` (function) `static/js/upload.js:74`
-- `init` (function) `static/js/upload.js:96`
+- `init` (function) `static/js/upload.js:97`
 
 ## templates/terms.py
 - `terms` (function) `templates/terms.py:6` `def terms()` -- Render the About page.
@@ -372,13 +372,13 @@ Depends on: `utils/integrity.py`, `utils/padding.py`
 Imported by: `tests/test_integrity.py`
 - `AssetReference.__init__` (method) `tools/verify_build.py:37` `def __init__(self)` -- Initialize the reference collector.
 - `AssetReference.handle_starttag` (method) `tools/verify_build.py:42` `def handle_starttag(self, tag, attrs)` -- Record one script or link tag with its integrity attribute.
-- `AssetReference.load_manifest` (method) `tools/verify_build.py:71` `def load_manifest()` -- Load and return the SRI manifest document.
-- `AssetReference.expected_for_reference` (method) `tools/verify_build.py:76` `def expected_for_reference(manifest, ref)` -- Resolve the pinned integrity value for one template reference.
-- `AssetReference.integrity_attribute_ok` (method) `tools/verify_build.py:85` `def integrity_attribute_ok(integrity, ref, expected)` -- Accept a literal pin or the ``sri_integrity`` template expression.
-- `AssetReference.check_local_hashes` (method) `tools/verify_build.py:95` `def check_local_hashes(manifest, failures)` -- Recompute every pinned local asset and record mismatches.
-- `AssetReference.check_template_references` (method) `tools/verify_build.py:110` `def check_template_references(manifest, failures)` -- Require manifest-backed integrity on every template reference.
-- `AssetReference.check_bucket_parity` (method) `tools/verify_build.py:126` `def check_bucket_parity(failures)` -- Require identical bucket tables in Python and JavaScript.
-- `AssetReference.main` (method) `tools/verify_build.py:141` `def main()` -- Run every check and report failures.
+- `load_manifest` (function) `tools/verify_build.py:71` `def load_manifest()` -- Load and return the SRI manifest document.
+- `expected_for_reference` (function) `tools/verify_build.py:76` `def expected_for_reference(manifest, ref)` -- Resolve the pinned integrity value for one template reference.
+- `integrity_attribute_ok` (function) `tools/verify_build.py:85` `def integrity_attribute_ok(integrity, ref, expected)` -- Accept a literal pin or the ``sri_integrity`` template expression.
+- `check_local_hashes` (function) `tools/verify_build.py:95` `def check_local_hashes(manifest, failures)` -- Recompute every pinned local asset and record mismatches.
+- `check_template_references` (function) `tools/verify_build.py:110` `def check_template_references(manifest, failures)` -- Require manifest-backed integrity on every template reference.
+- `check_bucket_parity` (function) `tools/verify_build.py:126` `def check_bucket_parity(failures)` -- Require identical bucket tables in Python and JavaScript.
+- `main` (function) `tools/verify_build.py:141` `def main()` -- Run every check and report failures.
 
 ## utils/cache.py
 - `Cache.__init__` (method) `utils/cache.py:8` `def __init__(self)`
@@ -406,13 +406,13 @@ Imported by: `controllers/auth.py`, `scripts/email_tool.py`, `utils/scheduler.py
 Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
 - `PaddingConfig.buckets_for` (method) `utils/padding.py:84` `def buckets_for(self, kind)` -- Return the bucket table for ``kind``.
 - `PaddingConfig.max_plaintext_bytes` (method) `utils/padding.py:90` `def max_plaintext_bytes(self, kind)` -- Return the largest plaintext that fits ``kind``.
-- `PaddingConfig.config_from_env` (method) `utils/padding.py:109` `def config_from_env()` -- Build a :class:`PaddingConfig` from the environment.
-- `PaddingConfig.cached_tables` (method) `utils/padding.py:142` `def cached_tables(config)` -- Return the process-wide cached bucket tables for ``config``.
-- `PaddingConfig.bucket_for` (method) `utils/padding.py:149` `def bucket_for(plaintext_len, kind, config)` -- Return the smallest bucket holding ``plaintext_len`` plus prefix.
-- `PaddingConfig.pad` (method) `utils/padding.py:169` `def pad(plaintext, kind, config)` -- Pad ``plaintext`` to its bucket with fresh CSPRNG bytes.
-- `PaddingConfig.unpad` (method) `utils/padding.py:183` `def unpad(padded, kind, config)` -- Remove bucket framing and return the original plaintext.
-- `PaddingConfig.wire_ciphertext_len` (method) `utils/padding.py:209` `def wire_ciphertext_len(bucket)` -- Return the AES-256-GCM ciphertext length for one padded bucket.
-- `PaddingConfig.is_allowed_ciphertext_len` (method) `utils/padding.py:214` `def is_allowed_ciphertext_len(ciphertext_len, kind, config)` -- Return True when ``ciphertext_len`` matches a bucket plus GCM overhead.
+- `config_from_env` (function) `utils/padding.py:109` `def config_from_env()` -- Build a :class:`PaddingConfig` from the environment.
+- `cached_tables` (function) `utils/padding.py:142` `def cached_tables(config)` -- Return the process-wide cached bucket tables for ``config``.
+- `bucket_for` (function) `utils/padding.py:149` `def bucket_for(plaintext_len, kind, config)` -- Return the smallest bucket holding ``plaintext_len`` plus prefix.
+- `pad` (function) `utils/padding.py:169` `def pad(plaintext, kind, config)` -- Pad ``plaintext`` to its bucket with fresh CSPRNG bytes.
+- `unpad` (function) `utils/padding.py:183` `def unpad(padded, kind, config)` -- Remove bucket framing and return the original plaintext.
+- `wire_ciphertext_len` (function) `utils/padding.py:209` `def wire_ciphertext_len(bucket)` -- Return the AES-256-GCM ciphertext length for one padded bucket.
+- `is_allowed_ciphertext_len` (function) `utils/padding.py:214` `def is_allowed_ciphertext_len(ciphertext_len, kind, config)` -- Return True when ``ciphertext_len`` matches a bucket plus GCM overhead.
 
 ## utils/plans.py
 - `SubscriptionPlans.get_plan` (method) `utils/plans.py:30` `def get_plan(plan_name)` -- Obtiene los detalles de un plan.
@@ -444,8 +444,8 @@ Imported by: `controllers/auth.py`, `controllers/deniable_vault.py`, `controller
 - `SRPSessionStore.__init__` (method) `utils/srp6a.py:158` `def __init__(self, storage_uri)` -- Initialize the store from a Redis connection URI.
 - `SRPSessionStore.save` (method) `utils/srp6a.py:172` `def save(self, username, salt_hex, verifier_hex, server_a_hex, server_b_hex, server_b_secret_hex)` -- Persist the ephemeral SRP challenge state for a username.
 - `SRPSessionStore.load` (method) `utils/srp6a.py:202` `def load(self, username)` -- Load and consume the ephemeral SRP state for a username.
-- `SRPSessionStore.hello` (method) `utils/srp6a.py:224` `def hello(store, username, client_a_hex, salt_hex, verifier_hex)` -- Process the SRP ``hello`` step and return the server challenge B.
-- `SRPSessionStore.verify` (method) `utils/srp6a.py:260` `def verify(store, username, client_m1_hex)` -- Process the SRP ``verify`` step and return the server proof M2.
+- `hello` (function) `utils/srp6a.py:224` `def hello(store, username, client_a_hex, salt_hex, verifier_hex)` -- Process the SRP ``hello`` step and return the server challenge B.
+- `verify` (function) `utils/srp6a.py:260` `def verify(store, username, client_m1_hex)` -- Process the SRP ``verify`` step and return the server proof M2.
 
 ## utils/utils.py
 Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`
@@ -453,7 +453,7 @@ Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/fil
 - `as_bool` (function) `utils/utils.py:29` `def as_bool(value, default)` -- Coerce an environment or payload value into a real boolean.
 - `sanitize_path` (function) `utils/utils.py:49` `def sanitize_path(path)` -- Sanitiza una ruta de archivo para prevenir LFI y path traversal. - Elimina caracteres peligrosos - Normaliza la ruta...
 - `Config.__init__` (method) `utils/utils.py:145` `def __init__(self, config_dict)`
-- `Config.load_payload` (method) `utils/utils.py:168` `def load_payload()` -- Load non-secret application configuration from ``payload.json``.
+- `load_payload` (function) `utils/utils.py:168` `def load_payload()` -- Load non-secret application configuration from ``payload.json``.
 
 ## views/about.py
 Imported by: `app_factory.py`
@@ -471,18 +471,18 @@ Imported by: `app_factory.py`
 ## views/admin.py
 Depends on: `controllers/contact.py`, `controllers/secure_channel.py`, `models/plans.py`, `models/superadmin_audit.py`, `models/user.py`, `utils/utils.py`, `views/auth.py`
 Imported by: `app_factory.py`, `scripts/test_bloque1.py`, `tests/test_secure_channel.py`
-- `PlanForm.admin` (method) `views/admin.py:186` `def admin()` -- Plan catalog read view.
-- `PlanForm.superadmin_edit_user` (method) `views/admin.py:208` `def superadmin_edit_user(username)` -- Full profile edit for a single user.
-- `PlanForm.manage_plans` (method) `views/admin.py:313` `def manage_plans()` -- Handle plan management.
-- `PlanForm.edit_plan` (method) `views/admin.py:337` `def edit_plan(plan_name)` -- Handle editing of plan details.
-- `PlanForm.superadmin` (method) `views/admin.py:373` `def superadmin()` -- Superadmin identity-recovery and inventory panel.
-- `PlanForm.superadmin_reset_mfa` (method) `views/admin.py:476` `def superadmin_reset_mfa(username)` -- Disable MFA and clear the pending code for ``username``.
-- `PlanForm.superadmin_resend_confirmation` (method) `views/admin.py:523` `def superadmin_resend_confirmation(username)` -- Issue a fresh ``confirmation_token`` for ``username``.
-- `PlanForm.superadmin_toggle_suspend` (method) `views/admin.py:570` `def superadmin_toggle_suspend(username)` -- Flip ``subscription_status`` between active and inactive.
-- `PlanForm.superadmin_channel_start` (method) `views/admin.py:620` `def superadmin_channel_start()` -- Start a disposable secure channel in the requested mode.
-- `PlanForm.superadmin_channel_stop` (method) `views/admin.py:659` `def superadmin_channel_stop()` -- Dispose the running channel and remove its addresses.
-- `PlanForm.superadmin_channel_rotate` (method) `views/admin.py:682` `def superadmin_channel_rotate()` -- Dispose current addresses and publish fresh ones in the same mode.
-- `PlanForm.admin_contacts` (method) `views/admin.py:705` `def admin_contacts()`
+- `admin` (function) `views/admin.py:186` `def admin()` -- Plan catalog read view.
+- `superadmin_edit_user` (function) `views/admin.py:208` `def superadmin_edit_user(username)` -- Full profile edit for a single user.
+- `manage_plans` (function) `views/admin.py:313` `def manage_plans()` -- Handle plan management.
+- `edit_plan` (function) `views/admin.py:337` `def edit_plan(plan_name)` -- Handle editing of plan details.
+- `superadmin` (function) `views/admin.py:373` `def superadmin()` -- Superadmin identity-recovery and inventory panel.
+- `superadmin_reset_mfa` (function) `views/admin.py:476` `def superadmin_reset_mfa(username)` -- Disable MFA and clear the pending code for ``username``.
+- `superadmin_resend_confirmation` (function) `views/admin.py:523` `def superadmin_resend_confirmation(username)` -- Issue a fresh ``confirmation_token`` for ``username``.
+- `superadmin_toggle_suspend` (function) `views/admin.py:570` `def superadmin_toggle_suspend(username)` -- Flip ``subscription_status`` between active and inactive.
+- `superadmin_channel_start` (function) `views/admin.py:620` `def superadmin_channel_start()` -- Start a disposable secure channel in the requested mode.
+- `superadmin_channel_stop` (function) `views/admin.py:659` `def superadmin_channel_stop()` -- Dispose the running channel and remove its addresses.
+- `superadmin_channel_rotate` (function) `views/admin.py:682` `def superadmin_channel_rotate()` -- Dispose current addresses and publish fresh ones in the same mode.
+- `admin_contacts` (function) `views/admin.py:705` `def admin_contacts()`
 
 
 Next: [API_p2.md](API_p2.md)

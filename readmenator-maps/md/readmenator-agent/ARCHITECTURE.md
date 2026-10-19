@@ -1,0 +1,192 @@
+# Architecture
+
+## Internal Dependencies
+
+- `app.py` -> `app_factory.py`
+- `app.py` -> `utils/utils.py`
+- `app_factory.py` -> `controllers/file.py`
+- `app_factory.py` -> `controllers/sync.py`
+- `app_factory.py` -> `models/user.py`
+- `app_factory.py` -> `utils/integrity.py`
+- `app_factory.py` -> `utils/utils.py`
+- `app_factory.py` -> `views/about.py`
+- `app_factory.py` -> `views/account.py`
+- `app_factory.py` -> `views/admin.py`
+- `app_factory.py` -> `views/auth.py`
+- `app_factory.py` -> `views/facade.py`
+- `app_factory.py` -> `views/faq.py`
+- `app_factory.py` -> `views/file.py`
+- `app_factory.py` -> `views/message.py`
+- `app_factory.py` -> `views/privacy.py`
+- `app_factory.py` -> `views/subscription.py`
+- `app_factory.py` -> `views/sync.py`
+- `app_factory.py` -> `views/terms.py`
+- `app_factory.py` -> `views/views.py`
+- `controllers/auth.py` -> `models/plans.py`
+- `controllers/auth.py` -> `models/user.py`
+- `controllers/auth.py` -> `utils/__init__.py`
+- `controllers/auth.py` -> `utils/mailer.py`
+- `controllers/auth.py` -> `utils/security.py`
+- `controllers/auth.py` -> `utils/utils.py`
+- `controllers/contact.py` -> `models/contact.py`
+- `controllers/deniable_vault.py` -> `models/deniable_vault.py`
+- `controllers/deniable_vault.py` -> `utils/security.py`
+- `controllers/facade.py` -> `utils/security.py`
+- `controllers/file.py` -> `utils/padding.py`
+- `controllers/file.py` -> `utils/utils.py`
+- `controllers/message.py` -> `models/message.py`
+- `controllers/message.py` -> `models/user.py`
+- `controllers/message.py` -> `utils/padding.py`
+- `controllers/message.py` -> `utils/utils.py`
+- `scripts/email_tool.py` -> `models/user.py`
+- `scripts/email_tool.py` -> `utils/mailer.py`
+- `scripts/email_tool.py` -> `utils/utils.py`
+- `scripts/makeadmin.py` -> `models/user.py`
+- `scripts/test_bloque1.py` -> `app.py`
+- `scripts/test_bloque1.py` -> `models/user.py`
+- `scripts/test_bloque1.py` -> `views/admin.py`
+- `static/js/account.js` -> `static/js/qv-deniable.js`
+- `static/js/login.js` -> `static/js/qv-crypto.js`
+- `static/js/messages.js` -> `static/js/qv-crypto.js`
+- `static/js/qv-crypto.js` -> `static/js/login.js`
+- `static/js/qv-crypto.js` -> `static/js/qv-padding.js`
+- `static/js/qv-crypto.js` -> `static/js/register.js`
+- `static/js/qv-deniable.js` -> `static/js/qv-crypto.js`
+- `static/js/qv-padding.js` -> `utils/padding.py`
+- `static/js/recover.js` -> `static/js/qv-crypto.js`
+- `static/js/register.js` -> `static/js/qv-crypto.js`
+- `static/js/upload.js` -> `static/js/qv-crypto.js`
+- `tests/conftest.py` -> `app_factory.py`
+- `tests/conftest.py` -> `utils/security.py`
+- `tests/test_account_facade.py` -> `app_factory.py`
+- `tests/test_account_facade.py` -> `controllers/facade.py`
+- `tests/test_account_facade.py` -> `models/user.py`
+- `tests/test_cover.py` -> `app_factory.py`
+- `tests/test_cover.py` -> `controllers/facade.py`
+- `tests/test_deniable_vault.py` -> `controllers/deniable_vault.py`
+- `tests/test_deniable_vault.py` -> `models/deniable_vault.py`
+- `tests/test_deniable_vault.py` -> `models/user.py`
+- `tests/test_facade.py` -> `app_factory.py`
+- `tests/test_facade.py` -> `controllers/facade.py`
+- `tests/test_facade.py` -> `models/user.py`
+- `tests/test_integrity.py` -> `tools/verify_build.py`
+- `tests/test_integrity.py` -> `utils/integrity.py`
+- `tests/test_padding.py` -> `controllers/file.py`
+- `tests/test_padding.py` -> `controllers/message.py`
+- `tests/test_padding.py` -> `utils/__init__.py`
+- `tests/test_padding.py` -> `utils/padding.py`
+- `tests/test_secure_channel.py` -> `controllers/secure_channel.py`
+- `tests/test_secure_channel.py` -> `views/admin.py`
+- `tests/test_security.py` -> `utils/security.py`
+- `tests/test_srp.py` -> `utils/__init__.py`
+- `tests/test_utils.py` -> `utils/utils.py`
+- `tools/generate_sri.py` -> `utils/integrity.py`
+- `tools/verify_build.py` -> `utils/integrity.py`
+- `tools/verify_build.py` -> `utils/padding.py`
+- `utils/scheduler.py` -> `models/message.py`
+- `utils/scheduler.py` -> `models/user.py`
+- `utils/scheduler.py` -> `utils/mailer.py`
+- `utils/security.py` -> `utils/utils.py`
+- `views/account.py` -> `controllers/deniable_vault.py`
+- `views/account.py` -> `controllers/facade.py`
+- `views/account.py` -> `models/deniable_vault.py`
+- `views/account.py` -> `utils/security.py`
+- `views/admin.py` -> `controllers/contact.py`
+- `views/admin.py` -> `controllers/secure_channel.py`
+- `views/admin.py` -> `models/plans.py`
+- `views/admin.py` -> `models/superadmin_audit.py`
+- `views/admin.py` -> `models/user.py`
+- `views/admin.py` -> `utils/utils.py`
+- `views/admin.py` -> `views/auth.py`
+- `views/auth.py` -> `controllers/auth.py`
+- `views/auth.py` -> `controllers/contact.py`
+- `views/auth.py` -> `models/user.py`
+- `views/auth.py` -> `utils/mailer.py`
+- `views/auth.py` -> `utils/security.py`
+- `views/auth.py` -> `utils/utils.py`
+- `views/facade.py` -> `controllers/facade.py`
+- `views/faq.py` -> `models/plans.py`
+- `views/faq.py` -> `utils/utils.py`
+- `views/file.py` -> `views/auth.py`
+- `views/message.py` -> `controllers/message.py`
+- `views/message.py` -> `views/auth.py`
+- `views/subscription.py` -> `models/plans.py`
+- `views/subscription.py` -> `models/user.py`
+- `views/subscription.py` -> `utils/utils.py`
+- `views/subscription.py` -> `views/auth.py`
+- `views/sync.py` -> `utils/security.py`
+- `views/sync.py` -> `utils/utils.py`
+- `views/views.py` -> `models/user.py`
+- `views/views.py` -> `utils/utils.py`
+- `wsgi.py` -> `app_factory.py`
+
+## External Imports
+
+- `app.py` -> os, sys
+- `app_factory.py` -> __future__, boto3, botocore.config, datetime, flask, flask_cors, flask_limiter, flask_limiter.util, flask_login, flask_mail, flask_talisman, flask_wtf.csrf, json, logging, os, secrets, sys, typing, werkzeug.middleware.proxy_fix
+- `client.go` -> crypto/aes, crypto/cipher, crypto/rand, flag, fmt, github.com/open-quantum-safe/liboqs-go/oqs, net
+- `client.py` -> argparse, cryptography.hazmat.primitives, cryptography.hazmat.primitives.ciphers.aead, cryptography.hazmat.primitives.kdf.pbkdf2, oqs, os, socket
+- `controllers/auth.py` -> clicksend_client, clicksend_client.rest, datetime, flask, flask_mail, os, pytz, secrets, typing
+- `controllers/contact.py` -> flask
+- `controllers/deniable_vault.py` -> __future__, base64, binascii, dataclasses, json, os, secrets, typing
+- `controllers/facade.py` -> __future__, argon2, argon2.exceptions, dataclasses, enum, itsdangerous, os, typing
+- `controllers/file.py` -> boto3, botocore.exceptions, flask, os, typing
+- `controllers/message.py` -> base64, binascii, flask, typing, uuid
+- `controllers/secure_channel.py` -> __future__, dataclasses, enum, hashlib, json, os, pathlib, re, shutil, signal, subprocess, tempfile, time, typing
+- `controllers/sync.py` -> boto3, botocore.exceptions, flask, os
+- `enc_dec.go` -> archive/tar, compress/gzip, crypto/aes, crypto/cipher, crypto/rand, crypto/sha256, flag, fmt, github.com/open-quantum-safe/liboqs-go/oqs, golang.org/x/crypto/pbkdf2, io, os, path/filepath, strings
+- `enc_dec.py` -> argparse, boto3, botocore.exceptions, cryptography.hazmat.primitives, cryptography.hazmat.primitives.ciphers.aead, cryptography.hazmat.primitives.kdf.pbkdf2, io, oqs, os, pathlib
+- `models/contact.py` -> datetime, flask, pydantic, pytz, sqlite3, typing
+- `models/deniable_vault.py` -> __future__, datetime, sqlite3, typing
+- `models/message.py` -> base64, datetime, flask, glob, json, os, pydantic, typing, uuid
+- `models/plans.py` -> sqlite3, typing
+- `models/superadmin_audit.py` -> datetime, sqlite3, typing
+- `models/user.py` -> datetime, flask, flask_login, pydantic, pytz, sqlite3, typing
+- `pq_decrypt_password.py` -> argparse, utils.crypto
+- `scripts/doctor.py` -> __future__, argparse, dataclasses, hashlib, importlib, os, pathlib, platform, shutil, socket, subprocess, sys, urllib.request
+- `scripts/email_tool.py` -> argparse, flask, flask_mail, os, sys
+- `scripts/makeadmin.py` -> argparse, os, sys
+- `scripts/test_bloque1.py` -> os, re, shutil, sys
+- `server.go` -> crypto/aes, crypto/cipher, fmt, github.com/open-quantum-safe/liboqs-go/oqs, net
+- `server.py` -> cryptography.hazmat.primitives, cryptography.hazmat.primitives.ciphers.aead, cryptography.hazmat.primitives.kdf.pbkdf2, oqs, socket
+- `static/js/qv-crypto.js` -> ./vendor/ed25519.js, ./vendor/hkdf.js, ./vendor/ml_kem.js, ./vendor/sha2.js
+- `templates/terms.py` -> flask
+- `tests/conftest.py` -> __future__, dotenv, logging, os, pytest, sys
+- `tests/test_account_facade.py` -> __future__, datetime, pytest
+- `tests/test_auth_phone.py` -> __future__
+- `tests/test_cover.py` -> __future__, controllers.cover, pytest
+- `tests/test_deniable_vault.py` -> __future__, base64, copy, datetime, json, pytest
+- `tests/test_doctor.py` -> __future__, importlib.util, os, pathlib, sys
+- `tests/test_facade.py` -> __future__, datetime, json, pytest
+- `tests/test_integrity.py` -> __future__, base64, hashlib, json, pathlib
+- `tests/test_padding.py` -> __future__, base64, pytest
+- `tests/test_secure_channel.py` -> __future__, errno, json, os, pathlib, re, shutil, socket, subprocess, time
+- `tests/test_security.py` -> __future__, flask, flask_wtf.csrf, json
+- `tests/test_srp.py` -> __future__, hashlib, secrets
+- `tests/test_utils.py` -> __future__
+- `tools/generate_sri.py` -> __future__, argparse, json, pathlib, sys, urllib.request
+- `tools/mutation_test.py` -> __future__, argparse, dataclasses, io, os, pathlib, subprocess, sys, tokenize
+- `tools/verify_build.py` -> __future__, html.parser, json, pathlib, re, sys
+- `utils/cache.py` -> json, redis, typing
+- `utils/integrity.py` -> __future__, base64, functools, hashlib, json, pathlib, typing
+- `utils/mailer.py` -> flask, flask_mail, typing
+- `utils/padding.py` -> __future__, dataclasses, functools, os, secrets, struct, typing
+- `utils/plans.py` -> typing
+- `utils/scheduler.py` -> __future__, apscheduler.schedulers.background, datetime, flask, flask_mail, logging, pytz, typing
+- `utils/security.py` -> __future__, flask, flask_wtf.csrf, functools, hashlib, hmac, json, logging, os, secrets, time, typing, uuid, wtforms
+- `utils/srp6a.py` -> hashlib, hmac, json, redis, secrets, typing
+- `utils/utils.py` -> dotenv, flask, json, os, re, typing
+- `views/about.py` -> flask
+- `views/account.py` -> __future__, flask, flask_limiter, flask_limiter.util, flask_login
+- `views/admin.py` -> datetime, flask, flask_limiter, flask_limiter.util, flask_login, flask_wtf, os, pathlib, pytz, secrets, shutil, socket, sqlite3, urllib.parse, wtforms, wtforms.validators
+- `views/auth.py` -> flask, flask_limiter, flask_limiter.util, flask_login, flask_wtf, flask_wtf.csrf, functools, hmac, os, wtforms, wtforms.validators
+- `views/facade.py` -> __future__, controllers.cover, flask, flask_login, flask_wtf.csrf, pathlib, typing
+- `views/faq.py` -> flask
+- `views/file.py` -> base64, flask, flask_limiter, flask_limiter.util, flask_login, flask_wtf, os, wtforms, wtforms.validators
+- `views/message.py` -> flask, flask_limiter, flask_limiter.util, flask_login, flask_wtf, os, wtforms, wtforms.validators
+- `views/privacy.py` -> flask
+- `views/subscription.py` -> flask, flask_limiter, flask_limiter.util, flask_login, flask_wtf, os, paypalrestsdk, wtforms, wtforms.validators
+- `views/sync.py` -> flask, flask_limiter, flask_limiter.util, flask_login, os
+- `views/terms.py` -> flask
+- `views/views.py` -> flask, flask_login, flask_wtf, wtforms
+- `wsgi.py` -> os

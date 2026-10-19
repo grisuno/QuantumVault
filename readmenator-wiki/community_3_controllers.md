@@ -29,18 +29,18 @@ This community groups 8 file(s) rooted at `controllers` with dominant language p
 - `get_user_contacts` (method, `controllers/contact.py:36`) `def get_user_contacts(self, user_id)` - Retrieve all contact messages for a user.
 - `ChannelMode` (class, `controllers/secure_channel.py:65`) `class ChannelMode(Enum)` - Selectable disposable channel mode.
 - `parse` (method, `controllers/secure_channel.py:74`) `def parse(cls, raw)` - Parse free-form input into a mode, defaulting to disabled.
-- `is_cloudflare_url` (method, `controllers/secure_channel.py:82`) `def is_cloudflare_url(value)` - Return whether value is a quick-tunnel HTTPS URL.
-- `is_onion_url` (method, `controllers/secure_channel.py:89`) `def is_onion_url(value)` - Return whether value is a v3 onion HTTP address.
-- `_as_port` (method, `controllers/secure_channel.py:96`) `def _as_port(value, default)` - Coerce input to a TCP port, falling back on default.
-- `_as_scheme` (method, `controllers/secure_channel.py:107`) `def _as_scheme(value, default)` - Coerce input to an origin scheme, accepting http or https only.
+- `is_cloudflare_url` (function, `controllers/secure_channel.py:82`) `def is_cloudflare_url(value)` - Return whether value is a quick-tunnel HTTPS URL.
+- `is_onion_url` (function, `controllers/secure_channel.py:89`) `def is_onion_url(value)` - Return whether value is a v3 onion HTTP address.
+- `_as_port` (function, `controllers/secure_channel.py:96`) `def _as_port(value, default)` - Coerce input to a TCP port, falling back on default.
+- `_as_scheme` (function, `controllers/secure_channel.py:107`) `def _as_scheme(value, default)` - Coerce input to an origin scheme, accepting http or https only.
 - `SecureChannelConfig` (class, `controllers/secure_channel.py:116`) `class SecureChannelConfig` - Immutable secure channel configuration from env and mapping.
 - `configured` (method, `controllers/secure_channel.py:129`) `def configured(self)` - Return whether a disposible channel mode is selected.
 - `from_mapping` (method, `controllers/secure_channel.py:134`) `def from_mapping(cls, mapping, env)` - Resolve configuration with environment, mapping, then default order.
-- `read` (method, `controllers/secure_channel.py:142`) `def read(key)`
+- `read` (function, `controllers/secure_channel.py:142`) `def read(key)`
 - `ChannelStatus` (class, `controllers/secure_channel.py:174`) `class ChannelStatus` - Point-in-time view of disposable channel state.
 - `active` (method, `controllers/secure_channel.py:184`) `def active(self)` - Return whether any backend address is currently published.
-- `_default_launcher` (method, `controllers/secure_channel.py:193`) `def _default_launcher(cmd, log_path)` - Spawn a backend daemon detached from the web worker.
-- `_default_killer` (method, `controllers/secure_channel.py:207`) `def _default_killer(pid)` - Terminate one tracked backend process group.
+- `_default_launcher` (function, `controllers/secure_channel.py:193`) `def _default_launcher(cmd, log_path)` - Spawn a backend daemon detached from the web worker.
+- `_default_killer` (function, `controllers/secure_channel.py:207`) `def _default_killer(pid)` - Terminate one tracked backend process group.
 - `SecureChannelManager` (class, `controllers/secure_channel.py:220`) `class SecureChannelManager` - Supervise disposable Cloudflare and Tor backends.
 - `__init__` (method, `controllers/secure_channel.py:223`) `def __init__(self, state_dir, local_port, local_scheme, cloudflared_bin, tor_bin` - Bind the manager to a state directory and backend binaries.
 - `origin_url` (method, `controllers/secure_channel.py:247`) `def origin_url(self)` - Return the loopback origin URL both backends forward to.
@@ -72,16 +72,16 @@ This community groups 8 file(s) rooted at `controllers` with dominant language p
 - [taint high] `tests/test_secure_channel.py` -> `tests/test_secure_channel.py` via `subprocess` (0 hops)
 - [taint high] `tests/test_secure_channel.py` -> `views/admin.py` via `subprocess` (1 hops)
 - [taint high] `tests/test_secure_channel.py` -> `controllers/secure_channel.py` via `subprocess` (1 hops)
+- [taint high] `tests/test_secure_channel.py` -> `models/plans.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/utils.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `models/superadmin_audit.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `controllers/contact.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `models/user.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `views/auth.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `models/plans.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `models/contact.py` via `subprocess` (3 hops)
+- [taint high] `tests/test_secure_channel.py` -> `controllers/contact.py` via `subprocess` (2 hops)
+- [taint high] `tests/test_secure_channel.py` -> `models/superadmin_audit.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/mailer.py` via `subprocess` (3 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/security.py` via `subprocess` (3 hops)
 - [taint high] `tests/test_secure_channel.py` -> `controllers/auth.py` via `subprocess` (3 hops)
+- [taint high] `tests/test_secure_channel.py` -> `models/contact.py` via `subprocess` (3 hops)
 - [taint high] `tests/test_secure_channel.py` -> `utils/__init__.py` via `subprocess` (4 hops)
 
 ## Open Questions

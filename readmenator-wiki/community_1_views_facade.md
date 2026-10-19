@@ -34,17 +34,17 @@ This community groups 11 file(s) rooted at `views` with dominant language py (co
 - `load_user` (function, `app_factory.py:416`) `def load_user(user_id)`
 - `GateOutcome` (class, `controllers/facade.py:63`) `class GateOutcome(Enum)` - Classification of a submitted gate phrase.
 - `GateDecision` (class, `controllers/facade.py:72`) `class GateDecision` - The outcome of evaluating a phrase plus any issued ticket.
-- `_as_bool` (method, `controllers/facade.py:79`) `def _as_bool(value, default)` - Coerce an environment or mapping value to a boolean.
-- `_as_int` (method, `controllers/facade.py:88`) `def _as_int(value, default)` - Coerce an environment or mapping value to an integer.
-- `_as_text` (method, `controllers/facade.py:98`) `def _as_text(value, default)` - Coerce a value to non-empty text, falling back to ``default``.
-- `_as_raw_text` (method, `controllers/facade.py:106`) `def _as_raw_text(value, default)` - Coerce a value to text without substituting an empty default.
-- `_as_paths` (method, `controllers/facade.py:111`) `def _as_paths(value, default)` - Parse a comma-separated path list into a tuple of stripped paths.
+- `_as_bool` (function, `controllers/facade.py:79`) `def _as_bool(value, default)` - Coerce an environment or mapping value to a boolean.
+- `_as_int` (function, `controllers/facade.py:88`) `def _as_int(value, default)` - Coerce an environment or mapping value to an integer.
+- `_as_text` (function, `controllers/facade.py:98`) `def _as_text(value, default)` - Coerce a value to non-empty text, falling back to ``default``.
+- `_as_raw_text` (function, `controllers/facade.py:106`) `def _as_raw_text(value, default)` - Coerce a value to text without substituting an empty default.
+- `_as_paths` (function, `controllers/facade.py:111`) `def _as_paths(value, default)` - Parse a comma-separated path list into a tuple of stripped paths.
 - `FacadeConfig` (class, `controllers/facade.py:124`) `class FacadeConfig` - Immutable facade configuration resolved from environment and app config.
 - `gate_configured` (method, `controllers/facade.py:154`) `def gate_configured(self)` - Return whether the facade is enabled and holds a real gate hash.
 - `cover_context` (method, `controllers/facade.py:158`) `def cover_context(self)` - Return the cosmetic cover context, never carrying a gate hash.
 - `cover_variables` (method, `controllers/facade.py:166`) `def cover_variables(self)` - Return the sanitizable cover variable payload.
 - `from_mapping` (method, `controllers/facade.py:181`) `def from_mapping(cls, mapping, env)` - Resolve configuration with environment, mapping, then default order.
-- `read` (method, `controllers/facade.py:189`) `def read(key)`
+- `read` (function, `controllers/facade.py:189`) `def read(key)`
 - `GatePhraseHasher` (class, `controllers/facade.py:262`) `class GatePhraseHasher` - Argon2id hashing and verification for a human-chosen gate phrase.
 - `__init__` (method, `controllers/facade.py:265`) `def __init__(self, time_cost, memory_cost, parallelism, hash_len, salt_len)` - Bind the hasher to explicit Argon2id cost parameters.
 - `hash` (method, `controllers/facade.py:282`) `def hash(self, phrase)` - Return a salted Argon2id digest of ``phrase``.

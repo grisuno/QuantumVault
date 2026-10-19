@@ -14,7 +14,7 @@
   - `app` (function, line 76) `def app(tmp_path)`
   - `client` (function, line 101) `def client(app)`
   - `_ListLogHandler` (class, line 106) `class _ListLogHandler(Handler)`
-  - `audit_records` (method, line 118) `def audit_records()`
+  - `audit_records` (function, line 118) `def audit_records()`
   - `__init__` (method, line 109) `def __init__(self)`
   - `emit` (method, line 113) `def emit(self, record)`
 - Depends on: `app_factory.py`, `utils/security.py`
@@ -275,8 +275,8 @@
   - `test_message_controller_accepts_bucketed_envelope` (function, line 120) `def test_message_controller_accepts_bucketed_envelope(app, tmp_path, monkeypatch)`
   - `_FakeS3` (class, line 128) `class _FakeS3`
   - `_FakeUpload` (class, line 136) `class _FakeUpload`
-  - `test_file_controller_rejects_unpadded_upload` (method, line 146) `def test_file_controller_rejects_unpadded_upload(app)`
-  - `test_file_controller_accepts_bucketed_upload` (method, line 152) `def test_file_controller_accepts_bucketed_upload(app)`
+  - `test_file_controller_rejects_unpadded_upload` (function, line 146) `def test_file_controller_rejects_unpadded_upload(app)`
+  - `test_file_controller_accepts_bucketed_upload` (function, line 152) `def test_file_controller_accepts_bucketed_upload(app)`
   - `__init__` (method, line 129) `def __init__(self)`
   - `put_object` (method, line 132) `def put_object(self, Bucket, Key, Body)`
   - `__init__` (method, line 139) `def __init__(self, body)`
@@ -340,21 +340,21 @@
   - `fake_launcher` (function, line 67) `def fake_launcher(cmd, log_path)`
   - `fake_launcher` (function, line 105) `def fake_launcher(cmd, log_path)`
   - `_FakeProcess` (class, line 260) `class _FakeProcess`
-  - `_fake_popen` (method, line 263) `def _fake_popen(cmd)`
-  - `_raise_pg` (method, line 290) `def _raise_pg(pid, sig)`
-  - `_record_kill` (method, line 293) `def _record_kill(pid, sig)`
-  - `fake_launcher` (method, line 419) `def fake_launcher(cmd, log_path)`
-  - `fake_launcher` (method, line 445) `def fake_launcher(cmd, log_path)`
-  - `_raise` (method, line 471) `def _raise()`
-  - `_raise_lookup` (method, line 536) `def _raise_lookup(pid, sig)`
-  - `_raise_perm` (method, line 542) `def _raise_perm(pid, sig)`
-  - `_raise_os` (method, line 548) `def _raise_os(pid, sig)`
-  - `_fake_mono` (method, line 573) `def _fake_mono()`
-  - `_fake_sleep` (method, line 576) `def _fake_sleep(secs)`
-  - `_fake_mono` (method, line 606) `def _fake_mono()`
-  - `_fake_sleep` (method, line 609) `def _fake_sleep(secs)`
-  - `_fake_sleep_file` (method, line 627) `def _fake_sleep_file(secs)`
-  - `fake_launcher` (method, line 737) `def fake_launcher(cmd, log_path)`
+  - `_fake_popen` (function, line 263) `def _fake_popen(cmd)`
+  - `_raise_pg` (function, line 290) `def _raise_pg(pid, sig)`
+  - `_record_kill` (function, line 293) `def _record_kill(pid, sig)`
+  - `fake_launcher` (function, line 419) `def fake_launcher(cmd, log_path)`
+  - `fake_launcher` (function, line 445) `def fake_launcher(cmd, log_path)`
+  - `_raise` (function, line 471) `def _raise()`
+  - `_raise_lookup` (function, line 536) `def _raise_lookup(pid, sig)`
+  - `_raise_perm` (function, line 542) `def _raise_perm(pid, sig)`
+  - `_raise_os` (function, line 548) `def _raise_os(pid, sig)`
+  - `_fake_mono` (function, line 573) `def _fake_mono()`
+  - `_fake_sleep` (function, line 576) `def _fake_sleep(secs)`
+  - `_fake_mono` (function, line 606) `def _fake_mono()`
+  - `_fake_sleep` (function, line 609) `def _fake_sleep(secs)`
+  - `_fake_sleep_file` (function, line 627) `def _fake_sleep_file(secs)`
+  - `fake_launcher` (function, line 737) `def fake_launcher(cmd, log_path)`
 - Depends on: `controllers/secure_channel.py`, `views/admin.py`
 
 ## tests/test_security.py

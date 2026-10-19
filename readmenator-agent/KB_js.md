@@ -5,11 +5,11 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `setStatus` (function, line 19)
-  - `csrfToken` (function, line 30)
+  - `setStatus` (function, line 20)
+  - `csrfToken` (function, line 31)
   - `apiRequest` (function, line 36)
   - `loadState` (function, line 54)
-  - `collectSlots` (function, line 59)
+  - `collectSlots` (function, line 60)
   - `handleConfigure` (function, line 73)
   - `handleOpen` (function, line 103)
   - `handleReset` (function, line 125)
@@ -21,9 +21,9 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `randomChar` (function, line 12)
-  - `animateElement` (function, line 18)
-  - `init` (function, line 49)
+  - `randomChar` (function, line 13)
+  - `animateElement` (function, line 19)
+  - `init` (function, line 50)
 
 ## static/js/login.js
 - Doc: Login page controller (zero-knowledge SRP-6a flow).
@@ -31,7 +31,7 @@
 - Language: js
 - Symbols:
   - `handleLogin` (function, line 11)
-  - `init` (function, line 43)
+  - `init` (function, line 44)
 - Depends on: `static/js/qv-crypto.js`
 - Imported by: `static/js/qv-crypto.js`
 
@@ -40,12 +40,12 @@
 - Layer: infrastructure
 - Language: js
 - Symbols:
-  - `getCsrfToken` (function, line 11)
+  - `getCsrfToken` (function, line 12)
   - `handleSend` (function, line 17)
-  - `collectEnvelopes` (function, line 43)
+  - `collectEnvelopes` (function, line 44)
   - `handleDecryptInbox` (function, line 60)
-  - `initEditor` (function, line 87)
-  - `init` (function, line 108)
+  - `initEditor` (function, line 88)
+  - `init` (function, line 109)
 - Depends on: `static/js/qv-crypto.js`
 
 ## static/js/qv-crypto.js
@@ -53,34 +53,34 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `concatBytes` (function, line 58)
-  - `hexToBytes` (function, line 69)
-  - `bytesToHex` (function, line 78)
-  - `bytesToBase64` (function, line 84)
-  - `bytesToBase32` (function, line 95)
-  - `base64ToBytes` (function, line 113)
-  - `bytesToBigInt` (function, line 120)
-  - `i2osp` (function, line 127)
-  - `mod` (function, line 137)
-  - `modPow` (function, line 141)
-  - `randomBytes` (function, line 159)
-  - `H` (function, line 168)
-  - `Hint` (function, line 172)
+  - `concatBytes` (function, line 59)
+  - `hexToBytes` (function, line 70)
+  - `bytesToHex` (function, line 79)
+  - `bytesToBase64` (function, line 85)
+  - `bytesToBase32` (function, line 96)
+  - `base64ToBytes` (function, line 114)
+  - `bytesToBigInt` (function, line 121)
+  - `i2osp` (function, line 128)
+  - `mod` (function, line 138)
+  - `modPow` (function, line 142)
+  - `randomBytes` (function, line 160)
+  - `H` (function, line 169)
+  - `Hint` (function, line 173)
   - `deriveKeyFromPassphrase` (function, line 184)
   - `deriveMasterKey` (function, line 205)
   - `aesGcmEncrypt` (function, line 209)
   - `aesGcmDecrypt` (function, line 220)
-  - `computeK` (function, line 250)
-  - `deriveVerifier` (function, line 255)
+  - `computeK` (function, line 251)
+  - `deriveVerifier` (function, line 256)
   - `srpLogin` (function, line 263)
-  - `generateIdentity` (function, line 315)
-  - `parsePublicKey` (function, line 343)
-  - `parsePrivateBlob` (function, line 351)
-  - `deriveWrapKey` (function, line 359)
+  - `generateIdentity` (function, line 316)
+  - `parsePublicKey` (function, line 344)
+  - `parsePrivateBlob` (function, line 352)
+  - `deriveWrapKey` (function, line 360)
   - `wrapKey` (function, line 371)
   - `unwrapKey` (function, line 395)
   - `generateRecoveryCode` (function, line 417)
-  - `normalizeRecoveryCode` (function, line 428)
+  - `normalizeRecoveryCode` (function, line 429)
   - `wrapPrivateKeyForRecovery` (function, line 436)
   - `derivePublicKeyFromPrivateBlob` (function, line 455)
   - `postJson` (function, line 473)
@@ -101,9 +101,9 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `toBytes` (function, line 47)
-  - `frame` (function, line 55)
-  - `unframe` (function, line 64)
+  - `toBytes` (function, line 48)
+  - `frame` (function, line 56)
+  - `unframe` (function, line 65)
   - `sealSlot` (function, line 82)
   - `openSlot` (function, line 102)
   - `buildDeniableVault` (function, line 125)
@@ -116,9 +116,9 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `tableFor` (function, line 15)
+  - `tableFor` (function, line 16)
   - `bucketFor` (function, line 20)
-  - `randomPad` (function, line 33)
+  - `randomPad` (function, line 34)
   - `padFramed` (function, line 42)
   - `unframeFramed` (function, line 54)
 - Depends on: `utils/padding.py`
@@ -129,9 +129,9 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `setStatus` (function, line 14)
+  - `setStatus` (function, line 15)
   - `handleRecover` (function, line 22)
-  - `init` (function, line 79)
+  - `init` (function, line 80)
 - Depends on: `static/js/qv-crypto.js`
 
 ## static/js/register.js
@@ -139,9 +139,9 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `showRecoveryCode` (function, line 16)
+  - `showRecoveryCode` (function, line 17)
   - `handleRegister` (function, line 42)
-  - `init` (function, line 109)
+  - `init` (function, line 110)
 - Depends on: `static/js/qv-crypto.js`
 - Imported by: `static/js/qv-crypto.js`
 
@@ -150,10 +150,10 @@
 - Layer: utility
 - Language: js
 - Symbols:
-  - `getCsrfToken` (function, line 11)
-  - `getUsername` (function, line 16)
+  - `getCsrfToken` (function, line 12)
+  - `getUsername` (function, line 17)
   - `getPublicKey` (function, line 23)
   - `handleUpload` (function, line 40)
   - `handleDownload` (function, line 74)
-  - `init` (function, line 96)
+  - `init` (function, line 97)
 - Depends on: `static/js/qv-crypto.js`

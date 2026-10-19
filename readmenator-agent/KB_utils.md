@@ -48,15 +48,15 @@
 - Symbols:
   - `PaddingError` (class, line 73) `class PaddingError(ValueError)`
   - `PaddingConfig` (class, line 78) `class PaddingConfig`
-  - `_parse_buckets` (method, line 95) `def _parse_buckets(raw, fallback)`
-  - `config_from_env` (method, line 109) `def config_from_env()`
-  - `_cached_bucket_table` (method, line 128) `def _cached_bucket_table(fingerprint)`
-  - `cached_tables` (method, line 142) `def cached_tables(config)`
-  - `bucket_for` (method, line 149) `def bucket_for(plaintext_len, kind, config)`
-  - `pad` (method, line 169) `def pad(plaintext, kind, config)`
-  - `unpad` (method, line 183) `def unpad(padded, kind, config)`
-  - `wire_ciphertext_len` (method, line 209) `def wire_ciphertext_len(bucket)`
-  - `is_allowed_ciphertext_len` (method, line 214) `def is_allowed_ciphertext_len(ciphertext_len, kind, config)`
+  - `_parse_buckets` (function, line 95) `def _parse_buckets(raw, fallback)`
+  - `config_from_env` (function, line 109) `def config_from_env()`
+  - `_cached_bucket_table` (function, line 128) `def _cached_bucket_table(fingerprint)`
+  - `cached_tables` (function, line 142) `def cached_tables(config)`
+  - `bucket_for` (function, line 149) `def bucket_for(plaintext_len, kind, config)`
+  - `pad` (function, line 169) `def pad(plaintext, kind, config)`
+  - `unpad` (function, line 183) `def unpad(padded, kind, config)`
+  - `wire_ciphertext_len` (function, line 209) `def wire_ciphertext_len(bucket)`
+  - `is_allowed_ciphertext_len` (function, line 214) `def is_allowed_ciphertext_len(ciphertext_len, kind, config)`
   - `buckets_for` (method, line 84) `def buckets_for(self, kind)`
   - `max_plaintext_bytes` (method, line 90) `def max_plaintext_bytes(self, kind)`
 - Imported by: `controllers/file.py`, `controllers/message.py`, `static/js/qv-padding.js`, `tests/test_padding.py`, `tools/verify_build.py`
@@ -113,8 +113,8 @@
   - `generate_server_challenge` (function, line 91) `def generate_server_challenge(verifier)`
   - `compute_proofs` (function, line 107) `def compute_proofs(username, salt_hex, verifier, server_a, server_b, server_b_secret)`
   - `SRPSessionStore` (class, line 150) `class SRPSessionStore`
-  - `hello` (method, line 224) `def hello(store, username, client_a_hex, salt_hex, verifier_hex)`
-  - `verify` (method, line 260) `def verify(store, username, client_m1_hex)`
+  - `hello` (function, line 224) `def hello(store, username, client_a_hex, salt_hex, verifier_hex)`
+  - `verify` (function, line 260) `def verify(store, username, client_m1_hex)`
   - `__init__` (method, line 158) `def __init__(self, storage_uri)`
   - `_key` (method, line 168) `def _key(username)`
   - `save` (method, line 172) `def save(self, username, salt_hex, verifier_hex, server_a_hex, server_b_hex, server_b_secret_hex)`
@@ -130,7 +130,7 @@
   - `sanitize_path` (function, line 49) `def sanitize_path(path)`
   - `Payload` (class, line 80) `class Payload(TypedDict)`
   - `Config` (class, line 103) `class Config`
-  - `load_payload` (method, line 168) `def load_payload()`
+  - `load_payload` (function, line 168) `def load_payload()`
   - `__init__` (method, line 145) `def __init__(self, config_dict)`
   - `__getitem__` (method, line 165) `def __getitem__(self, key)`
 - Imported by: `app.py`, `app_factory.py`, `controllers/auth.py`, `controllers/file.py`, `controllers/message.py`, `scripts/email_tool.py`, `tests/test_utils.py`, `utils/security.py`, `views/admin.py`, `views/auth.py`, `views/faq.py`, `views/subscription.py`, `views/sync.py`, `views/views.py`

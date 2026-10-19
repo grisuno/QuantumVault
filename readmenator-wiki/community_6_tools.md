@@ -31,14 +31,14 @@ This community groups 4 file(s) rooted at `tools` with dominant language py (coh
 - `AssetReference` (class, `tools/verify_build.py:34`) `class AssetReference(HTMLParser)` - Collect external script and stylesheet references from one template.
 - `__init__` (method, `tools/verify_build.py:37`) `def __init__(self)` - Initialize the reference collector.
 - `handle_starttag` (method, `tools/verify_build.py:42`) `def handle_starttag(self, tag, attrs)` - Record one script or link tag with its integrity attribute.
-- `_normalize_reference` (method, `tools/verify_build.py:60`) `def _normalize_reference(ref)` - Resolve a ``url_for('static', ...)`` expression to its served path.
-- `load_manifest` (method, `tools/verify_build.py:71`) `def load_manifest()` - Load and return the SRI manifest document.
-- `expected_for_reference` (method, `tools/verify_build.py:76`) `def expected_for_reference(manifest, ref)` - Resolve the pinned integrity value for one template reference.
-- `integrity_attribute_ok` (method, `tools/verify_build.py:85`) `def integrity_attribute_ok(integrity, ref, expected)` - Accept a literal pin or the ``sri_integrity`` template expression.
-- `check_local_hashes` (method, `tools/verify_build.py:95`) `def check_local_hashes(manifest, failures)` - Recompute every pinned local asset and record mismatches.
-- `check_template_references` (method, `tools/verify_build.py:110`) `def check_template_references(manifest, failures)` - Require manifest-backed integrity on every template reference.
-- `check_bucket_parity` (method, `tools/verify_build.py:126`) `def check_bucket_parity(failures)` - Require identical bucket tables in Python and JavaScript.
-- `main` (method, `tools/verify_build.py:141`) `def main()` - Run every check and report failures.
+- `_normalize_reference` (function, `tools/verify_build.py:60`) `def _normalize_reference(ref)` - Resolve a ``url_for('static', ...)`` expression to its served path.
+- `load_manifest` (function, `tools/verify_build.py:71`) `def load_manifest()` - Load and return the SRI manifest document.
+- `expected_for_reference` (function, `tools/verify_build.py:76`) `def expected_for_reference(manifest, ref)` - Resolve the pinned integrity value for one template reference.
+- `integrity_attribute_ok` (function, `tools/verify_build.py:85`) `def integrity_attribute_ok(integrity, ref, expected)` - Accept a literal pin or the ``sri_integrity`` template expression.
+- `check_local_hashes` (function, `tools/verify_build.py:95`) `def check_local_hashes(manifest, failures)` - Recompute every pinned local asset and record mismatches.
+- `check_template_references` (function, `tools/verify_build.py:110`) `def check_template_references(manifest, failures)` - Require manifest-backed integrity on every template reference.
+- `check_bucket_parity` (function, `tools/verify_build.py:126`) `def check_bucket_parity(failures)` - Require identical bucket tables in Python and JavaScript.
+- `main` (function, `tools/verify_build.py:141`) `def main()` - Run every check and report failures.
 - `manifest_path` (function, `utils/integrity.py:25`) `def manifest_path()` - Return the manifest path resolved from this file, never hardcoded.
 - `compute_sri` (function, `utils/integrity.py:30`) `def compute_sri(data, algorithm)` - Return the SRI string ``<algorithm>-<base64 digest>`` for ``data``.
 - `compute_file_sri` (function, `utils/integrity.py:36`) `def compute_file_sri(path, algorithm)` - Return the SRI string for the bytes stored at ``path``.
