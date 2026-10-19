@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "quantumvault"
+name = "quantumvault-core"
 version = "0.1.0"
 description = "QuantumVault: zero-knowledge encrypted messaging, files, and deniable vault with hybrid post-quantum key exchange"
 readme = "README.md"

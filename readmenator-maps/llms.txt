@@ -41,7 +41,7 @@ Generated offline by readmenator (zero LLM tokens). Start with the wiki index fo
 - [readmenator-agent/KB_tools.md](md/readmenator-agent/KB_tools.md): Doc: Generate the SRI manifest for first-party assets and pinned CDN URLs.
 - [readmenator-agent/KB_utils.md](md/readmenator-agent/KB_utils.md): Imported by: controllers/auth.py, tests/testpadding.py, tests/testsrp.py
 - [readmenator-agent/KB_views.md](md/readmenator-agent/KB_views.md): Doc: about: Render the About page.
-- [readmenator-agent/MEMORY.md](md/readmenator-agent/MEMORY.md): Generated from 88 files at commit 35383e53cb25. Read this first, then readmenator-wiki/index.md, then readmenator . ask "<question>" for anything specific.
+- [readmenator-agent/MEMORY.md](md/readmenator-agent/MEMORY.md): Generated from 88 files at commit 3dee8768d8ab. Read this first, then readmenator-wiki/index.md, then readmenator . ask "<question>" for anything specific.
 - [readmenator-agent/SECURITY.md](md/readmenator-agent/SECURITY.md)
 - [readmenator-agent/SYMBOLS.md](md/readmenator-agent/SYMBOLS.md)
 - [readmenator-agent/SYMBOLS_p2.md](md/readmenator-agent/SYMBOLS_p2.md)

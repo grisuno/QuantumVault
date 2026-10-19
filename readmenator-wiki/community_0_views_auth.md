@@ -74,12 +74,12 @@ This community groups 14 file(s) rooted at `views` with dominant language py (co
 
 ## Risks
 
-- [taint high] `tests/test_secure_channel.py` -> `models/user.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `models/plans.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `utils/utils.py` via `subprocess` (2 hops)
+- [taint high] `tests/test_secure_channel.py` -> `models/user.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `views/auth.py` via `subprocess` (2 hops)
-- [taint high] `tests/test_secure_channel.py` -> `utils/mailer.py` via `subprocess` (3 hops)
+- [taint high] `tests/test_secure_channel.py` -> `utils/utils.py` via `subprocess` (2 hops)
 - [taint high] `tests/test_secure_channel.py` -> `controllers/auth.py` via `subprocess` (3 hops)
+- [taint high] `tests/test_secure_channel.py` -> `utils/mailer.py` via `subprocess` (3 hops)
 - [layer strict] `scripts/test_bloque1.py` (testing) -> `models/user.py` (presentation)
 - [layer strict] `tests/test_account_facade.py` (testing) -> `models/user.py` (presentation)
 - [layer strict] `tests/test_deniable_vault.py` (testing) -> `models/user.py` (presentation)

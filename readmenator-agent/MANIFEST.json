@@ -1,10 +1,10 @@
 {
   "tool": "readmenator",
   "schema_version": 2,
-  "generated_at": "2026-10-19T19:22:19Z",
+  "generated_at": "2026-10-19T19:25:25Z",
   "project_root": ".",
   "project_name": "QuantumVault",
-  "git_commit": "35383e53cb25313dcc79a6a63999815c53974c62",
+  "git_commit": "3dee8768d8ab57bfee6ed4972ce1cd25b687a9e6",
   "git_branch": "main",
   "source_fingerprint": "17ed88cb5a07a256104b9c3d479489e45cf2510c51797fb1b5ac758eba304d97",
   "freshness_check": "readmenator . fresh  # exit 0 = docs match sources, exit 1 = run: readmenator . --rebuild",
